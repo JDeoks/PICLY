@@ -11,6 +11,10 @@
 		2A1BE9702B08E9B300703ED5 /* MyPhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A1BE96E2B08E9B300703ED5 /* MyPhotosCollectionViewCell.xib */; };
 		2A89E6942B092D69009056DD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6932B092D69009056DD /* UploadViewController.swift */; };
 		2A89E6972B0937F4009056DD /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6962B0937F4009056DD /* UIViewController+Extensions.swift */; };
+		2A89E69A2B094147009056DD /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 2A89E6992B094147009056DD /* SnapKit-Dynamic */; };
+		2A89E69B2B09414D009056DD /* SnapKit-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2A89E6992B094147009056DD /* SnapKit-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		2A89E69E2B0941A9009056DD /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 2A89E69D2B0941A9009056DD /* RxKeyboard */; };
+		2A89E6A02B094EEF009056DD /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E69F2B094EEF009056DD /* EditViewController.swift */; };
 		2A9863FB2B09104C0041686E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9863FA2B09104C0041686E /* DetailViewController.swift */; };
 		2A9863FD2B0913BE0041686E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9863FC2B0913BE0041686E /* MainTabBarController.swift */; };
 		2AB0C4B72B08B77E008BB7AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB0C4B62B08B77E008BB7AE /* AppDelegate.swift */; };
@@ -30,6 +34,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2A89E69B2B09414D009056DD /* SnapKit-Dynamic in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -41,6 +46,7 @@
 		2A1BE96E2B08E9B300703ED5 /* MyPhotosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPhotosCollectionViewCell.xib; sourceTree = "<group>"; };
 		2A89E6932B092D69009056DD /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		2A89E6962B0937F4009056DD /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		2A89E69F2B094EEF009056DD /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		2A9863FA2B09104C0041686E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2A9863FC2B0913BE0041686E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2AB0C4B32B08B77E008BB7AE /* PiCo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiCo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,7 +65,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AB0C51D2B08E354008BB7AE /* RxCocoa in Frameworks */,
+				2A89E69E2B0941A9009056DD /* RxKeyboard in Frameworks */,
 				2AB0C5252B08E354008BB7AE /* RxSwift in Frameworks */,
+				2A89E69A2B094147009056DD /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +81,7 @@
 				2A9863FA2B09104C0041686E /* DetailViewController.swift */,
 				2A9863FC2B0913BE0041686E /* MainTabBarController.swift */,
 				2A89E6932B092D69009056DD /* UploadViewController.swift */,
+				2A89E69F2B094EEF009056DD /* EditViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -146,6 +155,8 @@
 			packageProductDependencies = (
 				2AB0C51C2B08E354008BB7AE /* RxCocoa */,
 				2AB0C5242B08E354008BB7AE /* RxSwift */,
+				2A89E6992B094147009056DD /* SnapKit-Dynamic */,
+				2A89E69D2B0941A9009056DD /* RxKeyboard */,
 			);
 			productName = PiCo;
 			productReference = 2AB0C4B32B08B77E008BB7AE /* PiCo.app */;
@@ -177,6 +188,8 @@
 			mainGroup = 2AB0C4AA2B08B77E008BB7AE;
 			packageReferences = (
 				2AB0C5172B08E354008BB7AE /* XCRemoteSwiftPackageReference "RxSwift" */,
+				2A89E6982B094147009056DD /* XCRemoteSwiftPackageReference "SnapKit" */,
+				2A89E69C2B0941A9009056DD /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 			);
 			productRefGroup = 2AB0C4B42B08B77E008BB7AE /* Products */;
 			projectDirPath = "";
@@ -214,6 +227,7 @@
 				2A9863FB2B09104C0041686E /* DetailViewController.swift in Sources */,
 				2A1BE96F2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift in Sources */,
 				2AB0C4B92B08B77E008BB7AE /* SceneDelegate.swift in Sources */,
+				2A89E6A02B094EEF009056DD /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +458,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2A89E6982B094147009056DD /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.6.0;
+			};
+		};
+		2A89E69C2B0941A9009056DD /* XCRemoteSwiftPackageReference "RxKeyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxKeyboard";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.1;
+			};
+		};
 		2AB0C5172B08E354008BB7AE /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -455,6 +485,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2A89E6992B094147009056DD /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A89E6982B094147009056DD /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+		2A89E69D2B0941A9009056DD /* RxKeyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A89E69C2B0941A9009056DD /* XCRemoteSwiftPackageReference "RxKeyboard" */;
+			productName = RxKeyboard;
+		};
 		2AB0C51C2B08E354008BB7AE /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2AB0C5172B08E354008BB7AE /* XCRemoteSwiftPackageReference "RxSwift" */;

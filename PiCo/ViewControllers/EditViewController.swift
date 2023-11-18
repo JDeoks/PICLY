@@ -1,5 +1,5 @@
 //
-//  UploadViewController.swift
+//  EditViewController.swift
 //  PiCo
 //
 //  Created by 서정덕 on 11/19/23.
@@ -10,18 +10,19 @@ import RxSwift
 import RxKeyboard
 import SnapKit
 
-class UploadViewController: UIViewController {
-    
+class EditViewController: UIViewController {
+
     let disposeBag = DisposeBag()
-    
-    @IBOutlet var closeButton: UIButton!
-    @IBOutlet var uploadButton: UIButton!
-    @IBOutlet var imageContainerView: UIView!
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var guideStackView: UIStackView!
+
+    @IBOutlet var backButton: UIButton!
+    @IBOutlet var saveButton: UIButton!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var inputTagStackView: UIStackView!
-    @IBOutlet var datePicker: UILabel!
+    @IBOutlet var tagTextField: UITextField!
+    @IBOutlet var imageContainerView: UIView!
+    @IBOutlet var imageView: UILabel!
+    @IBOutlet var guideStackView: UIStackView!
+    @IBOutlet var datePicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +52,7 @@ class UploadViewController: UIViewController {
     }
     
     func action() {
-        closeButton.rx.tap
+        backButton.rx.tap
             .subscribe { _ in
             self.dismiss(animated: true)
             }
@@ -72,10 +73,10 @@ class UploadViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
-    
+
 }
 
-extension UploadViewController: UIScrollViewDelegate {
+extension EditViewController: UIScrollViewDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){ self.view.endEditing(true)
     }
