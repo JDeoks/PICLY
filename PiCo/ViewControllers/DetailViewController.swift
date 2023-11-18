@@ -25,7 +25,6 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         initUI()
         action()
-        // Do any additional setup after loading the view.
     }
     
     func initUI() {
@@ -40,19 +39,12 @@ class DetailViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 extension DetailViewController {
+    // MARK: - ActionSheet, Alert
+
     func showEditActionSheet() {
         let actionSheet = UIAlertController(title: "메뉴", message: "", preferredStyle: .actionSheet)
         
@@ -69,19 +61,14 @@ extension DetailViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    private func showDeleteConfirmationAlert() {
+    func showDeleteConfirmationAlert() {
         let deleteAlert = UIAlertController(title: "삭제 확인", message: "정말로 삭제하시겠습니까?", preferredStyle: .alert)
-        
-        // 확인 액션
         let confirmAction = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
             self.deleteAction()
         })
         deleteAlert.addAction(confirmAction)
-        
-        // 취소 액션
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         deleteAlert.addAction(cancelAction)
-        
         self.present(deleteAlert, animated: true, completion: nil)
     }
     

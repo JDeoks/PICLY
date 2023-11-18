@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2A1BE96F2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1BE96D2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift */; };
 		2A1BE9702B08E9B300703ED5 /* MyPhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A1BE96E2B08E9B300703ED5 /* MyPhotosCollectionViewCell.xib */; };
+		2A89E6942B092D69009056DD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6932B092D69009056DD /* UploadViewController.swift */; };
 		2A9863FB2B09104C0041686E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9863FA2B09104C0041686E /* DetailViewController.swift */; };
 		2A9863FD2B0913BE0041686E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9863FC2B0913BE0041686E /* MainTabBarController.swift */; };
 		2AB0C4B72B08B77E008BB7AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB0C4B62B08B77E008BB7AE /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		2A1BE96D2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A1BE96E2B08E9B300703ED5 /* MyPhotosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPhotosCollectionViewCell.xib; sourceTree = "<group>"; };
+		2A89E6932B092D69009056DD /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		2A9863FA2B09104C0041686E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2A9863FC2B0913BE0041686E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2AB0C4B32B08B77E008BB7AE /* PiCo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiCo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +70,7 @@
 				2AB0C4BA2B08B77E008BB7AE /* MyPhotosViewController.swift */,
 				2A9863FA2B09104C0041686E /* DetailViewController.swift */,
 				2A9863FC2B0913BE0041686E /* MainTabBarController.swift */,
+				2A89E6932B092D69009056DD /* UploadViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AB0C4BB2B08B77E008BB7AE /* MyPhotosViewController.swift in Sources */,
+				2A89E6942B092D69009056DD /* UploadViewController.swift in Sources */,
 				2AB0C4B72B08B77E008BB7AE /* AppDelegate.swift in Sources */,
 				2A9863FD2B0913BE0041686E /* MainTabBarController.swift in Sources */,
 				2A9863FB2B09104C0041686E /* DetailViewController.swift in Sources */,

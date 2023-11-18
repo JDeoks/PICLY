@@ -60,6 +60,13 @@ class MyPhotosViewController: UIViewController {
                 })
             }
             .disposed(by: disposeBag)
+        
+        plusButton.rx.tap
+            .subscribe { _ in
+                let uploadVC = self.storyboard?.instantiateViewController(identifier: "UploadViewController") as! UploadViewController
+                uploadVC.modalPresentationStyle = .overFullScreen
+                self.present(uploadVC, animated: true)
+            }
     }
 
 }
