@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -122,6 +123,73 @@
             </objects>
             <point key="canvasLocation" x="1993.1297709923663" y="-2.1126760563380285"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="eBn-0K-hgl">
+            <objects>
+                <viewController id="Dvb-ZR-6Iu" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WIV-Vy-xZ8">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="K5H-ki-04B">
+                                <rect key="frame" x="0.0" y="59" width="393" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLG-qi-ldM">
+                                        <rect key="frame" x="12" y="12" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="1UD-O4-ZvH"/>
+                                            <constraint firstAttribute="height" constant="32" id="BbJ-be-PDa"/>
+                                        </constraints>
+                                        <color key="tintColor" name="mainText"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
+                                        </state>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6cT-CF-e3e">
+                                        <rect key="frame" x="44" y="3" width="289" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EU1-zU-5zA">
+                                        <rect key="frame" x="333" y="4" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="EGY-Q9-C78"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <color key="tintColor" name="HighlightBlue"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="완료">
+                                            <color key="titleColor" name="HighlightBlue"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="5gH-Qj-JJ2"/>
+                                </constraints>
+                                <edgeInsets key="layoutMargins" top="0.0" left="12" bottom="0.0" right="12"/>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상세정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYw-Mz-Pax">
+                                <rect key="frame" x="162" y="75" width="69.333333333333314" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" name="mainText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="R8k-R4-pJz"/>
+                        <color key="backgroundColor" name="MainBackground"/>
+                        <constraints>
+                            <constraint firstItem="R8k-R4-pJz" firstAttribute="trailing" secondItem="K5H-ki-04B" secondAttribute="trailing" id="0KP-WQ-JvP"/>
+                            <constraint firstItem="K5H-ki-04B" firstAttribute="top" secondItem="R8k-R4-pJz" secondAttribute="top" id="LlN-ih-cd1"/>
+                            <constraint firstItem="hYw-Mz-Pax" firstAttribute="centerY" secondItem="K5H-ki-04B" secondAttribute="centerY" id="qud-tj-Svw"/>
+                            <constraint firstItem="R8k-R4-pJz" firstAttribute="leading" secondItem="K5H-ki-04B" secondAttribute="leading" id="yVj-u1-8cM"/>
+                            <constraint firstItem="hYw-Mz-Pax" firstAttribute="centerX" secondItem="K5H-ki-04B" secondAttribute="centerX" id="zqO-XA-yR8"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KPF-ZT-Ahl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2815" y="-2"/>
+        </scene>
         <!--내 사진-->
         <scene sceneID="DCY-bt-Zrv">
             <objects>
@@ -157,10 +225,10 @@
             </objects>
             <point key="canvasLocation" x="1066" y="750"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="Y8P-Kx-bFF">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="bjZ-wD-UON" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="bjZ-wD-UON" customClass="MainTabBarController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ped-Bw-feH">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -178,9 +246,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <namedColor name="HighlightBlue">
+            <color red="0.51372549019607838" green="0.70588235294117652" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="MainBackground">
             <color red="0.17254901960784313" green="0.17254901960784313" blue="0.20784313725490197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

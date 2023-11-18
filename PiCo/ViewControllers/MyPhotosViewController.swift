@@ -51,7 +51,7 @@ class MyPhotosViewController: UIViewController {
                 self.searchCancelButton.isHidden = true
                 self.searchTagTextField.text = ""
                 self.searchTagTextField.resignFirstResponder()
-                UIView.animate(withDuration: 0.1, delay: 0, options:.curveEaseOut ,animations: {
+                UIView.animate(withDuration: 0.1 ,animations: {
                     self.titleStackView.isHidden = false
                 })
             }
@@ -64,7 +64,7 @@ extension MyPhotosViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.searchCancelButton.isHidden = false
-        UIView.animate(withDuration: 0.1, delay: 0, options:.curveEaseOut ,animations: {
+        UIView.animate(withDuration: 0.1, animations: {
             self.titleStackView.isHidden = true
         })
     }
