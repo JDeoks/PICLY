@@ -11,21 +11,24 @@ extension UIViewController {
 
     // 토스트
     func showToast(message : String) {
-            let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 35))
-            toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-            toastLabel.textColor = UIColor.white
-            toastLabel.textAlignment = .center;
-            toastLabel.text = message
-            toastLabel.alpha = 1.0
-            toastLabel.layer.cornerRadius = 10;
-            toastLabel.clipsToBounds  =  true
-            self.view.addSubview(toastLabel)
-            UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
-                 toastLabel.alpha = 0.0
-            }, completion: {(isCompleted) in
-                toastLabel.removeFromSuperview()
-            })
-        }
+        let toastwidth = 200
+        let toastHeight = 35
+        let toastLabel = UILabel(frame: CGRect(x: Int(self.view.frame.size.width)/2 - toastwidth / 2, y: Int(self.view.frame.size.height)-100, width: toastwidth, height: toastHeight))
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        toastLabel.textColor = UIColor(named: "mainText")
+        toastLabel.font = UIFont.systemFont(ofSize: 14.0)
+        toastLabel.textAlignment = .center;
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = CGFloat(toastHeight / 2);
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 2, delay: 0.1, options: .curveEaseIn, animations: {
+             toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
+    }
 }
 
 extension UIViewController {

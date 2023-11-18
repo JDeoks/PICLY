@@ -55,7 +55,7 @@ class DetailViewController: UIViewController {
                     return
                 }
                 UIPasteboard.general.string = self.imageURL
-                // TODO: - 복사완료 토스트
+                self.showToast(message: "링크가 복사되었습니다.")
             }
             .disposed(by: disposeBag)
         
