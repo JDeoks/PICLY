@@ -13,6 +13,10 @@ class MyPhotosViewController: UIViewController {
     
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     
+    let disposeBag = DisposeBag()
+    
+    let refreshControl = UIRefreshControl()
+    
     @IBOutlet var titleStackView: UIStackView!
     @IBOutlet var searchTagStackView: UIStackView!
     @IBOutlet var searchTagTextField: UITextField!
@@ -20,7 +24,6 @@ class MyPhotosViewController: UIViewController {
     @IBOutlet var myPhotosCollectionView: UICollectionView!
     @IBOutlet var plusButton: UIButton!
     
-    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,18 +40,27 @@ class MyPhotosViewController: UIViewController {
         // 내비게이션
         self.navigationController?.navigationBar.isHidden = true
         
+        // refreshControl
+        refreshControl.tintColor = UIColor(named: "HighlightBlue")
+        refreshControl.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
+        
         // myPhotosCollectionView
         myPhotosCollectionView.dataSource = self
         myPhotosCollectionView.delegate = self
         let myPhotosCollectionViewCell = UINib(nibName: "MyPhotosCollectionViewCell", bundle: nil)
         myPhotosCollectionView.register(myPhotosCollectionViewCell, forCellWithReuseIdentifier: "MyPhotosCollectionViewCell")
         myPhotosCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        myPhotosCollectionView.refreshControl = refreshControl
         
         //드래그시 키보드 내림
         myPhotosCollectionView.keyboardDismissMode = .onDrag
         
         // plusButton
         plusButton.layer.cornerRadius = plusButton.frame.height / 2
+    }
+    
+    @objc func pullToRefresh(_ sender: Any) {
+        refreshControl.endRefreshing()
     }
     
     func action() {
