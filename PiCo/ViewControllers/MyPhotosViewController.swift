@@ -18,6 +18,7 @@ class MyPhotosViewController: UIViewController {
     @IBOutlet var searchTagTextField: UITextField!
     @IBOutlet var searchCancelButton: UIButton!
     @IBOutlet var myPhotosCollectionView: UICollectionView!
+    @IBOutlet var plusButton: UIButton!
     
     let disposeBag = DisposeBag()
     
@@ -35,7 +36,7 @@ class MyPhotosViewController: UIViewController {
         searchCancelButton.isHidden = true
         
         // 내비게이션
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.navigationBar.isHidden = true
         
         // myPhotosCollectionView
         myPhotosCollectionView.dataSource = self
@@ -43,6 +44,9 @@ class MyPhotosViewController: UIViewController {
         let myPhotosCollectionViewCell = UINib(nibName: "MyPhotosCollectionViewCell", bundle: nil)
         myPhotosCollectionView.register(myPhotosCollectionViewCell, forCellWithReuseIdentifier: "MyPhotosCollectionViewCell")
         myPhotosCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        
+        // plusButton
+        plusButton.layer.cornerRadius = plusButton.frame.height / 2
     }
     
     func action() {
@@ -100,8 +104,10 @@ extension MyPhotosViewController: UICollectionViewDataSource, UICollectionViewDe
             return sectionInsets
         }
         
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return sectionInsets.left
-//    }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC = self.storyboard?.instantiateViewController(identifier: "DetailViewController") as! DetailViewController
+        detailVC.hidesBottomBarWhenPushed = true
+
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
