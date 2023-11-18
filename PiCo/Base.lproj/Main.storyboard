@@ -341,6 +341,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="tLG-qi-ldM" id="Sl7-9R-mmf"/>
                         <outlet property="copyLinkButton" destination="Pfb-N8-CWS" id="mce-dU-V5U"/>
                         <outlet property="dateLabel" destination="B5t-ej-LAK" id="45b-XL-qAW"/>
                         <outlet property="editButton" destination="EU1-zU-5zA" id="vPr-H9-bl0"/>

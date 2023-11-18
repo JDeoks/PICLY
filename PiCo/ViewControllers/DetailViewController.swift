@@ -10,8 +10,11 @@ import RxSwift
 
 class DetailViewController: UIViewController {
     
+    var imageURL = "hello"
+    
     let disposeBag = DisposeBag()
     
+    @IBOutlet var backButton: UIButton!
     @IBOutlet var editButton: UIButton!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var tagLabel: UILabel!
@@ -33,11 +36,29 @@ class DetailViewController: UIViewController {
     }
     
     func action() {
+
+        backButton.rx.tap
+            .subscribe { _ in
+                self.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+
         editButton.rx.tap
             .subscribe { _ in
                 self.showEditActionSheet()
             }
             .disposed(by: disposeBag)
+        
+        copyLinkButton.rx.tap
+            .subscribe { _ in
+                if self.imageURL == "" {
+                    return
+                }
+                UIPasteboard.general.string = self.imageURL
+                // TODO: - 복사완료 토스트
+            }
+            .disposed(by: disposeBag)
+        
     }
 
 }

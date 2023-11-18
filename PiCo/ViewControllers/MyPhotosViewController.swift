@@ -45,6 +45,9 @@ class MyPhotosViewController: UIViewController {
         myPhotosCollectionView.register(myPhotosCollectionViewCell, forCellWithReuseIdentifier: "MyPhotosCollectionViewCell")
         myPhotosCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         
+        //드래그시 키보드 내림
+        myPhotosCollectionView.keyboardDismissMode = .onDrag
+        
         // plusButton
         plusButton.layer.cornerRadius = plusButton.frame.height / 2
     }
@@ -52,21 +55,27 @@ class MyPhotosViewController: UIViewController {
     func action() {
         searchCancelButton.rx.tap
             .subscribe { _ in
-                self.searchCancelButton.isHidden = true
-                self.searchTagTextField.text = ""
-                self.searchTagTextField.resignFirstResponder()
-                UIView.animate(withDuration: 0.1 ,animations: {
-                    self.titleStackView.isHidden = false
-                })
+                self.stopSearching()
             }
             .disposed(by: disposeBag)
         
         plusButton.rx.tap
             .subscribe { _ in
+                self.stopSearching()
                 let uploadVC = self.storyboard?.instantiateViewController(identifier: "UploadViewController") as! UploadViewController
                 uploadVC.modalPresentationStyle = .overFullScreen
                 self.present(uploadVC, animated: true)
             }
+            .disposed(by: disposeBag)
+    }
+    
+    func stopSearching() {
+        searchCancelButton.isHidden = true
+        searchTagTextField.text = ""
+        searchTagTextField.resignFirstResponder()
+        UIView.animate(withDuration: 0.1 ,animations: {
+            self.titleStackView.isHidden = false
+        })
     }
 
 }
@@ -112,9 +121,9 @@ extension MyPhotosViewController: UICollectionViewDataSource, UICollectionViewDe
         }
         
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        stopSearching()
         let detailVC = self.storyboard?.instantiateViewController(identifier: "DetailViewController") as! DetailViewController
         detailVC.hidesBottomBarWhenPushed = true
-
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }

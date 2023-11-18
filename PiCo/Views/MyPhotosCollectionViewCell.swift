@@ -10,6 +10,8 @@ import RxSwift
 
 class MyPhotosCollectionViewCell: UICollectionViewCell {
     
+    var imageURL = ""
+    
     let disposeBag = DisposeBag()
     
     @IBOutlet var rootStackView: UIStackView!
@@ -33,6 +35,7 @@ class MyPhotosCollectionViewCell: UICollectionViewCell {
     func action() {
         copyLinkButton.rx.tap
             .subscribe { _ in
+                UIPasteboard.general.string = self.imageURL
                 print("링크복사")
             }
             .disposed(by: disposeBag)
