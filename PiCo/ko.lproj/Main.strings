@@ -1,0 +1,96 @@
+
+/* Class = "UILabel"; text = "설정"; ObjectID = "8UD-j7-E6Y"; */
+"8UD-j7-E6Y.text" = "설정";
+
+/* Class = "UILabel"; text = "태그"; ObjectID = "9j9-IZ-L4U"; */
+"9j9-IZ-L4U.text" = "태그";
+
+/* Class = "UILabel"; text = "2023.08.12 08:40"; ObjectID = "B5t-ej-LAK"; */
+"B5t-ej-LAK.text" = "2023.08.12 08:40";
+
+/* Class = "UIButton"; normalTitle = "완료"; ObjectID = "BMo-7y-Pf2"; */
+"BMo-7y-Pf2.normalTitle" = "완료";
+
+/* Class = "UITabBarItem"; title = "설정"; ObjectID = "I3X-2L-WBK"; */
+"I3X-2L-WBK.title" = "설정";
+
+/* Class = "UILabel"; text = "사진"; ObjectID = "KPJ-Wm-Mwr"; */
+"KPJ-Wm-Mwr.text" = "사진";
+
+/* Class = "UILabel"; text = "다른 사용자의 창작물이나 지적 재산권을 존중해주세요.  무단으로 타인의 작품을 사용하는 행위는 금지되어 있습니다.선정적이거나 모욕적인 이미지, 비속어를 포함한 내용은 업로드하지 말아주세요.\n타인의 개인정보가 노출되지 않도록 주의해주세요."; ObjectID = "N4O-Tv-kut"; */
+"N4O-Tv-kut.text" = "다른 사용자의 창작물이나 지적 재산권을 존중해주세요.  무단으로 타인의 작품을 사용하는 행위는 금지되어 있습니다.선정적이거나 모욕적인 이미지, 비속어를 포함한 내용은 업로드하지 말아주세요.\n타인의 개인정보가 노출되지 않도록 주의해주세요.";
+
+/* Class = "UILabel"; text = "사진"; ObjectID = "OgO-Wp-g70"; */
+"OgO-Wp-g70.text" = "사진";
+
+/* Class = "UILabel"; text = "다른 사용자의 창작물이나 지적 재산권을 존중해주세요.  무단으로 타인의 작품을 사용하는 행위는 금지되어 있습니다.선정적이거나 모욕적인 이미지, 비속어를 포함한 내용은 업로드하지 말아주세요.\n타인의 개인정보가 노출되지 않도록 주의해주세요."; ObjectID = "OvN-zO-aUW"; */
+"OvN-zO-aUW.text" = "다른 사용자의 창작물이나 지적 재산권을 존중해주세요.  무단으로 타인의 작품을 사용하는 행위는 금지되어 있습니다.선정적이거나 모욕적인 이미지, 비속어를 포함한 내용은 업로드하지 말아주세요.\n타인의 개인정보가 노출되지 않도록 주의해주세요.";
+
+/* Class = "UILabel"; text = "만료 기한"; ObjectID = "PFM-er-qtN"; */
+"PFM-er-qtN.text" = "만료 기한";
+
+/* Class = "UITextField"; placeholder = "태그를 입력하세요"; ObjectID = "Qmr-j9-N8i"; */
+"Qmr-j9-N8i.placeholder" = "태그를 입력하세요";
+
+/* Class = "UITextField"; placeholder = "태그 검색"; ObjectID = "UID-xT-SBR"; */
+"UID-xT-SBR.placeholder" = "태그 검색";
+
+/* Class = "UILabel"; text = "태그"; ObjectID = "WOM-8Q-fPi"; */
+"WOM-8Q-fPi.text" = "태그";
+
+/* Class = "UILabel"; text = "1일 0시간 후"; ObjectID = "WWh-FV-4lU"; */
+"WWh-FV-4lU.text" = "1일 0시간 후";
+
+/* Class = "UILabel"; text = "PiCo"; ObjectID = "aCo-M8-BXX"; */
+"aCo-M8-BXX.text" = "PiCo";
+
+/* Class = "UILabel"; text = "17일 7시간 12분 후 만료 "; ObjectID = "bbt-Qp-rMr"; */
+"bbt-Qp-rMr.text" = "17일 7시간 12분 후 만료 ";
+
+/* Class = "UILabel"; text = "# 파도_사진"; ObjectID = "bgC-FW-PeJ"; */
+"bgC-FW-PeJ.text" = "# 파도_사진";
+
+/* Class = "UITextField"; placeholder = "태그를 입력하세요"; ObjectID = "gyk-y1-Jdj"; */
+"gyk-y1-Jdj.placeholder" = "태그를 입력하세요";
+
+/* Class = "UITextField"; text = "# 파도_사진"; ObjectID = "gyk-y1-Jdj"; */
+"gyk-y1-Jdj.text" = "# 파도_사진";
+
+/* Class = "UIButton"; normalTitle = "저장"; ObjectID = "hJG-0F-N9p"; */
+"hJG-0F-N9p.normalTitle" = "저장";
+
+/* Class = "UILabel"; text = "상세정보"; ObjectID = "hYw-Mz-Pax"; */
+"hYw-Mz-Pax.text" = "상세정보";
+
+/* Class = "UIButton"; normalTitle = "취소"; ObjectID = "iOG-2E-sQY"; */
+"iOG-2E-sQY.normalTitle" = "취소";
+
+/* Class = "UIButton"; configuration.title = "링크 공유"; ObjectID = "jcw-8l-Muk"; */
+"jcw-8l-Muk.configuration.title" = "링크 공유";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "jcw-8l-Muk"; */
+"jcw-8l-Muk.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "내 사진"; ObjectID = "n5A-VP-0PV"; */
+"n5A-VP-0PV.title" = "내 사진";
+
+/* Class = "UILabel"; text = "클릭해서 사진을 선택하세요"; ObjectID = "olj-bY-KiW"; */
+"olj-bY-KiW.text" = "클릭해서 사진을 선택하세요";
+
+/* Class = "UILabel"; text = "1,203"; ObjectID = "rCe-KJ-uFf"; */
+"rCe-KJ-uFf.text" = "1,203";
+
+/* Class = "UILabel"; text = "클릭해서 사진을 선택하세요"; ObjectID = "rUT-oG-BUX"; */
+"rUT-oG-BUX.text" = "클릭해서 사진을 선택하세요";
+
+/* Class = "UILabel"; text = "1일 0시간 후"; ObjectID = "sY6-ig-gZ5"; */
+"sY6-ig-gZ5.text" = "1일 0시간 후";
+
+/* Class = "UILabel"; text = "만료 기한"; ObjectID = "wjS-Be-TZZ"; */
+"wjS-Be-TZZ.text" = "만료 기한";
+
+/* Class = "UILabel"; text = "사진 업로드"; ObjectID = "x5D-40-ch5"; */
+"x5D-40-ch5.text" = "사진 업로드";
+
+/* Class = "UILabel"; text = "정보 수정"; ObjectID = "yWE-hl-9H7"; */
+"yWE-hl-9H7.text" = "정보 수정";

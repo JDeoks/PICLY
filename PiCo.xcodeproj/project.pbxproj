@@ -15,6 +15,9 @@
 		2A89E69B2B09414D009056DD /* SnapKit-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2A89E6992B094147009056DD /* SnapKit-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2A89E69E2B0941A9009056DD /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 2A89E69D2B0941A9009056DD /* RxKeyboard */; };
 		2A89E6A02B094EEF009056DD /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E69F2B094EEF009056DD /* EditViewController.swift */; };
+		2A89E6AA2B0A32C6009056DD /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6A92B0A32C6009056DD /* ShareViewController.swift */; };
+		2A89E6AD2B0A32C6009056DD /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A89E6AB2B0A32C6009056DD /* MainInterface.storyboard */; };
+		2A89E6B12B0A32C6009056DD /* PiCoShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2A89E6A72B0A32C6009056DD /* PiCoShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2A9863FB2B09104C0041686E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9863FA2B09104C0041686E /* DetailViewController.swift */; };
 		2A9863FD2B0913BE0041686E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9863FC2B0913BE0041686E /* MainTabBarController.swift */; };
 		2AB0C4B72B08B77E008BB7AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB0C4B62B08B77E008BB7AE /* AppDelegate.swift */; };
@@ -27,7 +30,28 @@
 		2AB0C5252B08E354008BB7AE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB0C5242B08E354008BB7AE /* RxSwift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2A89E6AF2B0A32C6009056DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AB0C4AB2B08B77E008BB7AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A89E6A62B0A32C6009056DD;
+			remoteInfo = PiCoShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
+		2A89E6B52B0A32C6009056DD /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2A89E6B12B0A32C6009056DD /* PiCoShareExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2AB0C4E82B08E215008BB7AE /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -47,6 +71,15 @@
 		2A89E6932B092D69009056DD /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		2A89E6962B0937F4009056DD /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		2A89E69F2B094EEF009056DD /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		2A89E6A72B0A32C6009056DD /* PiCoShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PiCoShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A89E6A92B0A32C6009056DD /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		2A89E6AC2B0A32C6009056DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		2A89E6AE2B0A32C6009056DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A89E6B62B0A338E009056DD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		2A89E6B72B0A338E009056DD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		2A89E6B82B0A338E009056DD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		2A89E6B92B0A35DE009056DD /* PiCo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PiCo.entitlements; sourceTree = "<group>"; };
+		2A89E6BA2B0A369B009056DD /* PiCoShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PiCoShareExtension.entitlements; sourceTree = "<group>"; };
 		2A9863FA2B09104C0041686E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2A9863FC2B0913BE0041686E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2AB0C4B32B08B77E008BB7AE /* PiCo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiCo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +93,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2A89E6A42B0A32C6009056DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2AB0C4B02B08B77E008BB7AE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -103,10 +143,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		2A89E6A82B0A32C6009056DD /* PiCoShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				2A89E6BA2B0A369B009056DD /* PiCoShareExtension.entitlements */,
+				2A89E6A92B0A32C6009056DD /* ShareViewController.swift */,
+				2A89E6AB2B0A32C6009056DD /* MainInterface.storyboard */,
+				2A89E6AE2B0A32C6009056DD /* Info.plist */,
+			);
+			path = PiCoShareExtension;
+			sourceTree = "<group>";
+		};
 		2AB0C4AA2B08B77E008BB7AE = {
 			isa = PBXGroup;
 			children = (
 				2AB0C4B52B08B77E008BB7AE /* PiCo */,
+				2A89E6A82B0A32C6009056DD /* PiCoShareExtension */,
 				2AB0C4B42B08B77E008BB7AE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				2AB0C4B32B08B77E008BB7AE /* PiCo.app */,
+				2A89E6A72B0A32C6009056DD /* PiCoShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,6 +175,7 @@
 		2AB0C4B52B08B77E008BB7AE /* PiCo */ = {
 			isa = PBXGroup;
 			children = (
+				2A89E6B92B0A35DE009056DD /* PiCo.entitlements */,
 				2AB0C4BC2B08B77E008BB7AE /* Main.storyboard */,
 				2AB0C4B62B08B77E008BB7AE /* AppDelegate.swift */,
 				2AB0C4B82B08B77E008BB7AE /* SceneDelegate.swift */,
@@ -138,6 +192,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2A89E6A62B0A32C6009056DD /* PiCoShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A89E6B22B0A32C6009056DD /* Build configuration list for PBXNativeTarget "PiCoShareExtension" */;
+			buildPhases = (
+				2A89E6A32B0A32C6009056DD /* Sources */,
+				2A89E6A42B0A32C6009056DD /* Frameworks */,
+				2A89E6A52B0A32C6009056DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PiCoShareExtension;
+			productName = PiCoShareExtension;
+			productReference = 2A89E6A72B0A32C6009056DD /* PiCoShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		2AB0C4B22B08B77E008BB7AE /* PiCo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2AB0C4C72B08B77F008BB7AE /* Build configuration list for PBXNativeTarget "PiCo" */;
@@ -146,10 +217,12 @@
 				2AB0C4B02B08B77E008BB7AE /* Frameworks */,
 				2AB0C4B12B08B77E008BB7AE /* Resources */,
 				2AB0C4E82B08E215008BB7AE /* Embed Frameworks */,
+				2A89E6B52B0A32C6009056DD /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2A89E6B02B0A32C6009056DD /* PBXTargetDependency */,
 			);
 			name = PiCo;
 			packageProductDependencies = (
@@ -172,6 +245,9 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					2A89E6A62B0A32C6009056DD = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
 					2AB0C4B22B08B77E008BB7AE = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
@@ -179,11 +255,12 @@
 			};
 			buildConfigurationList = 2AB0C4AE2B08B77E008BB7AE /* Build configuration list for PBXProject "PiCo" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 2AB0C4AA2B08B77E008BB7AE;
 			packageReferences = (
@@ -196,11 +273,20 @@
 			projectRoot = "";
 			targets = (
 				2AB0C4B22B08B77E008BB7AE /* PiCo */,
+				2A89E6A62B0A32C6009056DD /* PiCoShareExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2A89E6A52B0A32C6009056DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A89E6AD2B0A32C6009056DD /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2AB0C4B12B08B77E008BB7AE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -215,6 +301,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2A89E6A32B0A32C6009056DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A89E6AA2B0A32C6009056DD /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2AB0C4AF2B08B77E008BB7AE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -233,11 +327,29 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2A89E6B02B0A32C6009056DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A89E6A62B0A32C6009056DD /* PiCoShareExtension */;
+			targetProxy = 2A89E6AF2B0A32C6009056DD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		2A89E6AB2B0A32C6009056DD /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A89E6AC2B0A32C6009056DD /* Base */,
+				2A89E6B82B0A338E009056DD /* ko */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		2AB0C4BC2B08B77E008BB7AE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2AB0C4BD2B08B77E008BB7AE /* Base */,
+				2A89E6B62B0A338E009056DD /* ko */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -246,6 +358,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB0C4C22B08B77F008BB7AE /* Base */,
+				2A89E6B72B0A338E009056DD /* ko */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -253,11 +366,66 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2A89E6B32B0A32C6009056DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = PiCoShareExtension/PiCoShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 39JATSZXJT;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PiCoShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PiCoShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Deok.PiCo.PiCoShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2A89E6B42B0A32C6009056DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = PiCoShareExtension/PiCoShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 39JATSZXJT;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PiCoShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PiCoShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Deok.PiCo.PiCoShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		2AB0C4C52B08B77F008BB7AE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -321,6 +489,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -375,8 +544,10 @@
 		2AB0C4C82B08B77F008BB7AE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PiCo/PiCo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 39JATSZXJT;
@@ -385,8 +556,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -406,8 +579,10 @@
 		2AB0C4C92B08B77F008BB7AE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PiCo/PiCo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 39JATSZXJT;
@@ -416,8 +591,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -437,6 +614,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2A89E6B22B0A32C6009056DD /* Build configuration list for PBXNativeTarget "PiCoShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A89E6B32B0A32C6009056DD /* Debug */,
+				2A89E6B42B0A32C6009056DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2AB0C4AE2B08B77E008BB7AE /* Build configuration list for PBXProject "PiCo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
