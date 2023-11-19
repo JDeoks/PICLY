@@ -25,7 +25,7 @@ class ShareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        setData()
+        handleSharedFile()
     }
     
     func initUI() {
@@ -33,29 +33,32 @@ class ShareViewController: UIViewController {
         imageView.layer.cornerRadius = 4
     }
     
-    func setData() {
-        guard let extensionItems = extensionContext?.inputItems as? [NSExtensionItem] else {
-                return
-            }
-
-        for extensionItem in extensionItems {
-            guard let itemProviders = extensionItem.attachments else {
-                continue
-            }
-
-            for itemProvider in itemProviders {
-                itemProvider.loadItem(forTypeIdentifier: UTType.propertyList.identifier as String) { result, error in
-                    guard let resultImage = result as? UIImage else {
-                        return
-                    }
-
-                    DispatchQueue.main.async {
-                        print("hello")
-                        self.imageView.image = resultImage
-                    }
+    func handleSharedFile() {
+        // 첫 번째 확장 항목에서 item providers 추출
+        guard let itemProviders = (self.extensionContext?.inputItems.first as? NSExtensionItem)?.attachments as? [NSItemProvider] else {
+            return
+        }
+        
+        // 첫 번째 item provider 가져오기
+        guard let itemProvider = itemProviders.first else {
+            return
+        }
+        
+        // item provider가 UIImage를 로드할 수 있는지 확인
+        if itemProvider.canLoadObject(ofClass: UIImage.self) {
+            // item provider를 사용하여 UIImage 로드
+            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                guard let image = image as? UIImage else {
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.imageView.image = image
                 }
             }
         }
     }
 
 }
+
+
