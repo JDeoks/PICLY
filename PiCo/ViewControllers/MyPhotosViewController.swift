@@ -24,7 +24,6 @@ class MyPhotosViewController: UIViewController {
     @IBOutlet var myPhotosCollectionView: UICollectionView!
     @IBOutlet var plusButton: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
@@ -41,7 +40,7 @@ class MyPhotosViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         // refreshControl
-        refreshControl.tintColor = UIColor(named: "HighlightBlue")
+        refreshControl.tintColor = UIColor(named: "SecondText")
         refreshControl.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
         
         // myPhotosCollectionView
@@ -79,38 +78,18 @@ class MyPhotosViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
-    
-    func stopSearching() {
-        searchCancelButton.isHidden = true
-        searchTagTextField.text = ""
-        searchTagTextField.resignFirstResponder()
-        UIView.animate(withDuration: 0.1 ,animations: {
-            self.titleStackView.isHidden = false
-        })
-    }
 
-}
-
-extension MyPhotosViewController: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.searchCancelButton.isHidden = false
-        UIView.animate(withDuration: 0.1, animations: {
-            self.titleStackView.isHidden = true
-        })
-    }
-    
 }
 
 extension MyPhotosViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
+// MARK: 컬렉션 뷰
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 48
+        return 41
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = myPhotosCollectionView.dequeueReusableCell(withReuseIdentifier: "MyPhotosCollectionViewCell", for: indexPath) as! MyPhotosCollectionViewCell
-        print("d")
         return cell
     }
     
@@ -137,4 +116,27 @@ extension MyPhotosViewController: UICollectionViewDataSource, UICollectionViewDe
         detailVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
+}
+
+extension MyPhotosViewController: UITextFieldDelegate {
+// MARK: 텍스트 필드
+    
+    /// 검색 시작 시 애니메이션
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.searchCancelButton.isHidden = false
+        UIView.animate(withDuration: 0.1, animations: {
+            self.titleStackView.isHidden = true
+        })
+    }
+    
+    // 검색 취소 시
+    func stopSearching() {
+        searchCancelButton.isHidden = true
+        searchTagTextField.text = ""
+        searchTagTextField.resignFirstResponder()
+        UIView.animate(withDuration: 0.1 ,animations: {
+            self.titleStackView.isHidden = false
+        })
+    }
+    
 }

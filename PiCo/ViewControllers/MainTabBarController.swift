@@ -18,7 +18,6 @@ class MainTabBarController: UITabBarController {
     func initUI() {
         self.tabBar.tintColor = UIColor(named: "HighlightBlue")
         self.tabBar.unselectedItemTintColor = UIColor(named: "SecondText")
-        print("색", self.tabBar.unselectedItemTintColor)
     }
 
 }

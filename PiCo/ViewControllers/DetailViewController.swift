@@ -36,7 +36,6 @@ class DetailViewController: UIViewController {
     }
     
     func action() {
-
         backButton.rx.tap
             .subscribe { _ in
                 self.navigationController?.popViewController(animated: true)
@@ -58,7 +57,6 @@ class DetailViewController: UIViewController {
                 self.showToast(message: "링크가 복사되었습니다.")
             }
             .disposed(by: disposeBag)
-        
     }
 
 }

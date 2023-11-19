@@ -34,7 +34,6 @@ extension UIViewController {
 extension UIViewController {
 
     // 키보드 숨기기
-    
     func hideKeyboardByTouchEvent() {
         hideKeyboardWhenTappedAround()
         hideKeyboardWhenScrolled()
