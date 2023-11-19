@@ -33,6 +33,7 @@ class DetailViewController: UIViewController {
     func initUI() {
         imageView.layer.cornerRadius = 4
         shareButton.layer.cornerRadius = 4
+        imageView.image = loadImageFromDirectory(with: "image.jpeg")
     }
     
     func action() {
@@ -58,11 +59,23 @@ class DetailViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
+    
+    func loadImageFromDirectory(with idnetifier: String) -> UIImage? {
+        let fileManager = FileManager.default
+        // 파일 경로로 접근
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsDirectory.appendingPathComponent(idnetifier, conformingTo: .jpeg)
+        print(fileURL)
+        // 이미지 파일이 존재한다면, 이미지로 변환 후 리턴
+        guard fileManager.fileExists(atPath: fileURL.path) else { return nil }
+        
+        return UIImage(contentsOfFile: fileURL.path)
+    }
 
 }
 
+// MARK: - ActionSheet, Alert
 extension DetailViewController {
-    // MARK: - ActionSheet, Alert
 
     func showEditActionSheet() {
         let actionSheet = UIAlertController(title: "메뉴", message: "", preferredStyle: .actionSheet)
