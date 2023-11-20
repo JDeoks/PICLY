@@ -10,23 +10,9 @@ import RxSwift
 import RxKeyboard
 import SnapKit
 
-class UploadViewController: UIViewController {
+class UploadViewController: ImageShareViewController {
     
     let disposeBag = DisposeBag()
-    
-    lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        activityIndicator.center = self.view.center
-    
-        activityIndicator.color = UIColor(named: "SecondText")
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.style = .large
-        // activityIndicator는 멈춰있을 때 isHidden 됨
-        activityIndicator.stopAnimating()
-        
-        return activityIndicator
-    }()
     
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var uploadButton: UIButton!

@@ -10,6 +10,8 @@
 		2A1BE96F2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1BE96D2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift */; };
 		2A1BE9702B08E9B300703ED5 /* MyPhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A1BE96E2B08E9B300703ED5 /* MyPhotosCollectionViewCell.xib */; };
 		2A2FA58C2B0BB0DB00767310 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6962B0937F4009056DD /* UIViewController+Extensions.swift */; };
+		2A2FA5922B0BB49900767310 /* ImageShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5912B0BB49900767310 /* ImageShareViewController.swift */; };
+		2A2FA5932B0BB49900767310 /* ImageShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5912B0BB49900767310 /* ImageShareViewController.swift */; };
 		2A4D48EF2B0A652200E776C7 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4D48EE2B0A652200E776C7 /* RxCocoa */; };
 		2A4D48F12B0A652200E776C7 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4D48F02B0A652200E776C7 /* RxSwift */; };
 		2A4D48FA2B0A781A00E776C7 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D48F92B0A781A00E776C7 /* PhotoModel.swift */; };
@@ -73,6 +75,7 @@
 /* Begin PBXFileReference section */
 		2A1BE96D2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A1BE96E2B08E9B300703ED5 /* MyPhotosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPhotosCollectionViewCell.xib; sourceTree = "<group>"; };
+		2A2FA5912B0BB49900767310 /* ImageShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageShareViewController.swift; sourceTree = "<group>"; };
 		2A4D48F92B0A781A00E776C7 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		2A89E6932B092D69009056DD /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		2A89E6962B0937F4009056DD /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -143,6 +146,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		2A2FA5902B0BB44D00767310 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2A2FA5912B0BB49900767310 /* ImageShareViewController.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		2A4D48ED2B0A652200E776C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +214,7 @@
 				2AB0C4BC2B08B77E008BB7AE /* Main.storyboard */,
 				2AB0C4B62B08B77E008BB7AE /* AppDelegate.swift */,
 				2AB0C4B82B08B77E008BB7AE /* SceneDelegate.swift */,
+				2A2FA5902B0BB44D00767310 /* Common */,
 				2A1BE96B2B08E96500703ED5 /* ViewControllers */,
 				2A1BE96C2B08E97C00703ED5 /* Views */,
 				2A4D48F82B0A77EF00E776C7 /* Models */,
@@ -336,6 +348,7 @@
 			files = (
 				2A4D48FB2B0A781A00E776C7 /* PhotoModel.swift in Sources */,
 				2A2FA58C2B0BB0DB00767310 /* UIViewController+Extensions.swift in Sources */,
+				2A2FA5932B0BB49900767310 /* ImageShareViewController.swift in Sources */,
 				2A89E6AA2B0A32C6009056DD /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,6 +362,7 @@
 				2AB0C4B72B08B77E008BB7AE /* AppDelegate.swift in Sources */,
 				2A9863FD2B0913BE0041686E /* MainTabBarController.swift in Sources */,
 				2A89E6972B0937F4009056DD /* UIViewController+Extensions.swift in Sources */,
+				2A2FA5922B0BB49900767310 /* ImageShareViewController.swift in Sources */,
 				2A9863FB2B09104C0041686E /* DetailViewController.swift in Sources */,
 				2A1BE96F2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift in Sources */,
 				2AB0C4B92B08B77E008BB7AE /* SceneDelegate.swift in Sources */,

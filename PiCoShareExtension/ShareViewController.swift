@@ -11,26 +11,12 @@ import RxCocoa
 import UniformTypeIdentifiers
 import MobileCoreServices
 
-class ShareViewController: UIViewController {
+class ShareViewController: ImageShareViewController {
     
     // 공유된 이미지
     var sharedImage: UIImage?
     
     let disposeBag = DisposeBag()
-    
-    lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        activityIndicator.center = self.view.center
-    
-        activityIndicator.color = UIColor(named: "SecondText")
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.style = .large
-        // activityIndicator는 멈춰있을 때 isHidden 됨
-        activityIndicator.stopAnimating()
-        
-        return activityIndicator
-    }()
     
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var uploadButton: UIButton!
@@ -59,7 +45,6 @@ class ShareViewController: UIViewController {
                 self.showUploadFinishedAlert()
                 //file:///var/mobile/Containers/Data/PluginKitPlugin/C67FC341-4491-4C6C-B2D0-337C22697AAE/Documents/image.jpeg
                 //file:///var/mobile/Containers/Data/Application/7AEFDA80-B2B0-4F97-BC52-B77641F52B4F/Documents/image.jpeg
-                
             }
             .disposed(by: disposeBag)
     }
