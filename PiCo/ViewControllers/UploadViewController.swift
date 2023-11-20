@@ -14,6 +14,20 @@ class UploadViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.view.center
+    
+        activityIndicator.color = UIColor(named: "SecondText")
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        // activityIndicator는 멈춰있을 때 isHidden 됨
+        activityIndicator.stopAnimating()
+        
+        return activityIndicator
+    }()
+    
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var uploadButton: UIButton!
     @IBOutlet var imageContainerView: UIView!
@@ -44,6 +58,8 @@ class UploadViewController: UIViewController {
         // datePicker
         datePicker.tintColor = UIColor(named: "HighlightBlue")
         scrollView.delegate = self
+        // activityIndicator
+        view.addSubview(self.activityIndicator)
     }
     
     @objc func imageContainerViewTapped(_ sender: UITapGestureRecognizer) {
@@ -54,6 +70,14 @@ class UploadViewController: UIViewController {
         closeButton.rx.tap
             .subscribe { _ in
             self.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        uploadButton.rx.tap
+            .subscribe { _ in
+                print("hello")
+                self.activityIndicator.startAnimating()
+                self.showUploadFinishedAlert()
             }
             .disposed(by: disposeBag)
         
@@ -77,7 +101,8 @@ class UploadViewController: UIViewController {
 
 extension UploadViewController: UIScrollViewDelegate {
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView){ self.view.endEditing(true)
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView){ 
+        self.view.endEditing(true)
     }
     
 }
