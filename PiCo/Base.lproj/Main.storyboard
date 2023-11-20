@@ -200,7 +200,7 @@
                                 <rect key="frame" x="0.0" y="115" width="393" height="737"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8FX-5z-uEd">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="713"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="738"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Nt6-jK-2ip">
                                                 <rect key="frame" x="16" y="16" width="361" height="597"/>
@@ -311,13 +311,14 @@
                                         <constraints>
                                             <constraint firstItem="Nt6-jK-2ip" firstAttribute="top" secondItem="8FX-5z-uEd" secondAttribute="top" constant="16" id="LbW-67-Tnr"/>
                                             <constraint firstAttribute="trailing" secondItem="Nt6-jK-2ip" secondAttribute="trailing" constant="16" id="Pr1-56-Gpj"/>
-                                            <constraint firstAttribute="bottom" secondItem="Nt6-jK-2ip" secondAttribute="bottom" constant="100" id="Zyt-h8-kVb"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Nt6-jK-2ip" secondAttribute="bottom" constant="100" id="Zyt-h8-kVb"/>
                                             <constraint firstItem="Nt6-jK-2ip" firstAttribute="leading" secondItem="8FX-5z-uEd" secondAttribute="leading" constant="16" id="jsw-8C-A2n"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="8FX-5z-uEd" firstAttribute="leading" secondItem="LnN-iC-eH5" secondAttribute="leading" id="0Tm-0Q-tlr"/>
+                                    <constraint firstItem="8FX-5z-uEd" firstAttribute="height" secondItem="bqM-6c-agk" secondAttribute="height" constant="1" id="6BV-yh-li2"/>
                                     <constraint firstItem="8FX-5z-uEd" firstAttribute="trailing" secondItem="LnN-iC-eH5" secondAttribute="trailing" id="eqZ-d9-U4V"/>
                                     <constraint firstItem="8FX-5z-uEd" firstAttribute="bottom" secondItem="LnN-iC-eH5" secondAttribute="bottom" id="oR5-yE-Dlu"/>
                                     <constraint firstItem="8FX-5z-uEd" firstAttribute="top" secondItem="LnN-iC-eH5" secondAttribute="top" id="rxf-PO-HAT"/>
@@ -426,11 +427,17 @@
                                                                 <color key="textColor" name="SecondText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tPa-86-1MP">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="tPa-86-1MP">
                                                                 <rect key="frame" x="0.0" y="25.000000000000004" width="361" height="43.333333333333343"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="# 파도_사진" placeholder="태그를 입력하세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gyk-y1-Jdj">
-                                                                        <rect key="frame" x="16" y="9.9999999999999982" width="329" height="23.333333333333329"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbs-DO-isk">
+                                                                        <rect key="frame" x="16" y="9.9999999999999982" width="11" height="23.333333333333329"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                        <color key="textColor" name="mainText"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="파도_사진" placeholder="태그를 입력하세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gyk-y1-Jdj">
+                                                                        <rect key="frame" x="33" y="9.9999999999999982" width="312" height="23.333333333333329"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <color key="textColor" name="mainText"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -662,11 +669,17 @@
                                                                 <color key="textColor" name="SecondText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="He2-Xr-u3r">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="He2-Xr-u3r">
                                                                 <rect key="frame" x="0.0" y="25.000000000000004" width="361" height="43.333333333333343"/>
                                                                 <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A27-hx-kHs">
+                                                                        <rect key="frame" x="16" y="9.9999999999999982" width="11" height="23.333333333333329"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                        <color key="textColor" name="mainText"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="태그를 입력하세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qmr-j9-N8i">
-                                                                        <rect key="frame" x="16" y="9.9999999999999982" width="329" height="23.333333333333329"/>
+                                                                        <rect key="frame" x="33" y="9.9999999999999982" width="312" height="23.333333333333329"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <color key="textColor" name="mainText"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>

@@ -10,9 +10,27 @@ import RxSwift
 import RxKeyboard
 import SnapKit
 
-class UploadViewController: ImageShareViewController {
+class UploadViewController: UIViewController {
+    
+    /// 서버에 저장된 사진 URL
+    var photoURL: URL?
     
     let disposeBag = DisposeBag()
+    
+    /// 로딩 표시 인디케이터
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.view.center
+    
+        activityIndicator.color = UIColor(named: "SecondText")
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        // activityIndicator는 멈춰있을 때 isHidden 됨
+        activityIndicator.stopAnimating()
+        
+        return activityIndicator
+    }()
     
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var uploadButton: UIButton!
@@ -81,6 +99,24 @@ class UploadViewController: ImageShareViewController {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    func showUploadFinishedAlert() {
+        let sheet = UIAlertController(title: "업로드 완료", message: "링크를 복사하시겠습니까?", preferredStyle: .alert)
+        
+        let loginAction = UIAlertAction(title: "링크 복사하고 창 닫기", style: .default, handler: { _ in
+            UIPasteboard.general.url = self.photoURL
+            self.dismiss(animated: true)
+        })
+        
+        let cancelAction = UIAlertAction(title: "창 닫기", style: .cancel) { _ in
+            self.dismiss(animated: true)
+        }
+        
+        sheet.addAction(loginAction)
+        sheet.addAction(cancelAction)
+        
+        present(sheet, animated: true)
     }
     
 }

@@ -11,10 +11,12 @@ import RxCocoa
 import UniformTypeIdentifiers
 import MobileCoreServices
 
-class ShareViewController: ImageShareViewController {
+class ShareViewController: UIViewController {
     
-    // 공유된 이미지
-    var sharedImage: UIImage?
+    /// 올린 포토의 URL
+    var photoURL: URL?
+    /// 공유된 이미지
+    var sharedImage: [UIImage]?
     
     let disposeBag = DisposeBag()
     
@@ -47,6 +49,25 @@ class ShareViewController: ImageShareViewController {
                 //file:///var/mobile/Containers/Data/Application/7AEFDA80-B2B0-4F97-BC52-B77641F52B4F/Documents/image.jpeg
             }
             .disposed(by: disposeBag)
+    }
+    
+    func showUploadFinishedAlert() {
+        let sheet = UIAlertController(title: "업로드 완료", message: "링크를 복사하시겠습니까?", preferredStyle: .alert)
+        
+        let loginAction = UIAlertAction(title: "링크 복사하고 창 닫기", style: .default, handler: { _ in
+            UIPasteboard.general.url = self.photoURL
+            self.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+
+        })
+        
+        let cancelAction = UIAlertAction(title: "창 닫기", style: .cancel) { _ in
+            self.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+        }
+        
+        sheet.addAction(loginAction)
+        sheet.addAction(cancelAction)
+        
+        present(sheet, animated: true)
     }
     
     func handleSharedFile() {
