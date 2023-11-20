@@ -21,9 +21,6 @@ class EditViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var inputTagStackView: UIStackView!
     @IBOutlet var tagTextField: UITextField!
-//    @IBOutlet var imageContainerView: UIView!
-//    @IBOutlet var imageView: UILabel!
-//    @IBOutlet var guideStackView: UIStackView!
     @IBOutlet var collectionViewStackView: UIStackView!
     @IBOutlet var selectedImageCollectionView: UICollectionView!
     @IBOutlet var datePicker: UIDatePicker!
@@ -58,10 +55,6 @@ class EditViewController: UIViewController {
         collectionViewStackView.layer.cornerRadius = 4
     }
     
-    @objc func imageContainerViewTapped(_ sender: UITapGestureRecognizer) {
-        print("\(sender.view!.tag) 클릭됨")
-    }
-    
     func action() {
         backButton.rx.tap
             .subscribe { _ in
@@ -70,24 +63,24 @@ class EditViewController: UIViewController {
             .disposed(by: disposeBag)
         
         // TODO: 질문 RxKeyboard 적용 안됨
-//        RxKeyboard.instance.visibleHeight
-//            .skip(1)
-//            .drive(onNext: { keyboardVisibleHeight in
-//                print("rx키보드")
-//                print(keyboardVisibleHeight)  // 346.0
-//                self.scrollView.snp.updateConstraints { make in
-//                    UIView.animate(withDuration: 1) {
-//                        make.bottom.equalToSuperview().inset(keyboardVisibleHeight)
-//                        print(self.scrollView.frame)
-//                    }
-//                }
-//            })
-//            .disposed(by: disposeBag)
         RxKeyboard.instance.visibleHeight
+            .skip(1)
             .drive(onNext: { keyboardVisibleHeight in
-                self.scrollView.contentInset.bottom = keyboardVisibleHeight
+                print("rx키보드")
+                print(keyboardVisibleHeight)  // 346.0
+                self.scrollView.snp.updateConstraints { make in
+                    UIView.animate(withDuration: 1) {
+                        make.bottom.equalToSuperview().inset(keyboardVisibleHeight)
+                        print(self.scrollView.frame)
+                    }
+                }
             })
             .disposed(by: disposeBag)
+//        RxKeyboard.instance.visibleHeight
+//            .drive(onNext: { keyboardVisibleHeight in
+//                self.scrollView.contentInset.bottom = keyboardVisibleHeight
+//            })
+//            .disposed(by: disposeBag)
     }
 
 }
@@ -124,7 +117,8 @@ extension EditViewController: UICollectionViewDataSource, UICollectionViewDelega
 
 extension EditViewController: UIScrollViewDelegate {
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView){ self.view.endEditing(true)
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView){ 
+        self.view.endEditing(true)
     }
     
 }

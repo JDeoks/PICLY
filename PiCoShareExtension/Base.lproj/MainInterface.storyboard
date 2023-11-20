@@ -65,7 +65,7 @@
                                 <rect key="frame" x="0.0" y="115" width="393" height="737"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0T-FR-MZ8">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="773"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="774"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8wb-4C-RdM">
                                                 <rect key="frame" x="16" y="16" width="361" height="657"/>
@@ -169,7 +169,7 @@
                                         <constraints>
                                             <constraint firstItem="8wb-4C-RdM" firstAttribute="top" secondItem="C0T-FR-MZ8" secondAttribute="top" constant="16" id="9Mo-PC-Fav"/>
                                             <constraint firstAttribute="trailing" secondItem="8wb-4C-RdM" secondAttribute="trailing" constant="16" id="Gs6-jq-ctG"/>
-                                            <constraint firstAttribute="bottom" secondItem="8wb-4C-RdM" secondAttribute="bottom" constant="100" id="XmP-2a-Nk1"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="8wb-4C-RdM" secondAttribute="bottom" id="XmP-2a-Nk1"/>
                                             <constraint firstItem="8wb-4C-RdM" firstAttribute="leading" secondItem="C0T-FR-MZ8" secondAttribute="leading" constant="16" id="hFB-KC-EX2"/>
                                         </constraints>
                                     </view>
@@ -180,6 +180,7 @@
                                     <constraint firstItem="C0T-FR-MZ8" firstAttribute="leading" secondItem="NeH-b4-8Qk" secondAttribute="leading" id="SVw-UH-MgS"/>
                                     <constraint firstItem="C0T-FR-MZ8" firstAttribute="bottom" secondItem="NeH-b4-8Qk" secondAttribute="bottom" id="Yus-Kf-2wb"/>
                                     <constraint firstItem="C0T-FR-MZ8" firstAttribute="trailing" secondItem="NeH-b4-8Qk" secondAttribute="trailing" id="e8X-M6-ycJ"/>
+                                    <constraint firstItem="C0T-FR-MZ8" firstAttribute="height" secondItem="uwW-9f-tbg" secondAttribute="height" multiplier="1.04885" constant="1" id="rhy-kD-e4T"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="NeH-b4-8Qk"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="sho-Gi-eHM"/>
@@ -206,6 +207,7 @@
                         <outlet property="imageView" destination="S01-XV-8Rv" id="IAi-9P-BL6"/>
                         <outlet property="inputTagStackView" destination="QTd-sS-hnb" id="kJs-yf-okh"/>
                         <outlet property="inputTagTextField" destination="dYv-gu-fs8" id="GBa-rc-OkI"/>
+                        <outlet property="scrollView" destination="uwW-9f-tbg" id="kNA-dG-hAD"/>
                         <outlet property="uploadButton" destination="lPZ-Ty-hl7" id="0gc-3e-y2p"/>
                     </connections>
                 </viewController>

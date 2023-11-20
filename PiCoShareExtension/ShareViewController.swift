@@ -16,12 +16,13 @@ class ShareViewController: UIViewController {
     /// 올린 포토의 URL
     var photoURL: URL?
     /// 공유된 이미지
-    var sharedImage: [UIImage]?
+    var sharedImages: [UIImage]?
     
     let disposeBag = DisposeBag()
     
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var uploadButton: UIButton!
+    @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var inputTagStackView: UIStackView!
     @IBOutlet var inputTagTextField: UITextField!
     @IBOutlet var imageView: UIImageView!
@@ -36,8 +37,14 @@ class ShareViewController: UIViewController {
     }
     
     func initUI() {
+        // inputTagStackView
         inputTagStackView.layer.cornerRadius = 4
+        
+        //imageView
         imageView.layer.cornerRadius = 4
+        
+        // scrollView
+        scrollView.delegate = self
     }
     
     func action() {
@@ -51,25 +58,7 @@ class ShareViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    func showUploadFinishedAlert() {
-        let sheet = UIAlertController(title: "업로드 완료", message: "링크를 복사하시겠습니까?", preferredStyle: .alert)
-        
-        let loginAction = UIAlertAction(title: "링크 복사하고 창 닫기", style: .default, handler: { _ in
-            UIPasteboard.general.url = self.photoURL
-            self.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
-
-        })
-        
-        let cancelAction = UIAlertAction(title: "창 닫기", style: .cancel) { _ in
-            self.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
-        }
-        
-        sheet.addAction(loginAction)
-        sheet.addAction(cancelAction)
-        
-        present(sheet, animated: true)
-    }
-    
+    /// 공유 받은 사진 이미지 sharedImage에 저장
     func handleSharedFile() {
         // 첫 번째 확장 항목에서 item providers 추출
         guard let itemProviders = (self.extensionContext?.inputItems.first as? NSExtensionItem)?.attachments as? [NSItemProvider] else {
@@ -88,6 +77,7 @@ class ShareViewController: UIViewController {
                 guard let image = image as? UIImage else {
                     return
                 }
+                self.sharedImages?.append(image)
                 
                 DispatchQueue.main.async {
                     self.imageView.image = image
@@ -96,6 +86,7 @@ class ShareViewController: UIViewController {
         }
     }
     
+    // TODO: 이미지 저장 안됨
     func saveImageToDirectory(identifier: String, image: UIImage) {
         // 저장할 디렉토리 경로 설정 (picturesDirectory, cachesDirectory도 존재하지만 Realm과 같은 경로에 저장하기 위해서 documentDirectory 사용함.)
         // userDomainMask: 사용자 홈 디렉토리는 사용자 관련 파일이 저장되는 곳입니다.
@@ -123,4 +114,32 @@ class ShareViewController: UIViewController {
 
 }
 
+extension ShareViewController: UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
+        self.view.endEditing(true)
+    }
+    
+}
 
+extension ShareViewController {
+// MARK: Alert
+    func showUploadFinishedAlert() {
+        let sheet = UIAlertController(title: "업로드 완료", message: "링크를 복사하시겠습니까?", preferredStyle: .alert)
+        
+        let loginAction = UIAlertAction(title: "링크 복사하고 창 닫기", style: .default, handler: { _ in
+            UIPasteboard.general.url = self.photoURL
+            self.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "창 닫기", style: .cancel) { _ in
+            self.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+        }
+        
+        sheet.addAction(loginAction)
+        sheet.addAction(cancelAction)
+        
+        present(sheet, animated: true)
+    }
+
+}
