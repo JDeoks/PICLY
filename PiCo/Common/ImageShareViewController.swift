@@ -28,7 +28,6 @@ class ImageShareViewController: UIViewController {
         return activityIndicator
     }()
     
-    ///
     // TODO: 핸들러 추가해서 공유익스텐션일경우와 그냥 prese
     func showUploadFinishedAlert() {
         let sheet = UIAlertController(title: "업로드 완료", message: "링크를 복사하시겠습니까?", preferredStyle: .alert)

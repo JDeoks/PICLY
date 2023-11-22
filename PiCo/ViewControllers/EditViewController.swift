@@ -12,7 +12,7 @@ import SnapKit
 
 class EditViewController: UIViewController {
 
-    let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    let sectionInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 
     let disposeBag = DisposeBag()
 
@@ -105,7 +105,7 @@ extension EditViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-         return section == 0 ? UIEdgeInsets(top: 0, left: 10, bottom: 0, right:0) : UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+         return section == 0 ? UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8) : UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

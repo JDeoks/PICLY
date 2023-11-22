@@ -57,6 +57,7 @@ class ShareViewController: UIViewController {
             .subscribe { _ in
                 self.saveImageToDirectory(identifier: "image", image: self.imageView.image!)
                 let loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+                loadingView.guideMessage = "업로드 중..."
                 self.view.addSubview(loadingView)
                 // 비동기적으로 작업을 수행
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {

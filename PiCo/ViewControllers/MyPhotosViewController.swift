@@ -26,13 +26,6 @@ class MyPhotosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        view.addSubview(loadingView)
-        // 비동기적으로 작업을 수행
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            // 3초 후에 로딩뷰를 제거하고 UI를 초기화하고 작업을 수행
-            loadingView.removeFromSuperview()
-        }
         initUI()
         action()
     }
@@ -101,7 +94,7 @@ extension MyPhotosViewController: UICollectionViewDataSource, UICollectionViewDe
         cell.copyLinkButton.rx.tap
             .subscribe { _ in
                 // TODO: url 복사
-                //UIPasteboard.general.사 =
+                //UIPasteboard.general.url = postURL
                 self.showToast(message: "링크가 복사되었습니다")
             }
             .disposed(by: cell.disposeBag)

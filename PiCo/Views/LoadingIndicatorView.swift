@@ -9,7 +9,9 @@ import UIKit
 
 class LoadingIndicatorView: UIView {
     
-    let stackView: UIStackView = {
+    var guideMessage = ""
+    
+    lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -23,7 +25,7 @@ class LoadingIndicatorView: UIView {
         return stackView
     }()
     
-    let activityIndicator: UIActivityIndicatorView = {
+    lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.color = UIColor(named: "SecondText")
         activityIndicator.startAnimating()
@@ -31,9 +33,9 @@ class LoadingIndicatorView: UIView {
         return activityIndicator
     }()
     
-    let loadingLabel: UILabel = {
+    lazy var loadingLabel: UILabel = {
         let label = UILabel()
-        label.text = "로딩 중..."
+        label.text = guideMessage
         label.textColor = UIColor(named: "SecondText")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

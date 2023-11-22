@@ -81,17 +81,14 @@ extension DetailViewController {
 
     func showEditActionSheet() {
         let actionSheet = UIAlertController(title: "메뉴", message: "", preferredStyle: .actionSheet)
-        
-        actionSheet.addAction(UIAlertAction(title: "수정", style: .default, handler: { _ in
-            print("정보 수정")
-            let editVC = self.storyboard?.instantiateViewController(identifier: "EditViewController") as! EditViewController
-            self.navigationController?.pushViewController(editVC, animated: true)
-        }))
-        
+//        actionSheet.addAction(UIAlertAction(title: "수정", style: .default, handler: { _ in
+//            print("정보 수정")
+//            let editVC = self.storyboard?.instantiateViewController(identifier: "EditViewController") as! EditViewController
+//            self.navigationController?.pushViewController(editVC, animated: true)
+//        }))
         actionSheet.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
             self.showDeleteConfirmationAlert()
         }))
-        
         actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
         
         self.present(actionSheet, animated: true, completion: nil)

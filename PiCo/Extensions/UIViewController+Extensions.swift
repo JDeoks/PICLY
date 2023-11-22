@@ -13,11 +13,11 @@ extension UIViewController {
     func showToast(message : String) {
         let toastwidth = 200
         let toastHeight = 35
-        let toastLabel = UILabel(frame: CGRect(x: Int(self.view.frame.size.width)/2 - toastwidth / 2, y: Int(self.view.frame.size.height)-100, width: toastwidth, height: toastHeight))
-        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        let toastLabel = UILabel(frame: CGRect(x: Int(self.view.frame.size.width)/2 - toastwidth / 2, y: Int(self.view.frame.size.height * 0.8), width: toastwidth, height: toastHeight))
+        toastLabel.backgroundColor = UIColor(named: "TextFieldBackground")!.withAlphaComponent(0.9)
         toastLabel.textColor = UIColor(named: "mainText")
-        toastLabel.font = UIFont.systemFont(ofSize: 14.0)
-        toastLabel.textAlignment = .center;
+        toastLabel.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        toastLabel.textAlignment = .center
         toastLabel.text = message
         toastLabel.alpha = 1.0
         toastLabel.layer.cornerRadius = CGFloat(toastHeight / 2);
