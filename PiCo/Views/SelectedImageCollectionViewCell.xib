@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,14 +24,40 @@
                             <constraint firstAttribute="width" secondItem="mBD-vc-YcU" secondAttribute="height" multiplier="1:1" id="Gsu-9j-xXc"/>
                         </constraints>
                     </imageView>
+                    <stackView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JRN-8a-ZOW">
+                        <rect key="frame" x="0.0" y="59" width="233" height="24"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Boi-wb-K9Y">
+                                <rect key="frame" x="0.0" y="0.0" width="209" height="24"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="to6-T2-6Xz">
+                                <rect key="frame" x="209" y="0.0" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="TMy-Jc-v6R"/>
+                                    <constraint firstAttribute="width" constant="24" id="eBh-CH-faB"/>
+                                </constraints>
+                                <color key="tintColor" name="mainText"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="xmark" catalog="system"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="TextFieldBackground"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="5Ih-XQ-ici"/>
+                        </constraints>
+                    </stackView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="JRN-8a-ZOW" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="0Vs-t6-PKi"/>
                 <constraint firstItem="mBD-vc-YcU" firstAttribute="trailing" secondItem="ZTg-uK-7eu" secondAttribute="trailing" id="2D9-Zh-A5u"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="mBD-vc-YcU" secondAttribute="leading" id="7XF-Lr-Dg7"/>
+                <constraint firstItem="JRN-8a-ZOW" firstAttribute="trailing" secondItem="ZTg-uK-7eu" secondAttribute="trailing" id="g1x-5r-YIH"/>
                 <constraint firstItem="mBD-vc-YcU" firstAttribute="bottom" secondItem="ZTg-uK-7eu" secondAttribute="bottom" id="ghB-sb-4Tq"/>
+                <constraint firstItem="JRN-8a-ZOW" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" id="had-95-nO8"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="mBD-vc-YcU" secondAttribute="top" id="hbb-cl-ciD"/>
             </constraints>
             <size key="customSize" width="233" height="326"/>
@@ -42,5 +69,12 @@
     </objects>
     <resources>
         <image name="pado" width="1432" height="1432"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="TextFieldBackground">
+            <color red="0.10980392156862745" green="0.10980392156862745" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mainText">
+            <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

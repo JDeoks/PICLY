@@ -26,6 +26,13 @@ class MyPhotosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        view.addSubview(loadingView)
+        // 비동기적으로 작업을 수행
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            // 3초 후에 로딩뷰를 제거하고 UI를 초기화하고 작업을 수행
+            loadingView.removeFromSuperview()
+        }
         initUI()
         action()
     }
@@ -90,22 +97,28 @@ extension MyPhotosViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = myPhotosCollectionView.dequeueReusableCell(withReuseIdentifier: "MyPhotosCollectionViewCell", for: indexPath) as! MyPhotosCollectionViewCell
+        
+        cell.copyLinkButton.rx.tap
+            .subscribe { _ in
+                // TODO: url 복사
+                //UIPasteboard.general.사 =
+                self.showToast(message: "링크가 복사되었습니다")
+            }
+            .disposed(by: cell.disposeBag)
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width
-        let height = collectionView.frame.height
         let itemsPerRow: CGFloat = 2
         let widthPadding = sectionInsets.left * (itemsPerRow + 1)
-        let itemsPerColumn: CGFloat = 2.5
-        let heightPadding = sectionInsets.top * (itemsPerColumn + 1)
         let cellWidth = (width - widthPadding) / itemsPerRow
-        let cellHeight = (height - heightPadding) / itemsPerColumn
         
-        return CGSize(width: cellWidth, height: cellWidth * 1.4)
+        return CGSize(width: cellWidth, height: cellWidth * 1.3)
     }
     
+    ///
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             return sectionInsets
         }

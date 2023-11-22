@@ -16,7 +16,7 @@ class ShareViewController: UIViewController {
     /// 올린 포토의 URL
     var photoURL: URL?
     /// 공유된 이미지
-    var sharedImages: [UIImage]?
+    var sharedImages: [UIImage] = []
     
     let disposeBag = DisposeBag()
     
@@ -48,10 +48,22 @@ class ShareViewController: UIViewController {
     }
     
     func action() {
+        closeButton.rx.tap.subscribe { _ in
+            self.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+        }
+        .disposed(by: disposeBag)
+        
         uploadButton.rx.tap
             .subscribe { _ in
                 self.saveImageToDirectory(identifier: "image", image: self.imageView.image!)
-                self.showUploadFinishedAlert()
+                let loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+                self.view.addSubview(loadingView)
+                // 비동기적으로 작업을 수행
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    // 3초 후에 로딩뷰를 제거하고 UI를 초기화하고 작업을 수행
+                    loadingView.removeFromSuperview()
+                    self.showUploadFinishedAlert()
+                }
                 //file:///var/mobile/Containers/Data/PluginKitPlugin/C67FC341-4491-4C6C-B2D0-337C22697AAE/Documents/image.jpeg
                 //file:///var/mobile/Containers/Data/Application/7AEFDA80-B2B0-4F97-BC52-B77641F52B4F/Documents/image.jpeg
             }
@@ -77,10 +89,10 @@ class ShareViewController: UIViewController {
                 guard let image = image as? UIImage else {
                     return
                 }
-                self.sharedImages?.append(image)
-                
+                self.sharedImages.append(image)
+                print(self.sharedImages.count)
                 DispatchQueue.main.async {
-                    self.imageView.image = image
+                    self.imageView.image = self.sharedImages[0]
                 }
             }
         }

@@ -58,7 +58,7 @@ class EditViewController: UIViewController {
     func action() {
         backButton.rx.tap
             .subscribe { _ in
-            self.dismiss(animated: true)
+                self.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
         
@@ -70,7 +70,7 @@ class EditViewController: UIViewController {
                 print(keyboardVisibleHeight)  // 346.0
                 self.scrollView.snp.updateConstraints { make in
                     UIView.animate(withDuration: 1) {
-                        make.bottom.equalToSuperview().inset(keyboardVisibleHeight)
+                        make.bottom.equalToSuperview().offset(keyboardVisibleHeight)
                         print(self.scrollView.frame)
                     }
                 }
@@ -86,29 +86,32 @@ class EditViewController: UIViewController {
 }
 
 extension EditViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return section == 0 ? 1 : 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row == 3 {
-            let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "AddImageCollectionViewCell", for: indexPath) as! AddImageCollectionViewCell
+        if indexPath.section == 0 {
+            let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "SelectedImageCollectionViewCell", for: indexPath) as! SelectedImageCollectionViewCell
             return cell
         } else {
-            let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "SelectedImageCollectionViewCell", for: indexPath) as! SelectedImageCollectionViewCell
+            let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "AddImageCollectionViewCell", for: indexPath) as! AddImageCollectionViewCell
             return cell
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+         return section == 0 ? UIEdgeInsets(top: 0, left: 10, bottom: 0, right:0) : UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = selectedImageCollectionView.frame.width
         let height = selectedImageCollectionView.frame.height
-        let itemsPerRow: CGFloat = 1
-        let widthPadding = sectionInsets.left * (itemsPerRow + 1)
         let itemsPerColumn: CGFloat = 1
         let heightPadding = sectionInsets.top * (itemsPerColumn + 1)
-        let cellWidth = (width - widthPadding) / itemsPerRow
         let cellHeight = (height - heightPadding) / itemsPerColumn
         
         return CGSize(width: cellHeight, height: cellHeight)
@@ -117,7 +120,7 @@ extension EditViewController: UICollectionViewDataSource, UICollectionViewDelega
 
 extension EditViewController: UIScrollViewDelegate {
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView){ 
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
     }
     
