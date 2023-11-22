@@ -16,16 +16,20 @@ class ShareViewController: UIViewController {
     /// 올린 포토의 URL
     var photoURL: URL?
     /// 공유된 이미지
-    var sharedImages: [UIImage] = []
+    var images: [UIImage] = []
     
+    let handleSharedFileDone = PublishSubject<Void>()
     let disposeBag = DisposeBag()
+    
+    let sectionInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var uploadButton: UIButton!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var inputTagStackView: UIStackView!
     @IBOutlet var inputTagTextField: UITextField!
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var collectionViewStackView: UIStackView!
+    @IBOutlet var selectedImageCollectionView: UICollectionView!
     @IBOutlet var expireDatePicker: UIDatePicker!
     @IBOutlet var expireAfterLabel: UILabel!
     
@@ -34,17 +38,27 @@ class ShareViewController: UIViewController {
         initUI()
         handleSharedFile()
         action()
+        bind()
     }
     
     func initUI() {
+        // scrollView
+        scrollView.delegate = self
+        
         // inputTagStackView
         inputTagStackView.layer.cornerRadius = 4
         
-        //imageView
-        imageView.layer.cornerRadius = 4
+        // collectionViewStackView
+        collectionViewStackView.layer.cornerRadius = 4
         
-        // scrollView
-        scrollView.delegate = self
+        // selectedImageCollectionView
+        selectedImageCollectionView.dataSource = self
+        selectedImageCollectionView.delegate = self
+        let selectedImageCollectionViewCell = UINib(nibName: "SelectedImageCollectionViewCell", bundle: nil)
+        selectedImageCollectionView.register(selectedImageCollectionViewCell, forCellWithReuseIdentifier: "SelectedImageCollectionViewCell")
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        selectedImageCollectionView.collectionViewLayout = flowLayout
     }
     
     func action() {
@@ -55,7 +69,7 @@ class ShareViewController: UIViewController {
         
         uploadButton.rx.tap
             .subscribe { _ in
-                self.saveImageToDirectory(identifier: "image", image: self.imageView.image!)
+                self.saveImageToDirectory(identifier: "image", image: self.images[0])
                 let loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
                 loadingView.guideMessage = "업로드 중..."
                 self.view.addSubview(loadingView)
@@ -69,6 +83,14 @@ class ShareViewController: UIViewController {
                 //file:///var/mobile/Containers/Data/Application/7AEFDA80-B2B0-4F97-BC52-B77641F52B4F/Documents/image.jpeg
             }
             .disposed(by: disposeBag)
+    }
+    
+    func bind() {
+        handleSharedFileDone.subscribe { _ in
+            self.selectedImageCollectionView.reloadData()
+            print("리로드")
+        }
+        .disposed(by: disposeBag)
     }
     
     /// 공유 받은 사진 이미지 sharedImage에 저장
@@ -90,11 +112,10 @@ class ShareViewController: UIViewController {
                 guard let image = image as? UIImage else {
                     return
                 }
-                self.sharedImages.append(image)
-                print(self.sharedImages.count)
-                DispatchQueue.main.async {
-                    self.imageView.image = self.sharedImages[0]
-                }
+                print(image)
+                self.images.append(image)
+                self.handleSharedFileDone.onNext(())
+                print(self.images.count)
             }
         }
     }
@@ -119,7 +140,6 @@ class ShareViewController: UIViewController {
                 try imageData.write(to: fileURL)
                 print("Image saved at: \(fileURL)")
             }
-            
         } catch {
             print("Failed to save images: \(error)")
         }
@@ -127,7 +147,41 @@ class ShareViewController: UIViewController {
 
 }
 
+extension ShareViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+// MARK: CollectionView
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("numberOfItemsInSection: \(images.count)")
+        return images.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("cellForItemAt: \(images.count)")
+        let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "SelectedImageCollectionViewCell", for: indexPath) as! SelectedImageCollectionViewCell
+        cell.imageView.image = images[indexPath.row]
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+         return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = selectedImageCollectionView.frame.height
+        let itemsPerColumn: CGFloat = 1
+        let heightPadding = sectionInsets.top * (itemsPerColumn + 1)
+        let cellHeight = (height - heightPadding) / itemsPerColumn
+        
+        return CGSize(width: cellHeight, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    }
+}
+
 extension ShareViewController: UIScrollViewDelegate {
+// MARK: ScrollView
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
         self.view.endEditing(true)
@@ -137,6 +191,7 @@ extension ShareViewController: UIScrollViewDelegate {
 
 extension ShareViewController {
 // MARK: Alert
+    
     func showUploadFinishedAlert() {
         let sheet = UIAlertController(title: "업로드 완료", message: "링크를 복사하시겠습니까?", preferredStyle: .alert)
         
