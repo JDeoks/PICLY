@@ -23,7 +23,7 @@ class EditViewController: UIViewController {
     @IBOutlet var tagTextField: UITextField!
     @IBOutlet var collectionViewStackView: UIStackView!
     @IBOutlet var selectedImageCollectionView: UICollectionView!
-    @IBOutlet var datePicker: UIDatePicker!
+    @IBOutlet var expireDatePicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class EditViewController: UIViewController {
         inputTagStackView.layer.cornerRadius = 4
         
         // datePicker
-        datePicker.tintColor = UIColor(named: "HighlightBlue")
+        expireDatePicker.tintColor = UIColor(named: "HighlightBlue")
         scrollView.delegate = self
         
         // selectedImageCollectionView

@@ -569,7 +569,7 @@
                     <connections>
                         <outlet property="backButton" destination="XKp-U4-U90" id="Tn4-CR-f9v"/>
                         <outlet property="collectionViewStackView" destination="xCE-MJ-RSl" id="xhn-lk-a5f"/>
-                        <outlet property="datePicker" destination="u9l-Fo-hNK" id="G8Z-QS-cTU"/>
+                        <outlet property="expireDatePicker" destination="u9l-Fo-hNK" id="G8Z-QS-cTU"/>
                         <outlet property="inputTagStackView" destination="tPa-86-1MP" id="Bfq-zi-1Wa"/>
                         <outlet property="saveButton" destination="hJG-0F-N9p" id="G3R-Yy-C36"/>
                         <outlet property="scrollView" destination="QX6-db-JzN" id="dwM-nW-wr0"/>
@@ -797,7 +797,7 @@
                     <connections>
                         <outlet property="closeButton" destination="Ct0-Re-na1" id="HSb-25-Rl7"/>
                         <outlet property="collectionViewStackView" destination="yQa-yK-tOG" id="jBS-F2-FqX"/>
-                        <outlet property="datePicker" destination="T8b-wq-pt4" id="BRk-AX-9S2"/>
+                        <outlet property="expireDatePicker" destination="T8b-wq-pt4" id="BRk-AX-9S2"/>
                         <outlet property="inputTagStackView" destination="He2-Xr-u3r" id="yJe-CE-dWd"/>
                         <outlet property="scrollView" destination="Itw-DN-54V" id="YE0-mZ-k9d"/>
                         <outlet property="selectedImageCollectionView" destination="uhG-FF-3Yq" id="eTf-XW-dSG"/>

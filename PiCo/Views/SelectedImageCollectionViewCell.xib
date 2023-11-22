@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="233" height="326"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pado" translatesAutoresizingMaskIntoConstraints="NO" id="mBD-vc-YcU">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pado" translatesAutoresizingMaskIntoConstraints="NO" id="mBD-vc-YcU">
                         <rect key="frame" x="0.0" y="59" width="233" height="233"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="mBD-vc-YcU" secondAttribute="height" multiplier="1:1" id="Gsu-9j-xXc"/>

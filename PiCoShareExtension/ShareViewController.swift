@@ -59,6 +59,9 @@ class ShareViewController: UIViewController {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         selectedImageCollectionView.collectionViewLayout = flowLayout
+        
+        // datePicker
+        expireDatePicker.tintColor = UIColor(named: "HighlightBlue")
     }
     
     func action() {
@@ -87,9 +90,9 @@ class ShareViewController: UIViewController {
     
     func bind() {
         handleSharedFileDone.subscribe { _ in
-            self.selectedImageCollectionView.reloadData()
-            print("리로드")
-        }
+            DispatchQueue.main.async {
+                self.selectedImageCollectionView.reloadData()
+            }        }
         .disposed(by: disposeBag)
     }
     

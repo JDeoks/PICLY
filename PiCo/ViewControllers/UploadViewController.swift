@@ -27,7 +27,7 @@ class UploadViewController: UIViewController {
     @IBOutlet var inputTagStackView: UIStackView!
     @IBOutlet var collectionViewStackView: UIStackView!
     @IBOutlet var selectedImageCollectionView: UICollectionView!
-    @IBOutlet var datePicker: UIDatePicker!
+    @IBOutlet var expireDatePicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class UploadViewController: UIViewController {
         inputTagStackView.layer.cornerRadius = 4
         
         // datePicker
-        datePicker.tintColor = UIColor(named: "HighlightBlue")
+        expireDatePicker.tintColor = UIColor(named: "HighlightBlue")
         
         // scrollView
         scrollView.delegate = self
