@@ -502,14 +502,13 @@
                                                                         <rect key="frame" x="0.0" y="25" width="361" height="56"/>
                                                                         <subviews>
                                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="u9l-Fo-hNK">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="200" height="56"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="272.33333333333331" height="56"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="56" id="AK6-0N-hUD"/>
-                                                                                    <constraint firstAttribute="width" constant="200" id="Csx-JE-bld"/>
                                                                                 </constraints>
                                                                             </datePicker>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1일 0시간 후" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWh-FV-4lU">
-                                                                                <rect key="frame" x="208" y="0.0" width="153" height="56"/>
+                                                                                <rect key="frame" x="280.33333333333331" y="0.0" width="80.666666666666686" height="56"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <color key="tintColor" name="SecondText"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>

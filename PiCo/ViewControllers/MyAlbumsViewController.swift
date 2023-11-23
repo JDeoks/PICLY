@@ -108,7 +108,7 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
         let widthPadding = sectionInsets.left * (itemsPerRow + 1)
         let cellWidth = (width - widthPadding) / itemsPerRow
         
-        return CGSize(width: cellWidth, height: cellWidth * 1.3)
+        return CGSize(width: cellWidth, height: cellWidth + 64)
     }
     
     ///
