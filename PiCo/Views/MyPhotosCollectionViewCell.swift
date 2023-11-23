@@ -28,6 +28,9 @@ class MyPhotosCollectionViewCell: UICollectionViewCell {
     }
     
     func initUI() {
+        // view
+        self.layer.cornerRadius = 4
+        // thumnailImageView
         thumnailImageView.layer.cornerRadius = 4
         thumnailImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         thumnailImageView.layer.masksToBounds = true

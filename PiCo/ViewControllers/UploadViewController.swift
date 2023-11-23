@@ -9,14 +9,15 @@ import UIKit
 import RxSwift
 import RxKeyboard
 import SnapKit
+import PhotosUI
 
 class UploadViewController: UIViewController {
-    
     /// 서버에 저장된 사진 URL
     var postURL: URL?
     /// 선택한 사진 배열
     var images: [UIImage] = []
     
+    let didFinishPickingDone = PublishSubject<Void>()
     let disposeBag = DisposeBag()
     
     let sectionInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
@@ -33,6 +34,7 @@ class UploadViewController: UIViewController {
         super.viewDidLoad()
         initUI()
         action()
+        bind()
         print(scrollView.frame)
     }
     
@@ -96,27 +98,20 @@ class UploadViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    func showUploadFinishedAlert() {
-        let sheet = UIAlertController(title: "업로드 완료", message: "링크를 복사하시겠습니까?", preferredStyle: .alert)
-        
-        let loginAction = UIAlertAction(title: "링크 복사하고 창 닫기", style: .default, handler: { _ in
-            UIPasteboard.general.url = self.postURL
-            self.dismiss(animated: true)
-        })
-        
-        let cancelAction = UIAlertAction(title: "창 닫기", style: .cancel) { _ in
-            self.dismiss(animated: true)
+    func bind() {
+        didFinishPickingDone.subscribe { _ in
+            print("didFinishPickingDone")
+            print(self.images.count)
+            DispatchQueue.main.async {
+                self.selectedImageCollectionView.reloadData()
+            }
         }
-        
-        sheet.addAction(loginAction)
-        sheet.addAction(cancelAction)
-        
-        present(sheet, animated: true)
     }
     
 }
 
 extension UploadViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+// CollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count + 1
@@ -124,7 +119,9 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row < images.count {
+            print("사진 표시")
             let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "SelectedImageCollectionViewCell", for: indexPath) as! SelectedImageCollectionViewCell
+            cell.imageView.image = images[indexPath.row]
             return cell
         } else {
             let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "AddImageCollectionViewCell", for: indexPath) as! AddImageCollectionViewCell
@@ -148,7 +145,7 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row <= images.count {
             // 사진 선택
-            print("사진 선택")
+            presentPicker()
         } else {
             
         }
@@ -156,9 +153,69 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
 }
 
 extension UploadViewController: UIScrollViewDelegate {
+// ScrollView
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView){ 
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
         self.view.endEditing(true)
     }
     
+}
+
+extension UploadViewController {
+// Alert
+    
+    func showUploadFinishedAlert() {
+        let sheet = UIAlertController(title: "업로드 완료", message: "링크를 복사하시겠습니까?", preferredStyle: .alert)
+        
+        let loginAction = UIAlertAction(title: "링크 복사하고 창 닫기", style: .default, handler: { _ in
+            UIPasteboard.general.url = self.postURL
+            self.dismiss(animated: true)
+        })
+        let cancelAction = UIAlertAction(title: "창 닫기", style: .cancel) { _ in
+            self.dismiss(animated: true)
+        }
+        
+        sheet.addAction(loginAction)
+        sheet.addAction(cancelAction)
+        
+        present(sheet, animated: true)
+    }
+}
+
+extension UploadViewController: PHPickerViewControllerDelegate {
+// PHPickerViewController
+    
+    func presentPicker() {
+        var config = PHPickerConfiguration()
+        config.filter = .images
+        config.selectionLimit = 1
+        
+        let imagePicker = PHPickerViewController(configuration: config)
+        imagePicker.delegate = self
+        
+        self.present(imagePicker, animated: true)
+    }
+    // TODO: for안의 코드가 다 돌았을 때 didFinishPickingDone하고 싶은데 loadObject도 비동기라 안됨
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        let itemProviders = results.map(\.itemProvider)
+        print(1)
+        DispatchQueue.global().async {
+            print(2)
+            for itemProvider in itemProviders {
+                if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                    itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                        guard let self = self, let image = image as? UIImage else { return }
+                        print(3)
+                        self.images.append(image)
+                        self.didFinishPickingDone.onNext(())
+                    }
+                }
+            }
+        }
+        
+        picker.dismiss(animated: true)
+    }
+    
+    
+
 }

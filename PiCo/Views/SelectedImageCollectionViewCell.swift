@@ -17,7 +17,9 @@ class SelectedImageCollectionViewCell: UICollectionViewCell {
     }
     
     func initUI() {
+        // imageView
         imageView.layer.cornerRadius = 4
+//        imageView.contentMode = .top
     }
 
 }
