@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--My Photos View Controller-->
+        <!--My Albums View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MyPhotosViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MyAlbumsViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -81,6 +81,7 @@
                                         <edgeInsets key="layoutMargins" top="0.0" left="8" bottom="0.0" right="8"/>
                                     </stackView>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="x2P-ma-z3K"/>
                                 </constraints>
@@ -808,11 +809,11 @@
             </objects>
             <point key="canvasLocation" x="2812.9770992366412" y="705.63380281690149"/>
         </scene>
-        <!--내 사진-->
+        <!--내 앨범-->
         <scene sceneID="DCY-bt-Zrv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wMJ-Lu-G9E" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="내 사진" image="house.fill" catalog="system" selectedImage="house.fill" id="n5A-VP-0PV"/>
+                    <tabBarItem key="tabBarItem" title="내 앨범" image="photo.on.rectangle" catalog="system" selectedImage="photo.on.rectangle" id="n5A-VP-0PV"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zew-Yh-Lsc">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -827,40 +828,55 @@
             </objects>
             <point key="canvasLocation" x="1066.4122137404579" y="-2.1126760563380285"/>
         </scene>
-        <!--View Controller-->
+        <!--Setting View Controller-->
         <scene sceneID="m7z-sJ-4dD">
             <objects>
-                <viewController id="A0Z-cV-bYU" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="A0Z-cV-bYU" customClass="SettingViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eMg-vh-gNC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="GPy-kO-mTx">
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GPy-kO-mTx">
                                 <rect key="frame" x="0.0" y="103" width="393" height="56"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8UD-j7-E6Y">
-                                        <rect key="frame" x="23.999999999999996" y="0.0" width="48.666666666666657" height="56"/>
+                                        <rect key="frame" x="23.999999999999996" y="11.333333333333329" width="48.666666666666657" height="33.666666666666664"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                         <color key="textColor" name="mainText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hzT-ij-GNf">
-                                        <rect key="frame" x="101.66666666666666" y="0.0" width="267.33333333333337" height="56"/>
+                                        <rect key="frame" x="72.666666666666657" y="0.0" width="296.33333333333337" height="56"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="HcI-a7-EvM"/>
+                                </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="24" bottom="0.0" right="24"/>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0ui-VP-QIr">
+                                <rect key="frame" x="0.0" y="159" width="393" height="610"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XUf-ch-hXC"/>
                         <color key="backgroundColor" name="MainBackground"/>
                         <constraints>
+                            <constraint firstItem="0ui-VP-QIr" firstAttribute="leading" secondItem="XUf-ch-hXC" secondAttribute="leading" id="LGr-We-rcT"/>
+                            <constraint firstItem="0ui-VP-QIr" firstAttribute="top" secondItem="GPy-kO-mTx" secondAttribute="bottom" id="T5w-b8-n9v"/>
+                            <constraint firstItem="XUf-ch-hXC" firstAttribute="trailing" secondItem="0ui-VP-QIr" secondAttribute="trailing" id="Ujq-EJ-gxy"/>
                             <constraint firstItem="XUf-ch-hXC" firstAttribute="trailing" secondItem="GPy-kO-mTx" secondAttribute="trailing" id="heS-sC-Zn9"/>
                             <constraint firstItem="GPy-kO-mTx" firstAttribute="leading" secondItem="XUf-ch-hXC" secondAttribute="leading" id="lzp-s9-sor"/>
                             <constraint firstItem="XUf-ch-hXC" firstAttribute="top" secondItem="GPy-kO-mTx" secondAttribute="top" id="yzf-pd-2mF"/>
+                            <constraint firstItem="XUf-ch-hXC" firstAttribute="bottom" secondItem="0ui-VP-QIr" secondAttribute="bottom" id="zJF-9l-5NG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zzx-k6-QZG"/>
+                    <connections>
+                        <outlet property="menuTableView" destination="0ui-VP-QIr" id="DOA-Mc-lW1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iPl-ik-XhX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -910,10 +926,10 @@
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="eye" catalog="system" width="128" height="79"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
-        <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="link" catalog="system" width="128" height="124"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="pado" width="1432" height="1432"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="ButtonLabel">

@@ -121,10 +121,10 @@ class UploadViewController: UIViewController {
 }
 
 extension UploadViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-// CollectionView
+// MARK: CollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count + 1
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -160,17 +160,14 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row <= images.count {
-            // 사진 선택
+        if let cell = collectionView.cellForItem(at: indexPath) as? AddImageCollectionViewCell {
             presentPicker()
-        } else {
-            
         }
     }
 }
 
 extension UploadViewController: UIScrollViewDelegate {
-// ScrollView
+// MARK: ScrollView
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
         self.view.endEditing(true)
@@ -179,7 +176,7 @@ extension UploadViewController: UIScrollViewDelegate {
 }
 
 extension UploadViewController {
-// Alert
+// MARK: Alert
     
     func showUploadFinishedAlert() {
         let sheet = UIAlertController(title: "업로드 완료", message: "링크를 복사하시겠습니까?", preferredStyle: .alert)
@@ -200,7 +197,7 @@ extension UploadViewController {
 }
 
 extension UploadViewController: PHPickerViewControllerDelegate {
-// PHPickerViewController
+// MARK: PHPickerViewController
     
     func presentPicker() {
         var config = PHPickerConfiguration()
@@ -231,11 +228,9 @@ extension UploadViewController: PHPickerViewControllerDelegate {
                     }
                 }
             }
+            // 여기에 추가하고 싶음
+            // self.didFinishPickingDone.onNext(())
         }
-        
         picker.dismiss(animated: true)
     }
-    
-    
-
 }

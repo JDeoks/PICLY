@@ -10,7 +10,7 @@ import RxSwift
 
 class DetailViewController: UIViewController {
     
-    var photoURL: URL?
+    var albumURL: URL?
     var imageURL: URL?
     
     let disposeBag = DisposeBag()
@@ -52,7 +52,7 @@ class DetailViewController: UIViewController {
         
         copyLinkButton.rx.tap
             .subscribe { _ in
-                guard let url = self.photoURL else {
+                guard let url = self.albumURL else {
                     self.showToast(message: "링크 복사 실패")
                     return
                 }

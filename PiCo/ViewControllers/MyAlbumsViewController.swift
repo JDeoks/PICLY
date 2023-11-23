@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MyPhotosViewController: UIViewController {
+class MyAlbumsViewController: UIViewController {
     
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     
@@ -51,7 +51,7 @@ class MyPhotosViewController: UIViewController {
         myPhotosCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         myPhotosCollectionView.refreshControl = refreshControl
         
-        //드래그시 키보드 내림
+        // 드래그시 키보드 내림
         myPhotosCollectionView.keyboardDismissMode = .onDrag
         
         // plusButton
@@ -81,7 +81,7 @@ class MyPhotosViewController: UIViewController {
 
 }
 
-extension MyPhotosViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 // MARK: 컬렉션 뷰
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -124,7 +124,7 @@ extension MyPhotosViewController: UICollectionViewDataSource, UICollectionViewDe
     }
 }
 
-extension MyPhotosViewController: UITextFieldDelegate {
+extension MyAlbumsViewController: UITextFieldDelegate {
 // MARK: 텍스트 필드
     
     /// 검색 시작 시 애니메이션
