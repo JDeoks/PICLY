@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let scenes = UIApplication.shared.connectedScenes
 //        let windowScene = scenes.first as? UIWindowScene
 //        let window = windowScene?.windows.first
-//        window!.overrideUserInterfaceStyle = .dark
+        UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = .dark
         return true
     }
 

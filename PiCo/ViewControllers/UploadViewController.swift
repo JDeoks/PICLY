@@ -12,12 +12,14 @@ import SnapKit
 import PhotosUI
 
 class UploadViewController: UIViewController {
+    
     /// 서버에 저장된 사진 URL
     var postURL: URL?
     /// 선택한 사진 배열
     var images: [UIImage] = []
     
     let didFinishPickingDone = PublishSubject<Void>()
+    let removeImagesAtDone = PublishSubject<Void>()
     let disposeBag = DisposeBag()
     
     let sectionInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
@@ -106,6 +108,14 @@ class UploadViewController: UIViewController {
                 self.selectedImageCollectionView.reloadData()
             }
         }
+        .disposed(by: disposeBag)
+        
+        removeImagesAtDone.subscribe { _ in
+            DispatchQueue.main.async {
+                self.selectedImageCollectionView.reloadData()
+            }
+        }
+        .disposed(by: disposeBag)
     }
     
 }
@@ -119,9 +129,16 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row < images.count {
-            print("사진 표시")
             let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "SelectedImageCollectionViewCell", for: indexPath) as! SelectedImageCollectionViewCell
             cell.imageView.image = images[indexPath.row]
+            
+            cell.deleteButton.rx.tap
+                .subscribe { _ in
+                    self.images.remove(at: indexPath.row)
+                    self.removeImagesAtDone.onNext(())
+                }
+                .disposed(by: cell.disposeBag)
+            
             return cell
         } else {
             let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "AddImageCollectionViewCell", for: indexPath) as! AddImageCollectionViewCell
@@ -195,6 +212,7 @@ extension UploadViewController: PHPickerViewControllerDelegate {
         
         self.present(imagePicker, animated: true)
     }
+    
     // TODO: for안의 코드가 다 돌았을 때 didFinishPickingDone하고 싶은데 loadObject도 비동기라 안됨
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         let itemProviders = results.map(\.itemProvider)
@@ -202,10 +220,12 @@ extension UploadViewController: PHPickerViewControllerDelegate {
         DispatchQueue.global().async {
             print(2)
             for itemProvider in itemProviders {
+                print(3)
                 if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                    print(4)
                     itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
                         guard let self = self, let image = image as? UIImage else { return }
-                        print(3)
+                        print(5)
                         self.images.append(image)
                         self.didFinishPickingDone.onNext(())
                     }
