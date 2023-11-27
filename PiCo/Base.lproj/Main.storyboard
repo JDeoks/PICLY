@@ -7,6 +7,7 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -881,6 +882,40 @@
             </objects>
             <point key="canvasLocation" x="1993" y="1395"/>
         </scene>
+        <!--Web View Controller-->
+        <scene sceneID="Hh6-Ld-vXK">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lqi-h2-dSq" customClass="WebViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nzY-YZ-hja">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvu-dt-mo5">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" red="0.87058823529999996" green="0.44267301619999999" blue="0.59058504069999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ghg-f9-sXY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ghg-f9-sXY" firstAttribute="bottom" secondItem="jvu-dt-mo5" secondAttribute="bottom" id="TJA-9r-0a6"/>
+                            <constraint firstItem="Ghg-f9-sXY" firstAttribute="trailing" secondItem="jvu-dt-mo5" secondAttribute="trailing" id="bm4-Ce-WOX"/>
+                            <constraint firstItem="jvu-dt-mo5" firstAttribute="top" secondItem="Ghg-f9-sXY" secondAttribute="top" id="fMB-LP-oFo"/>
+                            <constraint firstItem="jvu-dt-mo5" firstAttribute="leading" secondItem="Ghg-f9-sXY" secondAttribute="leading" id="fyP-eH-eii"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="jvu-dt-mo5" id="cCK-sx-xJM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nlY-Wf-meP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2733" y="2105"/>
+        </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="Y8P-Kx-bFF">
             <objects>
@@ -952,5 +987,8 @@
         <namedColor name="mainText">
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

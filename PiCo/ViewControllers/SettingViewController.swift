@@ -10,9 +10,10 @@ import UIKit
 class SettingViewController: UIViewController {
     
     let menus = [["계정 관리", "튜토리얼 보기", "앱 평가하기"],
-                 ["피코 더 알아보기", "개인정보 처리방침", "이용약관", "오픈소스 라이센스", "버전", "개발자 정보"]]
+                 ["피코 더 알아보기", "개인정보 처리방침", "이용약관", "오픈소스 라이센스", "개발자 정보", "버전"]]
     let menuImages = ["person.fill", "book.fill", "star.fill"]
-
+    let urls = ["https://jdeoks.notion.site/PiCo-f6f39f80fc274800bc8b1b2f62b44c30?pvs=4"]
+    
     @IBOutlet var menuTableView: UITableView!
     
     override func viewDidLoad() {
@@ -70,6 +71,16 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            let webVC = self.storyboard?.instantiateViewController(identifier: "WebViewController") as! WebViewController
+            guard let url = URL(string: urls[0]) else {
+                print("url 없음")
+                return
+            }
+            webVC.pageURL = url
+            present(webVC, animated: true)
+        }
+    }
     
 }

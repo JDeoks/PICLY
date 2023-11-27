@@ -26,6 +26,7 @@
 		2A4D48F12B0A652200E776C7 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4D48F02B0A652200E776C7 /* RxSwift */; };
 		2A4D48FA2B0A781A00E776C7 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D48F92B0A781A00E776C7 /* PhotoModel.swift */; };
 		2A4D48FB2B0A781A00E776C7 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D48F92B0A781A00E776C7 /* PhotoModel.swift */; };
+		2A6942402B1532D00070B194 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69423F2B1532D00070B194 /* WebViewController.swift */; };
 		2A89E6942B092D69009056DD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6932B092D69009056DD /* UploadViewController.swift */; };
 		2A89E6972B0937F4009056DD /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6962B0937F4009056DD /* UIViewController+Extensions.swift */; };
 		2A89E69A2B094147009056DD /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 2A89E6992B094147009056DD /* SnapKit-Dynamic */; };
@@ -95,6 +96,7 @@
 		2A2FA59B2B0BBEEE00767310 /* AddImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		2A3498522B0D694C00424868 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		2A4D48F92B0A781A00E776C7 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
+		2A69423F2B1532D00070B194 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		2A89E6932B092D69009056DD /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		2A89E6962B0937F4009056DD /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		2A89E69F2B094EEF009056DD /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				2A89E6932B092D69009056DD /* UploadViewController.swift */,
 				2A89E69F2B094EEF009056DD /* EditViewController.swift */,
 				2A1960D62B0FAC92000935CF /* SettingViewController.swift */,
+				2A69423F2B1532D00070B194 /* WebViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				2A2FA59C2B0BBEEE00767310 /* AddImageCollectionViewCell.swift in Sources */,
 				2AD5F2CE2B0FADCE00475AC6 /* SettingsTableViewCell.swift in Sources */,
 				2AB0C4B92B08B77E008BB7AE /* SceneDelegate.swift in Sources */,
+				2A6942402B1532D00070B194 /* WebViewController.swift in Sources */,
 				2A4D48FA2B0A781A00E776C7 /* PhotoModel.swift in Sources */,
 				2A3498532B0D694C00424868 /* LoadingIndicatorView.swift in Sources */,
 				2A89E6A02B094EEF009056DD /* EditViewController.swift in Sources */,
