@@ -92,7 +92,8 @@ class ShareViewController: UIViewController {
         handleSharedFileDone.subscribe { _ in
             DispatchQueue.main.async {
                 self.selectedImageCollectionView.reloadData()
-            }        }
+            }
+        }
         .disposed(by: disposeBag)
     }
     

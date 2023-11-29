@@ -7,7 +7,6 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -809,6 +808,30 @@
             </objects>
             <point key="canvasLocation" x="2812.9770992366412" y="705.63380281690149"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="D5T-2o-tVQ">
+            <objects>
+                <viewController id="cBv-EY-rUV" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="56d-J3-rBT">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="로그인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wyh-9O-vb4">
+                                <rect key="frame" x="49" y="96" width="58" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <color key="textColor" name="mainText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rUX-Cf-4zV"/>
+                        <color key="backgroundColor" name="MainBackground"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gY5-oI-5zR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1056" y="-716"/>
+        </scene>
         <!--내 앨범-->
         <scene sceneID="DCY-bt-Zrv">
             <objects>
@@ -891,8 +914,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvu-dt-mo5">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                                <color key="backgroundColor" red="0.87058823529999996" green="0.44267301619999999" blue="0.59058504069999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                                <color key="backgroundColor" name="MainBackground"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
@@ -900,9 +923,9 @@
                             </wkWebView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ghg-f9-sXY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ghg-f9-sXY" firstAttribute="bottom" secondItem="jvu-dt-mo5" secondAttribute="bottom" id="TJA-9r-0a6"/>
+                            <constraint firstAttribute="bottom" secondItem="jvu-dt-mo5" secondAttribute="bottom" id="TJA-9r-0a6"/>
                             <constraint firstItem="Ghg-f9-sXY" firstAttribute="trailing" secondItem="jvu-dt-mo5" secondAttribute="trailing" id="bm4-Ce-WOX"/>
                             <constraint firstItem="jvu-dt-mo5" firstAttribute="top" secondItem="Ghg-f9-sXY" secondAttribute="top" id="fMB-LP-oFo"/>
                             <constraint firstItem="jvu-dt-mo5" firstAttribute="leading" secondItem="Ghg-f9-sXY" secondAttribute="leading" id="fyP-eH-eii"/>
@@ -987,8 +1010,5 @@
         <namedColor name="mainText">
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
