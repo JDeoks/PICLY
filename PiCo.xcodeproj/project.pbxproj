@@ -10,7 +10,7 @@
 		2A1960D72B0FAC92000935CF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1960D62B0FAC92000935CF /* SettingViewController.swift */; };
 		2A1BE96F2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1BE96D2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift */; };
 		2A1BE9702B08E9B300703ED5 /* MyPhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A1BE96E2B08E9B300703ED5 /* MyPhotosCollectionViewCell.xib */; };
-		2A2FA58C2B0BB0DB00767310 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6962B0937F4009056DD /* UIViewController+Extensions.swift */; };
+		2A2FA58C2B0BB0DB00767310 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6962B0937F4009056DD /* UIViewController+Extension.swift */; };
 		2A2FA5922B0BB49900767310 /* ImageShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5912B0BB49900767310 /* ImageShareViewController.swift */; };
 		2A2FA5932B0BB49900767310 /* ImageShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5912B0BB49900767310 /* ImageShareViewController.swift */; };
 		2A2FA5962B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5942B0BBED900767310 /* SelectedImageCollectionViewCell.swift */; };
@@ -50,8 +50,10 @@
 		2A6942722B1762BF0070B194 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 2A6942712B1762BF0070B194 /* GoogleSignIn */; };
 		2A6942742B17669B0070B194 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6942732B17669A0070B194 /* GoogleService-Info.plist */; };
 		2A6942762B1766A90070B194 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6942752B1766A90070B194 /* GoogleService-Info.plist */; };
+		2A6942782B17920A0070B194 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6942772B17920A0070B194 /* SignInViewController.swift */; };
+		2A69427A2B17F49D0070B194 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6942792B17F49D0070B194 /* NSMutableAttributedString+Extension.swift */; };
 		2A89E6942B092D69009056DD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6932B092D69009056DD /* UploadViewController.swift */; };
-		2A89E6972B0937F4009056DD /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6962B0937F4009056DD /* UIViewController+Extensions.swift */; };
+		2A89E6972B0937F4009056DD /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6962B0937F4009056DD /* UIViewController+Extension.swift */; };
 		2A89E69A2B094147009056DD /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 2A89E6992B094147009056DD /* SnapKit-Dynamic */; };
 		2A89E69B2B09414D009056DD /* SnapKit-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2A89E6992B094147009056DD /* SnapKit-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2A89E69E2B0941A9009056DD /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 2A89E69D2B0941A9009056DD /* RxKeyboard */; };
@@ -122,8 +124,10 @@
 		2A69423F2B1532D00070B194 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		2A6942732B17669A0070B194 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2A6942752B1766A90070B194 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2A6942772B17920A0070B194 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		2A6942792B17F49D0070B194 /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		2A89E6932B092D69009056DD /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
-		2A89E6962B0937F4009056DD /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		2A89E6962B0937F4009056DD /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2A89E69F2B094EEF009056DD /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		2A89E6A72B0A32C6009056DD /* PiCoShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PiCoShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A89E6A92B0A32C6009056DD /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 				2A89E69F2B094EEF009056DD /* EditViewController.swift */,
 				2A1960D62B0FAC92000935CF /* SettingViewController.swift */,
 				2A69423F2B1532D00070B194 /* WebViewController.swift */,
+				2A6942772B17920A0070B194 /* SignInViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -249,7 +254,8 @@
 		2A89E6952B0937DA009056DD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2A89E6962B0937F4009056DD /* UIViewController+Extensions.swift */,
+				2A89E6962B0937F4009056DD /* UIViewController+Extension.swift */,
+				2A6942792B17F49D0070B194 /* NSMutableAttributedString+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -457,7 +463,7 @@
 			files = (
 				2A4D48FB2B0A781A00E776C7 /* PhotoModel.swift in Sources */,
 				2A2FA5972B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */,
-				2A2FA58C2B0BB0DB00767310 /* UIViewController+Extensions.swift in Sources */,
+				2A2FA58C2B0BB0DB00767310 /* UIViewController+Extension.swift in Sources */,
 				2A3498542B0D694C00424868 /* LoadingIndicatorView.swift in Sources */,
 				2A2FA5932B0BB49900767310 /* ImageShareViewController.swift in Sources */,
 				2A89E6AA2B0A32C6009056DD /* ShareViewController.swift in Sources */,
@@ -472,9 +478,10 @@
 				2A89E6942B092D69009056DD /* UploadViewController.swift in Sources */,
 				2AB0C4B72B08B77E008BB7AE /* AppDelegate.swift in Sources */,
 				2A9863FD2B0913BE0041686E /* MainTabBarController.swift in Sources */,
-				2A89E6972B0937F4009056DD /* UIViewController+Extensions.swift in Sources */,
+				2A89E6972B0937F4009056DD /* UIViewController+Extension.swift in Sources */,
 				2A1960D72B0FAC92000935CF /* SettingViewController.swift in Sources */,
 				2A2FA5922B0BB49900767310 /* ImageShareViewController.swift in Sources */,
+				2A69427A2B17F49D0070B194 /* NSMutableAttributedString+Extension.swift in Sources */,
 				2A9863FB2B09104C0041686E /* DetailViewController.swift in Sources */,
 				2A1BE96F2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift in Sources */,
 				2A2FA59C2B0BBEEE00767310 /* AddImageCollectionViewCell.swift in Sources */,
@@ -482,6 +489,7 @@
 				2AB0C4B92B08B77E008BB7AE /* SceneDelegate.swift in Sources */,
 				2A6942402B1532D00070B194 /* WebViewController.swift in Sources */,
 				2A4D48FA2B0A781A00E776C7 /* PhotoModel.swift in Sources */,
+				2A6942782B17920A0070B194 /* SignInViewController.swift in Sources */,
 				2A3498532B0D694C00424868 /* LoadingIndicatorView.swift in Sources */,
 				2A89E6A02B094EEF009056DD /* EditViewController.swift in Sources */,
 				2A2FA5962B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */,

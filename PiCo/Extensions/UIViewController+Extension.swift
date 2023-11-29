@@ -1,5 +1,5 @@
 //
-//  UIViewController+Extensions.swift
+//  UIViewController+Extension.swift
 //  PiCo
 //
 //  Created by 서정덕 on 11/19/23.
