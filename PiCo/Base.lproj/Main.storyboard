@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cBv-EY-rUV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bjZ-wD-UON">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -841,8 +841,8 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NaE-8a-MhB">
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="50.333333333333336"/>
-                                        <string key="text">로그인하고 나의 사진을 공유하세요
-공유하는 사진은 익명으로 업로드 되며, 내 정보가 저장되지 않습니다</string>
+                                        <string key="text">로그인하고 나의 사진을 공유하세요.
+공유하는 사진은 익명으로 업로드 되며, 내 정보가 저장되지 않습니다.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" name="mainText"/>
                                         <nil key="highlightedColor"/>
@@ -903,17 +903,17 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ATS-6v-9b7">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATS-6v-9b7">
                                 <rect key="frame" x="24" y="714" width="345" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="jS5-BR-HqJ"/>
                                 </constraints>
                                 <string key="text">위의 “Google/Apple로 로그인”을 클릭하면 
-이용약관 및 개인정보처리방침을 읽고 이해했으며
+이용약관 및 개인정보처리방침을 읽고 이해했으며,
 그에 동의하는 것으로 간주됩니다.</string>
                                 <color key="textColor" name="SecondText"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>

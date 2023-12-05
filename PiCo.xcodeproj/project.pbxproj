@@ -200,6 +200,7 @@
 		2A1BE96B2B08E96500703ED5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2A6942772B17920A0070B194 /* SignInViewController.swift */,
 				2AB0C4BA2B08B77E008BB7AE /* MyAlbumsViewController.swift */,
 				2A9863FA2B09104C0041686E /* DetailViewController.swift */,
 				2A9863FC2B0913BE0041686E /* MainTabBarController.swift */,
@@ -207,7 +208,6 @@
 				2A89E69F2B094EEF009056DD /* EditViewController.swift */,
 				2A1960D62B0FAC92000935CF /* SettingViewController.swift */,
 				2A69423F2B1532D00070B194 /* WebViewController.swift */,
-				2A6942772B17920A0070B194 /* SignInViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

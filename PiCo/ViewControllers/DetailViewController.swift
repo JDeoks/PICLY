@@ -34,7 +34,7 @@ class DetailViewController: UIViewController {
     func initUI() {
         imageView.layer.cornerRadius = 4
         shareButton.layer.cornerRadius = 4
-        imageView.image = loadImageFromDirectory(with: "image.jpeg")
+//        imageView.image = loadImageFromDirectory(with: "image.jpeg")
     }
     
     func action() {
