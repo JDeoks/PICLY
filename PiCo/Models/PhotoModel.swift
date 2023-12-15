@@ -22,8 +22,8 @@ class PhotoModel {
         self.photoID = photoID ?? ""
         self.creationTime = creationTime ?? Date()
         self.expireTime = expireTime ?? Date()
-        self.shareURL = shareURL ?? URL(fileURLWithPath: "hello")
-        self.imageURL = imageURL ?? URL(fileURLWithPath: "hello")
+        self.shareURL = shareURL ?? URL(fileURLWithPath: "nil")
+        self.imageURL = imageURL ?? URL(fileURLWithPath: "nil")
         self.tag = tag ?? ""
         self.views = views ?? 0
     }

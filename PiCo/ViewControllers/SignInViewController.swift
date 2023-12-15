@@ -19,11 +19,12 @@ import FirebaseFirestore
 
 class SignInViewController: UIViewController {
     
+    let userCollectionRef = Firestore.firestore().collection("User")
     // Unhashed nonce.
     fileprivate var currentNonce: String?
     
     let disposeBag = DisposeBag()
-
+    
     @IBOutlet var signInWithGoogleButtonView: UIView!
     @IBOutlet var signInWithAppleButtonView: UIView!
     @IBOutlet var googleLogoImageView: UIImageView!
@@ -60,7 +61,7 @@ class SignInViewController: UIViewController {
         signInWithGoogleButtonView.rx.tapGesture()
                     .when(.recognized)
                     .subscribe(onNext: { _ in
-                    
+                        self.startSignInWithGoogleFlow()
                     })
                     .disposed(by: disposeBag)
         
@@ -72,66 +73,104 @@ class SignInViewController: UIViewController {
                     .disposed(by: disposeBag)
     }
     
-    func googleLogin() {
-        /// Firebase 프로젝트에 부여되는 고유 식별자 OAuth과정에서 애플리케이션 식별할 때 사용
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-
-        // Create Google Sign In configuration object.
+    func startSignInWithGoogleFlow() {
+        print("SignInViewController - startSignInWithGoogleFlow()")
+        
+        /// Firebase 프로젝트에 부여되는 고유 식별자. OAuth과정에서 애플리케이션 식별할 때 사용
+        guard let clientID = FirebaseApp.app()?.options.clientID else {
+            print("clientID 초기화 실패")
+            return
+        }
+        // Google Sign In 초기설정
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
 
-        // Start the sign in flow!
+        // 구글 로그인 뷰 띄우기, dismiss 됐을 때 만든 credential로 로그인
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
-            guard error == nil else {
-            print("구글 signIn 실패")
-            return
-            }
-
-            guard let user = result?.user, let idToken = user.idToken?.tokenString else {
-                print("user 정보 가져오기 실패")
+            if let error = error {
+                // TODO: 로그인 실패 Alert
+                print("구글 signIn 실패: \(error.localizedDescription)")
                 return
             }
-
+            guard let user = result?.user, let idToken = user.idToken?.tokenString else {
+                // TODO: 로그인 실패 Alert
+                print("user 또는 idToken 정보 가져오기 실패")
+                return
+            }
+            
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+            // 생성한 credential로 로그인 시도
             Auth.auth().signIn(with: credential) { result, error in
-                if let result = result {
-                    print("registerUser 성공")
-                    print("인증 프로바이더 아이디",result.user.providerID)
-                    self.addUserInfoToDB(id: result.user.uid, userName: userName)
+                if let error = error {
+                    // TODO: 로그인 실패 Alert
+                    print("구글 signIn 실패: \(error.localizedDescription)")
+                    return
                 }
-            // At this point, our user is signed in
+                guard let user = result?.user else {
+                    // TODO: 로그인 실패 Alert
+                    return
+                }
+
+                print("유저:", user.providerID, user.uid, user.displayName, user.email)
+                // 첫 로그인 시 User Collection에 Doc 추가
+                self.isFirstLogin(user: user) { isFirstLogin in
+                    if isFirstLogin {
+                        print("첫 번째 로그인")
+                        self.addUserToDB(user: user, provider: .google)
+                    } else {
+                        print("기존 사용자")
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    /// User Collection에 userID의 Doc이 있는지 검사
+    func isFirstLogin(user: User, completion: @escaping (Bool) -> Void) {
+        print("SignInViewController - isFirstLogin(user:)")
+
+        let userDocRef = userCollectionRef.document(user.uid)
+
+        userDocRef.getDocument { (document, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            // 문서가 존재하면 false 반환
+            if let document = document, document.exists {
+                completion(false)
+            } else {
+                completion(true)
             }
         }
     }
     
     /// 유저 Doc 생성
-    func addUserToDB(id: String, userName: String, imageURL: String) {
-        print("addUserToDB - id: \(id) userName: \(userName) imageURL: \(imageURL)")
-        let db = Firestore.firestore()
-        db.collection("users").document(id).setData([
-          "userName": userName,
-          "profileImageURL": imageURL
+    func addUserToDB(user: User, provider: AuthProvider) {
+        print("SignInViewController - addUserToDB(user:)")
+
+        userCollectionRef.document(user.uid).setData([
+            "creationTime": Timestamp(date: Date()),
+            "authProvider": provider.description,
+            "email": user.email ?? "nil",
+            "albumIDs": []
         ]){ err in
             if let err = err {
-              print("Error writing document: \(err)")
+              print("유저 등록 실패: \(err)")
             } else {
-              print("Document successfully written!")
+              print("유저 등록 성공")
             }
-          }
+        }
     }
     
-    
-    
-
-        
-
 }
-
 
 extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
 
     func startSignInWithAppleFlow() {
         print("SignInViewController - startSignInWithAppleFlow()")
+        
         let nonce = randomNonceString()
         currentNonce = nonce
         let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -176,37 +215,49 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
         return hashString
     }
     
-  func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-    if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-      guard let nonce = currentNonce else {
-        fatalError("Invalid state: A login callback was received, but no login request was sent.")
-      }
-      guard let appleIDToken = appleIDCredential.identityToken else {
-        print("Unable to fetch identity token")
-        return
-      }
-      guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-        print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
-        return
-      }
-      // Initialize a Firebase credential, including the user's full name.
-      let credential = OAuthProvider.appleCredential(withIDToken: idTokenString,
-                                                        rawNonce: nonce,
-                                                        fullName: appleIDCredential.fullName)
-      // Sign in with Firebase.
-//      Auth.auth().signIn(with: credential) { (authResult, error) in
-//        if error {
-//          // Error. If error.code == .MissingOrInvalidNonce, make sure
-//          // you're sending the SHA256-hashed nonce as a hex string with
-//          // your request to Apple.
-//          print(error.localizedDescription)
-//          return
-//        }
-//        // User is signed in to Firebase with Apple.
-//        // ...
-//      }
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            guard let nonce = currentNonce else {
+                fatalError("Invalid state: A login callback was received, but no login request was sent.")
+            }
+            guard let appleIDToken = appleIDCredential.identityToken else {
+                print("Unable to fetch identity token")
+                return
+            }
+            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+                print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+                return
+            }
+            // Initialize a Firebase credential, including the user's full name.
+            let credential = OAuthProvider.appleCredential(withIDToken: idTokenString,
+                                                            rawNonce: nonce,
+                                                            fullName: appleIDCredential.fullName)
+//             Sign in with Firebase.
+            Auth.auth().signIn(with: credential) { result, error in
+                if let error = error {
+                    // TODO: 로그인 실패 Alert
+                    print("애플 signIn 실패: \(error.localizedDescription)")
+                    return
+                }
+                guard let user = result?.user else {
+                    // TODO: 로그인 실패 Alert
+                    return
+                }
+
+                print("유저:", user.providerID, user.uid, user.displayName, user.email)
+                // 첫 로그인 시 User Collection에 Doc 추가
+                self.isFirstLogin(user: user) { isFirstLogin in
+                    if isFirstLogin {
+                        print("첫 번째 로그인")
+                        self.addUserToDB(user: user, provider: .apple)
+                    } else {
+                        print("기존 사용자")
+                    }
+                }
+                
+            }
+        }
     }
-  }
 
   func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
     // Handle error.
