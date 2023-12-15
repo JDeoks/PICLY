@@ -34,6 +34,7 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
         initUI()
         action()
+        getCurrentUser()
     }
     
     func initUI() {
@@ -73,6 +74,29 @@ class SignInViewController: UIViewController {
                     .disposed(by: disposeBag)
     }
     
+    func getCurrentUser() {
+        // 현재 로그인된 사용자 가져오기
+        if let user = Auth.auth().currentUser {
+            // 서버에서 사용자 상태 갱신
+            user.reload { error in
+                if let error = error {
+                    print("사용자 상태 갱신 실패: \(error.localizedDescription)")
+                } else {
+                    // 갱신된 사용자 정보 출력
+                    print("현재 로그인된 사용자 정보:")
+                    print("UID: \(user.uid)")
+                    print("이메일: \(String(describing: user.email))")
+                    print("이름: \(String(describing: user.displayName))")
+                    // 기타 필요한 정보 출력 가능
+                }
+            }
+        } else {
+            print("현재 로그인된 사용자가 없습니다.")
+        }
+    }
+
+
+    
     func startSignInWithGoogleFlow() {
         print("SignInViewController - startSignInWithGoogleFlow()")
         
@@ -100,29 +124,33 @@ class SignInViewController: UIViewController {
             
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
             // 생성한 credential로 로그인 시도
-            Auth.auth().signIn(with: credential) { result, error in
-                if let error = error {
-                    // TODO: 로그인 실패 Alert
-                    print("구글 signIn 실패: \(error.localizedDescription)")
-                    return
-                }
-                guard let user = result?.user else {
-                    // TODO: 로그인 실패 Alert
-                    return
-                }
-
-                print("유저:", user.providerID, user.uid, user.displayName, user.email)
-                // 첫 로그인 시 User Collection에 Doc 추가
-                self.isFirstLogin(user: user) { isFirstLogin in
-                    if isFirstLogin {
-                        print("첫 번째 로그인")
-                        self.addUserToDB(user: user, provider: .google)
-                    } else {
-                        print("기존 사용자")
-                    }
-                }
-                
+            signInWithCredential(credential: credential, provider: .google)
+        }
+    }
+    
+    func signInWithCredential(credential: AuthCredential, provider: AuthProvider) {
+        Auth.auth().signIn(with: credential) { result, error in
+            if let error = error {
+                // TODO: 로그인 실패 Alert
+                print("파이어베이스 signIn 실패: \(error.localizedDescription)")
+                return
             }
+            guard let user = result?.user else {
+                // TODO: 로그인 실패 Alert
+                return
+            }
+
+            print("유저:", user.providerID, user.uid, user.displayName, user.email)
+            // 첫 로그인 시 User Collection에 Doc 추가
+            self.isFirstLogin(user: user) { isFirstLogin in
+                if isFirstLogin {
+                    print("첫 번째 로그인")
+                    self.addUserToDB(user: user, provider: provider)
+                } else {
+                    print("기존 사용자")
+                }
+            }
+            
         }
     }
     
@@ -205,17 +233,19 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
         return String(nonce)
         }
 
-        private func sha256(_ input: String) -> String {
+    private func sha256(_ input: String) -> String {
         let inputData = Data(input.utf8)
         let hashedData = SHA256.hash(data: inputData)
         let hashString = hashedData.compactMap {
         String(format: "%02x", $0)
         }.joined()
-
         return hashString
     }
     
+    /// 애플로그인 dismiss 됐을때 호출
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        print("SignInViewController - authorizationController(didCompleteWithAuthorization:)")
+
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {
                 fatalError("Invalid state: A login callback was received, but no login request was sent.")
@@ -232,30 +262,7 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
             let credential = OAuthProvider.appleCredential(withIDToken: idTokenString,
                                                             rawNonce: nonce,
                                                             fullName: appleIDCredential.fullName)
-//             Sign in with Firebase.
-            Auth.auth().signIn(with: credential) { result, error in
-                if let error = error {
-                    // TODO: 로그인 실패 Alert
-                    print("애플 signIn 실패: \(error.localizedDescription)")
-                    return
-                }
-                guard let user = result?.user else {
-                    // TODO: 로그인 실패 Alert
-                    return
-                }
-
-                print("유저:", user.providerID, user.uid, user.displayName, user.email)
-                // 첫 로그인 시 User Collection에 Doc 추가
-                self.isFirstLogin(user: user) { isFirstLogin in
-                    if isFirstLogin {
-                        print("첫 번째 로그인")
-                        self.addUserToDB(user: user, provider: .apple)
-                    } else {
-                        print("기존 사용자")
-                    }
-                }
-                
-            }
+            signInWithCredential(credential: credential, provider: .apple)
         }
     }
 
