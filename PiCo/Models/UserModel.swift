@@ -21,12 +21,12 @@ class UserModel {
     var authProvider: AuthProvider
     var albumIDs: [String]
     
-    init(document: QueryDocumentSnapshot) {
+    init(document: DocumentSnapshot) {
         self.userID = document.documentID
-        self.email = document.data()["email"] as? String ?? "email 없음"
-        self.creationTime = (document.data()["creationTime"] as! Timestamp).dateValue()
-        self.authProvider = AuthProvider(rawValue: document.data()["authProvider"] as! String) ?? .email
-        self.albumIDs = document.data()["albumIDs"] as? [String] ?? []
+        self.email = document.data()?["email"] as? String ?? "email 없음"
+        self.creationTime = (document.data()?["creationTime"] as? Timestamp)?.dateValue() ?? Date()
+        self.authProvider = AuthProvider(rawValue: document.data()?["authProvider"] as? String ?? "email") ?? .email
+        self.albumIDs = document.data()?["albumIDs"] as? [String] ?? []
     }
     
 }

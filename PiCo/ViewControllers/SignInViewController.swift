@@ -24,6 +24,8 @@ class SignInViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
+    lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+
     @IBOutlet var signInWithGoogleButtonView: UIView!
     @IBOutlet var signInWithAppleButtonView: UIView!
     @IBOutlet var googleLogoImageView: UIImageView!
@@ -77,6 +79,7 @@ class SignInViewController: UIViewController {
     func bind() {
         Auth.auth().addStateDidChangeListener { auth, user in
             if user != nil {
+                self.loadingView.removeFromSuperview()
                 self.setMainTabBarControllerAsRoot()
             }
         }
@@ -94,7 +97,7 @@ class SignInViewController: UIViewController {
                     print("현재 로그인된 사용자 정보:")
                     print("UID: \(user.uid)")
                     print("이메일: \(String(describing: user.email))")
-                    print("이름: \(String(describing: user.displayName))")
+                    print("providerData: \(user.providerData)")
                     // 기타 필요한 정보 출력 가능
                 }
             }
@@ -135,6 +138,7 @@ class SignInViewController: UIViewController {
     }
     
     func signInWithCredential(credential: AuthCredential, provider: AuthProvider) {
+        self.view.addSubview(loadingView)
         Auth.auth().signIn(with: credential) { result, error in
             if let error = error {
                 // TODO: 로그인 실패 Alert
