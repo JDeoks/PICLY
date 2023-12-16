@@ -222,8 +222,6 @@ class SignInViewController: UIViewController {
             snapshot.removeFromSuperview()
         }
     }
-
-
     
 }
 

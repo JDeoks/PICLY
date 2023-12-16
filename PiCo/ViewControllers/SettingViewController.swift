@@ -9,7 +9,7 @@ import UIKit
 
 class SettingViewController: UIViewController {
     
-    let menus = [["계정 관리", "튜토리얼 보기", "앱 평가하기"],
+    let menus = [["계정 관리", "튜토리얼 보기"],
                  ["피코 더 알아보기", "이용약관", "개인정보 처리방침","오픈소스 라이센스", "개발자 정보", "버전"]]
     let menuImages = ["person.fill", "book.fill", "star.fill"]
     let urls = ["https://jdeoks.notion.site/jdeoks/PiCo-f6f39f80fc274800bc8b1b2f62b44c30", 
@@ -35,7 +35,6 @@ class SettingViewController: UIViewController {
         menuTableView.delegate = self
         let settingsTableViewCell = UINib(nibName: "SettingsTableViewCell", bundle: nil)
         menuTableView.register(settingsTableViewCell, forCellReuseIdentifier: "SettingsTableViewCell")
-//        menuTableView.contentInset.top = 16
     }
 
 }
@@ -54,7 +53,8 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = menuTableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell") as! SettingsTableViewCell
         cell.menuLabel.text = menus[indexPath.section][indexPath.row]
         cell.selectionStyle = .none
-        switch indexPath.section{
+        
+        switch indexPath.section {
         case 0:
             cell.menuImageView.image = UIImage(systemName: menuImages[indexPath.row])
         case 1:
@@ -65,6 +65,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
         default:
             return cell
         }
+        
         return cell
     }
     
@@ -80,7 +81,23 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 {
+        
+        switch indexPath.section {
+        // 메인
+        case 0:
+            switch indexPath.row {
+            // 계정 관리
+            case 0:
+                let accountVC = self.storyboard?.instantiateViewController(identifier: "AcountViewController") as! AcountViewController
+                accountVC.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(accountVC, animated: true)
+                return
+            default:
+                return
+            }
+            
+        // 노션 웹뷰
+        case 1:
             if urls.indices.contains(indexPath.row) == false {
                 return
             }
@@ -92,6 +109,8 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
             let webVC = self.storyboard?.instantiateViewController(identifier: "WebViewController") as! WebViewController
             webVC.pageURL = url
             present(webVC, animated: true)
+        default:
+            return
         }
     }
     

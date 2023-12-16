@@ -95,7 +95,7 @@ extension DetailViewController {
     }
     
     func showDeleteConfirmationAlert() {
-        let deleteAlert = UIAlertController(title: "삭제", message: "정말로 삭제하시겠습니까?", preferredStyle: .alert)
+        let deleteAlert = UIAlertController(title: "앨범 삭제", message: "정말로 삭제하시겠습니까?", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
             self.deleteAction()
         })
