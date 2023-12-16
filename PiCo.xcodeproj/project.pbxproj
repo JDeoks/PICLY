@@ -24,6 +24,8 @@
 		2A3498582B0E570C00424868 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB0C4BF2B08B77F008BB7AE /* Assets.xcassets */; };
 		2A3ADA742B2DD49500D40535 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3ADA732B2DD49500D40535 /* LaunchScreen.storyboard */; };
 		2A3ADA762B2E0DD600D40535 /* AcountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3ADA752B2E0DD600D40535 /* AcountViewController.swift */; };
+		2A3ADA792B2E2B9C00D40535 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3ADA782B2E2B9C00D40535 /* LoginManager.swift */; };
+		2A3ADA7A2B2E2B9C00D40535 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3ADA782B2E2B9C00D40535 /* LoginManager.swift */; };
 		2A4D48EF2B0A652200E776C7 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4D48EE2B0A652200E776C7 /* RxCocoa */; };
 		2A4D48F12B0A652200E776C7 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4D48F02B0A652200E776C7 /* RxSwift */; };
 		2A4D48FA2B0A781A00E776C7 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D48F92B0A781A00E776C7 /* PhotoModel.swift */; };
@@ -129,6 +131,7 @@
 		2A3498522B0D694C00424868 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		2A3ADA732B2DD49500D40535 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A3ADA752B2E0DD600D40535 /* AcountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcountViewController.swift; sourceTree = "<group>"; };
+		2A3ADA782B2E2B9C00D40535 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		2A4D48F92B0A781A00E776C7 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		2A6160FE2B2B4E720093C688 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		2A6161032B2B502B0093C688 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
@@ -249,6 +252,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		2A3ADA772B2E2B7600D40535 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				2A3ADA782B2E2B9C00D40535 /* LoginManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		2A4D48ED2B0A652200E776C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,6 +335,7 @@
 				2A1BE96B2B08E96500703ED5 /* ViewControllers */,
 				2A1BE96C2B08E97C00703ED5 /* Views */,
 				2A4D48F82B0A77EF00E776C7 /* Models */,
+				2A3ADA772B2E2B7600D40535 /* Managers */,
 				2A6161022B2B50120093C688 /* Enums */,
 				2A89E6952B0937DA009056DD /* Extensions */,
 				2AB0C4BF2B08B77F008BB7AE /* Assets.xcassets */,
@@ -492,6 +504,7 @@
 				2A6161052B2B502B0093C688 /* AuthProvider.swift in Sources */,
 				2A2FA5972B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */,
 				2A2FA58C2B0BB0DB00767310 /* UIViewController+Extension.swift in Sources */,
+				2A3ADA7A2B2E2B9C00D40535 /* LoginManager.swift in Sources */,
 				2A3498542B0D694C00424868 /* LoadingIndicatorView.swift in Sources */,
 				2A2FA5932B0BB49900767310 /* ImageShareViewController.swift in Sources */,
 				2A89E6AA2B0A32C6009056DD /* ShareViewController.swift in Sources */,
@@ -515,6 +528,7 @@
 				2A1BE96F2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift in Sources */,
 				2A2FA59C2B0BBEEE00767310 /* AddImageCollectionViewCell.swift in Sources */,
 				2AD5F2CE2B0FADCE00475AC6 /* SettingsTableViewCell.swift in Sources */,
+				2A3ADA792B2E2B9C00D40535 /* LoginManager.swift in Sources */,
 				2AB0C4B92B08B77E008BB7AE /* SceneDelegate.swift in Sources */,
 				2A6942402B1532D00070B194 /* WebViewController.swift in Sources */,
 				2A4D48FA2B0A781A00E776C7 /* PhotoModel.swift in Sources */,

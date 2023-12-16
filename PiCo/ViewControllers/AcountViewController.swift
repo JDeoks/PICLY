@@ -27,7 +27,8 @@ class AcountViewController: UIViewController {
         super.viewDidLoad()
         initUI()
         action()
-        fetchAccountInfo()
+        bind()
+        LoginManager.shared.fetchAccountInfo()
     }
     
     func initUI() {
@@ -42,20 +43,12 @@ class AcountViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    func fetchAccountInfo() {
-        guard let userID = Auth.auth().currentUser?.uid else {
-            return
-        }
-
-        let userDocRef = userCollectionRef.document(userID)
-        userDocRef.getDocument { (document, error) in
-          if let document = document, document.exists {
-              let user = UserModel(document: document)
-              self.setDataWithUserModel(user: user)
-          } else {
-            print("User Doc 없음")
-          }
-        }
+    func bind() {
+        LoginManager.shared.fetchAccountInfoDone
+            .subscribe { _ in
+                self.setDataWithUserModel(user: LoginManager.shared.user!)
+            }
+            .disposed(by: disposeBag)
     }
     
     func setDataWithUserModel(user: UserModel) {
