@@ -197,7 +197,7 @@ class SignInViewController: UIViewController {
             }
         }
     }
-    
+
     func setMainTabBarControllerAsRoot() {
         // window 객체 가져오기
         let scenes: Set<UIScene> = UIApplication.shared.connectedScenes
@@ -205,29 +205,29 @@ class SignInViewController: UIViewController {
         let window: UIWindow? = windowScene!.windows.first
         // 넘어갈 화면
         let mainTabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
-        mainTabBarVC.view.alpha = 0.0
 
-        // 현재 화면 뷰 컨트롤러에 새 화면 뷰 컨트롤러 추가
-        self.addChild(mainTabBarVC)
-        self.view.addSubview(mainTabBarVC.view)
-        mainTabBarVC.didMove(toParent: self)
+        // 현재 루트 뷰 컨트롤러의 스냅샷 가져오기
+        guard let snapshot = window?.snapshotView(afterScreenUpdates: true) else { return }
 
-        // 애니메이션 설정
+        // 새 루트 뷰 컨트롤러 설정
+        window?.rootViewController = mainTabBarVC
+
+        // 스냅샷을 새 루트 뷰 컨트롤러 위에 추가
+        mainTabBarVC.view.addSubview(snapshot)
+
+        // 애니메이션을 통해 스냅샷을 서서히 사라지게 함
         UIView.animate(withDuration: 0.5, animations: {
-            // 새 화면 뷰 컨트롤러를 완전히 나타나도록 설정
-            mainTabBarVC.view.alpha = 1.0
-        }) { (finished) in
-            // 애니메이션이 완료된 후 현재 화면 뷰 컨트롤러에서 새 화면 뷰 컨트롤러 제거
-            mainTabBarVC.willMove(toParent: nil)
-            mainTabBarVC.view.removeFromSuperview()
-            mainTabBarVC.removeFromParent()
-            // 새 화면 뷰 컨트롤러를 루트 뷰 컨트롤러로 설정
-            window?.rootViewController = mainTabBarVC
+            snapshot.layer.opacity = 0
+        }) { _ in
+            snapshot.removeFromSuperview()
         }
     }
+
+
     
 }
 
+// MARK: - Apple 로그인
 extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
 
     func startSignInWithAppleFlow() {
@@ -251,17 +251,17 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
         var randomBytes = [UInt8](repeating: 0, count: length)
         let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
         if errorCode != errSecSuccess {
-        fatalError(
-          "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
-        )
+            fatalError(
+              "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
+            )
         }
 
         let charset: [Character] =
         Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
 
         let nonce = randomBytes.map { byte in
-        // Pick a random character from the set, wrapping around if needed.
-        charset[Int(byte) % charset.count]
+            // Pick a random character from the set, wrapping around if needed.
+            charset[Int(byte) % charset.count]
         }
 
         return String(nonce)
@@ -271,7 +271,7 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
         let inputData = Data(input.utf8)
         let hashedData = SHA256.hash(data: inputData)
         let hashString = hashedData.compactMap {
-        String(format: "%02x", $0)
+            String(format: "%02x", $0)
         }.joined()
         return hashString
     }
@@ -300,10 +300,10 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
         }
     }
 
-  func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-    // Handle error.
-    print("Sign in with Apple errored: \(error)")
-  }
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error.
+        print("Sign in with Apple errored: \(error)")
+    }
     
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
