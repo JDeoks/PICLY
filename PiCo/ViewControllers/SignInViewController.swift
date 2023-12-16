@@ -33,6 +33,7 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
         initUI()
         action()
+        bind()
         getCurrentUser()
     }
     
@@ -71,6 +72,14 @@ class SignInViewController: UIViewController {
                         self.startSignInWithAppleFlow()
                     })
                     .disposed(by: disposeBag)
+    }
+    
+    func bind() {
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if user != nil {
+                self.setMainTabBarControllerAsRoot()
+            }
+        }
     }
     
     func getCurrentUser() {
@@ -186,6 +195,34 @@ class SignInViewController: UIViewController {
             } else {
               print("유저 등록 성공")
             }
+        }
+    }
+    
+    func setMainTabBarControllerAsRoot() {
+        // window 객체 가져오기
+        let scenes: Set<UIScene> = UIApplication.shared.connectedScenes
+        let windowScene: UIWindowScene? = scenes.first as? UIWindowScene
+        let window: UIWindow? = windowScene!.windows.first
+        // 넘어갈 화면
+        let mainTabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
+        mainTabBarVC.view.alpha = 0.0
+
+        // 현재 화면 뷰 컨트롤러에 새 화면 뷰 컨트롤러 추가
+        self.addChild(mainTabBarVC)
+        self.view.addSubview(mainTabBarVC.view)
+        mainTabBarVC.didMove(toParent: self)
+
+        // 애니메이션 설정
+        UIView.animate(withDuration: 0.5, animations: {
+            // 새 화면 뷰 컨트롤러를 완전히 나타나도록 설정
+            mainTabBarVC.view.alpha = 1.0
+        }) { (finished) in
+            // 애니메이션이 완료된 후 현재 화면 뷰 컨트롤러에서 새 화면 뷰 컨트롤러 제거
+            mainTabBarVC.willMove(toParent: nil)
+            mainTabBarVC.view.removeFromSuperview()
+            mainTabBarVC.removeFromParent()
+            // 새 화면 뷰 컨트롤러를 루트 뷰 컨트롤러로 설정
+            window?.rootViewController = mainTabBarVC
         }
     }
     
