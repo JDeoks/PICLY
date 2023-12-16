@@ -16,11 +16,10 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 
-
 class SignInViewController: UIViewController {
     
     let userCollectionRef = Firestore.firestore().collection("User")
-    // Unhashed nonce.
+    /// Unhashed nonce. 애플로그인 암호화에 사용
     fileprivate var currentNonce: String?
     
     let disposeBag = DisposeBag()
@@ -94,8 +93,6 @@ class SignInViewController: UIViewController {
             print("현재 로그인된 사용자가 없습니다.")
         }
     }
-
-
     
     func startSignInWithGoogleFlow() {
         print("SignInViewController - startSignInWithGoogleFlow()")

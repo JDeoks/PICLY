@@ -12,6 +12,7 @@ class SettingsTableViewCell: UITableViewCell {
     @IBOutlet var imageContainerView: UIView!
     @IBOutlet var menuImageView: UIImageView!
     @IBOutlet var menuLabel: UILabel!
+    @IBOutlet var versionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

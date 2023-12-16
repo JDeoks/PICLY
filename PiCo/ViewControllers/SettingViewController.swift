@@ -12,7 +12,12 @@ class SettingViewController: UIViewController {
     let menus = [["계정 관리", "튜토리얼 보기", "앱 평가하기"],
                  ["피코 더 알아보기", "이용약관", "개인정보 처리방침","오픈소스 라이센스", "개발자 정보", "버전"]]
     let menuImages = ["person.fill", "book.fill", "star.fill"]
-    let urls = ["https://jdeoks.notion.site/PiCo-f6f39f80fc274800bc8b1b2f62b44c30?pvs=4"]
+    let urls = ["https://jdeoks.notion.site/jdeoks/PiCo-f6f39f80fc274800bc8b1b2f62b44c30", 
+                "https://jdeoks.notion.site/5cc8688a9432444eaad7a8fdc4e4e38a",
+                "https://jdeoks.notion.site/bace573d0a294bdeae4a92464448bcac", 
+                "https://jdeoks.notion.site/ca304e392e1246abbd51fe0bc37e76bb",
+                "https://jdeoks.notion.site/a747b302e36f4c369496e7372768d685",
+    ]
     
     @IBOutlet var menuTableView: UITableView!
     
@@ -30,7 +35,7 @@ class SettingViewController: UIViewController {
         menuTableView.delegate = self
         let settingsTableViewCell = UINib(nibName: "SettingsTableViewCell", bundle: nil)
         menuTableView.register(settingsTableViewCell, forCellReuseIdentifier: "SettingsTableViewCell")
-        menuTableView.contentInset.top = 16
+//        menuTableView.contentInset.top = 16
     }
 
 }
@@ -54,6 +59,9 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
             cell.menuImageView.image = UIImage(systemName: menuImages[indexPath.row])
         case 1:
             cell.imageContainerView.isHidden = true
+            if indexPath.row == 5 {
+                cell.versionLabel.text = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+            }
         default:
             return cell
         }
@@ -73,11 +81,15 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            let webVC = self.storyboard?.instantiateViewController(identifier: "WebViewController") as! WebViewController
-            guard let url = URL(string: urls[0]) else {
+            if urls.indices.contains(indexPath.row) == false {
+                return
+            }
+            guard let url = URL(string: urls[indexPath.row]) else {
                 print("url 없음")
                 return
             }
+            
+            let webVC = self.storyboard?.instantiateViewController(identifier: "WebViewController") as! WebViewController
             webVC.pageURL = url
             present(webVC, animated: true)
         }

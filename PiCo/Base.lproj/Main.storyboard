@@ -1052,7 +1052,7 @@
         <!--Main Tab Bar Controller-->
         <scene sceneID="Y8P-Kx-bFF">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="bjZ-wD-UON" customClass="MainTabBarController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bjZ-wD-UON" customClass="MainTabBarController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ped-Bw-feH">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

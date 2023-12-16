@@ -37,6 +37,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
       return GIDSignIn.sharedInstance.handle(url)
     }
+    
+}
 
+//
+extension AppDelegate {
+    
+    func setRootVC() {
+        // 현재 로그인된 사용자 가져오기
+        if let user = Auth.auth().currentUser {
+            // 서버에서 사용자 상태 갱신
+            user.reload { error in
+                if let error = error {
+                    //TODO: 오류 alert
+                    self.showMainScreen()
+                    print("사용자 상태 갱신 실패: \(error.localizedDescription)")
+                } else {
+                    self.showMainScreen()
+                }
+            }
+        } else {
+            showMainScreen()
+        }
+           
+    }
+    
+    func showMainScreen() {
+        print("AppDelegate - showMainScreen()")
+        let mainTabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
+        print(1)
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        let window = windowScene!.windows.first
+        window!.rootViewController = mainTabBarVC
+    }
+    
+    func showOnboarding() {
+        let signInVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        let window = windowScene?.windows.first
+        window?.rootViewController = signInVC
+    }
+    
 }
 
