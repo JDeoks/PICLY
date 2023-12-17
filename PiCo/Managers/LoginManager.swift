@@ -19,8 +19,10 @@ class LoginManager {
     /// fetchAccount 결과가 저장돠는 변수
     var user: UserModel? = nil
     /// getCurrentUser(), fetchAccountInfo() -> AcountViewController
-    let fetchAccountInfoDone = PublishSubject<Void>()
-    
+    let fetchUserInfoDone = PublishSubject<Void>()
+    /// fetchAccount() -> MainTabBarController
+    let fetchAccountFailed = PublishSubject<Void>()
+
     private init() {}
     
     func setUserID(_ userID: String) {
@@ -55,8 +57,9 @@ class LoginManager {
         return UserDefaults.standard.string(forKey: "authProviderString")
     }
     
-    func fetchAccountInfo() {
-        print("LoginManager - fetchAccountInfo()")
+    /// 서버에서  UserModel 가져옴
+    func fetchUserInfo() {
+        print("LoginManager - fetchUserInfo()")
 
         guard let userID = Auth.auth().currentUser?.uid else {
             return
@@ -67,18 +70,19 @@ class LoginManager {
             if let document = document, document.exists {
                 let user = UserModel(document: document)
                 self.user = user
-                self.setCurrentUser(user: user)
-                self.fetchAccountInfoDone.onNext(())
+                self.setCurrentUserInfo(user: user)
+                self.fetchUserInfoDone.onNext(())
             } else {
                 print("User Doc 없음")
             }
         }
     }
     
-    func getCurrentUser() {
+    /// 로컬에 저장되어있는 UserModel 가져옴
+    func getCurrentUserInfo() {
         print("LoginManager - getCurrentUser()")
         
-        guard let data = UserDefaults.standard.data(forKey: "currentUser") else {
+        guard let data = UserDefaults.standard.data(forKey: "currentUserInfo") else {
             print("UserDefaults에서 currentUser 가져오기 실패")
             return
         }
@@ -92,7 +96,7 @@ class LoginManager {
             if let user = try NSKeyedUnarchiver.unarchivedObject(ofClasses: allowedClassesSet as! Set<AnyHashable>, from: data) as? UserModel {
                 print("UserModel 디코딩 성공")
                 self.user = user
-                self.fetchAccountInfoDone.onNext(())
+                self.fetchUserInfoDone.onNext(())
             } else {
                 print("UserModel 디코딩 실패: 디코딩된 객체가 UserModel 타입이 아님")
             }
@@ -101,14 +105,36 @@ class LoginManager {
         }
     }
             
-    func setCurrentUser(user: UserModel) {
+    /// 로컬에 UserModel 저장
+    func setCurrentUserInfo(user: UserModel) {
         print("LoginManager - setCurrentUser()")
 
         do {
             let encodedData = try NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
-            UserDefaults.standard.set(encodedData, forKey: "currentUser")
+            UserDefaults.standard.set(encodedData, forKey: "currentUserInfo")
         } catch {
             print("UserModel 인코딩 실패: \(error)")
+        }
+    }
+    
+    /// 유저 정보 갱신. 유효하지 않으면 리스너가 rootVC 온보딩으로 바꿈
+    func fetchAccount() {
+        print("MainTabBarController - fetchAccount()")
+
+        if let user = Auth.auth().currentUser {
+            // 서버에서 사용자 상태 갱신
+            user.reload { error in
+                if let error = error {
+                    print("사용자 상태 갱신 실패: \(error.localizedDescription)")
+                    self.fetchAccountFailed.onNext(())
+                    return
+                } else {
+                    print("user.reload 성공")
+                }
+            }
+        } else {
+            print("currentUser 없음")
+            self.fetchAccountFailed.onNext(())
         }
     }
 

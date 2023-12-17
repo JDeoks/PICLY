@@ -36,7 +36,7 @@ class SignInViewController: UIViewController {
         initUI()
         action()
         bind()
-        fetchUserInfo()
+        LoginManager.shared.fetchUserInfo()
     }
     
     func initUI() {
@@ -82,25 +82,6 @@ class SignInViewController: UIViewController {
                 self.loadingView.removeFromSuperview()
                 self.setMainTabBarControllerAsRoot()
             }
-        }
-    }
-    
-    func fetchUserInfo() {
-        print("SignInViewController - fetchUserInfo()")
-
-        if let user = Auth.auth().currentUser {
-            // 서버에서 사용자 상태 갱신
-            user.reload { error in
-                if let error = error {
-                    print("사용자 상태 갱신 실패: \(error.localizedDescription)")
-                } else {
-                    print("현재 로그인된 사용자 정보:")
-                    print("UID: \(user.uid)")
-                    print("이메일: \(String(describing: user.email))")
-                }
-            }
-        } else {
-            print("currentUser 없음")
         }
     }
     

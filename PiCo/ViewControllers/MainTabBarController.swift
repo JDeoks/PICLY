@@ -7,13 +7,17 @@
 
 import UIKit
 import FirebaseAuth
+import RxSwift
 
 class MainTabBarController: UITabBarController {
 
+    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        fetchUserInfo()
+        bind()
+        LoginManager.shared.fetchAccount()
     }
     
     func initUI() {
@@ -21,40 +25,23 @@ class MainTabBarController: UITabBarController {
         self.tabBar.unselectedItemTintColor = UIColor(named: "SecondText")
     }
     
-    /// 유저 정보 갱신. 유효하지 않으면 리스너가 rootVC 온보딩으로 바꿈
-    func fetchUserInfo() {
-        print("MainTabBarController - fetchUserInfo()")
-
-        if let user = Auth.auth().currentUser {
-            // 서버에서 사용자 상태 갱신
-            user.reload { error in
-                if let error = error {
-                    print("사용자 상태 갱신 실패: \(error.localizedDescription)")
-                    self.resetAuthenticationState()
-                } else {
-                    print("MainTabBarController - fetchUserInfo()")
-
-                    print("현재 로그인된 사용자 정보:")
-                    print("UID: \(user.uid)")
-                    print("이메일: \(String(describing: user.email))")
-                }
+    func bind() {
+        LoginManager.shared.fetchAccountFailed
+            .subscribe { _ in
+                self.resetAuthenticationState()
+                self.setOnboardingVCAsRoot()
             }
-        } else {
-            resetAuthenticationState()
-            print("currentUser 없음")
-        }
+            .disposed(by: disposeBag)
+        
     }
     
+    // 인증 정보 리셋후 온보딩으로
     func resetAuthenticationState() {
         print("MainTabBarController - resetAuthenticationState()")
 
         do {
             try Auth.auth().signOut()
-            // 로그아웃 성공 후 필요한 작업 수행, 예를 들어 루트 뷰 컨트롤러 변경
-//           TODO: - switchToOnboarding()
-            setOnboardingVCAsRoot()
         } catch let signOutError {
-            print("Firebase 인증 초기화 실패: \(signOutError)")
             // TODO: 인증 오류가 발생했습니다. 앱을 재시작해 주세요 Alert
         }
     }
