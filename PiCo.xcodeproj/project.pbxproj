@@ -215,9 +215,9 @@
 			isa = PBXGroup;
 			children = (
 				2A6942772B17920A0070B194 /* SignInViewController.swift */,
+				2A9863FC2B0913BE0041686E /* MainTabBarController.swift */,
 				2AB0C4BA2B08B77E008BB7AE /* MyAlbumsViewController.swift */,
 				2A9863FA2B09104C0041686E /* DetailViewController.swift */,
-				2A9863FC2B0913BE0041686E /* MainTabBarController.swift */,
 				2A89E6932B092D69009056DD /* UploadViewController.swift */,
 				2A89E69F2B094EEF009056DD /* EditViewController.swift */,
 				2A1960D62B0FAC92000935CF /* SettingViewController.swift */,

@@ -36,7 +36,7 @@ class SignInViewController: UIViewController {
         initUI()
         action()
         bind()
-        getCurrentUser()
+        fetchUserInfo()
     }
     
     func initUI() {
@@ -85,24 +85,22 @@ class SignInViewController: UIViewController {
         }
     }
     
-    func getCurrentUser() {
-        // 현재 로그인된 사용자 가져오기
+    func fetchUserInfo() {
+        print("SignInViewController - fetchUserInfo()")
+
         if let user = Auth.auth().currentUser {
             // 서버에서 사용자 상태 갱신
             user.reload { error in
                 if let error = error {
                     print("사용자 상태 갱신 실패: \(error.localizedDescription)")
                 } else {
-                    // 갱신된 사용자 정보 출력
                     print("현재 로그인된 사용자 정보:")
                     print("UID: \(user.uid)")
                     print("이메일: \(String(describing: user.email))")
-                    print("providerData: \(user.providerData)")
-                    // 기타 필요한 정보 출력 가능
                 }
             }
         } else {
-            print("현재 로그인된 사용자가 없습니다.")
+            print("currentUser 없음")
         }
     }
     
@@ -150,7 +148,6 @@ class SignInViewController: UIViewController {
                 return
             }
 
-            print("유저:", user.providerID, user.uid, user.displayName, user.email)
             // 첫 로그인 시 User Collection에 Doc 추가
             self.isFirstLogin(user: user) { isFirstLogin in
                 if isFirstLogin {

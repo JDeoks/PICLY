@@ -28,8 +28,9 @@ class AcountViewController: UIViewController {
         initUI()
         action()
         bind()
+        // 로컬 데이터로 초기화 후 바로 서버에서 유저정보 fetch해서 최신화
         LoginManager.shared.getCurrentUser()
-//        LoginManager.shared.fetchAccountInfo()
+        LoginManager.shared.fetchAccountInfo()
     }
     
     func initUI() {
@@ -57,16 +58,6 @@ class AcountViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
-    
-//    func setDataWithCurrentUser() {
-//        print("AcountViewController - setDataWithCurrentUser()")
-//        
-//        guard let user = LoginManager.shared.getCurrentUser() else {
-//            return
-//        }
-//        
-//        setDataWithUserModel(user: user)
-//    }
     
     func setDataWithUserModel(user: UserModel) {
         print("AcountViewController - setDataWithUserModel()")
