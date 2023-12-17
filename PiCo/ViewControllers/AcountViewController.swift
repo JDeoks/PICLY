@@ -28,7 +28,8 @@ class AcountViewController: UIViewController {
         initUI()
         action()
         bind()
-        LoginManager.shared.fetchAccountInfo()
+        LoginManager.shared.getCurrentUser()
+//        LoginManager.shared.fetchAccountInfo()
     }
     
     func initUI() {
@@ -37,6 +38,12 @@ class AcountViewController: UIViewController {
     
     func action() {
         signOutButton.rx.tap
+            .subscribe { _ in
+                
+            }
+            .disposed(by: disposeBag)
+        
+        deleteAccountButton.rx.tap
             .subscribe { _ in
                 
             }
@@ -51,7 +58,19 @@ class AcountViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+//    func setDataWithCurrentUser() {
+//        print("AcountViewController - setDataWithCurrentUser()")
+//        
+//        guard let user = LoginManager.shared.getCurrentUser() else {
+//            return
+//        }
+//        
+//        setDataWithUserModel(user: user)
+//    }
+    
     func setDataWithUserModel(user: UserModel) {
+        print("AcountViewController - setDataWithUserModel()")
+
         authProviderLabel.text = "\(user.authProvider.description)로 로그인"
         emailLabel.text = user.email
     }
