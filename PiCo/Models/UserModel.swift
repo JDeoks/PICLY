@@ -55,4 +55,9 @@ class UserModel: NSObject, NSSecureCoding {
         coder.encode(self.albumIDs, forKey: "albumIDs")
     }
     
+    func getCreationTimeString(format: String = "yyyy.MM.dd" ) -> String {
+        let region = Region(calendar: Calendars.gregorian, zone: Zones.asiaSeoul, locale: Locales.korean)
+        return DateInRegion(self.creationTime, region: region).toFormat(format)
+    }
+    
 }

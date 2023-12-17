@@ -82,6 +82,7 @@
 		2AD328912B29C92B002DA60F /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 2AD328902B29C92B002DA60F /* RxGesture */; };
 		2AD5F2CE2B0FADCE00475AC6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5F2CC2B0FADCE00475AC6 /* SettingsTableViewCell.swift */; };
 		2AD5F2CF2B0FADCE00475AC6 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD5F2CD2B0FADCE00475AC6 /* SettingsTableViewCell.xib */; };
+		2AF5899D2B2F042E0027D928 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = 2AF5899C2B2F042E0027D928 /* SwiftDate */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +180,7 @@
 				2A6942672B153E890070B194 /* FirebaseFunctions in Frameworks */,
 				2A69425D2B153E890070B194 /* FirebaseAnalytics in Frameworks */,
 				2A69425F2B153E890070B194 /* FirebaseAuth in Frameworks */,
+				2AF5899D2B2F042E0027D928 /* SwiftDate in Frameworks */,
 				2A6942632B153E890070B194 /* FirebaseDynamicLinks in Frameworks */,
 				2A6942652B153E890070B194 /* FirebaseFirestore in Frameworks */,
 			);
@@ -374,6 +376,7 @@
 				2A69426A2B153E890070B194 /* FirebaseMessaging */,
 				2A69426C2B153E890070B194 /* FirebaseRemoteConfig */,
 				2A69426E2B153E890070B194 /* FirebaseStorage */,
+				2AF5899C2B2F042E0027D928 /* SwiftDate */,
 			);
 			productName = PiCoShareExtension;
 			productReference = 2A89E6A72B0A32C6009056DD /* PiCoShareExtension.appex */;
@@ -1060,6 +1063,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2AD3288F2B29C92B002DA60F /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
+		};
+		2AF5899C2B2F042E0027D928 /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A6161062B2B50D20093C688 /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

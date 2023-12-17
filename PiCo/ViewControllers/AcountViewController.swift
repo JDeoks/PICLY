@@ -22,6 +22,7 @@ class AcountViewController: UIViewController {
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var signOutButton: UIButton!
     @IBOutlet var deleteAccountButton: UIButton!
+    @IBOutlet var registrationDate: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +65,7 @@ class AcountViewController: UIViewController {
 
         authProviderLabel.text = "\(user.authProvider.description)로 로그인"
         emailLabel.text = user.email
+        registrationDate.text = user.getCreationTimeString()
     }
 
 }

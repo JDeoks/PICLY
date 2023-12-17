@@ -849,7 +849,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="FuK-jj-GEB">
-                                <rect key="frame" x="20" y="135" width="353" height="241.33333333333337"/>
+                                <rect key="frame" x="20" y="135" width="353" height="324"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="5D3-pO-uWz">
                                         <rect key="frame" x="0.0" y="0.0" width="64.666666666666671" height="50.666666666666664"/>
@@ -885,8 +885,25 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="fFj-gI-R3G">
+                                        <rect key="frame" x="0.0" y="165.33333333333331" width="36.333333333333336" height="50.666666666666657"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가입일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4L0-hY-itU">
+                                                <rect key="frame" x="0.0" y="0.0" width="36.333333333333336" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" name="SecondText"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbL-RO-bz3">
+                                                <rect key="frame" x="0.0" y="29" width="4.333333333333333" height="21.666666666666671"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                <color key="textColor" name="mainText"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Q3K-i2-24a">
-                                        <rect key="frame" x="0.0" y="165.33333333333331" width="67" height="76"/>
+                                        <rect key="frame" x="0.0" y="248" width="67" height="76"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUF-Dr-5P2">
                                                 <rect key="frame" x="0.0" y="0.0" width="67" height="34"/>
@@ -926,6 +943,7 @@
                         <outlet property="authProviderLabel" destination="K4f-lw-kEs" id="CSc-bc-Mai"/>
                         <outlet property="deleteAccountButton" destination="8bV-gZ-1q7" id="Gx9-Ph-C5E"/>
                         <outlet property="emailLabel" destination="hz4-Y8-eKP" id="Hqj-We-l6c"/>
+                        <outlet property="registrationDate" destination="pbL-RO-bz3" id="eoa-R8-tQB"/>
                         <outlet property="signOutButton" destination="aUF-Dr-5P2" id="0Vt-T1-Do7"/>
                     </connections>
                 </viewController>

@@ -16,8 +16,9 @@ class LoginManager {
     static let shared = LoginManager()
         
     let userCollectionRef = Firestore.firestore().collection("User")
-    /// fetchAccount 결과가 저장돠는 변수
+    /// fetchAccount 결과가 저장돠는 UserModel
     var user: UserModel? = nil
+    
     /// getCurrentUser(), fetchAccountInfo() -> AcountViewController
     let fetchUserInfoDone = PublishSubject<Void>()
     /// fetchAccount() -> MainTabBarController
@@ -80,7 +81,7 @@ class LoginManager {
     
     /// 로컬에 저장되어있는 UserModel 가져옴
     func getCurrentUserInfo() {
-        print("LoginManager - getCurrentUser()")
+        print("LoginManager - getCurrentUserInfo()")
         
         guard let data = UserDefaults.standard.data(forKey: "currentUserInfo") else {
             print("UserDefaults에서 currentUser 가져오기 실패")
@@ -105,9 +106,9 @@ class LoginManager {
         }
     }
             
-    /// 로컬에 UserModel 저장
+    /// UserModel을 로컬에  저장
     func setCurrentUserInfo(user: UserModel) {
-        print("LoginManager - setCurrentUser()")
+        print("LoginManager - setCurrentUserInfo()")
 
         do {
             let encodedData = try NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
@@ -117,9 +118,9 @@ class LoginManager {
         }
     }
     
-    /// 유저 정보 갱신. 유효하지 않으면 리스너가 rootVC 온보딩으로 바꿈
+    /// 서버에서 유저 정보 받아 갱신. 유효하지 않으면 리스너가 rootVC 온보딩으로 바꿈
     func fetchAccount() {
-        print("MainTabBarController - fetchAccount()")
+        print("LoginManager - fetchAccount()")
 
         if let user = Auth.auth().currentUser {
             // 서버에서 사용자 상태 갱신
