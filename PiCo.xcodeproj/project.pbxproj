@@ -28,8 +28,8 @@
 		2A3ADA7A2B2E2B9C00D40535 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3ADA782B2E2B9C00D40535 /* LoginManager.swift */; };
 		2A4D48EF2B0A652200E776C7 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4D48EE2B0A652200E776C7 /* RxCocoa */; };
 		2A4D48F12B0A652200E776C7 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4D48F02B0A652200E776C7 /* RxSwift */; };
-		2A4D48FA2B0A781A00E776C7 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D48F92B0A781A00E776C7 /* PhotoModel.swift */; };
-		2A4D48FB2B0A781A00E776C7 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D48F92B0A781A00E776C7 /* PhotoModel.swift */; };
+		2A4D48FA2B0A781A00E776C7 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D48F92B0A781A00E776C7 /* AlbumModel.swift */; };
+		2A4D48FB2B0A781A00E776C7 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D48F92B0A781A00E776C7 /* AlbumModel.swift */; };
 		2A6160FF2B2B4E720093C688 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6160FE2B2B4E720093C688 /* UserModel.swift */; };
 		2A6161002B2B4E720093C688 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6160FE2B2B4E720093C688 /* UserModel.swift */; };
 		2A6161042B2B502B0093C688 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6161032B2B502B0093C688 /* AuthProvider.swift */; };
@@ -133,7 +133,7 @@
 		2A3ADA732B2DD49500D40535 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A3ADA752B2E0DD600D40535 /* AcountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcountViewController.swift; sourceTree = "<group>"; };
 		2A3ADA782B2E2B9C00D40535 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
-		2A4D48F92B0A781A00E776C7 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
+		2A4D48F92B0A781A00E776C7 /* AlbumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModel.swift; sourceTree = "<group>"; };
 		2A6160FE2B2B4E720093C688 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		2A6161032B2B502B0093C688 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 		2A69423F2B1532D00070B194 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -272,7 +272,7 @@
 		2A4D48F82B0A77EF00E776C7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2A4D48F92B0A781A00E776C7 /* PhotoModel.swift */,
+				2A4D48F92B0A781A00E776C7 /* AlbumModel.swift */,
 				2A6160FE2B2B4E720093C688 /* UserModel.swift */,
 			);
 			path = Models;
@@ -502,7 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A4D48FB2B0A781A00E776C7 /* PhotoModel.swift in Sources */,
+				2A4D48FB2B0A781A00E776C7 /* AlbumModel.swift in Sources */,
 				2A6161002B2B4E720093C688 /* UserModel.swift in Sources */,
 				2A6161052B2B502B0093C688 /* AuthProvider.swift in Sources */,
 				2A2FA5972B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */,
@@ -534,7 +534,7 @@
 				2A3ADA792B2E2B9C00D40535 /* LoginManager.swift in Sources */,
 				2AB0C4B92B08B77E008BB7AE /* SceneDelegate.swift in Sources */,
 				2A6942402B1532D00070B194 /* WebViewController.swift in Sources */,
-				2A4D48FA2B0A781A00E776C7 /* PhotoModel.swift in Sources */,
+				2A4D48FA2B0A781A00E776C7 /* AlbumModel.swift in Sources */,
 				2A3ADA762B2E0DD600D40535 /* AcountViewController.swift in Sources */,
 				2A6942782B17920A0070B194 /* SignInViewController.swift in Sources */,
 				2A3498532B0D694C00424868 /* LoadingIndicatorView.swift in Sources */,
