@@ -72,18 +72,15 @@ class AcountViewController: UIViewController {
     
     // TODO: - 최적화 필요 뷰 컨트롤러 계속 생성함
     func setSignInVCAsRoot() {
-        // window 객체 가져오기
-        let scenes: Set<UIScene> = UIApplication.shared.connectedScenes
-        let windowScene: UIWindowScene? = scenes.first as? UIWindowScene
-        let window: UIWindow? = windowScene!.windows.first
+        let window = UIApplication.shared.getWindow()
         // 넘어갈 화면
         let signInVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
 
         // 현재 루트 뷰 컨트롤러의 스냅샷 가져오기
-        guard let snapshot = window?.snapshotView(afterScreenUpdates: true) else { return }
+        guard let snapshot = window.snapshotView(afterScreenUpdates: true) else { return }
 
         // 새 루트 뷰 컨트롤러 설정
-        window?.rootViewController = signInVC
+        window.rootViewController = signInVC
 
         // 스냅샷을 새 루트 뷰 컨트롤러 위에 추가
         signInVC.view.addSubview(snapshot)

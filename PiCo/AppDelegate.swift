@@ -66,18 +66,15 @@ extension AppDelegate {
         print("AppDelegate - showMainScreen()")
         let mainTabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
         print(1)
-        let scenes = UIApplication.shared.connectedScenes
-        let windowScene = scenes.first as? UIWindowScene
-        let window = windowScene!.windows.first
-        window!.rootViewController = mainTabBarVC
+        
+        let window = UIApplication.shared.getWindow()
+        window.rootViewController = mainTabBarVC
     }
     
     func showOnboarding() {
         let signInVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
-        let scenes = UIApplication.shared.connectedScenes
-        let windowScene = scenes.first as? UIWindowScene
-        let window = windowScene?.windows.first
-        window?.rootViewController = signInVC
+        let window = UIApplication.shared.getWindow()
+        window.rootViewController = signInVC
     }
     
 }

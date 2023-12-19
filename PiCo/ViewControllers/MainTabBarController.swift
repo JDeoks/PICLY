@@ -51,14 +51,11 @@ class MainTabBarController: UITabBarController {
     func setOnboardingVCAsRoot() {
         print("MainTabBarController - setOnboardingVCAsRoot()")
 
-        // window 객체 가져오기
-        let scenes: Set<UIScene> = UIApplication.shared.connectedScenes
-        let windowScene: UIWindowScene? = scenes.first as? UIWindowScene
-        let window: UIWindow? = windowScene!.windows.first
+        let window = UIApplication.shared.getWindow()
         // 넘어갈 화면
         let signInVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
         // 새 루트 뷰 컨트롤러 설정
-        window?.rootViewController = signInVC
+        window.rootViewController = signInVC
     }
 
 }

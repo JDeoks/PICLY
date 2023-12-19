@@ -10,6 +10,7 @@
 		2A1960D72B0FAC92000935CF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1960D62B0FAC92000935CF /* SettingViewController.swift */; };
 		2A1BE96F2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1BE96D2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift */; };
 		2A1BE9702B08E9B300703ED5 /* MyPhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A1BE96E2B08E9B300703ED5 /* MyPhotosCollectionViewCell.xib */; };
+		2A282FDC2B318B550074C198 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A282FDB2B318B550074C198 /* UIApplication+Extension.swift */; };
 		2A2FA58C2B0BB0DB00767310 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6962B0937F4009056DD /* UIViewController+Extension.swift */; };
 		2A2FA5922B0BB49900767310 /* ImageShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5912B0BB49900767310 /* ImageShareViewController.swift */; };
 		2A2FA5932B0BB49900767310 /* ImageShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5912B0BB49900767310 /* ImageShareViewController.swift */; };
@@ -124,6 +125,7 @@
 		2A1960D62B0FAC92000935CF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2A1BE96D2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A1BE96E2B08E9B300703ED5 /* MyPhotosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPhotosCollectionViewCell.xib; sourceTree = "<group>"; };
+		2A282FDB2B318B550074C198 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		2A2FA5912B0BB49900767310 /* ImageShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageShareViewController.swift; sourceTree = "<group>"; };
 		2A2FA5942B0BBED900767310 /* SelectedImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A2FA5952B0BBED900767310 /* SelectedImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedImageCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 			children = (
 				2A89E6962B0937F4009056DD /* UIViewController+Extension.swift */,
 				2A6942792B17F49D0070B194 /* NSMutableAttributedString+Extension.swift */,
+				2A282FDB2B318B550074C198 /* UIApplication+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				2A6161042B2B502B0093C688 /* AuthProvider.swift in Sources */,
 				2A69427A2B17F49D0070B194 /* NSMutableAttributedString+Extension.swift in Sources */,
 				2A9863FB2B09104C0041686E /* DetailViewController.swift in Sources */,
+				2A282FDC2B318B550074C198 /* UIApplication+Extension.swift in Sources */,
 				2A1BE96F2B08E9B300703ED5 /* MyPhotosCollectionViewCell.swift in Sources */,
 				2A2FA59C2B0BBEEE00767310 /* AddImageCollectionViewCell.swift in Sources */,
 				2AD5F2CE2B0FADCE00475AC6 /* SettingsTableViewCell.swift in Sources */,

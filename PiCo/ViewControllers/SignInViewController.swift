@@ -82,7 +82,7 @@ class SignInViewController: UIViewController {
         Auth.auth().addStateDidChangeListener { auth, user in
             if user != nil {
                 self.loadingView.removeFromSuperview()
-                self.setMainTabBarControllerAsRoot()
+                self.setMainTabVCAsRoot()
             }
         }
     }
@@ -182,19 +182,15 @@ class SignInViewController: UIViewController {
         }
     }
 
-    func setMainTabBarControllerAsRoot() {
-        // window 객체 가져오기
-        let scenes: Set<UIScene> = UIApplication.shared.connectedScenes
-        let windowScene: UIWindowScene? = scenes.first as? UIWindowScene
-        let window: UIWindow? = windowScene!.windows.first
-        // 넘어갈 화면
+    func setMainTabVCAsRoot() {
+        let window = UIApplication.shared.getWindow()
         let mainTabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
 
         // 현재 루트 뷰 컨트롤러의 스냅샷 가져오기
-        guard let snapshot = window?.snapshotView(afterScreenUpdates: true) else { return }
+        guard let snapshot = window.snapshotView(afterScreenUpdates: true) else { return }
 
         // 새 루트 뷰 컨트롤러 설정
-        window?.rootViewController = mainTabBarVC
+        window.rootViewController = mainTabBarVC
 
         // 스냅샷을 새 루트 뷰 컨트롤러 위에 추가
         mainTabBarVC.view.addSubview(snapshot)
