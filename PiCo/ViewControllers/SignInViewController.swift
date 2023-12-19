@@ -38,7 +38,6 @@ class SignInViewController: UIViewController {
         initUI()
         action()
         bind()
-//        LoginManager.shared.fetchUserInfo()
     }
     
     func initUI() {

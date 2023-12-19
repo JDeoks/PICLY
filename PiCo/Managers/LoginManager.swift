@@ -21,44 +21,12 @@ class LoginManager {
     var user: UserModel? = nil
     
     /// getCurrentUser(), fetchAccountInfo() -> AcountViewController
-    let fetchUserInfoDone = PublishSubject<Void>()
+    let getUserModelDone = PublishSubject<Void>()
     /// fetchAccount() -> MainTabBarController
     let fetchAccountFailed = PublishSubject<Void>()
     
-    func setUserID(_ userID: String) {
-        UserDefaults.standard.set(userID, forKey: "userID")
-    }
-    
-    func getUserID() -> String? {
-        return UserDefaults.standard.string(forKey: "userID")
-    }
-    
-    func setEmail(_ email: String) {
-        UserDefaults.standard.set(email, forKey: "email")
-    }
-    
-    func getEmail() -> String? {
-        return UserDefaults.standard.string(forKey: "email")
-    }
-    
-    func setCreationTimeString(_ creationTimeString: String) {
-        UserDefaults.standard.set(creationTimeString, forKey: "creationTimeString")
-    }
-    
-    func getCreationTimeString() -> String? {
-        return UserDefaults.standard.string(forKey: "creationTimeString")
-    }
-    
-    func setAuthProviderString(_ creationTimeString: String) {
-        UserDefaults.standard.set(creationTimeString, forKey: "authProviderString")
-    }
-    
-    func getAuthProviderString() -> String? {
-        return UserDefaults.standard.string(forKey: "authProviderString")
-    }
-    
-    /// 서버에서  UserModel 가져옴
-    func fetchUserInfo() {
+    /// LoginManager user 변수에 서버에 저장되어있는 UserModel 저장
+    func getUserModelFromServer() {
         print("\(type(of: self)) - \(#function)")
 
         guard let userID = Auth.auth().currentUser?.uid else {
@@ -70,16 +38,16 @@ class LoginManager {
             if let document = document, document.exists {
                 let user = UserModel(document: document)
                 self.user = user
-                self.setCurrentUserInfo(user: user)
-                self.fetchUserInfoDone.onNext(())
+                self.setUserModelToLocal(user: user)
+                self.getUserModelDone.onNext(())
             } else {
                 print("User Doc 없음")
             }
         }
     }
     
-    /// 로컬에 저장되어있는 UserModel 가져옴
-    func getCurrentUserInfo() {
+    /// LoginManager user 변수에 로컬에 저장되어있는 UserModel 저장
+    func getUserModelFromLocal() {
         print("\(type(of: self)) - \(#function)")
         
         guard let data = UserDefaults.standard.data(forKey: "currentUserInfo") else {
@@ -96,7 +64,7 @@ class LoginManager {
             if let user = try NSKeyedUnarchiver.unarchivedObject(ofClasses: allowedClassesSet as! Set<AnyHashable>, from: data) as? UserModel {
                 print("UserModel 디코딩 성공")
                 self.user = user
-                self.fetchUserInfoDone.onNext(())
+                self.getUserModelDone.onNext(())
             } else {
                 print("UserModel 디코딩 실패: 디코딩된 객체가 UserModel 타입이 아님")
             }
@@ -106,7 +74,7 @@ class LoginManager {
     }
             
     /// UserModel을 로컬에  저장
-    func setCurrentUserInfo(user: UserModel) {
+    func setUserModelToLocal(user: UserModel) {
         print("\(type(of: self)) - \(#function)")
 
         do {

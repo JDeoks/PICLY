@@ -20,7 +20,7 @@ class MainTabBarController: UITabBarController {
         initUI()
         bind()
         LoginManager.shared.fetchAccount()
-        LoginManager.shared.fetchUserInfo()
+        LoginManager.shared.getUserModelFromServer()
     }
     
     func initUI() {

@@ -30,7 +30,7 @@ class AcountViewController: UIViewController {
         action()
         bind()
         // 로컬 데이터로 초기화 후 바로 서버에서 유저정보 fetch해서 최신화
-        LoginManager.shared.getCurrentUserInfo()
+        LoginManager.shared.getUserModelFromLocal()
     }
     
     func initUI() {
@@ -53,7 +53,7 @@ class AcountViewController: UIViewController {
     }
     
     func bind() {
-        LoginManager.shared.fetchUserInfoDone
+        LoginManager.shared.getUserModelDone
             .subscribe { _ in
                 self.setDataWithUserModel(user: LoginManager.shared.user!)
             }

@@ -41,7 +41,7 @@ class MyPhotosCollectionViewCell: UICollectionViewCell {
     
     func setData(album: AlbumModel) {
 //        thumnailImageView.image
-        postURL = album.shareURL
+        postURL = album.albumURL
         creationTimeLabel.text = album.getCreationTimeStr()
         tagLabel.text = "#\(album.tag)"
         dDayLabel.text = "D-\(album.getDDay())"

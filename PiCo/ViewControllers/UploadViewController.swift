@@ -91,7 +91,7 @@ class UploadViewController: UIViewController {
         // 창닫기 버튼
         closeButton.rx.tap
             .subscribe { _ in
-            self.dismiss(animated: true)
+                self.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
         
@@ -100,8 +100,6 @@ class UploadViewController: UIViewController {
             .subscribe { _ in
                 self.view.addSubview(self.loadingView)
                 self.uploadAlbum()
-                // TODO: 서버 업로드 성공 subscibe 하도록 변경
-
             }
             .disposed(by: disposeBag)
         
@@ -166,7 +164,7 @@ extension UploadViewController {
         }
     }
     
-    /// AlbumModel을 DB에 추가
+    /// AlbumModel을 FireStore에 추가
     func uploadAlbumDocToFireStore(completion: @escaping (String) -> Void) {
         print("\(type(of: self)) - \(#function)")
         
@@ -184,12 +182,13 @@ extension UploadViewController {
                 print("Error adding document: \(err)")
             } else {
                 print("Document added with ID: \(ref!.documentID)")
+                // albumURL에 URL 저장
                 completion(ref!.documentID)
             }
         }
     }
     
-    /// 이미지를 스토리지에 업로드
+    /// 이미지를 Storage에 업로드
     func uploadImagesToStorage(albumDocID: String, completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
         // asdfsaf/images/1
@@ -335,5 +334,3 @@ extension UploadViewController: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true)
     }
 }
-
-
