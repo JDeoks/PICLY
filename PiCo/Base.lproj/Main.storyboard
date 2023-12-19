@@ -953,6 +953,7 @@
                     </view>
                     <connections>
                         <outlet property="authProviderLabel" destination="K4f-lw-kEs" id="CSc-bc-Mai"/>
+                        <outlet property="backButton" destination="mnA-dK-TTn" id="74B-QT-xxY"/>
                         <outlet property="deleteAccountButton" destination="8bV-gZ-1q7" id="Gx9-Ph-C5E"/>
                         <outlet property="emailLabel" destination="hz4-Y8-eKP" id="Hqj-We-l6c"/>
                         <outlet property="registrationDate" destination="pbL-RO-bz3" id="eoa-R8-tQB"/>

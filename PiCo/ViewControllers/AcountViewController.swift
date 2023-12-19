@@ -18,6 +18,7 @@ class AcountViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
+    @IBOutlet var backButton: UIButton!
     @IBOutlet var authProviderLabel: UILabel!
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var signOutButton: UIButton!
@@ -27,9 +28,9 @@ class AcountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        initData()
         action()
         bind()
-        // 로컬 데이터로 초기화 후 바로 서버에서 유저정보 fetch해서 최신화
         LoginManager.shared.getUserModelFromLocal()
     }
     
@@ -37,7 +38,17 @@ class AcountViewController: UIViewController {
         
     }
     
+    func initData() {
+        LoginManager.shared.getUserModelFromLocal()
+    }
+    
     func action() {
+        backButton.rx.tap
+            .subscribe { _ in
+                self.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
         signOutButton.rx.tap
             .subscribe { _ in
                 LoginManager.shared.signOut()

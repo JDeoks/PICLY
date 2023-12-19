@@ -28,6 +28,7 @@ class MyAlbumsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        initData()
         action()
     }
     
@@ -63,6 +64,10 @@ class MyAlbumsViewController: UIViewController {
         refreshControl.endRefreshing()
     }
     
+    func initData() {
+        //TODO: 내 데이터 fetch
+    }
+    
     func action() {
         searchCancelButton.rx.tap
             .subscribe { _ in
@@ -88,12 +93,12 @@ class MyAlbumsViewController: UIViewController {
 extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return albums.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = myPhotosCollectionView.dequeueReusableCell(withReuseIdentifier: "MyPhotosCollectionViewCell", for: indexPath) as! MyPhotosCollectionViewCell
-//        cell.setData(album: albums[indexPath.row])
+        cell.setData(album: albums[indexPath.row])
         cell.copyLinkButton.rx.tap
             .subscribe { _ in
                 // TODO: url 복사

@@ -80,6 +80,7 @@ class LoginManager {
         do {
             let encodedData = try NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
             UserDefaults.standard.set(encodedData, forKey: "currentUserInfo")
+            print("UserModel 인코딩 성고")
         } catch {
             print("UserModel 인코딩 실패: \(error)")
         }
