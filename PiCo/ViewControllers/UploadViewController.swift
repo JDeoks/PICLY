@@ -131,15 +131,6 @@ class UploadViewController: UIViewController {
     }
     
     func bind() {
-        
-        removeImagesAtDone
-            .subscribe { _ in
-                DispatchQueue.main.async {
-                    self.selectedImageCollectionView.reloadData()
-                }
-            }
-            .disposed(by: disposeBag)
-        
         uploadAlbumDone
             .subscribe { _ in
                 self.loadingView.removeFromSuperview()
@@ -240,7 +231,9 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
             cell.deleteButton.rx.tap
                 .subscribe { _ in
                     self.images.remove(at: indexPath.row)
-                    self.removeImagesAtDone.onNext(())
+                    DispatchQueue.main.async {
+                        self.selectedImageCollectionView.reloadData()
+                    }
                 }
                 .disposed(by: cell.disposeBag)
             
