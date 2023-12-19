@@ -131,16 +131,6 @@ class UploadViewController: UIViewController {
     }
     
     func bind() {
-        // TODO: 바인드 삭제하고 그냥 함수 호출로 변경
-        didFinishPickingDone
-            .subscribe { _ in
-                print("didFinishPickingDone")
-                print(self.images.count)
-                DispatchQueue.main.async {
-                    self.selectedImageCollectionView.reloadData()
-                }
-            }
-            .disposed(by: disposeBag)
         
         removeImagesAtDone
             .subscribe { _ in
@@ -340,7 +330,9 @@ extension UploadViewController: PHPickerViewControllerDelegate {
                         guard let self = self, let image = image as? UIImage else { return }
                         print(5)
                         self.images.append(image)
-                        self.didFinishPickingDone.onNext(())
+                        DispatchQueue.main.async {
+                            self.selectedImageCollectionView.reloadData()
+                        }
                     }
                 }
             }
