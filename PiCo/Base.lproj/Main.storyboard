@@ -88,6 +88,24 @@
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="24" bottom="0.0" right="24"/>
                             </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JsP-fG-yj1">
+                                <rect key="frame" x="0.0" y="175" width="393" height="610"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RCy-F7-gLQ">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jay-PG-fmp">
+                                <rect key="frame" x="0.0" y="768" width="393" height="1"/>
+                                <color key="backgroundColor" name="CollectionViewCellBackground"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="hhu-pR-Fck"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vC8-Rx-iJb">
                                 <rect key="frame" x="313" y="689" width="56" height="56"/>
                                 <color key="backgroundColor" name="FloatButtonBackground"/>
@@ -104,24 +122,6 @@
                                     </preferredSymbolConfiguration>
                                 </state>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jay-PG-fmp">
-                                <rect key="frame" x="0.0" y="768" width="393" height="1"/>
-                                <color key="backgroundColor" name="CollectionViewCellBackground"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="hhu-pR-Fck"/>
-                                </constraints>
-                            </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JsP-fG-yj1">
-                                <rect key="frame" x="0.0" y="175" width="393" height="610"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RCy-F7-gLQ">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="MainBackground"/>
@@ -813,6 +813,7 @@
                         <outlet property="leftTimeLabel" destination="sY6-ig-gZ5" id="C5O-5h-Jat"/>
                         <outlet property="scrollView" destination="Itw-DN-54V" id="YE0-mZ-k9d"/>
                         <outlet property="selectedImageCollectionView" destination="uhG-FF-3Yq" id="eTf-XW-dSG"/>
+                        <outlet property="tagTextField" destination="Qmr-j9-N8i" id="vnx-3G-t6K"/>
                         <outlet property="uploadButton" destination="BMo-7y-Pf2" id="v50-Yy-gy1"/>
                     </connections>
                 </viewController>

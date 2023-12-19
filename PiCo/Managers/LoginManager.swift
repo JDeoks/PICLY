@@ -14,7 +14,8 @@ import FirebaseAuth
 class LoginManager {
     
     static let shared = LoginManager()
-        
+    private init() { }
+    
     let userCollectionRef = Firestore.firestore().collection("User")
     /// fetchAccount 결과가 저장돠는 UserModel
     var user: UserModel? = nil
@@ -23,8 +24,6 @@ class LoginManager {
     let fetchUserInfoDone = PublishSubject<Void>()
     /// fetchAccount() -> MainTabBarController
     let fetchAccountFailed = PublishSubject<Void>()
-
-    private init() {}
     
     func setUserID(_ userID: String) {
         UserDefaults.standard.set(userID, forKey: "userID")
@@ -60,7 +59,7 @@ class LoginManager {
     
     /// 서버에서  UserModel 가져옴
     func fetchUserInfo() {
-        print("LoginManager - fetchUserInfo()")
+        print("\(type(of: self)) - \(#function)")
 
         guard let userID = Auth.auth().currentUser?.uid else {
             return
@@ -81,7 +80,7 @@ class LoginManager {
     
     /// 로컬에 저장되어있는 UserModel 가져옴
     func getCurrentUserInfo() {
-        print("LoginManager - getCurrentUserInfo()")
+        print("\(type(of: self)) - \(#function)")
         
         guard let data = UserDefaults.standard.data(forKey: "currentUserInfo") else {
             print("UserDefaults에서 currentUser 가져오기 실패")
@@ -108,7 +107,7 @@ class LoginManager {
             
     /// UserModel을 로컬에  저장
     func setCurrentUserInfo(user: UserModel) {
-        print("LoginManager - setCurrentUserInfo()")
+        print("\(type(of: self)) - \(#function)")
 
         do {
             let encodedData = try NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
@@ -120,7 +119,7 @@ class LoginManager {
     
     /// 서버에서 유저 정보 받아 갱신
     func fetchAccount() {
-        print("LoginManager - fetchAccount()")
+        print("\(type(of: self)) - \(#function)")
 
         if let user = Auth.auth().currentUser {
             // 서버에서 사용자 상태 갱신
@@ -138,7 +137,7 @@ class LoginManager {
     }
     
     func signOut() {
-        print("LoginManager - signOut()")
+        print("\(type(of: self)) - \(#function)")
         
         do {
             try Auth.auth().signOut()

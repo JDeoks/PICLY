@@ -63,7 +63,7 @@ extension AppDelegate {
     }
     
     func showMainScreen() {
-        print("AppDelegate - showMainScreen()")
+        print("\(type(of: self)) - \(#function)")
         let mainTabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
         print(1)
         

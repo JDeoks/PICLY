@@ -18,7 +18,7 @@ import FirebaseFirestore
 
 class SignInViewController: UIViewController {
     
-    let userCollectionRef = Firestore.firestore().collection("User")
+    let userCollectionRef = Firestore.firestore().collection("Users")
     /// Unhashed nonce. 애플로그인 암호화에 사용
     fileprivate var currentNonce: String?
     
@@ -32,7 +32,7 @@ class SignInViewController: UIViewController {
     @IBOutlet var termsOfUseTextView: UITextView!
     
     override func viewDidLoad() {
-        print("SignInViewController - viewDidLoad()")
+        print("\(type(of: self)) - \(#function)")
         
         super.viewDidLoad()
         initUI()
@@ -88,7 +88,7 @@ class SignInViewController: UIViewController {
     }
     
     func startSignInWithGoogleFlow() {
-        print("SignInViewController - startSignInWithGoogleFlow()")
+        print("\(type(of: self)) - \(#function)")
         
         /// Firebase 프로젝트에 부여되는 고유 식별자. OAuth과정에서 애플리케이션 식별할 때 사용
         guard let clientID = FirebaseApp.app()?.options.clientID else {
@@ -146,7 +146,7 @@ class SignInViewController: UIViewController {
     
     /// User Collection에 userID의 Doc이 있는지 검사
     func isFirstLogin(user: User, completion: @escaping (Bool) -> Void) {
-        print("SignInViewController - isFirstLogin(user:)")
+        print("\(type(of: self)) - \(#function)")
 
         let userDocRef = userCollectionRef.document(user.uid)
 
@@ -166,7 +166,7 @@ class SignInViewController: UIViewController {
     
     /// 유저 Doc 생성
     func addUserToDB(user: User, provider: AuthProvider) {
-        print("SignInViewController - addUserToDB(user:)")
+        print("\(type(of: self)) - \(#function)")
 
         userCollectionRef.document(user.uid).setData([
             "creationTime": Timestamp(date: Date()),
@@ -203,13 +203,17 @@ class SignInViewController: UIViewController {
         }
     }
     
+    deinit {
+        print("SignInViewController - deinit")
+    }
+    
 }
 
 // MARK: - Apple 로그인
 extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
 
     func startSignInWithAppleFlow() {
-        print("SignInViewController - startSignInWithAppleFlow()")
+        print("\(type(of: self)) - \(#function)")
         
         let nonce = randomNonceString()
         currentNonce = nonce
@@ -256,7 +260,7 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
     
     /// 애플로그인 dismiss 됐을때 호출
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        print("SignInViewController - authorizationController(didCompleteWithAuthorization:)")
+        print("\(type(of: self)) - \(#function)")
 
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {

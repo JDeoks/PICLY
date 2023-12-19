@@ -72,6 +72,8 @@ class MyAlbumsViewController: UIViewController {
         
         plusButton.rx.tap
             .subscribe { _ in
+                print("plusButton")
+
                 self.stopSearching()
                 let uploadVC = self.storyboard?.instantiateViewController(identifier: "UploadViewController") as! UploadViewController
                 uploadVC.modalPresentationStyle = .overFullScreen
@@ -86,12 +88,12 @@ class MyAlbumsViewController: UIViewController {
 extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return albums.count
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = myPhotosCollectionView.dequeueReusableCell(withReuseIdentifier: "MyPhotosCollectionViewCell", for: indexPath) as! MyPhotosCollectionViewCell
-        cell.setData(album: albums[indexPath.row])
+//        cell.setData(album: albums[indexPath.row])
         cell.copyLinkButton.rx.tap
             .subscribe { _ in
                 // TODO: url 복사
@@ -106,9 +108,7 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         stopSearching()
-        let detailVC = self.storyboard?.instantiateViewController(identifier: "DetailViewController") as! DetailViewController
-        detailVC.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(detailVC, animated: true)
+        SceneManager.shared.pushDetailVC(vc: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -11,9 +11,12 @@ import RxKeyboard
 import SnapKit
 import PhotosUI
 import SwiftDate
+import FirebaseFirestore
+import FirebaseStorage
 
 class UploadViewController: UIViewController {
     
+    let albumCollection = Firestore.firestore().collection("Album")
     /// 서버에 저장된 사진 URL
     var albumURL: URL?
     /// 선택한 사진 배열
@@ -22,14 +25,18 @@ class UploadViewController: UIViewController {
     
     let didFinishPickingDone = PublishSubject<Void>()
     let removeImagesAtDone = PublishSubject<Void>()
+    let uploadAlbumDone = PublishSubject<Void>()
+
     let disposeBag = DisposeBag()
     
+    lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
     let sectionInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var uploadButton: UIButton!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var inputTagStackView: UIStackView!
+    @IBOutlet var tagTextField: UITextField!
     @IBOutlet var collectionViewStackView: UIStackView!
     @IBOutlet var selectedImageCollectionView: UICollectionView!
     @IBOutlet var expireDatePicker: UIDatePicker!
@@ -38,6 +45,7 @@ class UploadViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        initData()
         action()
         bind()
         print(scrollView.frame)
@@ -50,12 +58,6 @@ class UploadViewController: UIViewController {
         // datePicker
         expireDatePicker.date = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
         expireDatePicker.tintColor = UIColor(named: "HighlightBlue")
-        var dateComponents = DateComponents()
-        dateComponents.month = 1 // 1달 후까지의 범위 설정
-        let maxDate = Calendar.current.date(byAdding: dateComponents, to: Date())
-        // 현재부터 한달 뒤 까지 선택 가능하게 설정
-        expireDatePicker.minimumDate = Date()
-        expireDatePicker.maximumDate = maxDate
         
         // scrollView
         scrollView.delegate = self
@@ -74,6 +76,16 @@ class UploadViewController: UIViewController {
         // collectionViewStackView
         collectionViewStackView.layer.cornerRadius = 4
     }
+    
+    func initData() {
+        // datePicker
+        var dateComponents = DateComponents()
+        dateComponents.month = 1 // 1달 후까지의 범위 설정
+        let maxDate = Calendar.current.date(byAdding: dateComponents, to: Date())
+        // 현재부터 한달 뒤 까지 선택 가능하게 설정
+        expireDatePicker.minimumDate = Date()
+        expireDatePicker.maximumDate = maxDate
+    }
 
     func action() {
         // 창닫기 버튼
@@ -86,13 +98,10 @@ class UploadViewController: UIViewController {
         // 완료 버튼
         uploadButton.rx.tap
             .subscribe { _ in
-                let loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-                self.view.addSubview(loadingView)
+                self.view.addSubview(self.loadingView)
+                self.uploadAlbum()
                 // TODO: 서버 업로드 성공 subscibe 하도록 변경
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    loadingView.removeFromSuperview()
-                    self.showUploadFinishedAlert()
-                }
+
             }
             .disposed(by: disposeBag)
         
@@ -100,6 +109,12 @@ class UploadViewController: UIViewController {
         RxKeyboard.instance.visibleHeight
             .skip(1)
             .drive(onNext: { keyboardVisibleHeight in
+                // TODO: -
+                if keyboardVisibleHeight == 0 {
+                    // 사라지기 슈퍼뷰 아래로 내리기
+                } else {
+                    // 높이 따라가기
+                }
                 print("rx키보드")
                 print(keyboardVisibleHeight)  // 346.0
                 self.scrollView.snp.updateConstraints { make in
@@ -113,25 +128,34 @@ class UploadViewController: UIViewController {
         
         // 데이트 피커
         expireDatePicker.addTarget(self, action: #selector(expireDateChanged(_:)), for: .valueChanged)
-
     }
     
     func bind() {
-        didFinishPickingDone.subscribe { _ in
-            print("didFinishPickingDone")
-            print(self.images.count)
-            DispatchQueue.main.async {
-                self.selectedImageCollectionView.reloadData()
+        // TODO: 바인드 삭제하고 그냥 함수 호출로 변경
+        didFinishPickingDone
+            .subscribe { _ in
+                print("didFinishPickingDone")
+                print(self.images.count)
+                DispatchQueue.main.async {
+                    self.selectedImageCollectionView.reloadData()
+                }
             }
-        }
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
-        removeImagesAtDone.subscribe { _ in
-            DispatchQueue.main.async {
-                self.selectedImageCollectionView.reloadData()
+        removeImagesAtDone
+            .subscribe { _ in
+                DispatchQueue.main.async {
+                    self.selectedImageCollectionView.reloadData()
+                }
             }
-        }
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
+        
+        uploadAlbumDone
+            .subscribe { _ in
+                self.loadingView.removeFromSuperview()
+                self.showUploadFinishedAlert()
+            }
+            .disposed(by: disposeBag)
     }
     
     @objc func expireDateChanged(_ datePicker: UIDatePicker) {
@@ -144,6 +168,68 @@ class UploadViewController: UIViewController {
         let daysLeft = totalHoursLeft / 24 // 일수
         let hoursLeft = totalHoursLeft % 24 // 남은 시간
         leftTimeLabel.text = "\(daysLeft)일 \(hoursLeft)시간 후"
+    }
+    
+}
+
+// MARK: - 파이어베이스 업로드
+extension UploadViewController {
+    
+    func uploadAlbum() {
+        print("\(type(of: self)) - \(#function)")
+        uploadAlbumDocToFireStore() { albumDocID in
+            self.uploadImagesToStorage(albumDocID: albumDocID) {
+                print("uploadAlbum() 성공")
+                self.uploadAlbumDone.onNext(())
+            }
+        }
+    }
+    
+    /// AlbumModel을 DB에 추가
+    func uploadAlbumDocToFireStore(completion: @escaping (String) -> Void) {
+        print("\(type(of: self)) - \(#function)")
+        
+        var ref: DocumentReference? = nil
+        ref = albumCollection.addDocument(data: [
+            "creationTime": Timestamp(date: Date()),
+            "expireTime": Timestamp(date:expireDatePicker.date),
+            "imageCount": images.count,
+            // TODO: - URL 생성 코드
+            "shareURL":  "https://www.naver.com/",
+            "tag": tagTextField.text ?? "",
+            "viewCount": 0
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+                completion(ref!.documentID)
+            }
+        }
+    }
+    
+    /// 이미지를 스토리지에 업로드
+    func uploadImagesToStorage(albumDocID: String, completion: @escaping () -> Void) {
+        print("\(type(of: self)) - \(#function)")
+        // asdfsaf/images/1
+        let albumImagesRef = Storage.storage().reference().child(albumDocID).child("images")
+        let uploadGroup = DispatchGroup()
+        print(images.count)
+        for imageIdx in 0..<images.count {
+                let uploadRef = albumImagesRef.child("\(imageIdx + 1)")
+            if let imageData = images[imageIdx].jpegData(compressionQuality: 0.8) {
+                uploadGroup.enter()
+                uploadRef.putData(imageData, metadata: nil) { metadata, error in
+                    uploadRef.downloadURL { url, error in
+                        uploadGroup.leave()
+                    }
+                }
+            }
+        }
+        
+        uploadGroup.notify(queue: .main) {
+            completion()
+        }
     }
     
 }
@@ -264,3 +350,5 @@ extension UploadViewController: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true)
     }
 }
+
+

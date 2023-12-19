@@ -16,7 +16,7 @@ class AlbumModel {
     var albumID: String
     var creationTime: Date
     var expireTime: Date
-    var imageURL: URL
+    var imageCount: Int
     var shareURL: URL
     var tag: String
     var viewCount: Int
@@ -25,20 +25,19 @@ class AlbumModel {
         self.albumID = document.documentID
         self.creationTime = (document.data()?["creationTime"] as? Timestamp)?.dateValue() ?? Date()
         self.expireTime = (document.data()?["expireTime"] as? Timestamp)?.dateValue() ?? Date()
-        let urlStr = document.data()?["imageURL"] as! String
-        self.imageURL = URL(string: urlStr)!
+        self.imageCount = document.data()?["imageCount"] as! Int
         //TODO: shareURL 제대로
         self.shareURL = URL(fileURLWithPath: "nil")
         self.tag = document.data()?["tag"] as! String
         self.viewCount = document.data()?["viewCount"] as! Int
     }
     
-    init(photoID: String?, creationTime: Date?, expireTime: Date?, shareURL: URL?, imageURL: URL?, tag: String?, viewCount: Int?) {
+    init(photoID: String?, creationTime: Date?, expireTime: Date?, shareURL: URL?, imageCount: Int, tag: String?, viewCount: Int?) {
         self.albumID = photoID ?? ""
         self.creationTime = creationTime ?? Date()
         self.expireTime = expireTime ?? Date()
         self.shareURL = shareURL ?? URL(fileURLWithPath: "nil")
-        self.imageURL = imageURL ?? URL(fileURLWithPath: "nil")
+        self.imageCount = imageCount
         self.tag = tag ?? ""
         self.viewCount = viewCount ?? 0
     }

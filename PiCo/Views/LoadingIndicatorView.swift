@@ -46,7 +46,7 @@ class LoadingIndicatorView: UIView {
         stackView.addArrangedSubview(activityIndicator)
         stackView.addArrangedSubview(loadingLabel)
         addSubview(stackView)
-        // 스택뷰의 제약조건을 설정합니다.
+
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor)

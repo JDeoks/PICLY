@@ -31,7 +31,6 @@ class AcountViewController: UIViewController {
         bind()
         // 로컬 데이터로 초기화 후 바로 서버에서 유저정보 fetch해서 최신화
         LoginManager.shared.getCurrentUserInfo()
-        LoginManager.shared.fetchUserInfo()
     }
     
     func initUI() {
@@ -62,7 +61,7 @@ class AcountViewController: UIViewController {
     }
     
     func setDataWithUserModel(user: UserModel) {
-        print("AcountViewController - setDataWithUserModel()")
+        print("\(type(of: self)) - \(#function)")
 
         authProviderLabel.text = "\(user.authProvider.description)로 로그인"
         emailLabel.text = user.email

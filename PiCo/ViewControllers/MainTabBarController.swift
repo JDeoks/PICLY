@@ -14,12 +14,13 @@ class MainTabBarController: UITabBarController {
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
-        print("MainTabBarController - viewDidLoad")
+        print("\(type(of: self)) - \(#function)")
         
         super.viewDidLoad()
         initUI()
         bind()
         LoginManager.shared.fetchAccount()
+        LoginManager.shared.fetchUserInfo()
     }
     
     func initUI() {
@@ -34,12 +35,11 @@ class MainTabBarController: UITabBarController {
                 self.setOnboardingVCAsRoot()
             }
             .disposed(by: disposeBag)
-        
     }
     
     // 인증 정보 리셋후 온보딩으로
     func resetAuthenticationState() {
-        print("MainTabBarController - resetAuthenticationState()")
+        print("\(type(of: self)) - \(#function)")
 
         do {
             try Auth.auth().signOut()
@@ -49,7 +49,7 @@ class MainTabBarController: UITabBarController {
     }
     
     func setOnboardingVCAsRoot() {
-        print("MainTabBarController - setOnboardingVCAsRoot()")
+        print("\(type(of: self)) - \(#function)")
 
         let window = UIApplication.shared.getWindow()
         // 넘어갈 화면
