@@ -137,6 +137,19 @@ class LoginManager {
         }
     }
     
+    func signOut() {
+        print("LoginManager - signOut()")
+        
+        do {
+            try Auth.auth().signOut()
+            // 성공적으로 로그아웃 처리됨
+            print("성공적으로 로그아웃됨")
+        } catch let signOutError as NSError {
+            // 로그아웃 과정에서 오류 발생
+            print("로그아웃 실패: \(signOutError.localizedDescription)")
+        }
+    }
+    
     func handleFirebaseAuthError(error: NSError) {
         switch error.code {
         case AuthErrorCode.networkError.rawValue:

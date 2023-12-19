@@ -14,6 +14,8 @@ class MainTabBarController: UITabBarController {
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
+        print("MainTabBarController - viewDidLoad")
+        
         super.viewDidLoad()
         initUI()
         bind()

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -117,6 +117,9 @@
             <size key="customSize" width="232" height="409"/>
             <connections>
                 <outlet property="copyLinkButton" destination="4pX-xK-LEg" id="sqS-cj-41M"/>
+                <outlet property="creationTimeLabel" destination="6Sg-ZX-NNn" id="DNG-6e-nPx"/>
+                <outlet property="dDayLabel" destination="mlC-dD-9uj" id="nl7-Gb-l2I"/>
+                <outlet property="tagLabel" destination="ayv-Ud-0Bp" id="XKd-82-FMF"/>
                 <outlet property="thumnailImageView" destination="FGf-2R-85K" id="Etf-ug-L2Y"/>
             </connections>
             <point key="canvasLocation" x="277.86259541984731" y="169.36619718309859"/>

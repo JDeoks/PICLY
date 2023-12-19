@@ -241,7 +241,6 @@
 				2A3498522B0D694C00424868 /* LoadingIndicatorView.swift */,
 				2AD5F2CC2B0FADCE00475AC6 /* SettingsTableViewCell.swift */,
 				2AD5F2CD2B0FADCE00475AC6 /* SettingsTableViewCell.xib */,
-				2A3ADA732B2DD49500D40535 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -343,6 +342,7 @@
 				2AB0C4BF2B08B77F008BB7AE /* Assets.xcassets */,
 				2AB0C4C42B08B77F008BB7AE /* Info.plist */,
 				2A6942732B17669A0070B194 /* GoogleService-Info.plist */,
+				2A3ADA732B2DD49500D40535 /* LaunchScreen.storyboard */,
 			);
 			path = PiCo;
 			sourceTree = "<group>";

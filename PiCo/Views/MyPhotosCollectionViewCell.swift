@@ -16,6 +16,9 @@ class MyPhotosCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var thumnailImageView: UIImageView!
     @IBOutlet var copyLinkButton: UIButton!
+    @IBOutlet var creationTimeLabel: UILabel!
+    @IBOutlet var tagLabel: UILabel!
+    @IBOutlet var dDayLabel: UILabel!
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -34,6 +37,15 @@ class MyPhotosCollectionViewCell: UICollectionViewCell {
         thumnailImageView.layer.cornerRadius = 4
         thumnailImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         thumnailImageView.layer.masksToBounds = true
+    }
+    
+    func setData(album: AlbumModel) {
+//        thumnailImageView.image
+        postURL = album.shareURL
+        creationTimeLabel.text = album.getCreationTimeStr()
+        tagLabel.text = "#\(album.tag)"
+        dDayLabel.text = "D-\(album.getDDay())"
+        
     }
 
 }

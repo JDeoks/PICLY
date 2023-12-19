@@ -32,11 +32,13 @@ class SignInViewController: UIViewController {
     @IBOutlet var termsOfUseTextView: UITextView!
     
     override func viewDidLoad() {
+        print("SignInViewController - viewDidLoad()")
+        
         super.viewDidLoad()
         initUI()
         action()
         bind()
-        LoginManager.shared.fetchUserInfo()
+//        LoginManager.shared.fetchUserInfo()
     }
     
     func initUI() {

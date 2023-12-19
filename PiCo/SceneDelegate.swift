@@ -16,14 +16,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         if isUserLoggedIn() {
-            guard let mainVC = UIStoryboard(name: "Main", bundle: nil) .instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController else {
-                return
-            }
+            let mainVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController
+            print("currentUser 있음 mainVC")
             window?.rootViewController = mainVC
         } else {
-            guard let loginVC = UIStoryboard(name: "Main", bundle: nil) .instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController else {
-                return
-            }
+            let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
+            print("currentUser 없음 loginVC")
+
             window?.rootViewController = loginVC
         }
     }

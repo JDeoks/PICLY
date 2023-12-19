@@ -10,13 +10,15 @@ import RxSwift
 import RxKeyboard
 import SnapKit
 import PhotosUI
+import SwiftDate
 
 class UploadViewController: UIViewController {
     
     /// 서버에 저장된 사진 URL
-    var postURL: URL?
+    var albumURL: URL?
     /// 선택한 사진 배열
     var images: [UIImage] = []
+    var expireTime = Date()
     
     let didFinishPickingDone = PublishSubject<Void>()
     let removeImagesAtDone = PublishSubject<Void>()
@@ -31,6 +33,7 @@ class UploadViewController: UIViewController {
     @IBOutlet var collectionViewStackView: UIStackView!
     @IBOutlet var selectedImageCollectionView: UICollectionView!
     @IBOutlet var expireDatePicker: UIDatePicker!
+    @IBOutlet var leftTimeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +48,14 @@ class UploadViewController: UIViewController {
         inputTagStackView.layer.cornerRadius = 4
         
         // datePicker
+        expireDatePicker.date = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
         expireDatePicker.tintColor = UIColor(named: "HighlightBlue")
+        var dateComponents = DateComponents()
+        dateComponents.month = 1 // 1달 후까지의 범위 설정
+        let maxDate = Calendar.current.date(byAdding: dateComponents, to: Date())
+        // 현재부터 한달 뒤 까지 선택 가능하게 설정
+        expireDatePicker.minimumDate = Date()
+        expireDatePicker.maximumDate = maxDate
         
         // scrollView
         scrollView.delegate = self
@@ -66,12 +76,14 @@ class UploadViewController: UIViewController {
     }
 
     func action() {
+        // 창닫기 버튼
         closeButton.rx.tap
             .subscribe { _ in
             self.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
         
+        // 완료 버튼
         uploadButton.rx.tap
             .subscribe { _ in
                 let loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -98,6 +110,10 @@ class UploadViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        // 데이트 피커
+        expireDatePicker.addTarget(self, action: #selector(expireDateChanged(_:)), for: .valueChanged)
+
     }
     
     func bind() {
@@ -118,17 +134,30 @@ class UploadViewController: UIViewController {
         .disposed(by: disposeBag)
     }
     
+    @objc func expireDateChanged(_ datePicker: UIDatePicker) {
+        expireTime = datePicker.date
+        let region = Region(calendar: Calendars.gregorian, zone: Zones.asiaSeoul, locale: Locales.korean)
+        let now = DateInRegion(region: region)
+        let expirationDate = DateInRegion(expireTime, region: region)
+        /// 만료 날짜까지 남은 전체 시간을 시간 단위로 계산
+        let totalHoursLeft: Int64 = now.getInterval(toDate: expirationDate, component: .hour)
+        let daysLeft = totalHoursLeft / 24 // 일수
+        let hoursLeft = totalHoursLeft % 24 // 남은 시간
+        leftTimeLabel.text = "\(daysLeft)일 \(hoursLeft)시간 후"
+    }
+    
 }
 
+// MARK: - CollectionView
 extension UploadViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-// MARK: CollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row < images.count {
+
+        if images.indices.contains(indexPath.row) {
             let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "SelectedImageCollectionViewCell", for: indexPath) as! SelectedImageCollectionViewCell
             cell.imageView.image = images[indexPath.row]
             
@@ -146,6 +175,12 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? AddImageCollectionViewCell {
+            presentPicker()
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
          return section == 0 ? UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8) : UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
     }
@@ -158,16 +193,11 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
         
         return CGSize(width: cellHeight, height: cellHeight)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? AddImageCollectionViewCell {
-            presentPicker()
-        }
-    }
+
 }
 
+// MARK: - ScrollView
 extension UploadViewController: UIScrollViewDelegate {
-// MARK: ScrollView
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
         self.view.endEditing(true)
@@ -175,14 +205,14 @@ extension UploadViewController: UIScrollViewDelegate {
     
 }
 
+// MARK: - Alert
 extension UploadViewController {
-// MARK: Alert
-    
+
     func showUploadFinishedAlert() {
         let sheet = UIAlertController(title: "업로드 완료", message: "링크를 복사하시겠습니까?", preferredStyle: .alert)
         
         let loginAction = UIAlertAction(title: "링크 복사하고 창 닫기", style: .default, handler: { _ in
-            UIPasteboard.general.url = self.postURL
+            UIPasteboard.general.url = self.albumURL
             self.dismiss(animated: true)
         })
         let cancelAction = UIAlertAction(title: "창 닫기", style: .cancel) { _ in
@@ -196,8 +226,8 @@ extension UploadViewController {
     }
 }
 
+// MARK: - PHPickerViewController
 extension UploadViewController: PHPickerViewControllerDelegate {
-// MARK: PHPickerViewController
     
     func presentPicker() {
         var config = PHPickerConfiguration()

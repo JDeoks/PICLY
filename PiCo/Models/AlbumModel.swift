@@ -53,4 +53,12 @@ class AlbumModel {
         return DateInRegion(self.expireTime, region: region).toFormat("yyyy-MM-dd HH:mm")
     }
     
+    func getDDay() -> Int {
+        let region = Region(calendar: Calendars.gregorian, zone: Zones.asiaSeoul, locale: Locales.korean)
+        let now = DateInRegion(region: region)
+        let expirationDate = DateInRegion(expireTime, region: region)
+        let days = now.getInterval(toDate: expirationDate, component: .day)
+        return Int(days)
+    }
+    
 }

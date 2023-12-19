@@ -88,17 +88,6 @@
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="24" bottom="0.0" right="24"/>
                             </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JsP-fG-yj1">
-                                <rect key="frame" x="0.0" y="159" width="393" height="610"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RCy-F7-gLQ">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vC8-Rx-iJb">
                                 <rect key="frame" x="313" y="689" width="56" height="56"/>
                                 <color key="backgroundColor" name="FloatButtonBackground"/>
@@ -115,6 +104,24 @@
                                     </preferredSymbolConfiguration>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jay-PG-fmp">
+                                <rect key="frame" x="0.0" y="768" width="393" height="1"/>
+                                <color key="backgroundColor" name="CollectionViewCellBackground"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="hhu-pR-Fck"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JsP-fG-yj1">
+                                <rect key="frame" x="0.0" y="175" width="393" height="610"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RCy-F7-gLQ">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="MainBackground"/>
@@ -122,11 +129,14 @@
                             <constraint firstItem="JsP-fG-yj1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0JQ-kw-i1s"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="PWe-Lj-u3a" secondAttribute="top" id="BJv-El-8Pa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PWe-Lj-u3a" secondAttribute="trailing" id="H50-01-rAv"/>
+                            <constraint firstItem="jay-PG-fmp" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Lfo-lb-cLl"/>
                             <constraint firstItem="vC8-Rx-iJb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-24" id="SiY-9P-XTn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JsP-fG-yj1" secondAttribute="trailing" id="U9q-hq-QF4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jay-PG-fmp" secondAttribute="trailing" id="VXy-ao-IVe"/>
                             <constraint firstItem="PWe-Lj-u3a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="axK-Sl-HMW"/>
                             <constraint firstItem="JsP-fG-yj1" firstAttribute="top" secondItem="PWe-Lj-u3a" secondAttribute="bottom" id="c2g-O2-x1H"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JsP-fG-yj1" secondAttribute="bottom" id="dl8-Fq-Bkf"/>
+                            <constraint firstItem="jay-PG-fmp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gBb-bI-yBR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vC8-Rx-iJb" secondAttribute="trailing" constant="24" id="mDp-tW-vRq"/>
                         </constraints>
                     </view>
@@ -800,6 +810,7 @@
                         <outlet property="collectionViewStackView" destination="yQa-yK-tOG" id="jBS-F2-FqX"/>
                         <outlet property="expireDatePicker" destination="T8b-wq-pt4" id="BRk-AX-9S2"/>
                         <outlet property="inputTagStackView" destination="He2-Xr-u3r" id="yJe-CE-dWd"/>
+                        <outlet property="leftTimeLabel" destination="sY6-ig-gZ5" id="C5O-5h-Jat"/>
                         <outlet property="scrollView" destination="Itw-DN-54V" id="YE0-mZ-k9d"/>
                         <outlet property="selectedImageCollectionView" destination="uhG-FF-3Yq" id="eTf-XW-dSG"/>
                         <outlet property="uploadButton" destination="BMo-7y-Pf2" id="v50-Yy-gy1"/>
@@ -1136,13 +1147,23 @@
                                 <rect key="frame" x="0.0" y="159" width="393" height="610"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vLS-H8-i9D">
+                                <rect key="frame" x="0.0" y="768" width="393" height="1"/>
+                                <color key="backgroundColor" name="CollectionViewCellBackground"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="YVz-Mf-9g1"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XUf-ch-hXC"/>
                         <color key="backgroundColor" name="MainBackground"/>
                         <constraints>
+                            <constraint firstItem="XUf-ch-hXC" firstAttribute="trailing" secondItem="vLS-H8-i9D" secondAttribute="trailing" id="Ki8-1Z-t87"/>
                             <constraint firstItem="0ui-VP-QIr" firstAttribute="leading" secondItem="XUf-ch-hXC" secondAttribute="leading" id="LGr-We-rcT"/>
                             <constraint firstItem="0ui-VP-QIr" firstAttribute="top" secondItem="GPy-kO-mTx" secondAttribute="bottom" id="T5w-b8-n9v"/>
                             <constraint firstItem="XUf-ch-hXC" firstAttribute="trailing" secondItem="0ui-VP-QIr" secondAttribute="trailing" id="Ujq-EJ-gxy"/>
+                            <constraint firstItem="vLS-H8-i9D" firstAttribute="bottom" secondItem="XUf-ch-hXC" secondAttribute="bottom" id="Z9c-03-iqz"/>
+                            <constraint firstItem="XUf-ch-hXC" firstAttribute="leading" secondItem="vLS-H8-i9D" secondAttribute="leading" id="dwn-4c-YM7"/>
                             <constraint firstItem="XUf-ch-hXC" firstAttribute="trailing" secondItem="GPy-kO-mTx" secondAttribute="trailing" id="heS-sC-Zn9"/>
                             <constraint firstItem="GPy-kO-mTx" firstAttribute="leading" secondItem="XUf-ch-hXC" secondAttribute="leading" id="lzp-s9-sor"/>
                             <constraint firstItem="XUf-ch-hXC" firstAttribute="top" secondItem="GPy-kO-mTx" secondAttribute="top" id="yzf-pd-2mF"/>
@@ -1252,6 +1273,9 @@
         </namedColor>
         <namedColor name="ButtonLabel">
             <color red="0.10980392156862745" green="0.10980392156862745" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CollectionViewCellBackground">
+            <color red="0.2196078431372549" green="0.2196078431372549" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="FloatButtonBackground">
             <color red="0.3843137254901961" green="0.3843137254901961" blue="0.42745098039215684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
