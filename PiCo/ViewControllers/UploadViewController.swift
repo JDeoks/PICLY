@@ -172,13 +172,13 @@ extension UploadViewController {
         
         var ref: DocumentReference? = nil
         ref = albumCollection.addDocument(data: [
-            "creationTime": Timestamp(date: Date()),
-            "expireTime": Timestamp(date:expireDatePicker.date),
-            "imageCount": images.count,
+            AlbumField.creationTime.rawValue: Timestamp(date: Date()),
+            AlbumField.expireTime.rawValue: Timestamp(date:expireDatePicker.date),
+            AlbumField.imageCount.rawValue: images.count,
             // TODO: - URL 생성 코드
-            "albumURL":  "https://www.naver.com/",
-            "tag": tagTextField.text ?? "",
-            "viewCount": 0
+            AlbumField.albumURL.rawValue:  "https://www.naver.com/",
+            AlbumField.tag.rawValue: tagTextField.text ?? "",
+            AlbumField.viewCount.rawValue: 0
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

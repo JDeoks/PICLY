@@ -80,9 +80,7 @@ class MyAlbumsViewController: UIViewController {
                 print("plusButton")
 
                 self.stopSearching()
-                let uploadVC = self.storyboard?.instantiateViewController(identifier: "UploadViewController") as! UploadViewController
-                uploadVC.modalPresentationStyle = .overFullScreen
-                self.present(uploadVC, animated: true)
+                SceneManager.shared.presentUploadVC(vc: self)
             }
             .disposed(by: disposeBag)
     }

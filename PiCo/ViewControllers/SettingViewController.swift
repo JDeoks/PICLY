@@ -90,10 +90,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             // 계정 관리
             case 0:
-                let accountVC = self.storyboard?.instantiateViewController(identifier: "AcountViewController") as! AcountViewController
-                accountVC.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(accountVC, animated: true)
-                return
+                SceneManager.shared.pushAccountVC(vc: self)
             default:
                 return
             }
@@ -107,10 +104,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
                 print("url 없음")
                 return
             }
-            
-            let webVC = self.storyboard?.instantiateViewController(identifier: "WebViewController") as! WebViewController
-            webVC.pageURL = url
-            present(webVC, animated: true)
+            SceneManager.shared.presentWebVC(vc: self, url: url)
         default:
             return
         }
