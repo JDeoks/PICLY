@@ -19,7 +19,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         initUI()
         bind()
-        LoginManager.shared.fetchAccount()
+        LoginManager.shared.fetchUserAuth()
         LoginManager.shared.getUserModelFromServer()
     }
     
@@ -29,7 +29,7 @@ class MainTabBarController: UITabBarController {
     }
     
     func bind() {
-        LoginManager.shared.fetchAccountFailed
+        LoginManager.shared.fetchUserAuthFailed
             .subscribe { _ in
                 self.resetAuthenticationState()
                 self.setOnboardingVCAsRoot()

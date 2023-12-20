@@ -174,7 +174,7 @@ extension UploadViewController {
             "expireTime": Timestamp(date:expireDatePicker.date),
             "imageCount": images.count,
             // TODO: - URL 생성 코드
-            "shareURL":  "https://www.naver.com/",
+            "albumURL":  "https://www.naver.com/",
             "tag": tagTextField.text ?? "",
             "viewCount": 0
         ]) { err in
@@ -191,15 +191,19 @@ extension UploadViewController {
     /// 이미지를 Storage에 업로드
     func uploadImagesToStorage(albumDocID: String, completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
+        
         // asdfsaf/images/1
-        let albumImagesRef = Storage.storage().reference().child(albumDocID).child("images")
+        let albumImagesRef = Storage.storage().reference().child(albumDocID)
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
         let uploadGroup = DispatchGroup()
         print(images.count)
         for imageIdx in 0..<images.count {
-                let uploadRef = albumImagesRef.child("\(imageIdx + 1)")
+            let uploadRef = albumImagesRef.child("\(imageIdx + 1).jpeg")
+            metadata.contentType = "image/jpeg"
             if let imageData = images[imageIdx].jpegData(compressionQuality: 0.8) {
                 uploadGroup.enter()
-                uploadRef.putData(imageData, metadata: nil) { metadata, error in
+                uploadRef.putData(imageData, metadata: metadata) { metadata, error in
                     uploadRef.downloadURL { url, error in
                         uploadGroup.leave()
                     }

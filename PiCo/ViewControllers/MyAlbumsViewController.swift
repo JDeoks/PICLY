@@ -1,5 +1,5 @@
 //
-//  MyPhotosViewController.swift
+//  MyAlbumsViewController.swift
 //  PiCo
 //
 //  Created by 서정덕 on 11/18/23.
@@ -22,7 +22,7 @@ class MyAlbumsViewController: UIViewController {
     @IBOutlet var searchTagStackView: UIStackView!
     @IBOutlet var searchTagTextField: UITextField!
     @IBOutlet var searchCancelButton: UIButton!
-    @IBOutlet var myPhotosCollectionView: UICollectionView!
+    @IBOutlet var myAlbumsCollectionView: UICollectionView!
     @IBOutlet var plusButton: UIButton!
     
     override func viewDidLoad() {
@@ -45,16 +45,16 @@ class MyAlbumsViewController: UIViewController {
         refreshControl.tintColor = UIColor(named: "SecondText")
         refreshControl.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
         
-        // myPhotosCollectionView
-        myPhotosCollectionView.dataSource = self
-        myPhotosCollectionView.delegate = self
-        let myPhotosCollectionViewCell = UINib(nibName: "MyPhotosCollectionViewCell", bundle: nil)
-        myPhotosCollectionView.register(myPhotosCollectionViewCell, forCellWithReuseIdentifier: "MyPhotosCollectionViewCell")
-        myPhotosCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
-        myPhotosCollectionView.refreshControl = refreshControl
+        // myAlbumsCollectionView
+        myAlbumsCollectionView.dataSource = self
+        myAlbumsCollectionView.delegate = self
+        let myAlbumsCollectionViewCell = UINib(nibName: "MyAlbumsCollectionViewCell", bundle: nil)
+        myAlbumsCollectionView.register(myAlbumsCollectionViewCell, forCellWithReuseIdentifier: "MyAlbumsCollectionViewCell")
+        myAlbumsCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        myAlbumsCollectionView.refreshControl = refreshControl
         
         // 드래그시 키보드 내림
-        myPhotosCollectionView.keyboardDismissMode = .onDrag
+        myAlbumsCollectionView.keyboardDismissMode = .onDrag
         
         // plusButton
         plusButton.layer.cornerRadius = plusButton.frame.height / 2
@@ -93,20 +93,20 @@ class MyAlbumsViewController: UIViewController {
 extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return albums.count
+        return 5//albums.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = myPhotosCollectionView.dequeueReusableCell(withReuseIdentifier: "MyPhotosCollectionViewCell", for: indexPath) as! MyPhotosCollectionViewCell
-        cell.setData(album: albums[indexPath.row])
-        cell.copyLinkButton.rx.tap
-            .subscribe { _ in
-                // TODO: url 복사
-                UIPasteboard.general.url = cell.postURL
-//                self.showToast(message: "링크가 복사되었습니다.")
-                self.showToast(message: "\(cell.postURL)")
-            }
-            .disposed(by: cell.disposeBag)
+        let cell = myAlbumsCollectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumsCollectionViewCell", for: indexPath) as! MyAlbumsCollectionViewCell
+//        cell.setData(album: albums[indexPath.row])
+//        cell.copyLinkButton.rx.tap
+//            .subscribe { _ in
+//                // TODO: url 복사
+//                UIPasteboard.general.url = cell.postURL
+////                self.showToast(message: "링크가 복사되었습니다.")
+//                self.showToast(message: "\(cell.postURL)")
+//            }
+//            .disposed(by: cell.disposeBag)
         
         return cell
     }

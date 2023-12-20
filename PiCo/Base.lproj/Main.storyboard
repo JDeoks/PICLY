@@ -142,7 +142,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Uqx-Me-MTr"/>
                     <connections>
-                        <outlet property="myPhotosCollectionView" destination="JsP-fG-yj1" id="Kn5-d9-gEc"/>
+                        <outlet property="myAlbumsCollectionView" destination="JsP-fG-yj1" id="Kn5-d9-gEc"/>
                         <outlet property="plusButton" destination="vC8-Rx-iJb" id="SEm-Td-U2c"/>
                         <outlet property="searchCancelButton" destination="iOG-2E-sQY" id="Gy8-sA-siT"/>
                         <outlet property="searchTagStackView" destination="Dql-ZL-X5o" id="dDq-pZ-N0f"/>

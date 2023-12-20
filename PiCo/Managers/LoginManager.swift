@@ -17,13 +17,11 @@ class LoginManager {
     private init() { }
     
     let userCollectionRef = Firestore.firestore().collection("Users")
-    /// fetchAccount 결과가 저장돠는 UserModel
-    var user: UserModel? = nil
-    
-    /// getCurrentUser(), fetchAccountInfo() -> AcountViewController
+
+    /// getUserModelFromServer() -> AcountViewController
     let getUserModelDone = PublishSubject<Void>()
-    /// fetchAccount() -> MainTabBarController
-    let fetchAccountFailed = PublishSubject<Void>()
+    /// fetchUserAuth() -> MainTabBarController
+    let fetchUserAuthFailed = PublishSubject<Void>()
     
     /// LoginManager user 변수에 서버에 저장되어있는 UserModel 저장
     func getUserModelFromServer() {
@@ -37,7 +35,7 @@ class LoginManager {
         userDocRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let user = UserModel(document: document)
-                self.user = user
+                self.setUserModelToLocal(user: user)
                 print(user)
                 self.setUserModelToLocal(user: user)
                 self.getUserModelDone.onNext(())
@@ -47,7 +45,6 @@ class LoginManager {
         }
     }
     
-    /// LoginManager user 변수에 로컬에 저장되어있는 UserModel 저장
     func getUserModelFromLocal() -> UserModel? {
         print("\(type(of: self)) - \(#function)")
         
@@ -64,9 +61,7 @@ class LoginManager {
             // NSKeyedUnarchiver를 사용하여 data를 UserModel 객체로 디코딩
             if let user = try NSKeyedUnarchiver.unarchivedObject(ofClasses: allowedClassesSet as! Set<AnyHashable>, from: data) as? UserModel {
                 print("UserModel 디코딩 성공")
-//                self.user = user
                 return user
-//                self.getUserModelDone.onNext(())
             } else {
                 print("UserModel 디코딩 실패: 디코딩된 객체가 UserModel 타입이 아님")
             }
@@ -76,21 +71,21 @@ class LoginManager {
         return nil
     }
             
-    /// UserModel을 로컬에  저장
+    /// UserModel을 로컬에 저장
     func setUserModelToLocal(user: UserModel) {
         print("\(type(of: self)) - \(#function)")
 
         do {
             let encodedData = try NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
             UserDefaults.standard.set(encodedData, forKey: "currentUserModel")
-            print("UserModel 인코딩 성고")
+            print("UserModel 인코딩 성공")
         } catch {
             print("UserModel 인코딩 실패: \(error)")
         }
     }
     
-    /// 서버에서 유저 정보 받아 갱신
-    func fetchAccount() {
+    /// 서버에서 유저 Auth 정보 받아 갱신
+    func fetchUserAuth() {
         print("\(type(of: self)) - \(#function)")
 
         if let user = Auth.auth().currentUser {
@@ -104,7 +99,7 @@ class LoginManager {
             }
         } else {
             print("currentUser 없음")
-            self.fetchAccountFailed.onNext(())
+            self.fetchUserAuthFailed.onNext(())
         }
     }
     
@@ -115,6 +110,7 @@ class LoginManager {
             try Auth.auth().signOut()
             // 성공적으로 로그아웃 처리됨
             print("성공적으로 로그아웃됨")
+            UserDefaults.standard.removeObject(forKey: "currentUserModel")
         } catch let signOutError as NSError {
             // 로그아웃 과정에서 오류 발생
             print("로그아웃 실패: \(signOutError.localizedDescription)")
@@ -130,7 +126,7 @@ class LoginManager {
         case AuthErrorCode.userNotFound.rawValue:
             // 사용자를 찾을 수 없음
             print("사용자 계정을 찾을 수 없습니다.")
-            self.fetchAccountFailed.onNext(())
+            self.fetchUserAuthFailed.onNext(())
         case AuthErrorCode.userTokenExpired.rawValue:
             // 사용자 토큰 만료
             print("사용자 토큰이 만료되었습니다. 다시 로그인해주세요.")
@@ -143,15 +139,15 @@ class LoginManager {
         case AuthErrorCode.userDisabled.rawValue:
             // 사용자 계정 비활성화
             print("사용자 계정이 비활성화되었습니다.")
-            self.fetchAccountFailed.onNext(())
+            self.fetchUserAuthFailed.onNext(())
         case AuthErrorCode.operationNotAllowed.rawValue:
             // 허용되지 않은 작업
             print("이 작업은 현재 허용되지 않습니다.")
-            self.fetchAccountFailed.onNext(())
+            self.fetchUserAuthFailed.onNext(())
         default:
             // 기타 오류
             print("알 수 없는 오류 발생: \(error.localizedDescription)")
-            self.fetchAccountFailed.onNext(())
+            self.fetchUserAuthFailed.onNext(())
         }
     }
 

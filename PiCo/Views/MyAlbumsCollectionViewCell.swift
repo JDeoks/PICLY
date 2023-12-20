@@ -1,5 +1,5 @@
 //
-//  MyPhotosCollectionViewCell.swift
+//  MyAlbumsCollectionViewCell.swift
 //  PiCo
 //
 //  Created by 서정덕 on 11/18/23.
@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class MyPhotosCollectionViewCell: UICollectionViewCell {
+class MyAlbumsCollectionViewCell: UICollectionViewCell {
     
     var postURL: URL?
     
