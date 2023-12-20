@@ -48,12 +48,12 @@ class LoginManager {
     }
     
     /// LoginManager user 변수에 로컬에 저장되어있는 UserModel 저장
-    func getUserModelFromLocal() {
+    func getUserModelFromLocal() -> UserModel? {
         print("\(type(of: self)) - \(#function)")
         
         guard let data = UserDefaults.standard.data(forKey: "currentUserModel") else {
             print("UserDefaults에서 currentUser 가져오기 실패")
-            return
+            return nil
         }
 
         do {
@@ -64,14 +64,16 @@ class LoginManager {
             // NSKeyedUnarchiver를 사용하여 data를 UserModel 객체로 디코딩
             if let user = try NSKeyedUnarchiver.unarchivedObject(ofClasses: allowedClassesSet as! Set<AnyHashable>, from: data) as? UserModel {
                 print("UserModel 디코딩 성공")
-                self.user = user
-                self.getUserModelDone.onNext(())
+//                self.user = user
+                return user
+//                self.getUserModelDone.onNext(())
             } else {
                 print("UserModel 디코딩 실패: 디코딩된 객체가 UserModel 타입이 아님")
             }
         } catch {
             print("UserModel 디코딩 실패: \(error)")
         }
+        return nil
     }
             
     /// UserModel을 로컬에  저장

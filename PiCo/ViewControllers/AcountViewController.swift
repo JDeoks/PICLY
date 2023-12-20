@@ -24,6 +24,8 @@ class AcountViewController: UIViewController {
     @IBOutlet var registrationDate: UILabel!
     
     override func viewDidLoad() {
+        print("\(type(of: self)) - \(#function)")
+        
         super.viewDidLoad()
         initUI()
         initData()
@@ -32,14 +34,22 @@ class AcountViewController: UIViewController {
     }
     
     func initUI() {
-        
+        print("\(type(of: self)) - \(#function)")
     }
     
     func initData() {
-        LoginManager.shared.getUserModelFromLocal()
+        print("\(type(of: self)) - \(#function)")
+        
+        if let user = LoginManager.shared.getUserModelFromLocal() {
+            authProviderLabel.text = "\(user.authProvider.description)로 로그인"
+            emailLabel.text = user.email
+            registrationDate.text = user.getCreationTimeString()
+        }
     }
     
     func action() {
+        print("\(type(of: self)) - \(#function)")
+        
         backButton.rx.tap
             .subscribe { _ in
                 self.navigationController?.popViewController(animated: true)
@@ -61,21 +71,8 @@ class AcountViewController: UIViewController {
     }
     
     func bind() {
-        LoginManager.shared.getUserModelDone
-            .subscribe { _ in
-                self.setDataWithUserModel(user: LoginManager.shared.user!)
-            }
-            .disposed(by: disposeBag)
-    }
-    
-    func setDataWithUserModel(user: UserModel) {
         print("\(type(of: self)) - \(#function)")
-
-        authProviderLabel.text = "\(user.authProvider.description)로 로그인"
-        emailLabel.text = user.email
-        registrationDate.text = user.getCreationTimeString()
     }
-    
     
     // TODO: - 최적화 필요 뷰 컨트롤러 계속 생성함
     func setSignInVCAsRoot() {
