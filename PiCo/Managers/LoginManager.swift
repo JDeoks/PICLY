@@ -16,7 +16,7 @@ class LoginManager {
     static let shared = LoginManager()
     private init() { }
     
-    let userCollectionRef = Firestore.firestore().collection("User")
+    let userCollectionRef = Firestore.firestore().collection("Users")
     /// fetchAccount 결과가 저장돠는 UserModel
     var user: UserModel? = nil
     
@@ -38,6 +38,7 @@ class LoginManager {
             if let document = document, document.exists {
                 let user = UserModel(document: document)
                 self.user = user
+                print(user)
                 self.setUserModelToLocal(user: user)
                 self.getUserModelDone.onNext(())
             } else {
@@ -50,7 +51,7 @@ class LoginManager {
     func getUserModelFromLocal() {
         print("\(type(of: self)) - \(#function)")
         
-        guard let data = UserDefaults.standard.data(forKey: "currentUserInfo") else {
+        guard let data = UserDefaults.standard.data(forKey: "currentUserModel") else {
             print("UserDefaults에서 currentUser 가져오기 실패")
             return
         }
@@ -79,7 +80,7 @@ class LoginManager {
 
         do {
             let encodedData = try NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
-            UserDefaults.standard.set(encodedData, forKey: "currentUserInfo")
+            UserDefaults.standard.set(encodedData, forKey: "currentUserModel")
             print("UserModel 인코딩 성고")
         } catch {
             print("UserModel 인코딩 실패: \(error)")

@@ -13,9 +13,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class AcountViewController: UIViewController {
-    
-    let userCollectionRef = Firestore.firestore().collection("User")
-    
+        
     let disposeBag = DisposeBag()
     
     @IBOutlet var backButton: UIButton!
@@ -31,7 +29,6 @@ class AcountViewController: UIViewController {
         initData()
         action()
         bind()
-        LoginManager.shared.getUserModelFromLocal()
     }
     
     func initUI() {

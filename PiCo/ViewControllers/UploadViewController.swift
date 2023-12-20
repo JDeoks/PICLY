@@ -16,7 +16,7 @@ import FirebaseStorage
 
 class UploadViewController: UIViewController {
     
-    let albumCollection = Firestore.firestore().collection("Album")
+    let albumCollection = Firestore.firestore().collection("Albums")
     /// 서버에 저장된 사진 URL
     var albumURL: URL?
     /// 선택한 사진 배열
