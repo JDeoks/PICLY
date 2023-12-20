@@ -156,7 +156,9 @@ extension UploadViewController {
     
     func uploadAlbum() {
         print("\(type(of: self)) - \(#function)")
+        
         uploadAlbumDocToFireStore() { albumDocID in
+            DataManager.shared.appendAlbumIDToUserDoc(newAlbumID: albumDocID)
             self.uploadImagesToStorage(albumDocID: albumDocID) {
                 print("uploadAlbum() 성공")
                 self.uploadAlbumDone.onNext(())

@@ -110,7 +110,6 @@ class SignInViewController: UIViewController {
                 print("user 또는 idToken 정보 가져오기 실패")
                 return
             }
-            
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
             // 생성한 credential로 로그인 시도
             signInWithCredential(credential: credential, provider: .google)
@@ -129,7 +128,6 @@ class SignInViewController: UIViewController {
                 // TODO: 로그인 실패 Alert
                 return
             }
-
             // 첫 로그인 시 User Collection에 Doc 추가
             self.isFirstLogin(user: user) { isFirstLogin in
                 if isFirstLogin {
@@ -153,7 +151,7 @@ class SignInViewController: UIViewController {
                 print(error)
                 return
             }
-            // 문서가 존재하면 false 반환
+            // 문서가 존재하지 않을 때 첫 로그인 -> true 반환
             if let document = document, document.exists {
                 completion(false)
             } else {
