@@ -139,7 +139,6 @@ class SignInViewController: UIViewController {
                     print("기존 사용자")
                 }
             }
-            
         }
     }
     
@@ -168,10 +167,10 @@ class SignInViewController: UIViewController {
         print("\(type(of: self)) - \(#function)")
 
         userCollectionRef.document(user.uid).setData([
-            "creationTime": Timestamp(date: Date()),
-            "authProvider": provider.description,
-            "email": user.email ?? "nil",
-            "albumIDs": []
+            UserField.creationTime.rawValue: Timestamp(date: Date()),
+            UserField.authProvider.rawValue: provider.rawValue,
+            UserField.socialID.rawValue: user.email ?? "nil",
+            UserField.albumIDs.rawValue: []
         ]){ err in
             if let err = err {
               print("유저 등록 실패: \(err)")

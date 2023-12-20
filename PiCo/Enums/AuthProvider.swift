@@ -8,18 +8,13 @@
 import Foundation
 
 enum AuthProvider: String {
-    case email = "email"
-    case google = "google"
-    case apple = "apple"
+    
+    case email = "Email"
+    case google = "Google"
+    case apple = "Apple"
 
-    init?(providerString: String) {
-        self.init(rawValue: providerString.lowercased())
+    init?(string: String) {
+        self.init(rawValue: string)
     }
     
-    /// 첫글자 대문자로 바꿔서 return ex) "Email", "Google", "Apple"
-    var description: String {
-        let originalString = self.rawValue
-        let capitalizedString = originalString.prefix(1).uppercased() + originalString.dropFirst()
-        return capitalizedString
-    }
 }

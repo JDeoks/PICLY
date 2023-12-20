@@ -41,8 +41,8 @@ class AcountViewController: UIViewController {
         print("\(type(of: self)) - \(#function)")
         
         if let user = LoginManager.shared.getUserModelFromLocal() {
-            authProviderLabel.text = "\(user.authProvider.description)로 로그인"
-            emailLabel.text = user.email
+            authProviderLabel.text = "\(user.authProvider.rawValue)로 로그인"
+            emailLabel.text = user.socialID
             registrationDate.text = user.getCreationTimeString()
         }
     }

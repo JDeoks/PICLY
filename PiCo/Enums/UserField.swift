@@ -9,19 +9,14 @@ import Foundation
 
 enum UserField: String {
     
-    case email = "email"
-    case google = "google"
-    case apple = "apple"
+    case userID = "userID"
+    case socialID = "socialID"
+    case creationTime = "creationTime"
+    case authProvider = "authProvider"
+    case albumIDs = "albumIDs"
 
-    init?(providerString: String) {
-        self.init(rawValue: providerString.lowercased())
-    }
-    
-    /// 첫글자 대문자로 바꿔서 return ex) "Email", "Google", "Apple"
-    var description: String {
-        let originalString = self.rawValue
-        let capitalizedString = originalString.prefix(1).uppercased() + originalString.dropFirst()
-        return capitalizedString
+    init?(string: String) {
+        self.init(rawValue: string)
     }
     
 }
