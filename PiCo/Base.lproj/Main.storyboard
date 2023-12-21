@@ -790,6 +790,30 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="lCb-gf-SOC"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="Ao1-uf-0Aq"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5b4-tZ-H5A">
+                                <rect key="frame" x="0.0" y="868" width="393" height="48"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIK-17-W5C">
+                                        <rect key="frame" x="337" y="0.0" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="9fx-Cm-8Vs"/>
+                                            <constraint firstAttribute="width" constant="48" id="eD4-Rm-TQF"/>
+                                        </constraints>
+                                        <color key="tintColor" name="HighlightBlue"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="keyboard.chevron.compact.down" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="14"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="TextFieldBackground"/>
+                                <constraints>
+                                    <constraint firstItem="lIK-17-W5C" firstAttribute="top" secondItem="5b4-tZ-H5A" secondAttribute="top" id="Zmw-91-ORc"/>
+                                    <constraint firstAttribute="trailing" secondItem="lIK-17-W5C" secondAttribute="trailing" constant="8" id="c0h-QQ-gHq"/>
+                                    <constraint firstAttribute="bottom" secondItem="lIK-17-W5C" secondAttribute="bottom" id="hYZ-Cd-6PC"/>
+                                    <constraint firstAttribute="height" constant="48" id="x08-aT-ASC"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VtR-jf-r0v"/>
                         <color key="backgroundColor" name="MainBackground"/>
@@ -801,6 +825,9 @@
                             <constraint firstItem="XwO-bS-Lr3" firstAttribute="top" secondItem="VtR-jf-r0v" secondAttribute="top" id="U8W-Dd-Uk5"/>
                             <constraint firstItem="VtR-jf-r0v" firstAttribute="trailing" secondItem="XwO-bS-Lr3" secondAttribute="trailing" id="Zsf-a9-qLC"/>
                             <constraint firstItem="VtR-jf-r0v" firstAttribute="leading" secondItem="XwO-bS-Lr3" secondAttribute="leading" id="fSe-7C-q3s"/>
+                            <constraint firstItem="5b4-tZ-H5A" firstAttribute="leading" secondItem="VtR-jf-r0v" secondAttribute="leading" id="fn2-OS-wam"/>
+                            <constraint firstItem="VtR-jf-r0v" firstAttribute="trailing" secondItem="5b4-tZ-H5A" secondAttribute="trailing" id="kID-49-uxO"/>
+                            <constraint firstItem="5b4-tZ-H5A" firstAttribute="top" secondItem="VtR-jf-r0v" secondAttribute="bottom" constant="50" id="mgY-wm-7PK"/>
                             <constraint firstItem="VtR-jf-r0v" firstAttribute="trailing" secondItem="Itw-DN-54V" secondAttribute="trailing" id="n9F-sU-gC4"/>
                             <constraint firstItem="Itw-DN-54V" firstAttribute="top" secondItem="XwO-bS-Lr3" secondAttribute="bottom" id="y1P-qj-0Rv"/>
                         </constraints>
@@ -809,7 +836,9 @@
                         <outlet property="closeButton" destination="Ct0-Re-na1" id="HSb-25-Rl7"/>
                         <outlet property="collectionViewStackView" destination="yQa-yK-tOG" id="jBS-F2-FqX"/>
                         <outlet property="expireDatePicker" destination="T8b-wq-pt4" id="BRk-AX-9S2"/>
+                        <outlet property="hideKeyboardButton" destination="lIK-17-W5C" id="Z8L-pL-ay7"/>
                         <outlet property="inputTagStackView" destination="He2-Xr-u3r" id="yJe-CE-dWd"/>
+                        <outlet property="keyboardToolContainerView" destination="5b4-tZ-H5A" id="lLi-Ha-pf3"/>
                         <outlet property="leftTimeLabel" destination="sY6-ig-gZ5" id="C5O-5h-Jat"/>
                         <outlet property="scrollView" destination="Itw-DN-54V" id="YE0-mZ-k9d"/>
                         <outlet property="selectedImageCollectionView" destination="uhG-FF-3Yq" id="eTf-XW-dSG"/>
@@ -1261,6 +1290,7 @@
         <image name="eye" catalog="system" width="128" height="79"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="googleLoginLogo" width="176" height="176"/>
+        <image name="keyboard.chevron.compact.down" catalog="system" width="128" height="100"/>
         <image name="link" catalog="system" width="128" height="124"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="pado" width="1432" height="1432"/>

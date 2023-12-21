@@ -198,12 +198,10 @@ extension ShareViewController {
     
     func showUploadFinishedAlert() {
         let sheet = UIAlertController(title: "업로드 완료", message: "링크를 복사하시겠습니까?", preferredStyle: .alert)
-        
         let loginAction = UIAlertAction(title: "링크 복사하고 창 닫기", style: .default, handler: { _ in
             UIPasteboard.general.url = self.photoURL
             self.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
         })
-        
         let cancelAction = UIAlertAction(title: "창 닫기", style: .cancel) { _ in
             self.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
         }

@@ -41,6 +41,9 @@ class UploadViewController: UIViewController {
     @IBOutlet var selectedImageCollectionView: UICollectionView!
     @IBOutlet var expireDatePicker: UIDatePicker!
     @IBOutlet var leftTimeLabel: UILabel!
+
+    @IBOutlet var keyboardToolContainerView: UIView!
+    @IBOutlet var hideKeyboardButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,25 +106,31 @@ class UploadViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        // TODO: 질문 RxKeyboard 적용 안됨
         RxKeyboard.instance.visibleHeight
             .skip(1)
-            .drive(onNext: { keyboardVisibleHeight in
-                // TODO: -
-                if keyboardVisibleHeight == 0 {
-                    // 사라지기 슈퍼뷰 아래로 내리기
-                } else {
-                    // 높이 따라가기
-                }
+            .drive(onNext: { [weak self] keyboardVisibleHeight in
+                guard let strongSelf = self else { return }
                 print("rx키보드")
                 print(keyboardVisibleHeight)  // 346.0
-                self.scrollView.snp.updateConstraints { make in
-                    UIView.animate(withDuration: 1) {
-                        make.bottom.equalToSuperview().inset(keyboardVisibleHeight)
-                        print(self.scrollView.frame)
+
+                UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+                    strongSelf.keyboardToolContainerView.snp.updateConstraints { make in
+                        print("updateConstraints")
+                        if keyboardVisibleHeight == 0 {
+                            make.bottom.equalToSuperview().inset(-48)
+                        } else {
+                            make.bottom.equalToSuperview().inset(keyboardVisibleHeight)
+                        }
                     }
-                }
+                    strongSelf.view.layoutIfNeeded() // 중요: 레이아웃 즉시 업데이트
+                })
             })
+            .disposed(by: disposeBag)
+        
+        hideKeyboardButton.rx.tap
+            .subscribe { _ in
+                self.hideKeyboard()
+            }
             .disposed(by: disposeBag)
         
         // 데이트 피커

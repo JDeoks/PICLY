@@ -50,6 +50,10 @@ extension UIViewController {
         view.addGestureRecognizer(scroll)
     }
     
+    func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
