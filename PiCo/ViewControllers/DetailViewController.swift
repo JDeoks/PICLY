@@ -17,6 +17,7 @@ class DetailViewController: UIViewController {
     
     @IBOutlet var backButton: UIButton!
     @IBOutlet var editButton: UIButton!
+    @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var tagLabel: UILabel!
     @IBOutlet var viewsLabel: UILabel!
@@ -32,9 +33,15 @@ class DetailViewController: UIViewController {
     }
     
     func initUI() {
+        // imageView
         imageView.layer.cornerRadius = 4
+        
+        // shareButton
         shareButton.layer.cornerRadius = 4
 //        imageView.image = loadImageFromDirectory(with: "image.jpeg")
+        
+        // scrollView
+        scrollView.alwaysBounceVertical = true
     }
     
     func action() {

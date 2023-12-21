@@ -64,6 +64,7 @@ class UploadViewController: UIViewController {
         
         // scrollView
         scrollView.delegate = self
+        scrollView.alwaysBounceVertical = true
         
         // selectedImageCollectionView
         selectedImageCollectionView.dataSource = self
@@ -75,7 +76,8 @@ class UploadViewController: UIViewController {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         selectedImageCollectionView.collectionViewLayout = flowLayout
-        
+        selectedImageCollectionView.alwaysBounceHorizontal = true
+
         // collectionViewStackView
         collectionViewStackView.layer.cornerRadius = 4
     }
@@ -109,17 +111,16 @@ class UploadViewController: UIViewController {
         RxKeyboard.instance.visibleHeight
             .skip(1)
             .drive(onNext: { [weak self] keyboardVisibleHeight in
-                guard let strongSelf = self else { return }
-                print("rx키보드")
-                print(keyboardVisibleHeight)  // 346.0
-
+                guard let strongSelf = self else {
+                    return
+                }
                 UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
                     strongSelf.keyboardToolContainerView.snp.updateConstraints { make in
-                        print("updateConstraints")
                         if keyboardVisibleHeight == 0 {
-                            make.bottom.equalToSuperview().inset(-48)
+                            let containerViewHeight = strongSelf.keyboardToolContainerView.frame.height
+                            make.bottom.equalToSuperview().inset(-containerViewHeight).priority(1000)
                         } else {
-                            make.bottom.equalToSuperview().inset(keyboardVisibleHeight)
+                            make.bottom.equalToSuperview().inset(keyboardVisibleHeight).priority(1000)
                         }
                     }
                     strongSelf.view.layoutIfNeeded() // 중요: 레이아웃 즉시 업데이트
@@ -129,7 +130,7 @@ class UploadViewController: UIViewController {
         
         hideKeyboardButton.rx.tap
             .subscribe { _ in
-                self.hideKeyboard()
+                self.view.endEditing(true)
             }
             .disposed(by: disposeBag)
         

@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxKeyboard
 
 class MyAlbumsViewController: UIViewController {
     
@@ -24,6 +25,8 @@ class MyAlbumsViewController: UIViewController {
     @IBOutlet var searchCancelButton: UIButton!
     @IBOutlet var myAlbumsCollectionView: UICollectionView!
     @IBOutlet var plusButton: UIButton!
+    @IBOutlet var keyboardToolContainerView: UIView!
+    @IBOutlet var hideKeyboardButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +64,7 @@ class MyAlbumsViewController: UIViewController {
     }
     
     @objc func pullToRefresh(_ sender: Any) {
+        stopSearching()
         refreshControl.endRefreshing()
     }
     
@@ -83,6 +87,32 @@ class MyAlbumsViewController: UIViewController {
                 SceneManager.shared.presentUploadVC(vc: self)
             }
             .disposed(by: disposeBag)
+        
+        RxKeyboard.instance.visibleHeight
+            .skip(1)
+            .drive(onNext: { [weak self] keyboardVisibleHeight in
+                guard let strongSelf = self else {
+                    return
+                }
+                UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+                    strongSelf.keyboardToolContainerView.snp.updateConstraints { make in
+                        if keyboardVisibleHeight == 0 {
+                            let containerViewHeight = strongSelf.keyboardToolContainerView.frame.height
+                            make.bottom.equalToSuperview().inset(-containerViewHeight).priority(1000)
+                        } else {
+                            make.bottom.equalToSuperview().inset(keyboardVisibleHeight).priority(1000)
+                        }
+                    }
+                    strongSelf.view.layoutIfNeeded() // 중요: 레이아웃 즉시 업데이트
+                })
+            })
+            .disposed(by: disposeBag)
+        
+        hideKeyboardButton.rx.tap
+            .subscribe { _ in
+                self.view.endEditing(true)
+            }
+            .disposed(by: disposeBag)
     }
 
 }
@@ -91,7 +121,7 @@ class MyAlbumsViewController: UIViewController {
 extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5//albums.count
+        return 3//albums.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

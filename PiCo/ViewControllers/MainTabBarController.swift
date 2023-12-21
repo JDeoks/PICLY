@@ -26,6 +26,8 @@ class MainTabBarController: UITabBarController {
     func initUI() {
         self.tabBar.tintColor = UIColor(named: "HighlightBlue")
         self.tabBar.unselectedItemTintColor = UIColor(named: "SecondText")
+        self.tabBar.items?[0].title = "내 앨범"
+        self.tabBar.items?[1].title = "설정"
     }
     
     func bind() {

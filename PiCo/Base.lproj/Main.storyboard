@@ -88,8 +88,8 @@
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="24" bottom="0.0" right="24"/>
                             </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JsP-fG-yj1">
-                                <rect key="frame" x="0.0" y="175" width="393" height="610"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JsP-fG-yj1">
+                                <rect key="frame" x="0.0" y="159" width="393" height="610"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RCy-F7-gLQ">
                                     <size key="itemSize" width="128" height="128"/>
@@ -122,13 +122,38 @@
                                     </preferredSymbolConfiguration>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egv-dB-yvn">
+                                <rect key="frame" x="0.0" y="852" width="393" height="48"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EuR-2t-szH">
+                                        <rect key="frame" x="337" y="0.0" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="8dG-RN-avp"/>
+                                            <constraint firstAttribute="width" constant="48" id="OeZ-CK-QFZ"/>
+                                        </constraints>
+                                        <color key="tintColor" name="HighlightBlue"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="keyboard.chevron.compact.down" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="14"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="TextFieldBackground"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="LVB-M9-TXo"/>
+                                    <constraint firstItem="EuR-2t-szH" firstAttribute="centerY" secondItem="egv-dB-yvn" secondAttribute="centerY" id="Mcp-En-7FI"/>
+                                    <constraint firstAttribute="trailing" secondItem="EuR-2t-szH" secondAttribute="trailing" constant="8" id="bn2-2p-Bc0"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="MainBackground"/>
                         <constraints>
                             <constraint firstItem="JsP-fG-yj1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0JQ-kw-i1s"/>
+                            <constraint firstItem="egv-dB-yvn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5cQ-JL-eKl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="PWe-Lj-u3a" secondAttribute="top" id="BJv-El-8Pa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PWe-Lj-u3a" secondAttribute="trailing" id="H50-01-rAv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="egv-dB-yvn" secondAttribute="trailing" id="KVR-8K-smP"/>
                             <constraint firstItem="jay-PG-fmp" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Lfo-lb-cLl"/>
                             <constraint firstItem="vC8-Rx-iJb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-24" id="SiY-9P-XTn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JsP-fG-yj1" secondAttribute="trailing" id="U9q-hq-QF4"/>
@@ -138,10 +163,13 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JsP-fG-yj1" secondAttribute="bottom" id="dl8-Fq-Bkf"/>
                             <constraint firstItem="jay-PG-fmp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gBb-bI-yBR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vC8-Rx-iJb" secondAttribute="trailing" constant="24" id="mDp-tW-vRq"/>
+                            <constraint firstItem="egv-dB-yvn" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="bottom" priority="500" id="w0D-sV-hRc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Uqx-Me-MTr"/>
                     <connections>
+                        <outlet property="hideKeyboardButton" destination="EuR-2t-szH" id="Lja-Ey-weF"/>
+                        <outlet property="keyboardToolContainerView" destination="egv-dB-yvn" id="3wb-zL-CLd"/>
                         <outlet property="myAlbumsCollectionView" destination="JsP-fG-yj1" id="Kn5-d9-gEc"/>
                         <outlet property="plusButton" destination="vC8-Rx-iJb" id="SEm-Td-U2c"/>
                         <outlet property="searchCancelButton" destination="iOG-2E-sQY" id="Gy8-sA-siT"/>
@@ -212,7 +240,7 @@
                                 <rect key="frame" x="0.0" y="115" width="393" height="737"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8FX-5z-uEd">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="738"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="613"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Nt6-jK-2ip">
                                                 <rect key="frame" x="16" y="16" width="361" height="597"/>
@@ -323,14 +351,13 @@
                                         <constraints>
                                             <constraint firstItem="Nt6-jK-2ip" firstAttribute="top" secondItem="8FX-5z-uEd" secondAttribute="top" constant="16" id="LbW-67-Tnr"/>
                                             <constraint firstAttribute="trailing" secondItem="Nt6-jK-2ip" secondAttribute="trailing" constant="16" id="Pr1-56-Gpj"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Nt6-jK-2ip" secondAttribute="bottom" id="Zyt-h8-kVb"/>
+                                            <constraint firstAttribute="bottom" secondItem="Nt6-jK-2ip" secondAttribute="bottom" id="Zyt-h8-kVb"/>
                                             <constraint firstItem="Nt6-jK-2ip" firstAttribute="leading" secondItem="8FX-5z-uEd" secondAttribute="leading" constant="16" id="jsw-8C-A2n"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="8FX-5z-uEd" firstAttribute="leading" secondItem="LnN-iC-eH5" secondAttribute="leading" id="0Tm-0Q-tlr"/>
-                                    <constraint firstItem="8FX-5z-uEd" firstAttribute="height" secondItem="bqM-6c-agk" secondAttribute="height" constant="1" id="6BV-yh-li2"/>
                                     <constraint firstItem="8FX-5z-uEd" firstAttribute="trailing" secondItem="LnN-iC-eH5" secondAttribute="trailing" id="eqZ-d9-U4V"/>
                                     <constraint firstItem="8FX-5z-uEd" firstAttribute="bottom" secondItem="LnN-iC-eH5" secondAttribute="bottom" id="oR5-yE-Dlu"/>
                                     <constraint firstItem="8FX-5z-uEd" firstAttribute="top" secondItem="LnN-iC-eH5" secondAttribute="top" id="rxf-PO-HAT"/>
@@ -361,6 +388,7 @@
                         <outlet property="editButton" destination="EU1-zU-5zA" id="vPr-H9-bl0"/>
                         <outlet property="expireDateLabel" destination="bbt-Qp-rMr" id="7zi-dj-u7x"/>
                         <outlet property="imageView" destination="gIa-t0-3ZH" id="w8R-9E-KdO"/>
+                        <outlet property="scrollView" destination="bqM-6c-agk" id="d33-EB-otJ"/>
                         <outlet property="shareButton" destination="jcw-8l-Muk" id="w9k-Ra-rte"/>
                         <outlet property="tagLabel" destination="bgC-FW-PeJ" id="7lJ-l5-Sgh"/>
                         <outlet property="viewsLabel" destination="rCe-KJ-uFf" id="emz-52-BTm"/>
@@ -827,7 +855,7 @@
                             <constraint firstItem="VtR-jf-r0v" firstAttribute="leading" secondItem="XwO-bS-Lr3" secondAttribute="leading" id="fSe-7C-q3s"/>
                             <constraint firstItem="5b4-tZ-H5A" firstAttribute="leading" secondItem="VtR-jf-r0v" secondAttribute="leading" id="fn2-OS-wam"/>
                             <constraint firstItem="VtR-jf-r0v" firstAttribute="trailing" secondItem="5b4-tZ-H5A" secondAttribute="trailing" id="kID-49-uxO"/>
-                            <constraint firstItem="5b4-tZ-H5A" firstAttribute="top" secondItem="VtR-jf-r0v" secondAttribute="bottom" constant="50" id="mgY-wm-7PK"/>
+                            <constraint firstItem="5b4-tZ-H5A" firstAttribute="top" secondItem="q1a-f3-QPN" secondAttribute="bottom" priority="500" constant="16" id="mgY-wm-7PK"/>
                             <constraint firstItem="VtR-jf-r0v" firstAttribute="trailing" secondItem="Itw-DN-54V" secondAttribute="trailing" id="n9F-sU-gC4"/>
                             <constraint firstItem="Itw-DN-54V" firstAttribute="top" secondItem="XwO-bS-Lr3" secondAttribute="bottom" id="y1P-qj-0Rv"/>
                         </constraints>

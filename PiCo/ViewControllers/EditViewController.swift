@@ -50,6 +50,7 @@ class EditViewController: UIViewController {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         selectedImageCollectionView.collectionViewLayout = flowLayout
+        selectedImageCollectionView.alwaysBounceHorizontal = true
         
         // collectionViewStackView
         collectionViewStackView.layer.cornerRadius = 4
