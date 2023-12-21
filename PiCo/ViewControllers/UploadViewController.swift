@@ -26,7 +26,6 @@ class UploadViewController: UIViewController {
     let didFinishPickingDone = PublishSubject<Void>()
     let removeImagesAtDone = PublishSubject<Void>()
     let uploadAlbumDone = PublishSubject<Void>()
-
     let disposeBag = DisposeBag()
     
     lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -167,7 +166,7 @@ extension UploadViewController {
     func uploadAlbum() {
         print("\(type(of: self)) - \(#function)")
         
-        uploadAlbumDocToFireStore() { albumDocID in
+        uploadAlbumDocToFireStore { albumDocID in
             DataManager.shared.appendAlbumIDToUserDoc(newAlbumID: albumDocID)
             self.uploadImagesToStorage(albumDocID: albumDocID) {
                 print("uploadAlbum() 성공")
@@ -185,7 +184,7 @@ extension UploadViewController {
             AlbumField.creationTime.rawValue: Timestamp(date: Date()),
             AlbumField.expireTime.rawValue: Timestamp(date:expireDatePicker.date),
             AlbumField.imageCount.rawValue: images.count,
-            // TODO: - URL 생성 코드
+            // TODO: URL 생성 코드
             AlbumField.albumURL.rawValue:  "https://www.naver.com/",
             AlbumField.tag.rawValue: tagTextField.text ?? "",
             AlbumField.viewCount.rawValue: 0
