@@ -13,6 +13,7 @@ enum AlbumField: String {
     case ownerID = "ownerID"
     case creationTime = "creationTime"
     case expireTime = "expireTime"
+    case imageCount = "imageCount"
     case tags = "tags"
     case viewCount = "viewCount"
 

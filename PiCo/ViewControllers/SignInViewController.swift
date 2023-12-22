@@ -64,36 +64,25 @@ class SignInViewController: UIViewController {
     
     func action() {
         signInWithGoogleButtonView.rx.tapGesture()
-                    .when(.recognized)
-                    .subscribe(onNext: { _ in
-                        self.startSignInWithGoogleFlow()
-                    })
-                    .disposed(by: disposeBag)
+            .when(.recognized)
+            .subscribe(onNext: { _ in
+                self.startSignInWithGoogleFlow()
+            })
+            .disposed(by: disposeBag)
         
         signInWithAppleButtonView.rx.tapGesture()
-                    .when(.recognized)
-                    .subscribe(onNext: { _ in
-                        self.startSignInWithAppleFlow()
-                    })
-                    .disposed(by: disposeBag)
+            .when(.recognized)
+            .subscribe(onNext: { _ in
+                self.startSignInWithAppleFlow()
+            })
+            .disposed(by: disposeBag)
     }
     
     func bind() {
-//        Auth.auth().addStateDidChangeListener { auth, user in
-//            if user != nil {
-//                self.loadingView.removeFromSuperview()
-//        self.setMainTabVCAsRoot()
-//            }
-//        }
-        
         signInWithCredentialDone
             .subscribe { _ in
-                print("signInWithCredentialDone")
-                
-                DispatchQueue.main.async {
-                    self.loadingView.removeFromSuperview()
-                    self.setMainTabVCAsRoot()
-                }
+                self.loadingView.removeFromSuperview()
+                self.setMainTabVCAsRoot()
             }
             .disposed(by: disposeBag)
     }

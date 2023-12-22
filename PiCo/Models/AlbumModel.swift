@@ -17,6 +17,7 @@ class AlbumModel {
     var ownerID: String
     var creationTime: Date
     var expireTime: Date
+    var imageCount: Int
     var tags: [String]
     var viewCount: Int
     
@@ -25,6 +26,7 @@ class AlbumModel {
         self.ownerID = document.data()?[AlbumField.ownerID.rawValue] as! String
         self.creationTime = (document.data()?[AlbumField.creationTime.rawValue] as! Timestamp).dateValue()
         self.expireTime = (document.data()?[AlbumField.expireTime.rawValue] as! Timestamp).dateValue()
+        self.imageCount = document.data()?[AlbumField.imageCount.rawValue] as! Int
         self.tags = document.data()?[AlbumField.tags.rawValue] as! [String]
         self.viewCount = document.data()?[AlbumField.viewCount.rawValue] as! Int
     }
@@ -34,6 +36,7 @@ class AlbumModel {
         self.ownerID = ownerID
         self.creationTime = creationTime
         self.expireTime = expireTime
+        self.imageCount = imageCount
         self.tags = tags
         self.viewCount = viewCount
     }
@@ -56,11 +59,12 @@ class AlbumModel {
         return Int(days)
     }
     
-    static func createDictToUpload(expireTime: Date, tags: [String]) -> [String: Any] {
+    static func createDictToUpload(expireTime: Date, imageCount: Int, tags: [String]) -> [String: Any] {
         let dictionary: [String: Any] = [
             AlbumField.ownerID.rawValue: Auth.auth().currentUser!.uid,
             AlbumField.creationTime.rawValue: Timestamp(date: Date()),
             AlbumField.expireTime.rawValue: Timestamp(date: expireTime),
+            AlbumField.imageCount.rawValue: imageCount,
             AlbumField.tags.rawValue: tags,
             AlbumField.viewCount.rawValue: 0
         ]

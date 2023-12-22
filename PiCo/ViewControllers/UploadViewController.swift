@@ -167,9 +167,8 @@ extension UploadViewController {
         print("\(type(of: self)) - \(#function)")
         
         uploadAlbumDocToFireStore { albumDocID in
-//            DataManager.shared.appendAlbumIDToUserDoc(newAlbumID: albumDocID)
             self.uploadImagesToStorage(albumDocID: albumDocID) {
-                print("uploadAlbum() 성공")
+                print("\(#function) 성공")
                 self.uploadAlbumDone.onNext(())
             }
         }
@@ -181,13 +180,13 @@ extension UploadViewController {
         
         let expireTime = expireDatePicker.date
         let tags = [tagTextField.text ?? ""]
+        let documentData = AlbumModel.createDictToUpload(expireTime: expireTime, imageCount: images.count, tags: tags)
         var ref: DocumentReference? = nil
-        ref = albumCollection.addDocument(data: AlbumModel.createDictToUpload(expireTime: expireTime, tags: tags)) { err in
+        ref = albumCollection.addDocument(data: documentData) { err in
             if let err = err {
                 print("\(#function) 실패: \(err)")
             } else {
                 print("\(#function) 성공: \(ref!.documentID)")
-                // albumURL에 URL 저장
                 completion(ref!.documentID)
             }
         }
@@ -197,20 +196,18 @@ extension UploadViewController {
     func uploadImagesToStorage(albumDocID: String, completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
         
-        // asdfsaf/1
+        // asdfsaf/0
         let albumImagesRef = Storage.storage().reference().child(albumDocID)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         let uploadGroup = DispatchGroup()
-        print(images.count)
+        print("images.count:", images.count)
         for imageIdx in 0..<images.count {
-            let uploadRef = albumImagesRef.child("\(imageIdx + 1).jpeg")
+            let uploadRef = albumImagesRef.child("\(imageIdx).jpeg")
             if let imageData = images[imageIdx].jpegData(compressionQuality: 0.8) {
                 uploadGroup.enter()
                 uploadRef.putData(imageData, metadata: metadata) { metadata, error in
-                    uploadRef.downloadURL { url, error in
-                        uploadGroup.leave()
-                    }
+                    uploadGroup.leave()
                 }
             }
         }
@@ -329,6 +326,7 @@ extension UploadViewController: PHPickerViewControllerDelegate {
                     itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
                         guard let self = self, let image = image as? UIImage else { return }
                         print(5)
+                        // TODO: 이미지 일정크기 이하로 줄이는 함수
                         self.images.append(image)
                         DispatchQueue.main.async {
                             self.selectedImageCollectionView.reloadData()
