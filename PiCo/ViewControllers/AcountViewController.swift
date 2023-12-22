@@ -66,6 +66,8 @@ class AcountViewController: UIViewController {
         deleteAccountButton.rx.tap
             .subscribe { _ in
                 // TODO: - 계정 삭제(올린 앨범들은 삭제되지 않습니다.)
+                LoginManager.shared.deleteUser()
+                self.setSignInVCAsRoot()
             }
             .disposed(by: disposeBag)
     }

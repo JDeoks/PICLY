@@ -45,9 +45,8 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     
     func setData(album: AlbumModel) {
         fetchImage(albumID: album.albumID)
-        postURL = album.albumURL
         creationTimeLabel.text = album.getCreationTimeStr()
-        tagLabel.text = "#\(album.tag)"
+        tagLabel.text = "# \(album.tags[0])"
         dDayLabel.text = "D-\(album.getDDay())"
     }
     

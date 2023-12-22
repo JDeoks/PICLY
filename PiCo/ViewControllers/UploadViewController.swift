@@ -179,20 +179,14 @@ extension UploadViewController {
     func uploadAlbumDocToFireStore(completion: @escaping (String) -> Void) {
         print("\(type(of: self)) - \(#function)")
         
+        let expireTime = expireDatePicker.date
+        let tags = [tagTextField.text ?? ""]
         var ref: DocumentReference? = nil
-        ref = albumCollection.addDocument(data: [
-            AlbumField.creationTime.rawValue: Timestamp(date: Date()),
-            AlbumField.expireTime.rawValue: Timestamp(date:expireDatePicker.date),
-            AlbumField.imageCount.rawValue: images.count,
-            // TODO: URL 생성 코드
-            AlbumField.albumURL.rawValue:  "https://www.naver.com/",
-            AlbumField.tag.rawValue: tagTextField.text ?? "",
-            AlbumField.viewCount.rawValue: 0
-        ]) { err in
+        ref = albumCollection.addDocument(data: AlbumModel.createDictToUpload(expireTime: expireTime, tags: tags)) { err in
             if let err = err {
-                print("Error adding document: \(err)")
+                print("\(#function) 실패: \(err)")
             } else {
-                print("Document added with ID: \(ref!.documentID)")
+                print("\(#function) 성공: \(ref!.documentID)")
                 // albumURL에 URL 저장
                 completion(ref!.documentID)
             }
@@ -203,7 +197,7 @@ extension UploadViewController {
     func uploadImagesToStorage(albumDocID: String, completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
         
-        // asdfsaf/images/1
+        // asdfsaf/1
         let albumImagesRef = Storage.storage().reference().child(albumDocID)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
@@ -211,7 +205,6 @@ extension UploadViewController {
         print(images.count)
         for imageIdx in 0..<images.count {
             let uploadRef = albumImagesRef.child("\(imageIdx + 1).jpeg")
-            metadata.contentType = "image/jpeg"
             if let imageData = images[imageIdx].jpegData(compressionQuality: 0.8) {
                 uploadGroup.enter()
                 uploadRef.putData(imageData, metadata: metadata) { metadata, error in

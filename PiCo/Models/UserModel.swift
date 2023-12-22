@@ -20,7 +20,6 @@ class UserModel: NSObject, NSSecureCoding {
     var socialID: String
     var creationTime: Date
     var authProvider: AuthProvider
-    var albumIDs: [String]
     
     init(document: DocumentSnapshot) {
         print("\(type(of: self)) - \(#function)")
@@ -30,7 +29,6 @@ class UserModel: NSObject, NSSecureCoding {
         print("\(UserField.authProvider.rawValue)")
         self.authProvider = AuthProvider(rawValue: document.data()?[UserField.authProvider.rawValue] as? String ?? "socialID") ?? .email
         print(authProvider)
-        self.albumIDs = document.data()?[UserField.albumIDs.rawValue] as? [String] ?? []
     }
 
     required init?(coder: NSCoder) {
@@ -38,8 +36,7 @@ class UserModel: NSObject, NSSecureCoding {
               let email = coder.decodeObject(forKey: "socialID") as? String,
               let creationTime = coder.decodeObject(forKey: "creationTime") as? Date,
               let providerString = coder.decodeObject(forKey: "authProvider") as? String,
-              let authProvider = AuthProvider(string: providerString),
-              let albumIDs = coder.decodeObject(forKey: "albumIDs") as? [String] else {
+              let authProvider = AuthProvider(string: providerString)else {
             return nil
         }
 
@@ -47,7 +44,6 @@ class UserModel: NSObject, NSSecureCoding {
         self.socialID = email
         self.creationTime = creationTime
         self.authProvider = authProvider
-        self.albumIDs = albumIDs
     }
 
     func encode(with coder: NSCoder) {
@@ -55,7 +51,6 @@ class UserModel: NSObject, NSSecureCoding {
         coder.encode(self.socialID, forKey: "socialID")
         coder.encode(self.creationTime, forKey: "creationTime")
         coder.encode(self.authProvider.rawValue, forKey: "authProvider")
-        coder.encode(self.albumIDs, forKey: "albumIDs")
     }
     
     func getCreationTimeString(format: String = "yyyy.MM.dd" ) -> String {

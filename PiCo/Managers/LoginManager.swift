@@ -117,6 +117,40 @@ class LoginManager {
         }
     }
     
+    func deleteUser() {
+        print("\(type(of: self)) - \(#function)")
+
+        guard let user = Auth.auth().currentUser else {
+            print("로그인된 사용자가 없습니다.")
+            return
+        }
+        deleteUserDoc(userID: user.uid)
+
+        // Firestore에서 사용자 문서 삭제
+        userCollectionRef.document(user.uid).delete() { error in
+            if let error = error {
+                // Firestore 문서 삭제 실패
+                print("Firestore 사용자 문서 삭제 실패: \(error)")
+                return
+            } else {
+                // Firestore 문서 삭제 성공, 이제 Firebase 계정 삭제
+                user.delete { error in
+                    if let error = error {
+                        // Firebase 계정 삭제 실패
+                        print("\(type(of: self)) - \(#function) 실패: \(error)")
+                    } else {
+                        // Firebase 계정 삭제 성공
+                        print("\(type(of: self)) - \(#function) 성공")
+                    }
+                }
+            }
+        }
+    }
+    
+    private func deleteUserDoc(userID: String) {
+        
+    }
+    
     func handleFirebaseAuthError(error: NSError) {
         switch error.code {
         case AuthErrorCode.networkError.rawValue:

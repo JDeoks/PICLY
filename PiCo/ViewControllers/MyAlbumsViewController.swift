@@ -94,8 +94,6 @@ class MyAlbumsViewController: UIViewController {
         
         plusButton.rx.tap
             .subscribe { _ in
-                print("plusButton")
-
                 self.stopSearching()
                 SceneManager.shared.presentUploadVC(vc: self)
             }

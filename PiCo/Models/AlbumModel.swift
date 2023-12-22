@@ -14,42 +14,53 @@ import SwiftDate
 class AlbumModel {
     
     var albumID: String
+    var ownerID: String
     var creationTime: Date
     var expireTime: Date
-    var imageCount: Int
-    var albumURL: URL
-    var tag: String
+    var tags: [String]
     var viewCount: Int
+    
+    enum AlbumField: String {
+            
+        case albumID = "albumID"
+        case ownerID = "ownerID"
+        case creationTime = "creationTime"
+        case expireTime = "expireTime"
+        case tags = "tags"
+        case viewCount = "viewCount"
+
+        init?(string: String) {
+            self.init(rawValue: string)
+        }
+        
+    }
     
     init(document: DocumentSnapshot) {
         self.albumID = document.documentID
-        self.creationTime = (document.data()?["creationTime"] as? Timestamp)?.dateValue() ?? Date()
-        self.expireTime = (document.data()?["expireTime"] as? Timestamp)?.dateValue() ?? Date()
-        self.imageCount = document.data()?["imageCount"] as! Int
-        //TODO: shareURL 제대로
-        self.albumURL = URL(fileURLWithPath: "nil")
-        self.tag = document.data()?["tag"] as! String
-        self.viewCount = document.data()?["viewCount"] as! Int
+        self.ownerID = document.data()?[AlbumField.ownerID.rawValue] as! String
+        self.creationTime = (document.data()?[AlbumField.creationTime.rawValue] as! Timestamp).dateValue()
+        self.expireTime = (document.data()?[AlbumField.expireTime.rawValue] as! Timestamp).dateValue()
+        self.tags = document.data()?[AlbumField.tags.rawValue] as! [String]
+        self.viewCount = document.data()?[AlbumField.viewCount.rawValue] as! Int
     }
     
-    init(photoID: String?, creationTime: Date?, expireTime: Date?, shareURL: URL?, imageCount: Int, tag: String?, viewCount: Int?) {
-        self.albumID = photoID ?? ""
-        self.creationTime = creationTime ?? Date()
-        self.expireTime = expireTime ?? Date()
-        self.albumURL = shareURL ?? URL(fileURLWithPath: "nil")
-        self.imageCount = imageCount
-        self.tag = tag ?? ""
-        self.viewCount = viewCount ?? 0
+    init(albumID: String, ownerID: String, creationTime: Date, expireTime: Date, imageCount: Int, tags: [String], viewCount: Int) {
+        self.albumID = albumID
+        self.ownerID = ownerID
+        self.creationTime = creationTime
+        self.expireTime = expireTime
+        self.tags = tags
+        self.viewCount = viewCount
     }
-    
+        
     func getCreationTimeStr() -> String {
         let region = Region(calendar: Calendars.gregorian, zone: Zones.asiaSeoul, locale: Locales.korean)
-        return DateInRegion(self.creationTime, region: region).toFormat("yyyy-MM-dd HH:mm")
+        return DateInRegion(self.creationTime, region: region).toFormat("yyyy.MM.dd HH:mm")
     }
     
     func getExpireTimeStr() -> String {
         let region = Region(calendar: Calendars.gregorian, zone: Zones.asiaSeoul, locale: Locales.korean)
-        return DateInRegion(self.expireTime, region: region).toFormat("yyyy-MM-dd HH:mm")
+        return DateInRegion(self.expireTime, region: region).toFormat("yyyy.MM.dd HH:mm")
     }
     
     func getDDay() -> Int {
@@ -58,6 +69,17 @@ class AlbumModel {
         let expirationDate = DateInRegion(expireTime, region: region)
         let days = now.getInterval(toDate: expirationDate, component: .day)
         return Int(days)
+    }
+    
+    static func createDictToUpload(expireTime: Date, tags: [String]) -> [String: Any] {
+        var dictionary: [String: Any] = [
+            AlbumField.ownerID.rawValue: Auth.auth().currentUser!.uid,
+            AlbumField.creationTime.rawValue: Timestamp(date: Date()),
+            AlbumField.expireTime.rawValue: Timestamp(date: expireTime),
+            AlbumField.tags.rawValue: tags,
+            AlbumField.viewCount.rawValue: 0
+        ]
+        return dictionary
     }
     
 }
