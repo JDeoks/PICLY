@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
         return true
     }
 
@@ -42,6 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     
     func setRootVC() {
+        print("\(type(of: self)) - \(#function)")
+        
         // 현재 로그인된 사용자 가져오기
         if let user = Auth.auth().currentUser {
             // 서버에서 사용자 상태 갱신
@@ -62,6 +65,7 @@ extension AppDelegate {
     
     func showMainScreen() {
         print("\(type(of: self)) - \(#function)")
+        
         let mainTabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
         print(1)
         
@@ -70,6 +74,8 @@ extension AppDelegate {
     }
     
     func showOnboarding() {
+        print("\(type(of: self)) - \(#function)")
+        
         let signInVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
         let window = UIApplication.shared.getWindow()
         window.rootViewController = signInVC

@@ -20,21 +20,6 @@ class AlbumModel {
     var tags: [String]
     var viewCount: Int
     
-    enum AlbumField: String {
-            
-        case albumID = "albumID"
-        case ownerID = "ownerID"
-        case creationTime = "creationTime"
-        case expireTime = "expireTime"
-        case tags = "tags"
-        case viewCount = "viewCount"
-
-        init?(string: String) {
-            self.init(rawValue: string)
-        }
-        
-    }
-    
     init(document: DocumentSnapshot) {
         self.albumID = document.documentID
         self.ownerID = document.data()?[AlbumField.ownerID.rawValue] as! String
@@ -72,7 +57,7 @@ class AlbumModel {
     }
     
     static func createDictToUpload(expireTime: Date, tags: [String]) -> [String: Any] {
-        var dictionary: [String: Any] = [
+        let dictionary: [String: Any] = [
             AlbumField.ownerID.rawValue: Auth.auth().currentUser!.uid,
             AlbumField.creationTime.rawValue: Timestamp(date: Date()),
             AlbumField.expireTime.rawValue: Timestamp(date: expireTime),

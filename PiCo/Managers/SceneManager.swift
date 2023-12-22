@@ -30,24 +30,32 @@ class SceneManager {
     }
     
     func pushDetailVC(vc: UIViewController) {
+        print("\(type(of: self)) - \(#function)")
+        
         let detailVC = getVC(scene: .detail)
         detailVC.hidesBottomBarWhenPushed = true
         vc.navigationController?.pushViewController(detailVC, animated: true)
     }
     
     func presentUploadVC(vc: UIViewController) {
+        print("\(type(of: self)) - \(#function)")
+        
         let uploadVC = getVC(scene: .upload)
         uploadVC.modalPresentationStyle = .overFullScreen
         vc.present(uploadVC, animated: true)
     }
 
     func pushAccountVC(vc: UIViewController) {
+        print("\(type(of: self)) - \(#function)")
+        
         let accountVC = getVC(scene: .account)
         accountVC.hidesBottomBarWhenPushed = true
         vc.navigationController?.pushViewController(accountVC, animated: true)
     }
     
     func presentWebVC(vc: UIViewController, url: URL) {
+        print("\(type(of: self)) - \(#function)")
+        
         let webVC = getVC(scene: .web) as! WebViewController
         webVC.pageURL = url
         vc.present(webVC, animated: true)

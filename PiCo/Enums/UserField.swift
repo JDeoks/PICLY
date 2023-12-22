@@ -10,11 +10,10 @@ import Foundation
 enum UserField: String {
     
     case userID = "userID"
-    case socialID = "socialID"
+    case email = "email"
     case creationTime = "creationTime"
     case authProvider = "authProvider"
-    case albumIDs = "albumIDs"
-
+    
     init?(string: String) {
         self.init(rawValue: string)
     }

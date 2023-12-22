@@ -21,7 +21,8 @@ class SignInViewController: UIViewController {
     let userCollectionRef = Firestore.firestore().collection("Users")
     /// Unhashed nonce. 애플로그인 암호화에 사용
     fileprivate var currentNonce: String?
-    
+    /// signInWithCredential() -> SignInViewController
+    let signInWithCredentialDone = PublishSubject<Void>()
     let disposeBag = DisposeBag()
     
     lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -78,12 +79,23 @@ class SignInViewController: UIViewController {
     }
     
     func bind() {
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if user != nil {
-                self.loadingView.removeFromSuperview()
-                self.setMainTabVCAsRoot()
+//        Auth.auth().addStateDidChangeListener { auth, user in
+//            if user != nil {
+//                self.loadingView.removeFromSuperview()
+//        self.setMainTabVCAsRoot()
+//            }
+//        }
+        
+        signInWithCredentialDone
+            .subscribe { _ in
+                print("signInWithCredentialDone")
+                
+                DispatchQueue.main.async {
+                    self.loadingView.removeFromSuperview()
+                    self.setMainTabVCAsRoot()
+                }
             }
-        }
+            .disposed(by: disposeBag)
     }
     
     func startSignInWithGoogleFlow() {
@@ -132,9 +144,12 @@ class SignInViewController: UIViewController {
             self.isFirstLogin(user: user) { isFirstLogin in
                 if isFirstLogin {
                     print("첫 번째 로그인")
-                    self.addUserToDB(user: user, provider: provider)
+                    self.addUserToDB(user: user, provider: provider) {
+                        self.signInWithCredentialDone.onNext(())
+                    }
                 } else {
                     print("기존 사용자")
+                    self.signInWithCredentialDone.onNext(())
                 }
             }
         }
@@ -161,19 +176,15 @@ class SignInViewController: UIViewController {
     }
     
     /// 유저 Doc 생성
-    func addUserToDB(user: User, provider: AuthProvider) {
+    func addUserToDB(user: User, provider: AuthProvider, completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
 
-        userCollectionRef.document(user.uid).setData([
-            UserField.creationTime.rawValue: Timestamp(date: Date()),
-            UserField.authProvider.rawValue: provider.rawValue,
-            UserField.socialID.rawValue: user.email ?? "nil",
-            UserField.albumIDs.rawValue: []
-        ]){ err in
+        userCollectionRef.document(user.uid).setData(UserModel.createDictToUpload(provider: provider, user: user)){ err in
             if let err = err {
-              print("유저 등록 실패: \(err)")
+              print("\(#function) 유저 등록 실패: \(err)")
             } else {
-              print("유저 등록 성공")
+              print("\(#function) 유저 등록 성공")
+                completion()
             }
         }
     }

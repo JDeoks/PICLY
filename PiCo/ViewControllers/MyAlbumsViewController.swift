@@ -76,13 +76,13 @@ class MyAlbumsViewController: UIViewController {
     
     @objc func pullToRefresh(_ sender: Any) {
         stopSearching()
-        fetchAlbums()
+//        fetchAlbums()
         refreshControl.endRefreshing()
     }
     
     func initData() {
         //TODO: 내 데이터 fetch
-        fetchAlbums()
+//        fetchAlbums()
     }
     
     func action() {
@@ -204,56 +204,56 @@ extension MyAlbumsViewController: UITextFieldDelegate {
 // MARK: - data
 extension MyAlbumsViewController {
     
-    func fetchAlbums() {
-        print("\(type(of: self)) - \(#function)")
-        
-        albums.removeAll()
-        guard let userID = Auth.auth().currentUser?.uid else {
-            print("currentUser 없음 ")
-            return
-        }
-        fetchAlbumIDsForUser(userID: userID) { albumIDs in
-            self.fetchAlbumsWithIDs(docIDs: albumIDs) {
-                self.fetchAlbumsDone.onNext(())
-            }
-        }
-    }
-    
-    
-    func fetchAlbumIDsForUser(userID: String, completion: @escaping ([String]) -> Void) {
-        print("\(type(of: self)) - \(#function)")
-
-        let userDocRef = userRef.document(userID)
-        userDocRef.getDocument { (document, error) in
-            guard let document = document, document.exists, error == nil else {
-                print("\(type(of: self)) - \(#function) AlbumIDs fetch 실패 \(error?.localizedDescription ?? "")")
-                return
-            }
-            guard let albumIDs = document.data()?[UserField.albumIDs.rawValue] as? [String] else {
-                print("\(type(of: self)) - \(#function) albumIDs 변환 실패")
-                return
-            }
-            completion(albumIDs)
-        }
-    }
-    
-    func fetchAlbumsWithIDs(docIDs: [String], completion: @escaping () -> Void) {
-        print("\(type(of: self)) - \(#function)")
-
-        let db = Firestore.firestore()
-        let albumsRef = db.collection("Albums")
-        albumsRef.whereField(FieldPath.documentID(), in: docIDs).getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("\(type(of: self)) - \(#function) querySnapshot fetch 실패")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                    let albumDoc = document as DocumentSnapshot
-                    self.albums.append(AlbumModel(document: albumDoc))
-                }
-                completion()
-            }
-        }
-    }
+//    func fetchAlbums() {
+//        print("\(type(of: self)) - \(#function)")
+//        
+//        albums.removeAll()
+//        guard let userID = Auth.auth().currentUser?.uid else {
+//            print("currentUser 없음 ")
+//            return
+//        }
+//        fetchAlbumIDsForUser(userID: userID) { albumIDs in
+//            self.fetchAlbumsWithIDs(docIDs: albumIDs) {
+//                self.fetchAlbumsDone.onNext(())
+//            }
+//        }
+//    }
+//    
+//    
+//    func fetchAlbumIDsForUser(userID: String, completion: @escaping ([String]) -> Void) {
+//        print("\(type(of: self)) - \(#function)")
+//
+//        let userDocRef = userRef.document(userID)
+//        userDocRef.getDocument { (document, error) in
+//            guard let document = document, document.exists, error == nil else {
+//                print("\(type(of: self)) - \(#function) AlbumIDs fetch 실패 \(error?.localizedDescription ?? "")")
+//                return
+//            }
+//            guard let albumIDs = document.data()?[UserField.albumIDs.rawValue] as? [String] else {
+//                print("\(type(of: self)) - \(#function) albumIDs 변환 실패")
+//                return
+//            }
+//            completion(albumIDs)
+//        }
+//    }
+//    
+//    func fetchAlbumsWithIDs(docIDs: [String], completion: @escaping () -> Void) {
+//        print("\(type(of: self)) - \(#function)")
+//
+//        let db = Firestore.firestore()
+//        let albumsRef = db.collection("Albums")
+//        albumsRef.whereField(FieldPath.documentID(), in: docIDs).getDocuments { (querySnapshot, error) in
+//            if let error = error {
+//                print("\(type(of: self)) - \(#function) querySnapshot fetch 실패")
+//            } else {
+//                for document in querySnapshot!.documents {
+//                    print("\(document.documentID) => \(document.data())")
+//                    let albumDoc = document as DocumentSnapshot
+//                    self.albums.append(AlbumModel(document: albumDoc))
+//                }
+//                completion()
+//            }
+//        }
+//    }
         
 }
