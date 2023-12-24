@@ -19,7 +19,6 @@ class UploadViewController: UIViewController {
     
     let uploadVM = UploadViewModel()
     
-    
     let disposeBag = DisposeBag()
     
     lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -111,6 +110,10 @@ class UploadViewController: UIViewController {
         uploadButton.rx.tap
             .subscribe { _ in
                 self.view.addSubview(self.loadingView)
+                if self.uploadVM.tags.value.isEmpty {
+                    self.uploadVM.tags.accept([self.tagTextField.text!])
+                    self.tagTextField.text = ""
+                }
                 self.uploadVM.uploadAlbum()
             }
             .disposed(by: disposeBag)
@@ -327,6 +330,15 @@ extension UploadViewController: UITextFieldDelegate {
 extension UploadViewController {
 
     func showUploadFinishedAlert() {
+        
+        // TODO: 메인 화면 새로고침
+//        let viewControllers = self.navigationController!.viewControllers
+//        if viewControllers.count >= 2 {
+//            let targetViewController = viewControllers[viewControllers.count - 2]
+//            if let myalbumsVC = targetViewController as? MyAlbumsViewController {
+//                myalbumsVC.fetchAlbums()
+//            }
+//        }
         let sheet = UIAlertController(title: "업로드 완료", message: "링크를 복사하시겠습니까?", preferredStyle: .alert)
         
         let loginAction = UIAlertAction(title: "링크 복사하고 창 닫기", style: .default, handler: { _ in
@@ -339,7 +351,7 @@ extension UploadViewController {
         
         sheet.addAction(loginAction)
         sheet.addAction(cancelAction)
-        
+
         present(sheet, animated: true)
     }
 }
@@ -380,7 +392,7 @@ extension UploadViewController: PHPickerViewControllerDelegate {
                 }
             }
             // 여기에 추가하고 싶음
-            // self.didFinishPickingDone.onNext(())
+            // self.selectedImageCollectionView.reloadData()
         }
         picker.dismiss(animated: true)
     }

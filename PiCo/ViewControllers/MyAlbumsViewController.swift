@@ -76,13 +76,13 @@ class MyAlbumsViewController: UIViewController {
     
     @objc func pullToRefresh(_ sender: Any) {
         stopSearching()
-//        fetchAlbums()
+        fetchAlbums()
         refreshControl.endRefreshing()
     }
     
     func initData() {
         //TODO: 내 데이터 fetch
-//        fetchAlbums()
+        fetchAlbums()
     }
     
     func action() {
@@ -146,16 +146,19 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = myAlbumsCollectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumsCollectionViewCell", for: indexPath) as! MyAlbumsCollectionViewCell
-        cell.setData(album: albums[indexPath.row])
-        cell.copyLinkButton.rx.tap
-            .subscribe { _ in
-                // TODO: url 복사
-                UIPasteboard.general.url = cell.postURL
-//                self.showToast(message: "링크가 복사되었습니다.")
-                self.showToast(message: "\(cell.postURL)")
-            }
-            .disposed(by: cell.disposeBag)
-        
+        if albums.indices.contains(indexPath.row) {
+            cell.setData(album: albums[indexPath.row])
+            cell.copyLinkButton.rx.tap
+                .subscribe { _ in
+                    // TODO: url 복사
+                    UIPasteboard.general.url = cell.postURL
+    //                self.showToast(message: "링크가 복사되었습니다.")
+                    self.showToast(message: "\(cell.postURL)")
+                }
+                .disposed(by: cell.disposeBag)
+        } else {
+            print("인덱스 오류")
+        }
         return cell
     }
     
@@ -219,7 +222,27 @@ extension MyAlbumsViewController {
 //            }
 //        }
 //    }
-//    
+    func fetchAlbums() {
+        albums.removeAll()
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("currentUser 없음 ")
+            return
+        }
+        albumsRef
+            .whereField("ownerID", isEqualTo: userID)
+            .order(by: "creationTime", descending: true) // 최신순 정렬
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let album = AlbumModel(document: document)
+                        self.albums.append(album)
+                    }
+                    self.fetchAlbumsDone.onNext(())
+                }
+            }
+    }
 //    
 //    func fetchAlbumIDsForUser(userID: String, completion: @escaping ([String]) -> Void) {
 //        print("\(type(of: self)) - \(#function)")
@@ -237,7 +260,7 @@ extension MyAlbumsViewController {
 //            completion(albumIDs)
 //        }
 //    }
-//    
+////    
 //    func fetchAlbumsWithIDs(docIDs: [String], completion: @escaping () -> Void) {
 //        print("\(type(of: self)) - \(#function)")
 //

@@ -22,7 +22,6 @@ class UploadViewModel {
     var images: [UIImage] = []
     // TODO: tags 업데이트
     var expireTime = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
-    
     var tags = BehaviorRelay<[String]>(value: [])
     /// uploadAlbum() -> UploadViewController
     let uploadAlbumDone = PublishSubject<Void>()
@@ -43,7 +42,10 @@ class UploadViewModel {
     func uploadAlbumDocToFireStore( completion: @escaping (String) -> Void) {
         print("\(type(of: self)) - \(#function)")
         
-        let documentData = AlbumModel.createDictToUpload(expireTime: expireTime, imageCount: images.count, tags: tags.value)
+        let documentData = AlbumModel.createDictToUpload(
+            expireTime: expireTime,
+            imageCount: images.count,
+            tags: tags.value)
         var ref: DocumentReference? = nil
         ref = albumCollection.addDocument(data: documentData) { err in
             if let err = err {

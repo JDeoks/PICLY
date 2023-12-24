@@ -22,8 +22,6 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     @IBOutlet var tagLabel: UILabel!
     @IBOutlet var dDayLabel: UILabel!
     
-
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         initUI()
@@ -32,6 +30,7 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
+        thumnailImageView.image = nil
     }
     
     func initUI() {
@@ -48,23 +47,32 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     func setData(album: AlbumModel) {
         fetchImage(albumID: album.albumID)
         creationTimeLabel.text = album.getCreationTimeStr()
-        tagLabel.text = "# \(album.tags[0])"
-        dDayLabel.text = "D-\(album.getDDay())"
+        if album.tags.isEmpty {
+            tagLabel.text = "#"
+        } else {
+            tagLabel.text = "# \(album.tags[0])"
+        }
+        if album.getDDay() < 0 {
+            dDayLabel.text = "D+\(-album.getDDay())"
+        } else {
+            dDayLabel.text = "D-\(album.getDDay())"
+        }
+        
     }
     
     func fetchImage(albumID: String) {
         print("\(type(of: self)) - \(#function)")
         
-        let albumImagesRef = Storage.storage().reference().child(albumID).child("1.jpeg")
+        thumnailImageView.kf.indicatorType = .activity
+        let albumImagesRef = Storage.storage().reference().child(albumID).child("0.jpeg")
         albumImagesRef.downloadURL {(url, error) in
             if let url = url, error == nil {
                 print("\(url)")
-                self.thumnailImageView.kf.setImage(with: url)
+                self.thumnailImageView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
             } else {
                 print("\(type(of: self)) - \(#function) 실패")
             }
         }
     }
-
 
 }
