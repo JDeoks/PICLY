@@ -99,6 +99,7 @@ class MyAlbumsViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        // 키보드 툴바
         RxKeyboard.instance.visibleHeight
             .skip(1)
             .drive(onNext: { [weak self] keyboardVisibleHeight in

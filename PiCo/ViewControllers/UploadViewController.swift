@@ -19,7 +19,7 @@ class UploadViewController: UIViewController {
     
     let uploadVM = UploadViewModel()
     
-    var tags = BehaviorRelay<[String]>(value: [])
+    
     let disposeBag = DisposeBag()
     
     lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -115,6 +115,7 @@ class UploadViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        // 키보드 툴바
         RxKeyboard.instance.visibleHeight
             .skip(1)
             .drive(onNext: { [weak self] keyboardVisibleHeight in
@@ -166,17 +167,20 @@ class UploadViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        tags.asObservable()
+        uploadVM.tags.asObservable()
             .subscribe { updatedTags in
                 guard let tagsArray = updatedTags.element else {
                     return
                 }
+                self.tagsCollectionView.reloadData()
                 if tagsArray.count == 0 {
-                    self.tagsCollectionView.isHidden = true
-                    self.tagsCollectionView.reloadData()
+                    UIView.animate(withDuration: 0.1, animations: {
+                        self.tagsCollectionView.isHidden = true
+                    })
                 } else {
-                    self.tagsCollectionView.isHidden = false
-                    self.tagsCollectionView.reloadData()
+                    UIView.animate(withDuration: 0.1, animations: {
+                        self.tagsCollectionView.isHidden = false
+                    })
                 }
             }
             .disposed(by: disposeBag)
@@ -190,7 +194,7 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case tagsCollectionView:
-            return tags.value.count
+            return uploadVM.tags.value.count
         case selectedImageCollectionView:
             return 1
         default:
@@ -202,13 +206,13 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
         switch collectionView {
         case tagsCollectionView:
             let cell = tagsCollectionView.dequeueReusableCell(withReuseIdentifier: "TagsCollectionViewCell", for: indexPath) as! TagsCollectionViewCell
-            cell.tagTextField.text = tags.value[indexPath.row]
+            cell.tagTextField.text = uploadVM.tags.value[indexPath.row]
             
             cell.deleteTagButton.rx.tap
                 .subscribe { _ in
-                    var newTags = self.tags.value
+                    var newTags = self.uploadVM.tags.value
                     newTags.remove(at: indexPath.row)
-                    self.tags.accept(newTags)
+                    self.uploadVM.tags.accept(newTags)
                 }
                 .disposed(by: cell.disposeBag)
             
@@ -272,7 +276,7 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
         switch collectionView {
         case tagsCollectionView:
             let label = UILabel()
-            label.text = tags.value[indexPath.row]
+            label.text = uploadVM.tags.value[indexPath.row]
             label.font = .systemFont(ofSize: 14)
             label.sizeToFit()
             let cellHeight = tagsCollectionView.frame.height // 셀의 높이 설정
@@ -310,9 +314,9 @@ extension UploadViewController: UITextFieldDelegate {
         guard let newTag = tagTextField.text, newTag != "" else {
             return true
         }
-        var currentTags = tags.value
+        var currentTags = uploadVM.tags.value
         currentTags.append(newTag)
-        tags.accept(currentTags)
+        uploadVM.tags.accept(currentTags)
         tagTextField.text = ""
         return true
     }

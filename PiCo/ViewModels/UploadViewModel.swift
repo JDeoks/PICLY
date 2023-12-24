@@ -7,9 +7,8 @@
 
 import Foundation
 import RxSwift
-import RxKeyboard
+import RxCocoa
 import SnapKit
-import PhotosUI
 import SwiftDate
 import FirebaseFirestore
 import FirebaseStorage
@@ -22,9 +21,10 @@ class UploadViewModel {
     /// 선택한 사진 배열
     var images: [UIImage] = []
     // TODO: tags 업데이트
-    var tags: [String] = []
     var expireTime = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
     
+    var tags = BehaviorRelay<[String]>(value: [])
+    /// uploadAlbum() -> UploadViewController
     let uploadAlbumDone = PublishSubject<Void>()
     
 // MARK: - 파이어베이스 업로드
@@ -43,7 +43,7 @@ class UploadViewModel {
     func uploadAlbumDocToFireStore( completion: @escaping (String) -> Void) {
         print("\(type(of: self)) - \(#function)")
         
-        let documentData = AlbumModel.createDictToUpload(expireTime: expireTime, imageCount: images.count, tags: tags)
+        let documentData = AlbumModel.createDictToUpload(expireTime: expireTime, imageCount: images.count, tags: tags.value)
         var ref: DocumentReference? = nil
         ref = albumCollection.addDocument(data: documentData) { err in
             if let err = err {
