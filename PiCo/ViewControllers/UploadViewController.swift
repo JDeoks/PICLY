@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import RxKeyboard
 import SnapKit
 import PhotosUI
@@ -17,7 +18,8 @@ import FirebaseStorage
 class UploadViewController: UIViewController {
     
     let uploadVM = UploadViewModel()
-        
+    
+    var tags = BehaviorRelay<[String]>(value: [])
     let disposeBag = DisposeBag()
     
     lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -43,12 +45,14 @@ class UploadViewController: UIViewController {
         initData()
         action()
         bind()
-        print(scrollView.frame)
     }
     
     func initUI() {
         // 태그 스택뷰
         inputTagStackView.layer.cornerRadius = 4
+        
+        // tagTextField
+        tagTextField.delegate = self
         
         // datePicker
         expireDatePicker.tintColor = UIColor(named: "HighlightBlue")
@@ -66,6 +70,7 @@ class UploadViewController: UIViewController {
         tagsFlowLayout.scrollDirection = .horizontal
         tagsCollectionView.collectionViewLayout = tagsFlowLayout
         tagsCollectionView.alwaysBounceHorizontal = true
+        tagsCollectionView.isHidden = true
 
         // selectedImageCollectionView
         selectedImageCollectionView.dataSource = self
@@ -140,15 +145,6 @@ class UploadViewController: UIViewController {
         expireDatePicker.addTarget(self, action: #selector(expireDateChanged(_:)), for: .valueChanged)
     }
     
-    func bind() {
-        uploadVM.uploadAlbumDone
-            .subscribe { _ in
-                self.loadingView.removeFromSuperview()
-                self.showUploadFinishedAlert()
-            }
-            .disposed(by: disposeBag)
-    }
-    
     /// uploadVM.expireTime, leftTimeLabel 업데이트
     @objc func expireDateChanged(_ datePicker: UIDatePicker) {
         uploadVM.expireTime = datePicker.date
@@ -162,15 +158,39 @@ class UploadViewController: UIViewController {
         leftTimeLabel.text = "\(daysLeft)일 \(hoursLeft)시간 후"
     }
     
+    func bind() {
+        uploadVM.uploadAlbumDone
+            .subscribe { _ in
+                self.loadingView.removeFromSuperview()
+                self.showUploadFinishedAlert()
+            }
+            .disposed(by: disposeBag)
+        
+        tags.asObservable()
+            .subscribe { updatedTags in
+                guard let tagsArray = updatedTags.element else {
+                    return
+                }
+                if tagsArray.count == 0 {
+                    self.tagsCollectionView.isHidden = true
+                    self.tagsCollectionView.reloadData()
+                } else {
+                    self.tagsCollectionView.isHidden = false
+                    self.tagsCollectionView.reloadData()
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
 }
 
 // MARK: - CollectionView
 extension UploadViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionView{
+        switch collectionView {
         case tagsCollectionView:
-            return 1
+            return tags.value.count
         case selectedImageCollectionView:
             return 1
         default:
@@ -179,13 +199,22 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch collectionView{
+        switch collectionView {
         case tagsCollectionView:
             let cell = tagsCollectionView.dequeueReusableCell(withReuseIdentifier: "TagsCollectionViewCell", for: indexPath) as! TagsCollectionViewCell
+            cell.tagTextField.text = tags.value[indexPath.row]
+            
+            cell.deleteTagButton.rx.tap
+                .subscribe { _ in
+                    var newTags = self.tags.value
+                    newTags.remove(at: indexPath.row)
+                    self.tags.accept(newTags)
+                }
+                .disposed(by: cell.disposeBag)
+            
             return cell
             
         case selectedImageCollectionView:
-            
             if uploadVM.images.indices.contains(indexPath.row) {
                 let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "SelectedImageCollectionViewCell", for: indexPath) as! SelectedImageCollectionViewCell
                 cell.imageView.image = uploadVM.images[indexPath.row]
@@ -198,7 +227,6 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
                         }
                     }
                     .disposed(by: cell.disposeBag)
-                
                 return cell
             } else {
                 let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "AddImageCollectionViewCell", for: indexPath) as! AddImageCollectionViewCell
@@ -212,23 +240,56 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // + 버튼일때 이미지 선택
-        if collectionView.cellForItem(at: indexPath) is AddImageCollectionViewCell {
-            presentPicker()
+        switch collectionView {
+        case tagsCollectionView:
+            return
+        case selectedImageCollectionView:
+            // + 버튼일때 이미지 선택
+            if collectionView.cellForItem(at: indexPath) is AddImageCollectionViewCell {
+                presentPicker()
+            }
+        default:
+            return
         }
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-         return section == 0 ? UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8) : UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
+        switch collectionView {
+        case tagsCollectionView:
+            return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+            
+        case selectedImageCollectionView:
+            return section == 0 ? UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8) : UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
+            
+        default:
+            return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        }
+         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = selectedImageCollectionView.frame.height
-        let itemsPerColumn: CGFloat = 1
-        let heightPadding = sectionInsets.top * (itemsPerColumn + 1)
-        let cellHeight = (height - heightPadding) / itemsPerColumn
-        
-        return CGSize(width: cellHeight, height: cellHeight)
+        switch collectionView {
+        case tagsCollectionView:
+            let label = UILabel()
+            label.text = tags.value[indexPath.row]
+            label.font = .systemFont(ofSize: 14)
+            label.sizeToFit()
+            let cellHeight = tagsCollectionView.frame.height // 셀의 높이 설정
+            let cellWidth = label.frame.width + 52
+
+            return CGSize(width: cellWidth, height: cellHeight)
+        case selectedImageCollectionView:
+            let height = selectedImageCollectionView.frame.height
+            let itemsPerColumn: CGFloat = 1
+            let heightPadding = sectionInsets.top * (itemsPerColumn + 1)
+            let cellHeight = (height - heightPadding) / itemsPerColumn
+            
+            return CGSize(width: cellHeight, height: cellHeight)
+        default:
+            return .zero
+        }
+
     }
 
 }
@@ -238,6 +299,22 @@ extension UploadViewController: UIScrollViewDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
         self.view.endEditing(true)
+    }
+    
+}
+
+// MARK: - TextField
+extension UploadViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let newTag = tagTextField.text, newTag != "" else {
+            return true
+        }
+        var currentTags = tags.value
+        currentTags.append(newTag)
+        tags.accept(currentTags)
+        tagTextField.text = ""
+        return true
     }
     
 }

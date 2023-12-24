@@ -42,7 +42,6 @@ class UserModel: NSObject, NSSecureCoding {
               let authProvider = AuthProvider(string: providerString)else {
             return nil
         }
-
         self.userID = userID
         self.email = email
         self.creationTime = creationTime
@@ -69,4 +68,5 @@ class UserModel: NSObject, NSSecureCoding {
         ]
         return dictionary
     }
+    
 }

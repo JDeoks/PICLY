@@ -22,14 +22,16 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     @IBOutlet var tagLabel: UILabel!
     @IBOutlet var dDayLabel: UILabel!
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        disposeBag = DisposeBag()
-    }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
         initUI()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
     
     func initUI() {
