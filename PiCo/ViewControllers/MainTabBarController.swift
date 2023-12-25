@@ -6,11 +6,12 @@
 //
 
 import UIKit
-import FirebaseAuth
 import RxSwift
+import FirebaseAuth
+import FirebaseRemoteConfig
 
 class MainTabBarController: UITabBarController {
-
+    
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -18,9 +19,8 @@ class MainTabBarController: UITabBarController {
         
         super.viewDidLoad()
         initUI()
+        initData()
         bind()
-        LoginManager.shared.fetchUserAuth()
-        LoginManager.shared.getUserModelFromServer()
     }
     
     func initUI() {
@@ -30,23 +30,19 @@ class MainTabBarController: UITabBarController {
         self.tabBar.items?[1].title = "설정"
     }
     
+    func initData() {
+        ConfigManager.shared.fetchRemoteConfig()
+        LoginManager.shared.fetchUserAuth()
+        LoginManager.shared.getUserModelFromServer()
+    }
+    
     func bind() {
         LoginManager.shared.fetchUserAuthFailed
             .subscribe { _ in
                 LoginManager.shared.signOut()
-                self.setOnboardingVCAsRoot()
+                SceneManager.shared.setSignInVCAsRoot(animated: false)
             }
             .disposed(by: disposeBag)
     }
     
-    func setOnboardingVCAsRoot() {
-        print("\(type(of: self)) - \(#function)")
-
-        let window = UIApplication.shared.getWindow()
-        // 넘어갈 화면
-        let signInVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
-        // 새 루트 뷰 컨트롤러 설정
-        window.rootViewController = signInVC
-    }
-
 }
