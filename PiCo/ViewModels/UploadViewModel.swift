@@ -5,7 +5,6 @@
 //  Created by JDeoks on 12/23/23.
 //
 
-import UIKit
 import Foundation
 import RxSwift
 import RxCocoa
@@ -71,9 +70,9 @@ class UploadViewModel {
         
         if images.isEmpty == false {
             let uploadRef = albumImagesRef.child("thumbnail.jpeg")
-            if let thumnailImage = images[0].cropSquare()?.jpegData(compressionQuality: 0.2) {
+            if let thumbnailImage = images[0].jpegData(compressionQuality: 0.1) {
                 uploadGroup.enter()
-                uploadRef.putData(thumnailImage, metadata: metadata) { metadata, error in
+                uploadRef.putData(thumbnailImage, metadata: metadata) { metadata, error in
                     uploadGroup.leave()
                 }
             }

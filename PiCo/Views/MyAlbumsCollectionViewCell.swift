@@ -67,23 +67,18 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
 
         thumnailImageView.kf.indicatorType = .activity
         let storageRef = Storage.storage().reference().child(albumID)
-        fetchImage(from: storageRef, withName: "thumbnail.jpeg") { [weak self] success in
-            if !success {
-                self?.fetchImage(from: storageRef, withName: "0.jpeg")
-            }
-        }
+        fetchImage(from: storageRef, withName: "thumbnail.jpeg")
     }
 
-    private func fetchImage(from storageRef: StorageReference, withName fileName: String, completion: ((Bool) -> Void)? = nil) {
+    private func fetchImage(from storageRef: StorageReference, withName fileName: String) {
         print("\(type(of: self)) - \(#function)", fileName)
+        
         storageRef.child(fileName).downloadURL { [weak self] url, error in
             guard let url = url, error == nil else {
                 print("Failed to fetch \(fileName): \(error?.localizedDescription ?? "Unknown error")")
-                completion?(false)
                 return
             }
             self?.thumnailImageView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
-            completion?(true)
         }
     }
 

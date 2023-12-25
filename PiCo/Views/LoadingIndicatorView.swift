@@ -37,6 +37,7 @@ class LoadingIndicatorView: UIView {
         let label = UILabel()
         label.text = guideMessage
         label.textColor = UIColor(named: "SecondText")
+        label.font = .systemFont(ofSize: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

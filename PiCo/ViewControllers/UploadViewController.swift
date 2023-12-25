@@ -113,6 +113,7 @@ class UploadViewController: UIViewController {
                     self.showToast(message: "선택된 이미지가 없습니다.")
                     return
                 }
+                self.loadingView.loadingLabel.text = ""
                 self.view.addSubview(self.loadingView)
                 if self.uploadVM.tags.value.isEmpty && self.tagTextField.text! != "" {
                     self.uploadVM.tags.accept([self.tagTextField.text!])
@@ -368,7 +369,8 @@ extension UploadViewController: PHPickerViewControllerDelegate {
     }
     
     // TODO: for안의 코드가 다 돌았을 때 didFinishPickingDone하고 싶은데 loadObject도 비동기라 안됨
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {           loadingView.loadingLabel.text = "사진 로딩 중"
+        self.view.addSubview(self.loadingView)
         let itemProviders = results.map(\.itemProvider)
         print(1)
         DispatchQueue.global().async {
@@ -383,6 +385,8 @@ extension UploadViewController: PHPickerViewControllerDelegate {
                         // TODO: 이미지 일정크기 이하로 줄이는 함수
                         self.uploadVM.images.append(image)
                         DispatchQueue.main.async {
+                            self.loadingView.removeFromSuperview()
+                            self.loadingView.loadingLabel.text = ""
                             self.selectedImageCollectionView.reloadData()
                         }
                     }
