@@ -15,7 +15,7 @@ class ConfigManager {
     private init() {}
     
     var remoteConfig: RemoteConfig?
-    let defaultRootURL = URL(string: "http.app/")!
+    let defaultRootURL: URL = URL(string: "https://picoweb.vercel.app/")!
     
 //    func setRemoteConfig() {
 //        print("\(type(of: self)) - \(#function)")
@@ -53,6 +53,13 @@ class ConfigManager {
             UserDefaults.standard.set(url, forKey: "rootURL")
             print("\(type(of: self)) - \(#function) \(url)")
         }
+    }
+    
+    func getRootURL() -> URL {
+        guard let rootURL = UserDefaults.standard.url(forKey: "rootURL") else {
+            return defaultRootURL
+        }
+        return rootURL
     }
     
 }

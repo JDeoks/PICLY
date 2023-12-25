@@ -146,8 +146,8 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
                 .subscribe { _ in
                     // TODO: url 복사
                     UIPasteboard.general.url = cell.postURL
-    //                self.showToast(message: "링크가 복사되었습니다.")
-                    self.showToast(message: "\(cell.postURL)")
+                    self.showToast(message: "링크가 복사되었습니다.")
+                    print(cell.postURL)
                 }
                 .disposed(by: cell.disposeBag)
         } else {
