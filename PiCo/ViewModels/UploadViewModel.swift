@@ -5,6 +5,7 @@
 //  Created by JDeoks on 12/23/23.
 //
 
+import UIKit
 import Foundation
 import RxSwift
 import RxCocoa
@@ -61,15 +62,25 @@ class UploadViewModel {
     func uploadImagesToStorage(albumDocID: String, completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
         
-        // asdfsaf/0
+        // 스토리지 ref = albumDocID/imageIndex
         let albumImagesRef = Storage.storage().reference().child(albumDocID)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         let uploadGroup = DispatchGroup()
         print("images.count:", images.count)
+        
+        if images.isEmpty == false {
+            let uploadRef = albumImagesRef.child("thumbnail.jpeg")
+            if let thumnailImage = images[0].cropSquare()?.jpegData(compressionQuality: 0.2) {
+                uploadGroup.enter()
+                uploadRef.putData(thumnailImage, metadata: metadata) { metadata, error in
+                    uploadGroup.leave()
+                }
+            }
+        }
         for imageIdx in 0..<images.count {
             let uploadRef = albumImagesRef.child("\(imageIdx).jpeg")
-            if let imageData = images[imageIdx].jpegData(compressionQuality: 0.8) {
+            if let imageData = images[imageIdx].jpegData(compressionQuality: 1) {
                 uploadGroup.enter()
                 uploadRef.putData(imageData, metadata: metadata) { metadata, error in
                     uploadGroup.leave()

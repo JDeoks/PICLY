@@ -45,7 +45,7 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     }
     
     func setData(album: AlbumModel) {
-        fetchImage(albumID: album.albumID)
+        fetchThumbnail(albumID: album.albumID)
         let rootURL: URL = ConfigManager.shared.getRootURL()
         postURL = rootURL.appendingPathComponent("Album").appendingPathComponent(album.albumID)
         creationTimeLabel.text = album.getCreationTimeStr()
@@ -62,18 +62,28 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func fetchImage(albumID: String) {
+    func fetchThumbnail(albumID: String) {
         print("\(type(of: self)) - \(#function)")
-        
+
         thumnailImageView.kf.indicatorType = .activity
-        let albumImagesRef = Storage.storage().reference().child(albumID).child("0.jpeg")
-        albumImagesRef.downloadURL {(url, error) in
-            if let url = url, error == nil {
-                print("\(url)")
-                self.thumnailImageView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
-            } else {
-                print("\(type(of: self)) - \(#function) 실패")
+        let storageRef = Storage.storage().reference().child(albumID)
+        fetchImage(from: storageRef, withName: "thumbnail.jpeg") { [weak self] success in
+            if !success {
+                self?.fetchImage(from: storageRef, withName: "0.jpeg")
             }
+        }
+    }
+
+    private func fetchImage(from storageRef: StorageReference, withName fileName: String, completion: ((Bool) -> Void)? = nil) {
+        print("\(type(of: self)) - \(#function)", fileName)
+        storageRef.child(fileName).downloadURL { [weak self] url, error in
+            guard let url = url, error == nil else {
+                print("Failed to fetch \(fileName): \(error?.localizedDescription ?? "Unknown error")")
+                completion?(false)
+                return
+            }
+            self?.thumnailImageView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
+            completion?(true)
         }
     }
 
