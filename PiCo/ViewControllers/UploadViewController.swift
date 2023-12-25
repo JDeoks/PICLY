@@ -109,8 +109,12 @@ class UploadViewController: UIViewController {
         // 완료 버튼
         uploadButton.rx.tap
             .subscribe { _ in
+                if self.uploadVM.images.isEmpty {
+                    self.showToast(message: "선택된 이미지가 없습니다.")
+                    return
+                }
                 self.view.addSubview(self.loadingView)
-                if self.uploadVM.tags.value.isEmpty {
+                if self.uploadVM.tags.value.isEmpty && self.tagTextField.text! != "" {
                     self.uploadVM.tags.accept([self.tagTextField.text!])
                     self.tagTextField.text = ""
                 }
@@ -165,6 +169,7 @@ class UploadViewController: UIViewController {
     func bind() {
         uploadVM.uploadAlbumDone
             .subscribe { _ in
+                DataManager.shared.fetchAlbums()
                 self.loadingView.removeFromSuperview()
                 self.showUploadFinishedAlert()
             }
@@ -198,8 +203,10 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
         switch collectionView {
         case tagsCollectionView:
             return uploadVM.tags.value.count
+            
         case selectedImageCollectionView:
             return 1
+            
         default:
             return 1
         }
@@ -250,11 +257,13 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
         switch collectionView {
         case tagsCollectionView:
             return
+            
         case selectedImageCollectionView:
             // + 버튼일때 이미지 선택
             if collectionView.cellForItem(at: indexPath) is AddImageCollectionViewCell {
                 presentPicker()
             }
+            
         default:
             return
         }
@@ -284,19 +293,18 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
             label.sizeToFit()
             let cellHeight = tagsCollectionView.frame.height // 셀의 높이 설정
             let cellWidth = label.frame.width + 52
-
             return CGSize(width: cellWidth, height: cellHeight)
+            
         case selectedImageCollectionView:
             let height = selectedImageCollectionView.frame.height
             let itemsPerColumn: CGFloat = 1
             let heightPadding = sectionInsets.top * (itemsPerColumn + 1)
             let cellHeight = (height - heightPadding) / itemsPerColumn
-            
             return CGSize(width: cellHeight, height: cellHeight)
+            
         default:
             return .zero
         }
-
     }
 
 }
@@ -330,17 +338,7 @@ extension UploadViewController: UITextFieldDelegate {
 extension UploadViewController {
 
     func showUploadFinishedAlert() {
-        
-        // TODO: 메인 화면 새로고침
-//        let viewControllers = self.navigationController!.viewControllers
-//        if viewControllers.count >= 2 {
-//            let targetViewController = viewControllers[viewControllers.count - 2]
-//            if let myalbumsVC = targetViewController as? MyAlbumsViewController {
-//                myalbumsVC.fetchAlbums()
-//            }
-//        }
         let sheet = UIAlertController(title: "업로드 완료", message: "링크를 복사하시겠습니까?", preferredStyle: .alert)
-        
         let loginAction = UIAlertAction(title: "링크 복사하고 창 닫기", style: .default, handler: { _ in
             UIPasteboard.general.url = self.uploadVM.albumURL
             self.dismiss(animated: true)
@@ -348,12 +346,11 @@ extension UploadViewController {
         let cancelAction = UIAlertAction(title: "창 닫기", style: .cancel) { _ in
             self.dismiss(animated: true)
         }
-        
         sheet.addAction(loginAction)
         sheet.addAction(cancelAction)
-
         present(sheet, animated: true)
     }
+    
 }
 
 // MARK: - PHPickerViewController

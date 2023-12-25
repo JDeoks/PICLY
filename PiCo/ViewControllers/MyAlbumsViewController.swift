@@ -18,12 +18,6 @@ import FirebaseAuth
 
 class MyAlbumsViewController: UIViewController {
     
-    let albumsRef = Firestore.firestore().collection("Albums")
-    let userRef = Firestore.firestore().collection("Users")
-    var albums: [AlbumModel] = []
-    
-    /// fetchAlbums() -> MyAlbumsViewController
-    let fetchAlbumsDone = PublishSubject<Void>()
     let disposeBag = DisposeBag()
     
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -76,13 +70,13 @@ class MyAlbumsViewController: UIViewController {
     
     @objc func pullToRefresh(_ sender: Any) {
         stopSearching()
-        fetchAlbums()
+        DataManager.shared.fetchAlbums()
         refreshControl.endRefreshing()
     }
     
     func initData() {
         //TODO: 내 데이터 fetch
-        fetchAlbums()
+        DataManager.shared.fetchAlbums()
     }
     
     func action() {
@@ -128,7 +122,7 @@ class MyAlbumsViewController: UIViewController {
     }
     
     func bind() {
-        fetchAlbumsDone
+        DataManager.shared.fetchAlbumsDone
             .subscribe { _ in
                 self.myAlbumsCollectionView.reloadData()
             }
@@ -141,13 +135,13 @@ class MyAlbumsViewController: UIViewController {
 extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return albums.count
+        return DataManager.shared.albums.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = myAlbumsCollectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumsCollectionViewCell", for: indexPath) as! MyAlbumsCollectionViewCell
-        if albums.indices.contains(indexPath.row) {
-            cell.setData(album: albums[indexPath.row])
+        if DataManager.shared.albums.indices.contains(indexPath.row) {
+            cell.setData(album: DataManager.shared.albums[indexPath.row])
             cell.copyLinkButton.rx.tap
                 .subscribe { _ in
                     // TODO: url 복사
@@ -203,81 +197,4 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         })
     }
     
-}
-
-// MARK: - data
-extension MyAlbumsViewController {
-    
-//    func fetchAlbums() {
-//        print("\(type(of: self)) - \(#function)")
-//        
-//        albums.removeAll()
-//        guard let userID = Auth.auth().currentUser?.uid else {
-//            print("currentUser 없음 ")
-//            return
-//        }
-//        fetchAlbumIDsForUser(userID: userID) { albumIDs in
-//            self.fetchAlbumsWithIDs(docIDs: albumIDs) {
-//                self.fetchAlbumsDone.onNext(())
-//            }
-//        }
-//    }
-    func fetchAlbums() {
-        albums.removeAll()
-        guard let userID = Auth.auth().currentUser?.uid else {
-            print("currentUser 없음 ")
-            return
-        }
-        albumsRef
-            .whereField("ownerID", isEqualTo: userID)
-            .order(by: "creationTime", descending: true) // 최신순 정렬
-            .getDocuments { (querySnapshot, error) in
-                if let error = error {
-                    print("Error getting documents: \(error)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        let album = AlbumModel(document: document)
-                        self.albums.append(album)
-                    }
-                    self.fetchAlbumsDone.onNext(())
-                }
-            }
-    }
-//    
-//    func fetchAlbumIDsForUser(userID: String, completion: @escaping ([String]) -> Void) {
-//        print("\(type(of: self)) - \(#function)")
-//
-//        let userDocRef = userRef.document(userID)
-//        userDocRef.getDocument { (document, error) in
-//            guard let document = document, document.exists, error == nil else {
-//                print("\(type(of: self)) - \(#function) AlbumIDs fetch 실패 \(error?.localizedDescription ?? "")")
-//                return
-//            }
-//            guard let albumIDs = document.data()?[UserField.albumIDs.rawValue] as? [String] else {
-//                print("\(type(of: self)) - \(#function) albumIDs 변환 실패")
-//                return
-//            }
-//            completion(albumIDs)
-//        }
-//    }
-////    
-//    func fetchAlbumsWithIDs(docIDs: [String], completion: @escaping () -> Void) {
-//        print("\(type(of: self)) - \(#function)")
-//
-//        let db = Firestore.firestore()
-//        let albumsRef = db.collection("Albums")
-//        albumsRef.whereField(FieldPath.documentID(), in: docIDs).getDocuments { (querySnapshot, error) in
-//            if let error = error {
-//                print("\(type(of: self)) - \(#function) querySnapshot fetch 실패")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
-//                    let albumDoc = document as DocumentSnapshot
-//                    self.albums.append(AlbumModel(document: albumDoc))
-//                }
-//                completion()
-//            }
-//        }
-//    }
-        
 }

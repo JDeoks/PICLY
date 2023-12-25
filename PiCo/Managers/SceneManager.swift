@@ -60,5 +60,45 @@ class SceneManager {
         webVC.pageURL = url
         vc.present(webVC, animated: true)
     }
+    
+    // TODO: - 최적화 필요 뷰 컨트롤러 계속 생성함
+    func setSignInVCAsRoot(animated: Bool) {
+        let window = UIApplication.shared.getWindow()
+        let signInVC = getVC(scene: .signIn)
+        // 현재 루트 뷰 컨트롤러의 스냅샷 가져오기
+        guard let snapshot = window.snapshotView(afterScreenUpdates: true) else {
+            return
+        }
+        // 새 루트 뷰 컨트롤러 설정
+        window.rootViewController = signInVC
+        if animated {
+            // 스냅샷을 새 루트 뷰 컨트롤러 위에 추가
+            signInVC.view.addSubview(snapshot)
+            // 애니메이션을 통해 스냅샷을 서서히 사라지게 함
+            UIView.animate(withDuration: 0.5, animations: {
+                snapshot.layer.opacity = 0
+            }) { _ in
+                snapshot.removeFromSuperview()
+            }
+        }
+    }
+    
+    func setMainTabVCAsRoot(animated: Bool) {
+        let window = UIApplication.shared.getWindow()
+
+        let mainTabVC = getVC(scene: .mainTab)
+        guard let snapshot = window.snapshotView(afterScreenUpdates: true) else {
+            return
+        }
+        window.rootViewController = mainTabVC
+        if animated {
+            mainTabVC.view.addSubview(snapshot)
+            UIView.animate(withDuration: 0.5, animations: {
+                snapshot.layer.opacity = 0
+            }) { _ in
+                snapshot.removeFromSuperview()
+            }
+        }
+    }
 
 }

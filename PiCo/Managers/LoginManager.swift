@@ -117,8 +117,21 @@ class LoginManager {
         }
     }
     
+    // TODO: 계정 삭제
     func deleteUser() {
         print("\(type(of: self)) - \(#function)")
+        let user = Auth.auth().currentUser
+        var credential: AuthCredential
+
+        // Prompt the user to re-provide their sign-in credentials
+
+//        user?.reauthenticate(with: credential) { error in
+//          if let error = error {
+//            // An error happened.
+//          } else {
+//            // User re-authenticated.
+//          }
+//        }
 
         guard let user = Auth.auth().currentUser else {
             print("로그인된 사용자가 없습니다.")
@@ -148,7 +161,7 @@ class LoginManager {
     }
     
     private func deleteUserDoc(userID: String) {
-        
+        // TODO: 유저Doc 삭제
     }
     
     func handleFirebaseAuthError(error: NSError) {

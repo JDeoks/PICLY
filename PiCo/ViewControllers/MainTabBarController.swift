@@ -33,21 +33,10 @@ class MainTabBarController: UITabBarController {
     func bind() {
         LoginManager.shared.fetchUserAuthFailed
             .subscribe { _ in
-                self.resetAuthenticationState()
+                LoginManager.shared.signOut()
                 self.setOnboardingVCAsRoot()
             }
             .disposed(by: disposeBag)
-    }
-    
-    // 인증 정보 리셋후 온보딩으로
-    func resetAuthenticationState() {
-        print("\(type(of: self)) - \(#function)")
-
-        do {
-            try Auth.auth().signOut()
-        } catch let signOutError {
-            // TODO: 인증 오류가 발생했습니다. 앱을 재시작해 주세요 Alert
-        }
     }
     
     func setOnboardingVCAsRoot() {

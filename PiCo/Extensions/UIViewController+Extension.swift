@@ -11,20 +11,30 @@ extension UIViewController {
 
     // 토스트
     func showToast(message : String) {
-        let toastwidth = 200
-        let toastHeight = 35
-        let toastLabel = UILabel(frame: CGRect(x: Int(self.view.frame.size.width)/2 - toastwidth / 2, y: Int(self.view.frame.size.height * 0.8), width: toastwidth, height: toastHeight))
+        let toastLabel = UILabel()
+        toastLabel.numberOfLines = 2
         toastLabel.backgroundColor = UIColor(named: "TextFieldBackground")!.withAlphaComponent(0.9)
         toastLabel.textColor = UIColor(named: "mainText")
         toastLabel.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         toastLabel.textAlignment = .center
         toastLabel.text = message
         toastLabel.alpha = 1.0
-        toastLabel.layer.cornerRadius = CGFloat(toastHeight / 2);
-        toastLabel.clipsToBounds  =  true
+        toastLabel.layer.cornerRadius = 8.7
+        toastLabel.clipsToBounds = true
+
         self.view.addSubview(toastLabel)
+
+        toastLabel.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.bottom.equalToSuperview().multipliedBy(0.85) // 하단에서 80% 위치
+                make.height.greaterThanOrEqualTo(35)
+                make.width.greaterThanOrEqualTo(200) // 최소 너비: 200
+                make.width.lessThanOrEqualTo(self.view.snp.width).offset(-40) // 화면 너비에 여백을 두어 최대 너비 설정
+            }
+
+        // 애니메이션
         UIView.animate(withDuration: 2, delay: 0.1, options: .curveEaseIn, animations: {
-             toastLabel.alpha = 0.0
+            toastLabel.alpha = 0.0
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()
         })

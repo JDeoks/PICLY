@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0D40C32B39683400506124 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 2A0D40C22B39683400506124 /* SnapKit-Dynamic */; };
+		2A0D40C42B39683400506124 /* SnapKit-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2A0D40C22B39683400506124 /* SnapKit-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2A1960D72B0FAC92000935CF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1960D62B0FAC92000935CF /* SettingViewController.swift */; };
 		2A1BE96F2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1BE96D2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift */; };
 		2A282FDC2B318B550074C198 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A282FDB2B318B550074C198 /* UIApplication+Extension.swift */; };
@@ -109,6 +111,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2A0D40C52B39683400506124 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2A0D40C42B39683400506124 /* SnapKit-Dynamic in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A89E6B52B0A32C6009056DD /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -195,6 +208,7 @@
 				2A4D48EF2B0A652200E776C7 /* RxCocoa in Frameworks */,
 				2A69426B2B153E890070B194 /* FirebaseMessaging in Frameworks */,
 				2A6942692B153E890070B194 /* FirebaseInAppMessaging-Beta in Frameworks */,
+				2A0D40C32B39683400506124 /* SnapKit-Dynamic in Frameworks */,
 				2A69426F2B153E890070B194 /* FirebaseStorage in Frameworks */,
 				2A6942612B153E890070B194 /* FirebaseCrashlytics in Frameworks */,
 				2A6942672B153E890070B194 /* FirebaseFunctions in Frameworks */,
@@ -385,6 +399,7 @@
 				2A89E6A32B0A32C6009056DD /* Sources */,
 				2A89E6A42B0A32C6009056DD /* Frameworks */,
 				2A89E6A52B0A32C6009056DD /* Resources */,
+				2A0D40C52B39683400506124 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -405,6 +420,7 @@
 				2A69426C2B153E890070B194 /* FirebaseRemoteConfig */,
 				2A69426E2B153E890070B194 /* FirebaseStorage */,
 				2AF5899C2B2F042E0027D928 /* SwiftDate */,
+				2A0D40C22B39683400506124 /* SnapKit-Dynamic */,
 			);
 			productName = PiCoShareExtension;
 			productReference = 2A89E6A72B0A32C6009056DD /* PiCoShareExtension.appex */;
@@ -969,6 +985,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2A0D40C22B39683400506124 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A89E6982B094147009056DD /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
 		2A4D48EE2B0A652200E776C7 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2AB0C5172B08E354008BB7AE /* XCRemoteSwiftPackageReference "RxSwift" */;

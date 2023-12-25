@@ -82,7 +82,7 @@ class SignInViewController: UIViewController {
         signInWithCredentialDone
             .subscribe { _ in
                 self.loadingView.removeFromSuperview()
-                self.setMainTabVCAsRoot()
+                SceneManager.shared.setMainTabVCAsRoot(animated: true)
             }
             .disposed(by: disposeBag)
     }
@@ -177,27 +177,6 @@ class SignInViewController: UIViewController {
             }
         }
     }
-
-    func setMainTabVCAsRoot() {
-        let window = UIApplication.shared.getWindow()
-        let mainTabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
-
-        // 현재 루트 뷰 컨트롤러의 스냅샷 가져오기
-        guard let snapshot = window.snapshotView(afterScreenUpdates: true) else { return }
-
-        // 새 루트 뷰 컨트롤러 설정
-        window.rootViewController = mainTabBarVC
-
-        // 스냅샷을 새 루트 뷰 컨트롤러 위에 추가
-        mainTabBarVC.view.addSubview(snapshot)
-
-        // 애니메이션을 통해 스냅샷을 서서히 사라지게 함
-        UIView.animate(withDuration: 0.5, animations: {
-            snapshot.layer.opacity = 0
-        }) { _ in
-            snapshot.removeFromSuperview()
-        }
-    }
     
     deinit {
         print("SignInViewController - deinit")
@@ -217,7 +196,6 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
         request.nonce = sha256(nonce)
-
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
@@ -233,15 +211,12 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
               "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
             )
         }
-
         let charset: [Character] =
         Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-
         let nonce = randomBytes.map { byte in
             // Pick a random character from the set, wrapping around if needed.
             charset[Int(byte) % charset.count]
         }
-
         return String(nonce)
         }
 

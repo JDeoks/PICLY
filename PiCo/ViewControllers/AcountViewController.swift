@@ -59,7 +59,7 @@ class AcountViewController: UIViewController {
         signOutButton.rx.tap
             .subscribe { _ in
                 LoginManager.shared.signOut()
-                self.setSignInVCAsRoot()
+                SceneManager.shared.setSignInVCAsRoot(animated: true)
             }
             .disposed(by: disposeBag)
         
@@ -67,36 +67,13 @@ class AcountViewController: UIViewController {
             .subscribe { _ in
                 // TODO: - 계정 삭제(올린 앨범들은 삭제되지 않습니다.)
                 LoginManager.shared.deleteUser()
-                self.setSignInVCAsRoot()
+                SceneManager.shared.setSignInVCAsRoot(animated: true)
             }
             .disposed(by: disposeBag)
     }
     
     func bind() {
         print("\(type(of: self)) - \(#function)")
-    }
-    
-    // TODO: - 최적화 필요 뷰 컨트롤러 계속 생성함
-    func setSignInVCAsRoot() {
-        let window = UIApplication.shared.getWindow()
-        // 넘어갈 화면
-        let signInVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
-
-        // 현재 루트 뷰 컨트롤러의 스냅샷 가져오기
-        guard let snapshot = window.snapshotView(afterScreenUpdates: true) else { return }
-
-        // 새 루트 뷰 컨트롤러 설정
-        window.rootViewController = signInVC
-
-        // 스냅샷을 새 루트 뷰 컨트롤러 위에 추가
-        signInVC.view.addSubview(snapshot)
-
-        // 애니메이션을 통해 스냅샷을 서서히 사라지게 함
-        UIView.animate(withDuration: 0.5, animations: {
-            snapshot.layer.opacity = 0
-        }) { _ in
-            snapshot.removeFromSuperview()
-        }
     }
 
 }
