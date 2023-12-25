@@ -59,13 +59,11 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
         } else {
             dDayLabel.text = "D-\(album.getDDay())"
         }
-        
     }
     
     func fetchThumbnail(albumID: String) {
         print("\(type(of: self)) - \(#function)")
-
-        thumnailImageView.kf.indicatorType = .activity
+        
         let storageRef = Storage.storage().reference().child(albumID)
         fetchImage(from: storageRef, withName: "thumbnail.jpeg")
     }
@@ -73,12 +71,13 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     private func fetchImage(from storageRef: StorageReference, withName fileName: String) {
         print("\(type(of: self)) - \(#function)", fileName)
         
+        thumnailImageView.kf.indicatorType = .activity
         storageRef.child(fileName).downloadURL { [weak self] url, error in
             guard let url = url, error == nil else {
                 print("Failed to fetch \(fileName): \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
-            self?.thumnailImageView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
+            self?.thumnailImageView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.5))], progressBlock: nil)
         }
     }
 

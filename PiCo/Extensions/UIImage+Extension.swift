@@ -21,4 +21,10 @@ extension UIImage {
         return renderImage
     }
     
+    func getImageAspectRatio() -> CGFloat {
+        let width = self.size.width
+        let height = self.size.height
+        return width / height
+    }
+    
 }

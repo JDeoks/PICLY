@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import FirebaseStorage
 
 class DetailViewController: UIViewController {
     
@@ -65,6 +66,9 @@ class DetailViewController: UIViewController {
         }
         viewCountLabel.text = "\(album.viewCount)"
         remainTimeLabel.text = album.getTimeRemainingStr()
+        let storageRef = Storage.storage().reference().child(album.albumID)
+        fetchImage(from: storageRef, withName: "0.jpeg")
+        
     }
     
     func action() {
@@ -92,16 +96,34 @@ class DetailViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    func loadImageFromDirectory(with idnetifier: String) -> UIImage? {
-        let fileManager = FileManager.default
-        // 파일 경로로 접근
-        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileURL = documentsDirectory.appendingPathComponent(idnetifier, conformingTo: .jpeg)
-        print(fileURL)
-        // 이미지 파일이 존재한다면, 이미지로 변환 후 리턴
-        guard fileManager.fileExists(atPath: fileURL.path) else { return nil }
+    func fetchImage(from storageRef: StorageReference, withName fileName: String) {
+        print("\(type(of: self)) - \(#function)", fileName)
         
-        return UIImage(contentsOfFile: fileURL.path)
+        imageView.kf.indicatorType = .activity
+        storageRef.child(fileName).downloadURL { [weak self] url, error in
+            guard let url = url, error == nil else {
+                print("Failed to fetch \(fileName): \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+            self?.imageView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.5))],completionHandler: { result in
+                switch result {
+                case .success(let value):
+                    let image = value.image
+                    let aspectRatio = image.size.width / image.size.height
+                    
+                    // SnapKit을 사용하여 ImageView의 크기 조정
+                    self?.imageView.snp.remakeConstraints { make in
+                        make.width.equalTo(self?.imageView.snp.height ?? 0).multipliedBy(aspectRatio)
+                        // 기타 필요한 제약 조건 추가
+                    }
+                    self?.view.layoutIfNeeded()
+                    
+                case .failure(let error):
+                    print("Error loading image: \(error)")
+                }
+
+            })
+        }
     }
 
 }
