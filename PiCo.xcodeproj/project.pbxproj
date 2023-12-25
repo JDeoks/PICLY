@@ -12,8 +12,6 @@
 		2A282FDC2B318B550074C198 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A282FDB2B318B550074C198 /* UIApplication+Extension.swift */; };
 		2A282FDE2B31C34A0074C198 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A282FDD2B31C34A0074C198 /* SceneManager.swift */; };
 		2A2FA58C2B0BB0DB00767310 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6962B0937F4009056DD /* UIViewController+Extension.swift */; };
-		2A2FA5922B0BB49900767310 /* ImageShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5912B0BB49900767310 /* ImageShareViewController.swift */; };
-		2A2FA5932B0BB49900767310 /* ImageShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5912B0BB49900767310 /* ImageShareViewController.swift */; };
 		2A2FA5962B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5942B0BBED900767310 /* SelectedImageCollectionViewCell.swift */; };
 		2A2FA5972B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5942B0BBED900767310 /* SelectedImageCollectionViewCell.swift */; };
 		2A2FA5982B0BBED900767310 /* SelectedImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A2FA5952B0BBED900767310 /* SelectedImageCollectionViewCell.xib */; };
@@ -140,7 +138,6 @@
 		2A1BE96D2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlbumsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A282FDB2B318B550074C198 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		2A282FDD2B31C34A0074C198 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
-		2A2FA5912B0BB49900767310 /* ImageShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageShareViewController.swift; sourceTree = "<group>"; };
 		2A2FA5942B0BBED900767310 /* SelectedImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A2FA5952B0BBED900767310 /* SelectedImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		2A2FA59A2B0BBEEE00767310 /* AddImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -271,14 +268,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		2A2FA5902B0BB44D00767310 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				2A2FA5912B0BB49900767310 /* ImageShareViewController.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		2A3ADA772B2E2B7600D40535 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,7 +360,6 @@
 				2AB0C4BC2B08B77E008BB7AE /* Main.storyboard */,
 				2AB0C4B62B08B77E008BB7AE /* AppDelegate.swift */,
 				2AB0C4B82B08B77E008BB7AE /* SceneDelegate.swift */,
-				2A2FA5902B0BB44D00767310 /* Common */,
 				2A1BE96B2B08E96500703ED5 /* ViewControllers */,
 				2A4FF2C22B35EAF700A6FEF1 /* ViewModels */,
 				2A1BE96C2B08E97C00703ED5 /* Views */,
@@ -558,7 +546,6 @@
 				2A4FF2C92B35F70200A6FEF1 /* TagsCollectionViewCell.swift in Sources */,
 				2AC0BD012B35C5E7002B7418 /* AlbumField.swift in Sources */,
 				2A3498542B0D694C00424868 /* LoadingIndicatorView.swift in Sources */,
-				2A2FA5932B0BB49900767310 /* ImageShareViewController.swift in Sources */,
 				2A89E6AA2B0A32C6009056DD /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,7 +561,6 @@
 				2A9863FD2B0913BE0041686E /* MainTabBarController.swift in Sources */,
 				2A89E6972B0937F4009056DD /* UIViewController+Extension.swift in Sources */,
 				2A1960D72B0FAC92000935CF /* SettingViewController.swift in Sources */,
-				2A2FA5922B0BB49900767310 /* ImageShareViewController.swift in Sources */,
 				2A6161042B2B502B0093C688 /* AuthProvider.swift in Sources */,
 				2A69427A2B17F49D0070B194 /* NSMutableAttributedString+Extension.swift in Sources */,
 				2A9863FB2B09104C0041686E /* DetailViewController.swift in Sources */,
