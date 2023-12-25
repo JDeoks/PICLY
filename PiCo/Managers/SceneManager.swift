@@ -29,10 +29,11 @@ class SceneManager {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: scene.rawValue)
     }
     
-    func pushDetailVC(vc: UIViewController) {
+    func pushDetailVC(vc: UIViewController, album: AlbumModel) {
         print("\(type(of: self)) - \(#function)")
         
-        let detailVC = getVC(scene: .detail)
+        let detailVC = getVC(scene: .detail) as! DetailViewController
+        detailVC.album = album
         detailVC.hidesBottomBarWhenPushed = true
         vc.navigationController?.pushViewController(detailVC, animated: true)
     }

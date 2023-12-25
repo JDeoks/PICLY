@@ -71,4 +71,23 @@ class AlbumModel {
         return dictionary
     }
     
+    func getTimeRemainingStr() -> String {
+        let now = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.minute], from: now, to: expireTime)
+        
+        if expireTime < Date() {
+            return "만료"
+        }
+        guard let totalMinutes = components.minute else {
+            return "만료"
+        }
+        
+        let days = totalMinutes / (24 * 60)
+        let hours = (totalMinutes % (24 * 60)) / 60
+        let minutes = (totalMinutes % (24 * 60)) % 60
+
+        return "\(days)일 \(hours)시간 \(minutes)분 후 만료"
+    }
+    
 }

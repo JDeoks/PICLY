@@ -10,9 +10,8 @@ import RxSwift
 
 class DetailViewController: UIViewController {
     
+    var album: AlbumModel!
     var albumURL: URL?
-    var imageURL: URL?
-    
     let disposeBag = DisposeBag()
     
     @IBOutlet var backButton: UIButton!
@@ -20,15 +19,17 @@ class DetailViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var tagLabel: UILabel!
-    @IBOutlet var viewsLabel: UILabel!
-    @IBOutlet var expireDateLabel: UILabel!
+    @IBOutlet var viewCountLabel: UILabel!
+    @IBOutlet var remainTimeLabel: UILabel!
     @IBOutlet var copyLinkButton: UIButton!
+    @IBOutlet var detailTagsCollectionView: UICollectionView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var shareButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        initData()
         action()
     }
     
@@ -38,10 +39,32 @@ class DetailViewController: UIViewController {
         
         // shareButton
         shareButton.layer.cornerRadius = 4
-//        imageView.image = loadImageFromDirectory(with: "image.jpeg")
         
         // scrollView
         scrollView.alwaysBounceVertical = true
+        
+        // detailTagsCollectionView
+        detailTagsCollectionView.delegate = self
+        detailTagsCollectionView.dataSource = self
+        let detailTagsCollectionViewCell = UINib(nibName: "DetailTagsCollectionViewCell", bundle: nil)
+        detailTagsCollectionView.register(detailTagsCollectionViewCell, forCellWithReuseIdentifier: "DetailTagsCollectionViewCell")
+        let detailTagsFlowLayout = UICollectionViewFlowLayout()
+        detailTagsFlowLayout.scrollDirection = .horizontal
+        detailTagsCollectionView.collectionViewLayout = detailTagsFlowLayout
+    }
+    
+    func initData() {
+        dateLabel.text = album.getCreationTimeStr()
+        if album.tags.isEmpty {
+            tagLabel.text = "#"
+        } else {
+            tagLabel.text = "# \(album.tags[0])"
+        }
+        if album.tags.count <= 1 {
+            detailTagsCollectionView.isHidden = true
+        }
+        viewCountLabel.text = "\(album.viewCount)"
+        remainTimeLabel.text = album.getTimeRemainingStr()
     }
     
     func action() {
@@ -83,11 +106,68 @@ class DetailViewController: UIViewController {
 
 }
 
+// MARK: - UICollectionView
+extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch collectionView{
+        case detailTagsCollectionView:
+            /// 첫 태그 제외한 나머지 태그 개수
+            let tagCount = album.tags.count - 1
+            return tagCount > 0 ? tagCount : 0
+            
+        default:
+            return 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch collectionView {
+        case detailTagsCollectionView:
+            let cell = detailTagsCollectionView.dequeueReusableCell(withReuseIdentifier: "DetailTagsCollectionViewCell", for: indexPath) as! DetailTagsCollectionViewCell
+            cell.tagLabel.text = "# \(album.tags[indexPath.row + 1])"
+            return cell
+            
+        default:
+            return DetailTagsCollectionViewCell()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        switch collectionView {
+        case detailTagsCollectionView:
+            return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+
+        default:
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch collectionView {
+        case detailTagsCollectionView:
+            let label = UILabel()
+            label.text = "# \(album.tags[indexPath.row + 1])"
+            label.font = .systemFont(ofSize: 16, weight: .semibold)
+            label.sizeToFit()
+            let cellHeight = detailTagsCollectionView.frame.height // 셀의 높이 설정
+            let cellWidth = label.frame.width + 8
+            return CGSize(width: cellWidth, height: cellHeight)
+            
+        default:
+            return .zero
+        }
+    }
+    
+}
+
+
 // MARK: - ActionSheet, Alert
 extension DetailViewController {
 
     func showEditActionSheet() {
-        let actionSheet = UIAlertController(title: "메뉴", message: "", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "메뉴", message: nil, preferredStyle: .actionSheet)
 //        actionSheet.addAction(UIAlertAction(title: "수정", style: .default, handler: { _ in
 //            print("정보 수정")
 //            let editVC = self.storyboard?.instantiateViewController(identifier: "EditViewController") as! EditViewController

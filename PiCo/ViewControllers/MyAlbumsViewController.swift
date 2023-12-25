@@ -66,6 +66,10 @@ class MyAlbumsViewController: UIViewController {
         
         // plusButton
         plusButton.layer.cornerRadius = plusButton.frame.height / 2
+        plusButton.layer.shadowColor = UIColor.black.cgColor
+        plusButton.layer.shadowOffset = CGSize(width: 0, height: 4)
+        plusButton.layer.shadowRadius = 4
+        plusButton.layer.shadowOpacity = 0.25
     }
     
     @objc func pullToRefresh(_ sender: Any) {
@@ -158,7 +162,7 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         stopSearching()
-        SceneManager.shared.pushDetailVC(vc: self)
+        SceneManager.shared.pushDetailVC(vc: self, album: DataManager.shared.albums[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -15,6 +15,10 @@
 		2A0D40CB2B3975B000506124 /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D40C92B3975B000506124 /* ConfigManager.swift */; };
 		2A0E086D2B39A7C300D76501 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0E086C2B39A7C300D76501 /* UIImage+Extension.swift */; };
 		2A0E086E2B39A7C300D76501 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0E086C2B39A7C300D76501 /* UIImage+Extension.swift */; };
+		2A0E08712B39BD5400D76501 /* DetailTagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0E086F2B39BD5400D76501 /* DetailTagsCollectionViewCell.swift */; };
+		2A0E08722B39BD5400D76501 /* DetailTagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0E086F2B39BD5400D76501 /* DetailTagsCollectionViewCell.swift */; };
+		2A0E08732B39BD5400D76501 /* DetailTagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0E08702B39BD5400D76501 /* DetailTagsCollectionViewCell.xib */; };
+		2A0E08742B39BD5400D76501 /* DetailTagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0E08702B39BD5400D76501 /* DetailTagsCollectionViewCell.xib */; };
 		2A1960D72B0FAC92000935CF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1960D62B0FAC92000935CF /* SettingViewController.swift */; };
 		2A1BE96F2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1BE96D2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift */; };
 		2A282FDC2B318B550074C198 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A282FDB2B318B550074C198 /* UIApplication+Extension.swift */; };
@@ -156,6 +160,8 @@
 		2A0D40C62B3970CD00506124 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		2A0D40C92B3975B000506124 /* ConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigManager.swift; sourceTree = "<group>"; };
 		2A0E086C2B39A7C300D76501 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		2A0E086F2B39BD5400D76501 /* DetailTagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTagsCollectionViewCell.swift; sourceTree = "<group>"; };
+		2A0E08702B39BD5400D76501 /* DetailTagsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTagsCollectionViewCell.xib; sourceTree = "<group>"; };
 		2A1960D62B0FAC92000935CF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2A1BE96D2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlbumsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A282FDB2B318B550074C198 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
@@ -287,6 +293,8 @@
 				2A3498522B0D694C00424868 /* LoadingIndicatorView.swift */,
 				2AD5F2CC2B0FADCE00475AC6 /* SettingsTableViewCell.swift */,
 				2AD5F2CD2B0FADCE00475AC6 /* SettingsTableViewCell.xib */,
+				2A0E086F2B39BD5400D76501 /* DetailTagsCollectionViewCell.swift */,
+				2A0E08702B39BD5400D76501 /* DetailTagsCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -533,6 +541,7 @@
 			files = (
 				2A0D40C82B3970CD00506124 /* RemoteConfigDefaults.plist in Resources */,
 				2A89E6AD2B0A32C6009056DD /* MainInterface.storyboard in Resources */,
+				2A0E08742B39BD5400D76501 /* DetailTagsCollectionViewCell.xib in Resources */,
 				2A4FF2CB2B35F70200A6FEF1 /* TagsCollectionViewCell.xib in Resources */,
 				2A6942762B1766A90070B194 /* GoogleService-Info.plist in Resources */,
 				2A2FA5992B0BBED900767310 /* SelectedImageCollectionViewCell.xib in Resources */,
@@ -549,6 +558,7 @@
 				2AD5F2CF2B0FADCE00475AC6 /* SettingsTableViewCell.xib in Resources */,
 				2A3ADA742B2DD49500D40535 /* LaunchScreen.storyboard in Resources */,
 				2A6942742B17669B0070B194 /* GoogleService-Info.plist in Resources */,
+				2A0E08732B39BD5400D76501 /* DetailTagsCollectionViewCell.xib in Resources */,
 				2A2FA59D2B0BBEEE00767310 /* AddImageCollectionViewCell.xib in Resources */,
 				2A0D40C72B3970CD00506124 /* RemoteConfigDefaults.plist in Resources */,
 				2A2FA5982B0BBED900767310 /* SelectedImageCollectionViewCell.xib in Resources */,
@@ -578,6 +588,7 @@
 				2AC0BD012B35C5E7002B7418 /* AlbumField.swift in Sources */,
 				2A0E086E2B39A7C300D76501 /* UIImage+Extension.swift in Sources */,
 				2A3498542B0D694C00424868 /* LoadingIndicatorView.swift in Sources */,
+				2A0E08722B39BD5400D76501 /* DetailTagsCollectionViewCell.swift in Sources */,
 				2A89E6AA2B0A32C6009056DD /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,6 +627,7 @@
 				2A4FF2C42B35EB2500A6FEF1 /* UploadViewModel.swift in Sources */,
 				2A282FDE2B31C34A0074C198 /* SceneManager.swift in Sources */,
 				2A6160FF2B2B4E720093C688 /* UserModel.swift in Sources */,
+				2A0E08712B39BD5400D76501 /* DetailTagsCollectionViewCell.swift in Sources */,
 				2A2FA5962B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
