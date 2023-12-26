@@ -369,31 +369,44 @@ extension UploadViewController: PHPickerViewControllerDelegate {
     }
     
     // TODO: for안의 코드가 다 돌았을 때 didFinishPickingDone하고 싶은데 loadObject도 비동기라 안됨
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {           loadingView.loadingLabel.text = "사진 로딩 중"
-        self.view.addSubview(self.loadingView)
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        
+        // 고른 이미지 없으면 바로 반환
+        if !results.isEmpty {
+            loadingView.loadingLabel.text = "사진 로딩 중"
+            self.view.addSubview(self.loadingView)
+        } else {
+            picker.dismiss(animated: true)
+            return
+        }
+        
         let itemProviders = results.map(\.itemProvider)
-        print(1)
+        let dispatchGroup = DispatchGroup()
+        
         DispatchQueue.global().async {
-            print(2)
             for itemProvider in itemProviders {
-                print(3)
                 if itemProvider.canLoadObject(ofClass: UIImage.self) {
-                    print(4)
-                    itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                        guard let self = self, let image = image as? UIImage else { return }
-                        print(5)
-                        // TODO: 이미지 일정크기 이하로 줄이는 함수
-                        self.uploadVM.images.append(image)
-                        DispatchQueue.main.async {
-                            self.loadingView.removeFromSuperview()
-                            self.loadingView.loadingLabel.text = ""
-                            self.selectedImageCollectionView.reloadData()
+                    dispatchGroup.enter()
+                    itemProvider.loadObject(ofClass: UIImage.self) {image, error in
+                        defer {
+                            dispatchGroup.leave()
                         }
+                        guard let image = image as? UIImage else {
+                            return
+                        }
+                        self.uploadVM.images.append(image)
                     }
                 }
             }
-            // 여기에 추가하고 싶음
-            // self.selectedImageCollectionView.reloadData()
+
+            dispatchGroup.notify(queue: .main) {
+                DispatchQueue.main.async {
+                    self.selectedImageCollectionView.reloadData()
+                    self.loadingView.removeFromSuperview()
+                    self.loadingView.loadingLabel.text = ""
+                }
+
+            }
         }
         picker.dismiss(animated: true)
     }

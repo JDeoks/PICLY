@@ -53,10 +53,14 @@ class SignInViewController: UIViewController {
         
         // termsOfUseTextView
         let linkedText = NSMutableAttributedString(attributedString: termsOfUseTextView.attributedText)
-        let termOfUseLink = linkedText.setAsLink(textToFind: "이용약관", 
-                                                 linkURL: "https://jdeoks.notion.site/5cc8688a9432444eaad7a8fdc4e4e38a?pvs=4")
-        let privacyPolicyLink = linkedText.setAsLink(textToFind: "개인정보처리방침",
-                                                     linkURL: "https://jdeoks.notion.site/bace573d0a294bdeae4a92464448bcac?pvs=4")
+        let termOfUseLink = linkedText.setAsLink(
+            textToFind: "이용약관",
+            linkURL: "https://jdeoks.notion.site/5cc8688a9432444eaad7a8fdc4e4e38a?pvs=4"
+        )
+        let privacyPolicyLink = linkedText.setAsLink(
+            textToFind: "개인정보처리방침",
+            linkURL: "https://jdeoks.notion.site/bace573d0a294bdeae4a92464448bcac?pvs=4"
+        )
         if termOfUseLink || privacyPolicyLink {
             termsOfUseTextView.attributedText = NSAttributedString(attributedString: linkedText)
         }

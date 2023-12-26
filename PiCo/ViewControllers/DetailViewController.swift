@@ -37,9 +37,12 @@ class DetailViewController: UIViewController {
     func initUI() {
         // imageView
         imageView.layer.cornerRadius = 4
+        imageView.alpha = 0
         
         // shareButton
         shareButton.layer.cornerRadius = 4
+        shareButton.alpha = 0
+        shareButton.isEnabled = false
         
         // scrollView
         scrollView.alwaysBounceVertical = true
@@ -55,20 +58,34 @@ class DetailViewController: UIViewController {
     }
     
     func initData() {
+        // dateLabel
         dateLabel.text = album.getCreationTimeStr()
+        
+        // tagLabel
         if album.tags.isEmpty {
             tagLabel.text = "#"
         } else {
             tagLabel.text = "# \(album.tags[0])"
         }
+        
+        // detailTagsCollectionView
         if album.tags.count <= 1 {
             detailTagsCollectionView.isHidden = true
         }
+        
+        // viewCountLabel
         viewCountLabel.text = "\(album.viewCount)"
+        
+        // remainTimeLabel
         remainTimeLabel.text = album.getTimeRemainingStr()
+        
+        // albumURL
+        let rootURL: URL = ConfigManager.shared.getRootURL()
+        albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(album.albumID)
+        
+        // others
         let storageRef = Storage.storage().reference().child(album.albumID)
         fetchImage(from: storageRef, withName: "0.jpeg")
-        
     }
     
     func action() {
@@ -105,7 +122,7 @@ class DetailViewController: UIViewController {
                 print("Failed to fetch \(fileName): \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
-            self?.imageView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.5))],completionHandler: { result in
+            self?.imageView.kf.setImage(with: url, placeholder: nil, completionHandler: { result in
                 switch result {
                 case .success(let value):
                     let image = value.image
@@ -114,9 +131,14 @@ class DetailViewController: UIViewController {
                     // SnapKit을 사용하여 ImageView의 크기 조정
                     self?.imageView.snp.remakeConstraints { make in
                         make.width.equalTo(self?.imageView.snp.height ?? 0).multipliedBy(aspectRatio)
-                        // 기타 필요한 제약 조건 추가
                     }
                     self?.view.layoutIfNeeded()
+                    
+                    UIView.animate(withDuration: 0.2) {
+                        self?.imageView.alpha = 1.0
+                        self?.shareButton.alpha = 1.0
+                        self?.shareButton.isEnabled = true
+                    }
                     
                 case .failure(let error):
                     print("Error loading image: \(error)")

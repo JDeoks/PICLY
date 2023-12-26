@@ -12,7 +12,7 @@ import Kingfisher
 
 class MyAlbumsCollectionViewCell: UICollectionViewCell {
     
-    var postURL = URL(string: "https://picoweb.vercel.app/")!
+    var albumURL = URL(string: "https://picoweb.vercel.app/")!
     
     var disposeBag = DisposeBag()
     
@@ -47,7 +47,7 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     func setData(album: AlbumModel) {
         fetchThumbnail(albumID: album.albumID)
         let rootURL: URL = ConfigManager.shared.getRootURL()
-        postURL = rootURL.appendingPathComponent("Album").appendingPathComponent(album.albumID)
+        albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(album.albumID)
         creationTimeLabel.text = album.getCreationTimeStr()
         if album.tags.isEmpty {
             tagLabel.text = "#"

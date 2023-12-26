@@ -52,6 +52,8 @@ class UploadViewModel {
                 print("\(#function) 실패: \(err)")
             } else {
                 print("\(#function) 성공: \(ref!.documentID)")
+                let rootURL: URL = ConfigManager.shared.getRootURL()
+                self.albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(ref!.documentID)
                 completion(ref!.documentID)
             }
         }

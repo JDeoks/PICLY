@@ -60,7 +60,6 @@ class MyAlbumsViewController: UIViewController {
         myAlbumsCollectionView.register(myAlbumsCollectionViewCell, forCellWithReuseIdentifier: "MyAlbumsCollectionViewCell")
         myAlbumsCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         myAlbumsCollectionView.refreshControl = refreshControl
-        
         // 드래그시 키보드 내림
         myAlbumsCollectionView.keyboardDismissMode = .onDrag
         
@@ -146,14 +145,15 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
         let cell = myAlbumsCollectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumsCollectionViewCell", for: indexPath) as! MyAlbumsCollectionViewCell
         if DataManager.shared.albums.indices.contains(indexPath.row) {
             cell.setData(album: DataManager.shared.albums[indexPath.row])
+            
             cell.copyLinkButton.rx.tap
                 .subscribe { _ in
-                    // TODO: url 복사
-                    UIPasteboard.general.url = cell.postURL
+                    UIPasteboard.general.url = cell.albumURL
                     self.showToast(message: "링크가 복사되었습니다.")
-                    print(cell.postURL)
+                    print(cell.albumURL)
                 }
                 .disposed(by: cell.disposeBag)
+            
         } else {
             print("인덱스 오류")
         }
