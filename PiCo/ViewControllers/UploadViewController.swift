@@ -368,7 +368,6 @@ extension UploadViewController: PHPickerViewControllerDelegate {
         self.present(imagePicker, animated: true)
     }
     
-    // TODO: for안의 코드가 다 돌았을 때 didFinishPickingDone하고 싶은데 loadObject도 비동기라 안됨
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         
         // 고른 이미지 없으면 바로 반환
@@ -405,7 +404,6 @@ extension UploadViewController: PHPickerViewControllerDelegate {
                     self.loadingView.removeFromSuperview()
                     self.loadingView.loadingLabel.text = ""
                 }
-
             }
         }
         picker.dismiss(animated: true)

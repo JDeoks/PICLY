@@ -17,6 +17,8 @@ class AlbumModel {
     var ownerID: String
     var creationTime: Date
     var expireTime: Date
+    var thumbnailURL: URL?
+    var imageURLs: [URL]
     var imageCount: Int
     var tags: [String]
     var viewCount: Int
@@ -26,6 +28,10 @@ class AlbumModel {
         self.ownerID = document.data()?[AlbumField.ownerID.rawValue] as! String
         self.creationTime = (document.data()?[AlbumField.creationTime.rawValue] as! Timestamp).dateValue()
         self.expireTime = (document.data()?[AlbumField.expireTime.rawValue] as! Timestamp).dateValue()
+        let thumbnailURLString = document.data()?[AlbumField.thumbnailURL.rawValue] as! String
+        self.thumbnailURL = URL(string: thumbnailURLString)!
+        let imageURLsStrArray = document.data()?[AlbumField.imageURLs.rawValue] as! [String]
+        self.imageURLs = imageURLsStrArray.compactMap { URL(string: $0) }
         self.imageCount = document.data()?[AlbumField.imageCount.rawValue] as! Int
         self.tags = document.data()?[AlbumField.tags.rawValue] as! [String]
         self.viewCount = document.data()?[AlbumField.viewCount.rawValue] as! Int
@@ -36,6 +42,8 @@ class AlbumModel {
         self.ownerID = ownerID
         self.creationTime = creationTime
         self.expireTime = expireTime
+        self.thumbnailURL = nil
+        self.imageURLs = []
         self.imageCount = imageCount
         self.tags = tags
         self.viewCount = viewCount
@@ -56,6 +64,7 @@ class AlbumModel {
         let now = DateInRegion(region: region)
         let expirationDate = DateInRegion(expireTime, region: region)
         let days = now.getInterval(toDate: expirationDate, component: .day)
+        
         return Int(days)
     }
     

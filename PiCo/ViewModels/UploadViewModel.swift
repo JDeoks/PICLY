@@ -20,7 +20,9 @@ class UploadViewModel {
     var albumURL: URL?
     /// 선택한 사진 배열
     var images: [UIImage] = []
-    // TODO: tags 업데이트
+    var thumbnailURL: URL?
+    /// 앨범에 추가할 이미지 접근 url
+    var imageURLs: [URL] = []
     var expireTime = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
     var tags = BehaviorRelay<[String]>(value: [])
     /// uploadAlbum() -> UploadViewController
@@ -33,7 +35,9 @@ class UploadViewModel {
         uploadAlbumDocToFireStore() { albumDocID in
             self.uploadImagesToStorage(albumDocID: albumDocID) {
                 print("\(#function) 성공")
-                self.uploadAlbumDone.onNext(())
+                self.updateImageURLsToAlbumDoc(albumDocID: albumDocID) {
+                    self.uploadAlbumDone.onNext(())
+                }
             }
         }
     }
@@ -75,16 +79,28 @@ class UploadViewModel {
             if let thumbnailImage = images[0].jpegData(compressionQuality: 0.1) {
                 uploadGroup.enter()
                 uploadRef.putData(thumbnailImage, metadata: metadata) { metadata, error in
-                    uploadGroup.leave()
+                    uploadRef.downloadURL { url, error in
+                        guard let url = url else {
+                            return
+                        }
+                        self.thumbnailURL = url
+                        uploadGroup.leave()
+                    }
                 }
             }
         }
         for imageIdx in 0..<images.count {
             let uploadRef = albumImagesRef.child("\(imageIdx).jpeg")
-            if let imageData = images[imageIdx].jpegData(compressionQuality: 1) {
+            if let imageData = images[imageIdx].jpegData(compressionQuality: 0.5) {
                 uploadGroup.enter()
                 uploadRef.putData(imageData, metadata: metadata) { metadata, error in
-                    uploadGroup.leave()
+                    uploadRef.downloadURL { url, error in
+                        guard let url = url else {
+                            return
+                        }
+                        self.imageURLs.append(url)
+                        uploadGroup.leave()
+                    }
                 }
             }
         }
@@ -93,4 +109,23 @@ class UploadViewModel {
             completion()
         }
     }
+    
+    func updateImageURLsToAlbumDoc(albumDocID: String, completion: @escaping () -> Void) {
+        print("\(type(of: self)) - \(#function)")
+
+        let albumDocRef = albumCollection.document(albumDocID)
+        // imageURLs 배열을 String 배열로 변환
+        let urlsStringArray = imageURLs.map { $0.absoluteString }
+        let thumbnailStr: String = thumbnailURL?.absoluteString ?? "nil"
+        let dict: [String : Any] = [AlbumField.imageURLs.rawValue: urlsStringArray, AlbumField.thumbnailURL.rawValue: thumbnailStr] 
+        albumDocRef.updateData(dict) { error in
+            if let error = error {
+                print("Doc 업데이트 실패: \(error)")
+            } else {
+                print("Doc 업데이트 성공")
+                completion()
+            }
+        }
+    }
+    
 }

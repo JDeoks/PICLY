@@ -13,7 +13,8 @@ import Kingfisher
 class MyAlbumsCollectionViewCell: UICollectionViewCell {
     
     var albumURL = URL(string: "https://picoweb.vercel.app/")!
-    
+    var thumbnailURL: URL!
+    var imageURLs: [URL] = []
     var disposeBag = DisposeBag()
     
     @IBOutlet var thumnailImageView: UIImageView!
@@ -45,40 +46,35 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     }
     
     func setData(album: AlbumModel) {
-        fetchThumbnail(albumID: album.albumID)
+        // albumURL
         let rootURL: URL = ConfigManager.shared.getRootURL()
         albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(album.albumID)
+        
+        // creationTimeLabel
         creationTimeLabel.text = album.getCreationTimeStr()
-        if album.tags.isEmpty {
-            tagLabel.text = "#"
-        } else {
-            tagLabel.text = "# \(album.tags[0])"
-        }
+        
+        // tagLabel
+        tagLabel.text = album.tags.isEmpty ? "#" : "# \(album.tags[0])"
+        
+        // dDayLabel
         if album.getDDay() < 0 {
             dDayLabel.text = "D+\(-album.getDDay())"
         } else {
             dDayLabel.text = "D-\(album.getDDay())"
         }
+        
+        // thumbnailURL
+        thumbnailURL = album.thumbnailURL
+        
+        // others
+        fetchThumbnail(albumID: album.albumID)
     }
     
     func fetchThumbnail(albumID: String) {
         print("\(type(of: self)) - \(#function)")
         
-        let storageRef = Storage.storage().reference().child(albumID)
-        fetchImage(from: storageRef, withName: "thumbnail.jpeg")
-    }
-
-    private func fetchImage(from storageRef: StorageReference, withName fileName: String) {
-        print("\(type(of: self)) - \(#function)", fileName)
-        
         thumnailImageView.kf.indicatorType = .activity
-        storageRef.child(fileName).downloadURL { [weak self] url, error in
-            guard let url = url, error == nil else {
-                print("Failed to fetch \(fileName): \(error?.localizedDescription ?? "Unknown error")")
-                return
-            }
-            self?.thumnailImageView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.5))], progressBlock: nil)
-        }
+        thumnailImageView.kf.setImage(with: thumbnailURL, placeholder: nil, options: [.transition(.fade(0.5))], progressBlock: nil)
     }
 
 }
