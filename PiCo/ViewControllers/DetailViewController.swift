@@ -65,7 +65,7 @@ class DetailViewController: UIViewController {
         if album.tags.isEmpty {
             tagLabel.text = "#"
         } else {
-            tagLabel.text = "# \(album.tags[0])"
+            tagLabel.text = "#\(album.tags[0])"
         }
         
         // detailTagsCollectionView
@@ -85,7 +85,7 @@ class DetailViewController: UIViewController {
         
         // others
         let storageRef = Storage.storage().reference().child(album.albumID)
-        fetchImage(from: storageRef, withName: "0.jpeg")
+        fetchImage()
     }
     
     func action() {
@@ -113,39 +113,33 @@ class DetailViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    func fetchImage(from storageRef: StorageReference, withName fileName: String) {
-        print("\(type(of: self)) - \(#function)", fileName)
+    func fetchImage() {
+        print("\(type(of: self)) - \(#function)")
         
         imageView.kf.indicatorType = .activity
-        storageRef.child(fileName).downloadURL { [weak self] url, error in
-            guard let url = url, error == nil else {
-                print("Failed to fetch \(fileName): \(error?.localizedDescription ?? "Unknown error")")
-                return
-            }
-            self?.imageView.kf.setImage(with: url, placeholder: nil, completionHandler: { result in
-                switch result {
-                case .success(let value):
-                    let image = value.image
-                    let aspectRatio = image.size.width / image.size.height
-                    
-                    // SnapKit을 사용하여 ImageView의 크기 조정
-                    self?.imageView.snp.remakeConstraints { make in
-                        make.width.equalTo(self?.imageView.snp.height ?? 0).multipliedBy(aspectRatio)
-                    }
-                    self?.view.layoutIfNeeded()
-                    
-                    UIView.animate(withDuration: 0.2) {
-                        self?.imageView.alpha = 1.0
-                        self?.shareButton.alpha = 1.0
-                        self?.shareButton.isEnabled = true
-                    }
-                    
-                case .failure(let error):
-                    print("Error loading image: \(error)")
+        
+        self.imageView.kf.setImage(with: album.imageURLs[0], placeholder: nil, completionHandler: { result in
+            switch result {
+            case .success(let value):
+                let image = value.image
+                let aspectRatio = image.size.width / image.size.height
+                // ImageView의 비율 조정
+                self.imageView.snp.remakeConstraints { make in
+                    make.width.equalTo(self.imageView.snp.height).multipliedBy(aspectRatio)
                 }
-
-            })
-        }
+                self.view.layoutIfNeeded()
+                
+                UIView.animate(withDuration: 0.2) {
+                    self.imageView.alpha = 1.0
+                    self.shareButton.alpha = 1.0
+                    self.shareButton.isEnabled = true
+                }
+                
+            case .failure(let error):
+                print("Error loading image: \(error)")
+            }
+            
+        })
     }
 
 }
@@ -169,7 +163,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         switch collectionView {
         case detailTagsCollectionView:
             let cell = detailTagsCollectionView.dequeueReusableCell(withReuseIdentifier: "DetailTagsCollectionViewCell", for: indexPath) as! DetailTagsCollectionViewCell
-            cell.tagLabel.text = "# \(album.tags[indexPath.row + 1])"
+            cell.tagLabel.text = "#\(album.tags[indexPath.row + 1])"
             return cell
             
         default:
@@ -192,7 +186,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         switch collectionView {
         case detailTagsCollectionView:
             let label = UILabel()
-            label.text = "# \(album.tags[indexPath.row + 1])"
+            label.text = "#\(album.tags[indexPath.row + 1])"
             label.font = .systemFont(ofSize: 16, weight: .semibold)
             label.sizeToFit()
             let cellHeight = detailTagsCollectionView.frame.height // 셀의 높이 설정

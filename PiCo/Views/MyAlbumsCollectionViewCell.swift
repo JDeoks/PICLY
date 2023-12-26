@@ -54,7 +54,7 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
         creationTimeLabel.text = album.getCreationTimeStr()
         
         // tagLabel
-        tagLabel.text = album.tags.isEmpty ? "#" : "# \(album.tags[0])"
+        tagLabel.text = album.tags.isEmpty ? "#" : "#\(album.tags[0])"
         
         // dDayLabel
         if album.getDDay() < 0 {
