@@ -113,6 +113,7 @@ class UploadViewController: UIViewController {
                     self.showToast(message: "선택된 이미지가 없습니다.")
                     return
                 }
+                HapticManager.shared.triggerImpact()
                 self.loadingView.loadingLabel.text = ""
                 self.view.addSubview(self.loadingView)
                 if self.uploadVM.tags.value.isEmpty && self.tagTextField.text! != "" {
@@ -341,10 +342,12 @@ extension UploadViewController {
     func showUploadFinishedAlert() {
         let sheet = UIAlertController(title: "업로드 완료", message: "링크를 복사하시겠습니까?", preferredStyle: .alert)
         let loginAction = UIAlertAction(title: "링크 복사하고 창 닫기", style: .default, handler: { _ in
+            HapticManager.shared.triggerImpact()
             UIPasteboard.general.url = self.uploadVM.albumURL
             self.dismiss(animated: true)
         })
         let cancelAction = UIAlertAction(title: "창 닫기", style: .cancel) { _ in
+            HapticManager.shared.triggerImpact()
             self.dismiss(animated: true)
         }
         sheet.addAction(loginAction)
@@ -358,6 +361,7 @@ extension UploadViewController {
 extension UploadViewController: PHPickerViewControllerDelegate {
     
     func presentPicker() {
+        self.view.endEditing(true)
         var config = PHPickerConfiguration()
         config.filter = .images
         config.selectionLimit = 1

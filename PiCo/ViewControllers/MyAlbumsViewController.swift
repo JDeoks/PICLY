@@ -91,6 +91,7 @@ class MyAlbumsViewController: UIViewController {
         
         plusButton.rx.tap
             .subscribe { _ in
+                HapticManager.shared.triggerImpact()
                 self.stopSearching()
                 SceneManager.shared.presentUploadVC(vc: self)
             }
@@ -148,6 +149,7 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
             
             cell.copyLinkButton.rx.tap
                 .subscribe { _ in
+                    HapticManager.shared.triggerImpact()
                     UIPasteboard.general.url = cell.albumURL
                     self.showToast(message: "링크가 복사되었습니다.")
                     print(cell.albumURL)

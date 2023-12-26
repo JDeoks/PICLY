@@ -10,7 +10,7 @@ import RxSwift
 import FirebaseAuth
 import FirebaseRemoteConfig
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     let disposeBag = DisposeBag()
     
@@ -21,9 +21,18 @@ class MainTabBarController: UITabBarController {
         initUI()
         initData()
         bind()
+
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if tabBarController.selectedViewController !== viewController {
+            HapticManager.shared.triggerImpact()
+        }
+        return true
     }
     
     func initUI() {
+        self.delegate = self
         self.tabBar.tintColor = UIColor(named: "HighlightBlue")
         self.tabBar.unselectedItemTintColor = UIColor(named: "SecondText")
         self.tabBar.items?[0].title = "내 앨범"

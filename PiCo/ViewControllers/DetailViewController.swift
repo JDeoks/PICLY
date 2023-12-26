@@ -97,12 +97,14 @@ class DetailViewController: UIViewController {
 
         editButton.rx.tap
             .subscribe { _ in
+                HapticManager.shared.triggerImpact()
                 self.showEditActionSheet()
             }
             .disposed(by: disposeBag)
         
         copyLinkButton.rx.tap
             .subscribe { _ in
+                HapticManager.shared.triggerImpact()
                 guard let url = self.albumURL else {
                     self.showToast(message: "링크 복사 실패")
                     return
