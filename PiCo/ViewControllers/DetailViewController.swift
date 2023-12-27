@@ -7,14 +7,20 @@
 
 import UIKit
 import RxSwift
+import FirebaseFirestore
 import FirebaseStorage
 
 class DetailViewController: UIViewController {
     
+    let albumsCollection = Firestore.firestore().collection("Albums")
     var album: AlbumModel!
     var albumURL: URL?
+    
+    let deleteAlbumDone = PublishSubject<Void>()
     let disposeBag = DisposeBag()
     
+    lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+
     @IBOutlet var backButton: UIButton!
     @IBOutlet var editButton: UIButton!
     @IBOutlet var scrollView: UIScrollView!
@@ -32,6 +38,7 @@ class DetailViewController: UIViewController {
         initUI()
         initData()
         action()
+        bind()
     }
     
     func initUI() {
@@ -115,6 +122,15 @@ class DetailViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+    func bind() {
+        deleteAlbumDone
+            .subscribe { _ in
+                self.showToast(message: "삭제 성공")
+                DataManager.shared.fetchAlbums()
+                self.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+    }
     func fetchImage() {
         print("\(type(of: self)) - \(#function)")
         
@@ -187,6 +203,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
         case detailTagsCollectionView:
+            // 사이즈 계산용 라벨
             let label = UILabel()
             label.text = "#\(album.tags[indexPath.row + 1])"
             label.font = .systemFont(ofSize: 16, weight: .semibold)
@@ -201,7 +218,6 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
 }
-
 
 // MARK: - ActionSheet, Alert
 extension DetailViewController {
@@ -224,7 +240,9 @@ extension DetailViewController {
     func showDeleteConfirmationAlert() {
         let deleteAlert = UIAlertController(title: "앨범 삭제", message: "정말로 삭제하시겠습니까?", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
-            self.deleteAction()
+            self.loadingView.loadingLabel.text = ""
+            self.view.addSubview(self.loadingView)
+            self.deleteAlbum()
         })
         deleteAlert.addAction(confirmAction)
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -232,7 +250,68 @@ extension DetailViewController {
         self.present(deleteAlert, animated: true, completion: nil)
     }
     
-    func deleteAction() {
-       print("글 삭제")
+    func deleteAlbum() {
+        print("\(type(of: self)) - \(#function)")
+
+        deleteAlbumDoc {
+            self.deleteAlbumImage {
+                self.deleteAlbumDone.onNext(())
+            }
+        }
+    }
+    
+    func deleteAlbumDoc(completion: @escaping () -> Void) {
+        print("\(type(of: self)) - \(#function)")
+
+        
+        albumsCollection.document(album.albumID).delete() { err in
+            if let err = err {
+                print("\(#function) 실패: \(err)")
+                // TODO: 앨범 삭제 실패 토스트
+                self.showToast(message: "삭제 실패")
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                print("Document successfully removed!")
+                completion()
+            }
+        }
+    }
+    
+    func deleteAlbumImage(completion: @escaping () -> Void) {
+        print("\(type(of: self)) - \(#function)")
+        
+        let albumImagesRef = Storage.storage().reference().child(album.albumID)
+        albumImagesRef.listAll { (result, error) in
+            if let error = error {
+                print("Error in listing files: \(error)")
+                self.loadingView.removeFromSuperview()
+                self.showToast(message: "삭제 실패")
+                return
+            }
+            guard let result = result else {
+                print("\(#function) result 없음")
+                self.loadingView.removeFromSuperview()
+                self.showToast(message: "삭제 실패")
+                return
+            }
+            let dispatchGroup = DispatchGroup()
+            
+            for item in result.items {
+                dispatchGroup.enter()
+                item.delete { error in
+                    if let error = error {
+                        print("Error deleting file: \(error)")
+                    } else {
+                        print("File deleted successfully")
+                    }
+                    dispatchGroup.leave()
+                }
+            }
+            
+            dispatchGroup.notify(queue: .main) {
+                self.loadingView.removeFromSuperview()
+                completion()
+            }
+        }
     }
 }

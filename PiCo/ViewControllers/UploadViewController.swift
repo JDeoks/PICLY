@@ -34,7 +34,6 @@ class UploadViewController: UIViewController {
     @IBOutlet var selectedImageCollectionView: UICollectionView!
     @IBOutlet var expireDatePicker: UIDatePicker!
     @IBOutlet var leftTimeLabel: UILabel!
-
     @IBOutlet var keyboardToolContainerView: UIView!
     @IBOutlet var hideKeyboardButton: UIButton!
     
