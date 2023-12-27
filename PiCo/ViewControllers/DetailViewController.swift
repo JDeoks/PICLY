@@ -120,6 +120,15 @@ class DetailViewController: UIViewController {
                 self.showToast(message: "링크가 복사되었습니다")
             }
             .disposed(by: disposeBag)
+        
+        shareButton.rx.tap
+            .subscribe { _ in
+                guard let url = self.albumURL else {
+                    return
+                }
+                self.shareURL(url: url)
+            }
+            .disposed(by: disposeBag)
     }
     
     func bind() {
@@ -224,6 +233,7 @@ extension DetailViewController {
 
     func showEditActionSheet() {
         let actionSheet = UIAlertController(title: "메뉴", message: nil, preferredStyle: .actionSheet)
+        
 //        actionSheet.addAction(UIAlertAction(title: "수정", style: .default, handler: { _ in
 //            print("정보 수정")
 //            let editVC = self.storyboard?.instantiateViewController(identifier: "EditViewController") as! EditViewController
@@ -232,7 +242,21 @@ extension DetailViewController {
         actionSheet.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
             self.showDeleteConfirmationAlert()
         }))
+        actionSheet.addAction(UIAlertAction(title: "공유", style: .default, handler: { _ in
+            guard let url = self.albumURL else {
+                return
+            }
+            self.shareURL(url: url)
+        }))
         actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let popoverController = actionSheet.popoverPresentationController {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+        }
         
         self.present(actionSheet, animated: true, completion: nil)
     }
@@ -314,4 +338,24 @@ extension DetailViewController {
             }
         }
     }
+}
+
+// MARK: - UIActivityViewController
+extension DetailViewController {
+    
+    func shareURL(url: URL) {
+        let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+
+        // 아이패드에서 실행될 경우
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let popoverController = activityViewController.popoverPresentationController {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+        }
+
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
 }
