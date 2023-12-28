@@ -160,6 +160,7 @@ class DetailViewController: UIViewController {
                     self.imageView.alpha = 1.0
                     self.shareButton.alpha = 1.0
                     self.shareButton.isEnabled = true
+                    self.view.layoutIfNeeded()
                 }
                 
             case .failure(let error):
@@ -239,14 +240,15 @@ extension DetailViewController {
 //            let editVC = self.storyboard?.instantiateViewController(identifier: "EditViewController") as! EditViewController
 //            self.navigationController?.pushViewController(editVC, animated: true)
 //        }))
-        actionSheet.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
-            self.showDeleteConfirmationAlert()
-        }))
+
         actionSheet.addAction(UIAlertAction(title: "공유", style: .default, handler: { _ in
             guard let url = self.albumURL else {
                 return
             }
             self.shareURL(url: url)
+        }))
+        actionSheet.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
+            self.showDeleteConfirmationAlert()
         }))
         actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
         

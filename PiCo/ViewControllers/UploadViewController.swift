@@ -221,6 +221,7 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
             
             cell.deleteTagButton.rx.tap
                 .subscribe { _ in
+                    HapticManager.shared.triggerImpact()
                     var newTags = self.uploadVM.tags.value
                     newTags.remove(at: indexPath.row)
                     self.uploadVM.tags.accept(newTags)
@@ -236,6 +237,7 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
                 
                 cell.deleteButton.rx.tap
                     .subscribe { _ in
+                        HapticManager.shared.triggerImpact()
                         self.uploadVM.images.remove(at: indexPath.row)
                         DispatchQueue.main.async {
                             self.selectedImageCollectionView.reloadData()
@@ -262,6 +264,7 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
         case selectedImageCollectionView:
             // + 버튼일때 이미지 선택
             if collectionView.cellForItem(at: indexPath) is AddImageCollectionViewCell {
+                HapticManager.shared.triggerImpact()
                 presentPicker()
             }
             

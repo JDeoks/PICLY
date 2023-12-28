@@ -22,6 +22,8 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     @IBOutlet var creationTimeLabel: UILabel!
     @IBOutlet var tagLabel: UILabel!
     @IBOutlet var dDayLabel: UILabel!
+    @IBOutlet var gradientView: UIView!
+    @IBOutlet var multiImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,6 +45,15 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
         thumnailImageView.layer.cornerRadius = 4
         thumnailImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         thumnailImageView.layer.masksToBounds = true
+        
+        // gradientView
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.colors = [CGColor(red: 0, green: 0, blue: 0, alpha: 0.8), CGColor(red: 0, green: 0, blue: 0, alpha: 0.5), CGColor(red: 0, green: 0, blue: 0, alpha: 0)]
+        gradient.frame = gradientView.bounds
+        gradient.locations = [0.0 ,0.5, 1.0]
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradient.endPoint = CGPoint(x: 0.0, y: 1.0)
+        gradientView.layer.addSublayer(gradient)
     }
     
     func setData(album: AlbumModel) {
@@ -54,7 +65,7 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
         creationTimeLabel.text = album.getCreationTimeStr()
         
         // tagLabel
-        tagLabel.text = album.tags.isEmpty ? "#" : "#\(album.tags[0])"
+        tagLabel.text = album.tags.isEmpty ? "" : "#\(album.tags[0])"
         
         // dDayLabel
         if album.getDDay() < 0 {
@@ -65,6 +76,13 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
         
         // thumbnailURL
         thumbnailURL = album.thumbnailURL
+        let cnt = album.imageCount
+        
+        if album.imageCount > 1 {
+            multiImageView.isHidden = false
+        } else {
+            multiImageView.isHidden = true
+        }
         
         // others
         fetchThumbnail(albumID: album.albumID)

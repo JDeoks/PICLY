@@ -190,6 +190,7 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         self.searchCancelButton.isHidden = false
         UIView.animate(withDuration: 0.1, animations: {
             self.titleStackView.isHidden = true
+            self.view.layoutIfNeeded()
         })
     }
     
@@ -200,6 +201,7 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         searchTagTextField.resignFirstResponder()
         UIView.animate(withDuration: 0.1 ,animations: {
             self.titleStackView.isHidden = false
+            self.view.layoutIfNeeded()
         })
     }
     
