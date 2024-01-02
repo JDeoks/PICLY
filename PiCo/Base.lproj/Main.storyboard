@@ -236,14 +236,14 @@
                                 <color key="textColor" name="mainText"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqM-6c-agk">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bqM-6c-agk">
                                 <rect key="frame" x="0.0" y="115" width="393" height="737"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8FX-5z-uEd">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="645"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8FX-5z-uEd">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="565"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Nt6-jK-2ip">
-                                                <rect key="frame" x="0.0" y="8" width="393" height="637"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Nt6-jK-2ip">
+                                                <rect key="frame" x="0.0" y="8" width="393" height="324"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="f5g-6J-c0w">
                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="172"/>
@@ -288,7 +288,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ofW-Fh-k3Q">
                                                                 <rect key="frame" x="0.0" y="50" width="393" height="24"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgC-FW-PeJ">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgC-FW-PeJ">
                                                                         <rect key="frame" x="16" y="0.0" width="361" height="24"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                                         <color key="textColor" name="mainText"/>
@@ -348,28 +348,16 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="d1u-eD-qMv">
-                                                        <rect key="frame" x="0.0" y="196" width="393" height="441"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="d1u-eD-qMv">
+                                                        <rect key="frame" x="0.0" y="196" width="393" height="128"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gIa-t0-3ZH">
-                                                                <rect key="frame" x="16" y="0.0" width="361" height="361"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XEm-XD-fue">
+                                                                <rect key="frame" x="16" y="0.0" width="361" height="128"/>
+                                                                <color key="backgroundColor" name="AccentColor"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="gIa-t0-3ZH" secondAttribute="height" multiplier="1:1" id="XDa-9P-c8Q"/>
+                                                                    <constraint firstAttribute="height" constant="500" id="Qqx-V0-qQB"/>
                                                                 </constraints>
-                                                            </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcw-8l-Muk">
-                                                                <rect key="frame" x="16" y="385" width="361" height="56"/>
-                                                                <color key="backgroundColor" name="HighlightBlue"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="56" id="TZ6-U0-Wml"/>
-                                                                </constraints>
-                                                                <color key="tintColor" name="ButtonLabel"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" title="링크 공유">
-                                                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                                </buttonConfiguration>
-                                                            </button>
+                                                            </tableView>
                                                         </subviews>
                                                         <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
                                                     </stackView>
@@ -414,12 +402,11 @@
                         <outlet property="backButton" destination="tLG-qi-ldM" id="Sl7-9R-mmf"/>
                         <outlet property="copyLinkButton" destination="Pfb-N8-CWS" id="mce-dU-V5U"/>
                         <outlet property="dateLabel" destination="B5t-ej-LAK" id="45b-XL-qAW"/>
+                        <outlet property="detailImagesTableView" destination="XEm-XD-fue" id="0R0-jy-cYE"/>
                         <outlet property="detailTagsCollectionView" destination="W59-8e-co1" id="Lr9-FT-cv7"/>
                         <outlet property="editButton" destination="EU1-zU-5zA" id="vPr-H9-bl0"/>
-                        <outlet property="imageView" destination="gIa-t0-3ZH" id="w8R-9E-KdO"/>
                         <outlet property="remainTimeLabel" destination="bbt-Qp-rMr" id="7zi-dj-u7x"/>
                         <outlet property="scrollView" destination="bqM-6c-agk" id="d33-EB-otJ"/>
-                        <outlet property="shareButton" destination="jcw-8l-Muk" id="w9k-Ra-rte"/>
                         <outlet property="tagLabel" destination="bgC-FW-PeJ" id="7lJ-l5-Sgh"/>
                         <outlet property="viewCountLabel" destination="rCe-KJ-uFf" id="emz-52-BTm"/>
                     </connections>
@@ -809,10 +796,10 @@
                                                                         <rect key="frame" x="0.0" y="25" width="361" height="56"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="z30-70-tu3">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="201.33333333333334" height="56"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="188.33333333333334" height="56"/>
                                                                                 <subviews>
                                                                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="T8b-wq-pt4">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="201.33333333333334" height="56"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="188.33333333333334" height="56"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="56" id="ybp-Jf-GcL"/>
                                                                                         </constraints>
@@ -826,7 +813,7 @@
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </stackView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1일 0시간 후" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sY6-ig-gZ5">
-                                                                                <rect key="frame" x="209.33333333333334" y="0.0" width="0.0" height="56"/>
+                                                                                <rect key="frame" x="196.33333333333334" y="0.0" width="13" height="56"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <color key="tintColor" name="SecondText"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1381,14 +1368,14 @@
         <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="AccentColor">
+            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="AppleLoginBackground">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="BlackText">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ButtonLabel">
-            <color red="0.10980392156862745" green="0.10980392156862745" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="CollectionViewCellBackground">
             <color red="0.2196078431372549" green="0.2196078431372549" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
