@@ -12,8 +12,11 @@ import FirebaseStorage
 
 class DetailViewController: UIViewController {
     
-    let detailVM = DetailViewModel()
+    let albumsCollection = Firestore.firestore().collection("Albums")
+    var album: AlbumModel!
+    var albumURL: URL?
     
+    let deleteAlbumDone = PublishSubject<Void>()
     let disposeBag = DisposeBag()
     
     lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -27,7 +30,8 @@ class DetailViewController: UIViewController {
     @IBOutlet var remainTimeLabel: UILabel!
     @IBOutlet var copyLinkButton: UIButton!
     @IBOutlet var detailTagsCollectionView: UICollectionView!
-    @IBOutlet var detailImagesTableView: UITableView!
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var shareButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +42,15 @@ class DetailViewController: UIViewController {
     }
     
     func initUI() {
+        // imageView
+        imageView.layer.cornerRadius = 4
+        imageView.alpha = 0
+        
+        // shareButton
+        shareButton.layer.cornerRadius = 4
+        shareButton.alpha = 0
+        shareButton.isEnabled = false
+        
         // scrollView
         scrollView.alwaysBounceVertical = true
         
@@ -49,41 +62,36 @@ class DetailViewController: UIViewController {
         let detailTagsFlowLayout = UICollectionViewFlowLayout()
         detailTagsFlowLayout.scrollDirection = .horizontal
         detailTagsCollectionView.collectionViewLayout = detailTagsFlowLayout
-        
-        // detailImagesTableView
-        detailImagesTableView.dataSource = self
-        detailImagesTableView.delegate = self
-        let detailImagesTableCell = UINib(nibName: "DetailImagesTableViewCell", bundle: nil)
-        detailImagesTableView.register(detailImagesTableCell, forCellReuseIdentifier: "DetailImagesTableViewCell")
     }
     
     func initData() {
         // dateLabel
-        dateLabel.text = detailVM.album.getCreationTimeStr()
+        dateLabel.text = album.getCreationTimeStr()
         
         // tagLabel
-        if detailVM.album.tags.isEmpty {
-            tagLabel.isHidden = true
+        if album.tags.isEmpty {
+            tagLabel.text = "#"
         } else {
-            tagLabel.text = "#\(detailVM.album.tags[0])"
+            tagLabel.text = "#\(album.tags[0])"
         }
         
         // detailTagsCollectionView
-        if detailVM.album.tags.count <= 1 {
+        if album.tags.count <= 1 {
             detailTagsCollectionView.isHidden = true
         }
         
         // viewCountLabel
-        viewCountLabel.text = "\(detailVM.album.viewCount)"
+        viewCountLabel.text = "\(album.viewCount)"
         
         // remainTimeLabel
-        remainTimeLabel.text = detailVM.album.getTimeRemainingStr()
+        remainTimeLabel.text = album.getTimeRemainingStr()
         
         // albumURL
         let rootURL: URL = ConfigManager.shared.getRootURL()
-        detailVM.albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(detailVM.album.albumID)
+        albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(album.albumID)
         
         // others
+        let storageRef = Storage.storage().reference().child(album.albumID)
         fetchImage()
     }
     
@@ -93,10 +101,9 @@ class DetailViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
-        
+
         editButton.rx.tap
             .subscribe { _ in
-                self.detailImagesTableView.reloadData()
                 HapticManager.shared.triggerImpact()
                 self.showEditActionSheet()
             }
@@ -105,7 +112,7 @@ class DetailViewController: UIViewController {
         copyLinkButton.rx.tap
             .subscribe { _ in
                 HapticManager.shared.triggerImpact()
-                guard let url = self.detailVM.albumURL else {
+                guard let url = self.albumURL else {
                     self.showToast(message: "링크 복사 실패")
                     return
                 }
@@ -113,68 +120,66 @@ class DetailViewController: UIViewController {
                 self.showToast(message: "링크가 복사되었습니다")
             }
             .disposed(by: disposeBag)
+        
+        shareButton.rx.tap
+            .subscribe { _ in
+                guard let url = self.albumURL else {
+                    return
+                }
+                self.shareURL(url: url)
+            }
+            .disposed(by: disposeBag)
     }
     
     func bind() {
-        detailVM.deleteAlbumDone
+        deleteAlbumDone
             .subscribe { _ in
-                self.loadingView.removeFromSuperview()
                 self.showToast(message: "삭제 성공")
                 DataManager.shared.fetchAlbums()
                 self.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
-        
-        detailVM.deleteFailed
-            .subscribe { _ in
-                self.loadingView.removeFromSuperview()
-                self.showToast(message: "삭제 실패")
-                self.navigationController?.popViewController(animated: true)
-            }
-            .disposed(by: disposeBag)
     }
-    
     func fetchImage() {
         print("\(type(of: self)) - \(#function)")
         
-//        imageView.kf.indicatorType = .activity
+        imageView.kf.indicatorType = .activity
         
-//        self.imageView.kf.setImage(with: album.imageURLs[0], placeholder: nil, completionHandler: { result in
-//            switch result {
-//            case .success(let value):
-//                let image = value.image
-//                let aspectRatio = image.size.width / image.size.height
-//                // ImageView의 비율 조정
-//                self.imageView.snp.remakeConstraints { make in
-//                    make.width.equalTo(self.imageView.snp.height).multipliedBy(aspectRatio)
-//                }
-//                self.view.layoutIfNeeded()
-//                
-//                UIView.animate(withDuration: 0.2) {
-//                    self.imageView.alpha = 1.0
-//                    self.shareButton.alpha = 1.0
-//                    self.shareButton.isEnabled = true
-//                    self.view.layoutIfNeeded()
-//                }
-//                
-//            case .failure(let error):
-//                print("Error loading image: \(error)")
-//            }
-//            
-//        })
+        self.imageView.kf.setImage(with: album.imageURLs[0], placeholder: nil, completionHandler: { result in
+            switch result {
+            case .success(let value):
+                let image = value.image
+                let aspectRatio = image.size.width / image.size.height
+                // ImageView의 비율 조정
+                self.imageView.snp.remakeConstraints { make in
+                    make.width.equalTo(self.imageView.snp.height).multipliedBy(aspectRatio)
+                }
+                self.view.layoutIfNeeded()
+                
+                UIView.animate(withDuration: 0.2) {
+                    self.imageView.alpha = 1.0
+                    self.shareButton.alpha = 1.0
+                    self.shareButton.isEnabled = true
+                    self.view.layoutIfNeeded()
+                }
+                
+            case .failure(let error):
+                print("Error loading image: \(error)")
+            }
+            
+        })
     }
 
 }
 
 // MARK: - UICollectionView
-// detailTagsCollectionView
 extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView{
         case detailTagsCollectionView:
             /// 첫 태그 제외한 나머지 태그 개수
-            let tagCount = detailVM.album.tags.count - 1
+            let tagCount = album.tags.count - 1
             return tagCount > 0 ? tagCount : 0
             
         default:
@@ -186,7 +191,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         switch collectionView {
         case detailTagsCollectionView:
             let cell = detailTagsCollectionView.dequeueReusableCell(withReuseIdentifier: "DetailTagsCollectionViewCell", for: indexPath) as! DetailTagsCollectionViewCell
-            cell.tagLabel.text = "#\(detailVM.album.tags[indexPath.row + 1])"
+            cell.tagLabel.text = "#\(album.tags[indexPath.row + 1])"
             return cell
             
         default:
@@ -210,7 +215,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         case detailTagsCollectionView:
             // 사이즈 계산용 라벨
             let label = UILabel()
-            label.text = "#\(detailVM.album.tags[indexPath.row + 1])"
+            label.text = "#\(album.tags[indexPath.row + 1])"
             label.font = .systemFont(ofSize: 16, weight: .semibold)
             label.sizeToFit()
             let cellHeight = detailTagsCollectionView.frame.height // 셀의 높이 설정
@@ -220,25 +225,6 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         default:
             return .zero
         }
-    }
-    
-}
-
-// MARK: - TableView
-// detailImagesTableView
-extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return detailVM.album.imageCount
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = detailImagesTableView.dequeueReusableCell(withIdentifier: "DetailImagesTableViewCell") as! DetailImagesTableViewCell
-        cell.initData(album: detailVM.album, indexPath: indexPath) {
-            self.detailImagesTableView.beginUpdates()
-            self.detailImagesTableView.endUpdates()
-        }
-        return cell
     }
     
 }
@@ -256,7 +242,7 @@ extension DetailViewController {
 //        }))
 
         actionSheet.addAction(UIAlertAction(title: "공유", style: .default, handler: { _ in
-            guard let url = self.detailVM.albumURL else {
+            guard let url = self.albumURL else {
                 return
             }
             self.shareURL(url: url)
@@ -282,7 +268,7 @@ extension DetailViewController {
         let confirmAction = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
             self.loadingView.loadingLabel.text = ""
             self.view.addSubview(self.loadingView)
-            self.detailVM.deleteAlbum()
+            self.deleteAlbum()
         })
         deleteAlert.addAction(confirmAction)
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -290,7 +276,70 @@ extension DetailViewController {
         self.present(deleteAlert, animated: true, completion: nil)
     }
     
+    func deleteAlbum() {
+        print("\(type(of: self)) - \(#function)")
 
+        deleteAlbumDoc {
+            self.deleteAlbumImage {
+                self.deleteAlbumDone.onNext(())
+            }
+        }
+    }
+    
+    func deleteAlbumDoc(completion: @escaping () -> Void) {
+        print("\(type(of: self)) - \(#function)")
+
+        
+        albumsCollection.document(album.albumID).delete() { err in
+            if let err = err {
+                print("\(#function) 실패: \(err)")
+                // TODO: 앨범 삭제 실패 토스트
+                self.showToast(message: "삭제 실패")
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                print("Document successfully removed!")
+                completion()
+            }
+        }
+    }
+    
+    func deleteAlbumImage(completion: @escaping () -> Void) {
+        print("\(type(of: self)) - \(#function)")
+        
+        let albumImagesRef = Storage.storage().reference().child(album.albumID)
+        albumImagesRef.listAll { (result, error) in
+            if let error = error {
+                print("Error in listing files: \(error)")
+                self.loadingView.removeFromSuperview()
+                self.showToast(message: "삭제 실패")
+                return
+            }
+            guard let result = result else {
+                print("\(#function) result 없음")
+                self.loadingView.removeFromSuperview()
+                self.showToast(message: "삭제 실패")
+                return
+            }
+            let dispatchGroup = DispatchGroup()
+            
+            for item in result.items {
+                dispatchGroup.enter()
+                item.delete { error in
+                    if let error = error {
+                        print("Error deleting file: \(error)")
+                    } else {
+                        print("File deleted successfully")
+                    }
+                    dispatchGroup.leave()
+                }
+            }
+            
+            dispatchGroup.notify(queue: .main) {
+                self.loadingView.removeFromSuperview()
+                completion()
+            }
+        }
+    }
 }
 
 // MARK: - UIActivityViewController
@@ -312,5 +361,3 @@ extension DetailViewController {
     }
     
 }
-
-

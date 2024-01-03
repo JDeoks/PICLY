@@ -33,7 +33,7 @@ class SceneManager {
         print("\(type(of: self)) - \(#function)")
         
         let detailVC = getVC(scene: .detail) as! DetailViewController
-        detailVC.detailVM.album = album
+        detailVC.album = album
         detailVC.hidesBottomBarWhenPushed = true
         vc.navigationController?.pushViewController(detailVC, animated: true)
     }
