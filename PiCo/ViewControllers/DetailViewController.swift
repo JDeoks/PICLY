@@ -23,15 +23,7 @@ class DetailViewController: UIViewController {
 
     @IBOutlet var backButton: UIButton!
     @IBOutlet var editButton: UIButton!
-    @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var dateLabel: UILabel!
-    @IBOutlet var tagLabel: UILabel!
-    @IBOutlet var viewCountLabel: UILabel!
-    @IBOutlet var remainTimeLabel: UILabel!
-    @IBOutlet var copyLinkButton: UIButton!
-    @IBOutlet var detailTagsCollectionView: UICollectionView!
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var shareButton: UIButton!
+    @IBOutlet var detailTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,57 +34,20 @@ class DetailViewController: UIViewController {
     }
     
     func initUI() {
-        // imageView
-        imageView.layer.cornerRadius = 4
-        imageView.alpha = 0
-        
-        // shareButton
-        shareButton.layer.cornerRadius = 4
-        shareButton.alpha = 0
-        shareButton.isEnabled = false
-        
-        // scrollView
-        scrollView.alwaysBounceVertical = true
-        
-        // detailTagsCollectionView
-        detailTagsCollectionView.delegate = self
-        detailTagsCollectionView.dataSource = self
-        let detailTagsCollectionViewCell = UINib(nibName: "DetailTagsCollectionViewCell", bundle: nil)
-        detailTagsCollectionView.register(detailTagsCollectionViewCell, forCellWithReuseIdentifier: "DetailTagsCollectionViewCell")
-        let detailTagsFlowLayout = UICollectionViewFlowLayout()
-        detailTagsFlowLayout.scrollDirection = .horizontal
-        detailTagsCollectionView.collectionViewLayout = detailTagsFlowLayout
+        // detailTableView
+        detailTableView.dataSource = self
+        detailTableView.delegate = self
+        let detailInfoTableCell = UINib(nibName: "DetailInfoTableViewCell", bundle: nil)
+        detailTableView.register(detailInfoTableCell, forCellReuseIdentifier: "DetailInfoTableViewCell")
     }
     
     func initData() {
-        // dateLabel
-        dateLabel.text = album.getCreationTimeStr()
-        
-        // tagLabel
-        if album.tags.isEmpty {
-            tagLabel.text = "#"
-        } else {
-            tagLabel.text = "#\(album.tags[0])"
-        }
-        
-        // detailTagsCollectionView
-        if album.tags.count <= 1 {
-            detailTagsCollectionView.isHidden = true
-        }
-        
-        // viewCountLabel
-        viewCountLabel.text = "\(album.viewCount)"
-        
-        // remainTimeLabel
-        remainTimeLabel.text = album.getTimeRemainingStr()
-        
         // albumURL
         let rootURL: URL = ConfigManager.shared.getRootURL()
         albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(album.albumID)
         
         // others
         let storageRef = Storage.storage().reference().child(album.albumID)
-        fetchImage()
     }
     
     func action() {
@@ -108,27 +63,6 @@ class DetailViewController: UIViewController {
                 self.showEditActionSheet()
             }
             .disposed(by: disposeBag)
-        
-        copyLinkButton.rx.tap
-            .subscribe { _ in
-                HapticManager.shared.triggerImpact()
-                guard let url = self.albumURL else {
-                    self.showToast(message: "링크 복사 실패")
-                    return
-                }
-                UIPasteboard.general.url = url
-                self.showToast(message: "링크가 복사되었습니다")
-            }
-            .disposed(by: disposeBag)
-        
-        shareButton.rx.tap
-            .subscribe { _ in
-                guard let url = self.albumURL else {
-                    return
-                }
-                self.shareURL(url: url)
-            }
-            .disposed(by: disposeBag)
     }
     
     func bind() {
@@ -140,91 +74,48 @@ class DetailViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
-    func fetchImage() {
-        print("\(type(of: self)) - \(#function)")
-        
-        imageView.kf.indicatorType = .activity
-        
-        self.imageView.kf.setImage(with: album.imageURLs[0], placeholder: nil, completionHandler: { result in
-            switch result {
-            case .success(let value):
-                let image = value.image
-                let aspectRatio = image.size.width / image.size.height
-                // ImageView의 비율 조정
-                self.imageView.snp.remakeConstraints { make in
-                    make.width.equalTo(self.imageView.snp.height).multipliedBy(aspectRatio)
-                }
-                self.view.layoutIfNeeded()
-                
-                UIView.animate(withDuration: 0.2) {
-                    self.imageView.alpha = 1.0
-                    self.shareButton.alpha = 1.0
-                    self.shareButton.isEnabled = true
-                    self.view.layoutIfNeeded()
-                }
-                
-            case .failure(let error):
-                print("Error loading image: \(error)")
-            }
-            
-        })
-    }
 
 }
 
-// MARK: - UICollectionView
-extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+// MARK: - UITableView
+extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionView{
-        case detailTagsCollectionView:
-            /// 첫 태그 제외한 나머지 태그 개수
-            let tagCount = album.tags.count - 1
-            return tagCount > 0 ? tagCount : 0
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch tableView {
+        case detailTableView:
+            return 1
             
         default:
             return 0
         }
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let cell = detailTableView.dequeueReusableCell(withIdentifier: "DetailInfoTableViewCell", for: indexPath) as! DetailInfoTableViewCell
+        cell.setData(album: album)
+        return cell
+    }
+    
+}
+
+// MARK: - UICollectionView
+extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 0
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch collectionView {
-        case detailTagsCollectionView:
-            let cell = detailTagsCollectionView.dequeueReusableCell(withReuseIdentifier: "DetailTagsCollectionViewCell", for: indexPath) as! DetailTagsCollectionViewCell
-            cell.tagLabel.text = "#\(album.tags[indexPath.row + 1])"
-            return cell
-            
-        default:
-            return DetailTagsCollectionViewCell()
-        }
+        return DetailTagsCollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        switch collectionView {
-        case detailTagsCollectionView:
-            return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-
-        default:
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        }
-         
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch collectionView {
-        case detailTagsCollectionView:
-            // 사이즈 계산용 라벨
-            let label = UILabel()
-            label.text = "#\(album.tags[indexPath.row + 1])"
-            label.font = .systemFont(ofSize: 16, weight: .semibold)
-            label.sizeToFit()
-            let cellHeight = detailTagsCollectionView.frame.height // 셀의 높이 설정
-            let cellWidth = label.frame.width + 8
-            return CGSize(width: cellWidth, height: cellHeight)
-            
-        default:
-            return .zero
-        }
+        return .zero
     }
     
 }
