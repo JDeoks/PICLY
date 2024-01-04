@@ -93,6 +93,10 @@
 		2A89E6AA2B0A32C6009056DD /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6A92B0A32C6009056DD /* ShareViewController.swift */; };
 		2A89E6AD2B0A32C6009056DD /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A89E6AB2B0A32C6009056DD /* MainInterface.storyboard */; };
 		2A89E6B12B0A32C6009056DD /* PiCoShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2A89E6A72B0A32C6009056DD /* PiCoShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2A8ED08D2B46FDF60068B0B8 /* DetailInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8ED08B2B46FDF60068B0B8 /* DetailInfoTableViewCell.swift */; };
+		2A8ED08E2B46FDF60068B0B8 /* DetailInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A8ED08C2B46FDF60068B0B8 /* DetailInfoTableViewCell.xib */; };
+		2A8ED0912B46FE0E0068B0B8 /* DetailImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8ED08F2B46FE0E0068B0B8 /* DetailImagesTableViewCell.swift */; };
+		2A8ED0922B46FE0E0068B0B8 /* DetailImagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A8ED0902B46FE0E0068B0B8 /* DetailImagesTableViewCell.xib */; };
 		2A9711242B347DEC00A989E8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2A9711232B347DEC00A989E8 /* Kingfisher */; };
 		2A9711262B35C3D400A989E8 /* AlbumField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9711252B35C3D400A989E8 /* AlbumField.swift */; };
 		2A9863FB2B09104C0041686E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9863FA2B09104C0041686E /* DetailViewController.swift */; };
@@ -202,6 +206,10 @@
 		2A89E6B82B0A338E009056DD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		2A89E6B92B0A35DE009056DD /* PiCo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PiCo.entitlements; sourceTree = "<group>"; };
 		2A89E6BA2B0A369B009056DD /* PiCoShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PiCoShareExtension.entitlements; sourceTree = "<group>"; };
+		2A8ED08B2B46FDF60068B0B8 /* DetailInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoTableViewCell.swift; sourceTree = "<group>"; };
+		2A8ED08C2B46FDF60068B0B8 /* DetailInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailInfoTableViewCell.xib; sourceTree = "<group>"; };
+		2A8ED08F2B46FE0E0068B0B8 /* DetailImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImagesTableViewCell.swift; sourceTree = "<group>"; };
+		2A8ED0902B46FE0E0068B0B8 /* DetailImagesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailImagesTableViewCell.xib; sourceTree = "<group>"; };
 		2A9711252B35C3D400A989E8 /* AlbumField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumField.swift; sourceTree = "<group>"; };
 		2A9863FA2B09104C0041686E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2A9863FC2B0913BE0041686E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -321,6 +329,10 @@
 			children = (
 				2A0E086F2B39BD5400D76501 /* DetailTagsCollectionViewCell.swift */,
 				2A0E08702B39BD5400D76501 /* DetailTagsCollectionViewCell.xib */,
+				2A8ED08B2B46FDF60068B0B8 /* DetailInfoTableViewCell.swift */,
+				2A8ED08C2B46FDF60068B0B8 /* DetailInfoTableViewCell.xib */,
+				2A8ED08F2B46FE0E0068B0B8 /* DetailImagesTableViewCell.swift */,
+				2A8ED0902B46FE0E0068B0B8 /* DetailImagesTableViewCell.xib */,
 			);
 			path = DetailVC;
 			sourceTree = "<group>";
@@ -592,7 +604,9 @@
 			files = (
 				2A3F756C2B33411400CE67D1 /* MyAlbumsCollectionViewCell.xib in Resources */,
 				2A4FF2CA2B35F70200A6FEF1 /* TagsCollectionViewCell.xib in Resources */,
+				2A8ED08E2B46FDF60068B0B8 /* DetailInfoTableViewCell.xib in Resources */,
 				2AD5F2CF2B0FADCE00475AC6 /* SettingsTableViewCell.xib in Resources */,
+				2A8ED0922B46FE0E0068B0B8 /* DetailImagesTableViewCell.xib in Resources */,
 				2A3ADA742B2DD49500D40535 /* LaunchScreen.storyboard in Resources */,
 				2A6942742B17669B0070B194 /* GoogleService-Info.plist in Resources */,
 				2A0E08732B39BD5400D76501 /* DetailTagsCollectionViewCell.xib in Resources */,
@@ -658,6 +672,7 @@
 				2A3F75712B33567900CE67D1 /* UserField.swift in Sources */,
 				2A6942402B1532D00070B194 /* WebViewController.swift in Sources */,
 				2A4D48FA2B0A781A00E776C7 /* AlbumModel.swift in Sources */,
+				2A8ED0912B46FE0E0068B0B8 /* DetailImagesTableViewCell.swift in Sources */,
 				2A3ADA762B2E0DD600D40535 /* AcountViewController.swift in Sources */,
 				2A6942782B17920A0070B194 /* SignInViewController.swift in Sources */,
 				2A0D40CA2B3975B000506124 /* ConfigManager.swift in Sources */,
@@ -668,6 +683,7 @@
 				2A282FDE2B31C34A0074C198 /* SceneManager.swift in Sources */,
 				2A6160FF2B2B4E720093C688 /* UserModel.swift in Sources */,
 				2A0E08712B39BD5400D76501 /* DetailTagsCollectionViewCell.swift in Sources */,
+				2A8ED08D2B46FDF60068B0B8 /* DetailInfoTableViewCell.swift in Sources */,
 				2A2FA5962B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
