@@ -19,7 +19,7 @@ class UploadViewController: UIViewController {
     
     let uploadVM = UploadViewModel()
     
-    var seletedImageCount = 0
+    let maxImageCount = 10
     
     let disposeBag = DisposeBag()
     
@@ -202,16 +202,36 @@ class UploadViewController: UIViewController {
 // MARK: - CollectionView
 extension UploadViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        switch collectionView {
+        case tagsCollectionView:
+            return 1
+        case selectedImageCollectionView:
+            return 2
+        default:
+            return 0
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case tagsCollectionView:
             return uploadVM.tags.value.count
             
         case selectedImageCollectionView:
-            return 1
+            switch section {
+            case 0:
+                return uploadVM.images.count
+                
+            case 1:
+                return 1
+                
+            default:
+                return 0
+            }
             
         default:
-            return 1
+            return 0
         }
     }
     
@@ -233,7 +253,8 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
             return cell
             
         case selectedImageCollectionView:
-            if uploadVM.images.indices.contains(indexPath.row) {
+            switch indexPath.section {
+            case 0:
                 let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "SelectedImageCollectionViewCell", for: indexPath) as! SelectedImageCollectionViewCell
                 cell.imageView.image = uploadVM.images[indexPath.row]
                 
@@ -247,13 +268,17 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
                     }
                     .disposed(by: cell.disposeBag)
                 return cell
-            } else {
+                
+            case 1:
                 let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "AddImageCollectionViewCell", for: indexPath) as! AddImageCollectionViewCell
                 return cell
+                
+            default:
+                return UICollectionViewCell()
             }
             
         default:
-            return AddImageCollectionViewCell()
+            return UICollectionViewCell()
         }
 
     }
@@ -368,7 +393,7 @@ extension UploadViewController: PHPickerViewControllerDelegate {
         self.view.endEditing(true)
         var config = PHPickerConfiguration()
         config.filter = .images
-        config.selectionLimit = 10 - seletedImageCount
+        config.selectionLimit = maxImageCount - uploadVM.images.count
         
         let imagePicker = PHPickerViewController(configuration: config)
         imagePicker.delegate = self
