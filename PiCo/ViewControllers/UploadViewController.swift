@@ -307,10 +307,18 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
             return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             
         case selectedImageCollectionView:
-            return section == 0 ? UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8) : UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
+            if section == 0 {
+                if collectionView.numberOfItems(inSection: 0) == 0 {
+                    return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
+                } else {
+                    return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+                }
+            } else {
+                return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
+            }
             
         default:
-            return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
          
     }
