@@ -78,9 +78,6 @@ class DetailInfoTableViewCell: UITableViewCell {
         self.album = album
     }
     
-    
-    
-    
 }
 
 extension DetailInfoTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -115,7 +112,7 @@ extension DetailInfoTableViewCell: UICollectionViewDataSource, UICollectionViewD
         label.font = .systemFont(ofSize: 16, weight: .semibold)
         label.sizeToFit()
         let cellHeight = tagsCollectionView.frame.height // 셀의 높이 설정
-        let cellWidth = label.frame.width + 8
+        let cellWidth = label.frame.width + 4
         return CGSize(width: cellWidth, height: cellHeight)
     }
     

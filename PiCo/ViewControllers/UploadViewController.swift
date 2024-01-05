@@ -110,7 +110,7 @@ class UploadViewController: UIViewController {
         // 완료 버튼
         uploadButton.rx.tap
             .subscribe { _ in
-                if self.uploadVM.images.isEmpty {
+                if self.uploadVM.imageTuples.isEmpty {
                     self.showToast(message: "선택된 이미지가 없습니다.")
                     return
                 }
@@ -221,10 +221,14 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
         case selectedImageCollectionView:
             switch section {
             case 0:
-                return uploadVM.images.count
+                return uploadVM.imageTuples.count
                 
             case 1:
-                return 1
+                if uploadVM.imageTuples.count < maxImageCount {
+                    return 1
+                } else {
+                    return 0
+                }
                 
             default:
                 return 0
@@ -256,12 +260,12 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
             switch indexPath.section {
             case 0:
                 let cell = selectedImageCollectionView.dequeueReusableCell(withReuseIdentifier: "SelectedImageCollectionViewCell", for: indexPath) as! SelectedImageCollectionViewCell
-                cell.imageView.image = uploadVM.images[indexPath.row]
+                cell.imageView.image = uploadVM.imageTuples[indexPath.row].1
                 
                 cell.deleteButton.rx.tap
                     .subscribe { _ in
                         HapticManager.shared.triggerImpact()
-                        self.uploadVM.images.remove(at: indexPath.row)
+                        self.uploadVM.imageTuples.remove(at: indexPath.row)
                         DispatchQueue.main.async {
                             self.selectedImageCollectionView.reloadData()
                         }
@@ -401,7 +405,7 @@ extension UploadViewController: PHPickerViewControllerDelegate {
         self.view.endEditing(true)
         var config = PHPickerConfiguration()
         config.filter = .images
-        config.selectionLimit = maxImageCount - uploadVM.images.count
+        config.selectionLimit = maxImageCount - uploadVM.imageTuples.count
         
         let imagePicker = PHPickerViewController(configuration: config)
         imagePicker.delegate = self
@@ -410,21 +414,19 @@ extension UploadViewController: PHPickerViewControllerDelegate {
     }
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        
         // 고른 이미지 없으면 바로 반환
-        if !results.isEmpty {
-            loadingView.loadingLabel.text = "사진 로딩 중"
-            self.view.addSubview(self.loadingView)
-        } else {
+        if results.isEmpty {
             picker.dismiss(animated: true)
             return
         }
+        loadingView.loadingLabel.text = "사진 로딩 중"
+        self.view.addSubview(self.loadingView)
         
         let itemProviders = results.map(\.itemProvider)
         let dispatchGroup = DispatchGroup()
         
         DispatchQueue.global().async {
-            for itemProvider in itemProviders {
+            for (i, itemProvider) in itemProviders.enumerated() {
                 if itemProvider.canLoadObject(ofClass: UIImage.self) {
                     dispatchGroup.enter()
                     itemProvider.loadObject(ofClass: UIImage.self) {image, error in
@@ -434,17 +436,17 @@ extension UploadViewController: PHPickerViewControllerDelegate {
                         guard let image = image as? UIImage else {
                             return
                         }
-                        self.uploadVM.images.append(image)
-                        self.uploadVM.imageSizes.append(self.getImageSize(image: image))
+                        self.uploadVM.imageTuples.append((i, image))
+                        self.uploadVM.imageSizeTuples.append(self.getImageSizeTuple(index: i, image: image))
                     }
                 }
             }
 
             dispatchGroup.notify(queue: .main) {
+                self.uploadVM.imageTuples.sort { $0.0 < $1.0 }
                 DispatchQueue.main.async {
                     self.selectedImageCollectionView.reloadData()
                     self.loadingView.removeFromSuperview()
-                    self.loadingView.loadingLabel.text = ""
                 }
             }
         }
@@ -457,6 +459,12 @@ extension UploadViewController: PHPickerViewControllerDelegate {
             AlbumField.width.rawValue: Int(image.size.width)
         ]
         return size
+    }
+    
+    func getImageSizeTuple(index: Int, image: UIImage) -> (Int, CGFloat, CGFloat) {
+        let height = image.size.height
+        let width = image.size.width
+        return (index, height, width)
     }
     
 }

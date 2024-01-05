@@ -18,12 +18,14 @@ class UploadViewModel {
     let albumCollection = Firestore.firestore().collection("Albums")
     /// 업로드 성공한 앨범의 URL
     var albumURL: URL?
-    /// 선택한 사진 배열
-    var images: [UIImage] = []
+    /// 선택한 사진 배열  param1: index, param2: image
+    var imageTuples: [(Int, UIImage)] = []
     var thumbnailURL: URL?
     /// 앨범에 추가할 이미지 접근 url
-    var imageURLs: [URL] = []
-    var imageSizes: [[String : Int]] = []
+    var imageURLs: [(Int, URL)] = []
+    /// param1: index, param2: height, param3: width
+    var imageSizeTuples: [(Int, CGFloat, CGFloat)] = []
+//    var imageSizes: [[String : Int]] = []
     var expireTime = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
     var tags = BehaviorRelay<[String]>(value: [])
     /// uploadAlbum() -> UploadViewController
@@ -33,6 +35,11 @@ class UploadViewModel {
     func uploadAlbum() {
         print("\(type(of: self)) - \(#function)")
         
+        // 이미지 관련 배열 인덱스로 정렬
+        imageTuples.sort { $0.0 < $1.0 }
+        imageURLs.sort { $0.0 < $1.0 }
+        imageSizeTuples.sort { $0.0 < $1.0 }
+
         uploadAlbumDocToFireStore() { albumDocID in
             self.uploadImagesToStorage(albumDocID: albumDocID) {
                 print("\(#function) 성공")
@@ -46,10 +53,10 @@ class UploadViewModel {
     /// AlbumModel을 FireStore에 추가
     func uploadAlbumDocToFireStore( completion: @escaping (String) -> Void) {
         print("\(type(of: self)) - \(#function)")
-        
+        let imageSizes = getImageSizeDicts(images: imageSizeTuples)
         let documentData = AlbumModel.createDictToUpload(
             expireTime: expireTime,
-            imageCount: images.count,
+            imageCount: imageTuples.count,
             tags: tags.value,
             imageSizes: imageSizes
         )
@@ -75,11 +82,11 @@ class UploadViewModel {
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         let uploadGroup = DispatchGroup()
-        print("images.count:", images.count)
-        
-        if images.isEmpty == false {
+        print("images.count:", imageTuples.count)
+        // 썸네일 업로드
+        if imageTuples.isEmpty == false {
             let uploadRef = albumImagesRef.child("thumbnail.jpeg")
-            if let thumbnailImage = images[0].jpegData(compressionQuality: 0.1) {
+            if let thumbnailImage = imageTuples[0].1.jpegData(compressionQuality: 0.1) {
                 uploadGroup.enter()
                 uploadRef.putData(thumbnailImage, metadata: metadata) { metadata, error in
                     uploadRef.downloadURL { url, error in
@@ -92,16 +99,17 @@ class UploadViewModel {
                 }
             }
         }
-        for imageIdx in 0..<images.count {
+        // 앨범 전체 이미지 업로드
+        for imageIdx in 0..<imageTuples.count {
             let uploadRef = albumImagesRef.child("\(imageIdx).jpeg")
-            if let imageData = images[imageIdx].jpegData(compressionQuality: 0.5) {
+            if let imageData = imageTuples[imageIdx].1.jpegData(compressionQuality: 0.5) {
                 uploadGroup.enter()
                 uploadRef.putData(imageData, metadata: metadata) { metadata, error in
                     uploadRef.downloadURL { url, error in
                         guard let url = url else {
                             return
                         }
-                        self.imageURLs.append(url)
+                        self.imageURLs.append((imageIdx,url))
                         uploadGroup.leave()
                     }
                 }
@@ -118,7 +126,7 @@ class UploadViewModel {
 
         let albumDocRef = albumCollection.document(albumDocID)
         // imageURLs 배열을 String 배열로 변환
-        let urlsStringArray = imageURLs.map { $0.absoluteString }
+        let urlsStringArray = imageURLs.map { $0.1.absoluteString }
         let thumbnailStr: String = thumbnailURL?.absoluteString ?? "nil"
         let dict: [String : Any] = [AlbumField.imageURLs.rawValue: urlsStringArray, AlbumField.thumbnailURL.rawValue: thumbnailStr] 
         albumDocRef.updateData(dict) { error in
@@ -128,6 +136,15 @@ class UploadViewModel {
                 print("Doc 업데이트 성공")
                 completion()
             }
+        }
+    }
+    
+    func getImageSizeDicts(images: [(Int, CGFloat, CGFloat)]) -> [[String : Int]] {
+        return images.map { (_, height, width) in
+            [
+                AlbumField.height.rawValue: Int(height),
+                AlbumField.width.rawValue: Int(width)
+            ]
         }
     }
     
