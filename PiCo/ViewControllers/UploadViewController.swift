@@ -19,6 +19,8 @@ class UploadViewController: UIViewController {
     
     let uploadVM = UploadViewModel()
     
+    var seletedImageCount = 0
+    
     let disposeBag = DisposeBag()
     
     lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -366,7 +368,7 @@ extension UploadViewController: PHPickerViewControllerDelegate {
         self.view.endEditing(true)
         var config = PHPickerConfiguration()
         config.filter = .images
-        config.selectionLimit = 1
+        config.selectionLimit = 10 - seletedImageCount
         
         let imagePicker = PHPickerViewController(configuration: config)
         imagePicker.delegate = self

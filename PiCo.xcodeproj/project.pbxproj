@@ -323,10 +323,10 @@
 		2A4007492B45B337006154A4 /* DetailVC */ = {
 			isa = PBXGroup;
 			children = (
-				2A0E086F2B39BD5400D76501 /* DetailTagsCollectionViewCell.swift */,
-				2A0E08702B39BD5400D76501 /* DetailTagsCollectionViewCell.xib */,
 				2A8ED08B2B46FDF60068B0B8 /* DetailInfoTableViewCell.swift */,
 				2A8ED08C2B46FDF60068B0B8 /* DetailInfoTableViewCell.xib */,
+				2A0E086F2B39BD5400D76501 /* DetailTagsCollectionViewCell.swift */,
+				2A0E08702B39BD5400D76501 /* DetailTagsCollectionViewCell.xib */,
 				2A8ED08F2B46FE0E0068B0B8 /* DetailImagesTableViewCell.swift */,
 				2A8ED0902B46FE0E0068B0B8 /* DetailImagesTableViewCell.xib */,
 			);

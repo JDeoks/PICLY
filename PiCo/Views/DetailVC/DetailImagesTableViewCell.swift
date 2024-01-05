@@ -26,6 +26,8 @@ class DetailImagesTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
+    
     func initUI() {
         print("\(type(of: self)) - \(#function)")
 

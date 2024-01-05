@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class DetailInfoTableViewCell: UITableViewCell {
     
     var album: AlbumModel!
+    
+    var disposeBag = DisposeBag()
     
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var copyLinkButton: UIButton!
@@ -29,6 +32,11 @@ class DetailInfoTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
     
     func initUI() {

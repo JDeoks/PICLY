@@ -112,16 +112,23 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             let cell = detailTableView.dequeueReusableCell(withIdentifier: "DetailInfoTableViewCell", for: indexPath) as! DetailInfoTableViewCell
             cell.setData(album: album)
+            cell.copyLinkButton.rx.tap
+                .subscribe { _ in
+                    HapticManager.shared.triggerImpact()
+                    UIPasteboard.general.url = self.albumURL
+                    self.showToast(message: "링크가 복사되었습니다.")
+                }
+                .disposed(by: cell.disposeBag)
+            cell.selectionStyle = .none
             return cell
             
         default:
             let cell = detailTableView.dequeueReusableCell(withIdentifier: "DetailImagesTableViewCell", for: indexPath) as! DetailImagesTableViewCell
             cell.setData(album: album, indexPath: indexPath)
-            print("indexPath", indexPath)
+            cell.selectionStyle = .none
 
             return cell
         }
-
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -137,11 +144,7 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
                 let verticalPadding = CGFloat(8 * 2)
                 let horizontalPadding = CGFloat(16 * 2)
                 let aspectRatio = CGFloat(album.getImageAspectRatio(index: indexPath.row))
-                print("aspectRatio", aspectRatio)
-
                 let height = (aspectRatio * (tableView.frame.width - horizontalPadding) + verticalPadding)
-                print("height", height)
-
                 return height
             }
             
