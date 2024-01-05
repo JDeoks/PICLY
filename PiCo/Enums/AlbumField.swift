@@ -16,8 +16,12 @@ enum AlbumField: String {
     case thumbnailURL = "thumbnailURL"
     case imageURLs = "imageURLs"
     case imageCount = "imageCount"
+    case imageSizes = "imageSizes"
     case tags = "tags"
     case viewCount = "viewCount"
+    // imageSizes key
+    case height = "height"
+    case width = "width"
 
     init?(string: String) {
         self.init(rawValue: string)

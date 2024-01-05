@@ -107,12 +107,12 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
             
         default:
             let cell = detailTableView.dequeueReusableCell(withIdentifier: "DetailImagesTableViewCell") as! DetailImagesTableViewCell
-            cell.setData(album: album, indexPath: indexPath) {
-                self.detailTableView.beginUpdates()
-                self.detailTableView.layoutIfNeeded()
-
-                self.detailTableView.endUpdates()
-            }
+//            cell.setData(album: album, indexPath: indexPath) {
+//                self.detailTableView.beginUpdates()
+//                self.detailTableView.layoutIfNeeded()
+//
+//                self.detailTableView.endUpdates()
+//            }
             return cell
         }
 

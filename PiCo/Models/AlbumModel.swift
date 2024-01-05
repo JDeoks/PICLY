@@ -20,6 +20,7 @@ class AlbumModel {
     var thumbnailURL: URL?
     var imageURLs: [URL]
     var imageCount: Int
+    var imageSizes: [[String: Int]]
     var tags: [String]
     var viewCount: Int
     
@@ -33,20 +34,9 @@ class AlbumModel {
         let imageURLsStrArray = document.data()?[AlbumField.imageURLs.rawValue] as! [String]
         self.imageURLs = imageURLsStrArray.compactMap { URL(string: $0) }
         self.imageCount = document.data()?[AlbumField.imageCount.rawValue] as! Int
+        self.imageSizes = (document.data()?[AlbumField.imageSizes.rawValue] as? [[String: Int]])!
         self.tags = document.data()?[AlbumField.tags.rawValue] as! [String]
         self.viewCount = document.data()?[AlbumField.viewCount.rawValue] as! Int
-    }
-    
-    init(albumID: String, ownerID: String, creationTime: Date, expireTime: Date, imageCount: Int, tags: [String], viewCount: Int) {
-        self.albumID = albumID
-        self.ownerID = ownerID
-        self.creationTime = creationTime
-        self.expireTime = expireTime
-        self.thumbnailURL = nil
-        self.imageURLs = []
-        self.imageCount = imageCount
-        self.tags = tags
-        self.viewCount = viewCount
     }
         
     func getCreationTimeStr() -> String {
@@ -68,12 +58,13 @@ class AlbumModel {
         return Int(days)
     }
     
-    static func createDictToUpload(expireTime: Date, imageCount: Int, tags: [String]) -> [String: Any] {
+    static func createDictToUpload(expireTime: Date, imageCount: Int, tags: [String], imageSizes: [[String : Int]]) -> [String: Any] {
         let dictionary: [String: Any] = [
             AlbumField.ownerID.rawValue: Auth.auth().currentUser!.uid,
             AlbumField.creationTime.rawValue: Timestamp(date: Date()),
             AlbumField.expireTime.rawValue: Timestamp(date: expireTime),
             AlbumField.imageCount.rawValue: imageCount,
+            AlbumField.imageSizes.rawValue: imageSizes,
             AlbumField.tags.rawValue: tags,
             AlbumField.viewCount.rawValue: 0
         ]

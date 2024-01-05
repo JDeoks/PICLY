@@ -400,6 +400,7 @@ extension UploadViewController: PHPickerViewControllerDelegate {
                             return
                         }
                         self.uploadVM.images.append(image)
+                        self.uploadVM.imageSizes.append(self.getImageSize(image: image))
                     }
                 }
             }
@@ -413,5 +414,13 @@ extension UploadViewController: PHPickerViewControllerDelegate {
             }
         }
         picker.dismiss(animated: true)
+    }
+    
+    func getImageSize(image: UIImage) -> [String : Int] {
+        let size: [String: Int] = [
+            AlbumField.height.rawValue: Int(image.size.height),
+            AlbumField.width.rawValue: Int(image.size.width)
+        ]
+        return size
     }
 }

@@ -23,6 +23,7 @@ class UploadViewModel {
     var thumbnailURL: URL?
     /// 앨범에 추가할 이미지 접근 url
     var imageURLs: [URL] = []
+    var imageSizes: [[String : Int]] = []
     var expireTime = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
     var tags = BehaviorRelay<[String]>(value: [])
     /// uploadAlbum() -> UploadViewController
@@ -49,7 +50,9 @@ class UploadViewModel {
         let documentData = AlbumModel.createDictToUpload(
             expireTime: expireTime,
             imageCount: images.count,
-            tags: tags.value)
+            tags: tags.value,
+            imageSizes: imageSizes
+        )
         var ref: DocumentReference? = nil
         ref = albumCollection.addDocument(data: documentData) { err in
             if let err = err {
