@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A0D40C32B39683400506124 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 2A0D40C22B39683400506124 /* SnapKit-Dynamic */; };
-		2A0D40C42B39683400506124 /* SnapKit-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2A0D40C22B39683400506124 /* SnapKit-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2A0D40C72B3970CD00506124 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A0D40C62B3970CD00506124 /* RemoteConfigDefaults.plist */; };
 		2A0D40C82B3970CD00506124 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A0D40C62B3970CD00506124 /* RemoteConfigDefaults.plist */; };
 		2A0D40CA2B3975B000506124 /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D40C92B3975B000506124 /* ConfigManager.swift */; };
@@ -86,8 +84,6 @@
 		2A69427A2B17F49D0070B194 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6942792B17F49D0070B194 /* NSMutableAttributedString+Extension.swift */; };
 		2A89E6942B092D69009056DD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6932B092D69009056DD /* UploadViewController.swift */; };
 		2A89E6972B0937F4009056DD /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6962B0937F4009056DD /* UIViewController+Extension.swift */; };
-		2A89E69A2B094147009056DD /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 2A89E6992B094147009056DD /* SnapKit-Dynamic */; };
-		2A89E69B2B09414D009056DD /* SnapKit-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2A89E6992B094147009056DD /* SnapKit-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2A89E69E2B0941A9009056DD /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 2A89E69D2B0941A9009056DD /* RxKeyboard */; };
 		2A89E6A02B094EEF009056DD /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E69F2B094EEF009056DD /* EditViewController.swift */; };
 		2A89E6AA2B0A32C6009056DD /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6A92B0A32C6009056DD /* ShareViewController.swift */; };
@@ -108,6 +104,8 @@
 		2AB0C4C02B08B77F008BB7AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB0C4BF2B08B77F008BB7AE /* Assets.xcassets */; };
 		2AB0C51D2B08E354008BB7AE /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB0C51C2B08E354008BB7AE /* RxCocoa */; };
 		2AB0C5252B08E354008BB7AE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB0C5242B08E354008BB7AE /* RxSwift */; };
+		2ABB363C2B4715F600B3F073 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB363B2B4715F600B3F073 /* SnapKit */; };
+		2ABB363E2B47171900B3F073 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB363D2B47171900B3F073 /* SnapKit */; };
 		2ABE24452B3B321700F7C00D /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABE24442B3B321700F7C00D /* HapticManager.swift */; };
 		2ABE24462B3B321700F7C00D /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABE24442B3B321700F7C00D /* HapticManager.swift */; };
 		2AC0BD012B35C5E7002B7418 /* AlbumField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9711252B35C3D400A989E8 /* AlbumField.swift */; };
@@ -134,7 +132,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2A0D40C42B39683400506124 /* SnapKit-Dynamic in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,7 +153,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2A89E69B2B09414D009056DD /* SnapKit-Dynamic in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -233,9 +229,9 @@
 				2A69426D2B153E890070B194 /* FirebaseRemoteConfig in Frameworks */,
 				2A4D48F12B0A652200E776C7 /* RxSwift in Frameworks */,
 				2A4D48EF2B0A652200E776C7 /* RxCocoa in Frameworks */,
+				2ABB363E2B47171900B3F073 /* SnapKit in Frameworks */,
 				2A69426B2B153E890070B194 /* FirebaseMessaging in Frameworks */,
 				2A6942692B153E890070B194 /* FirebaseInAppMessaging-Beta in Frameworks */,
-				2A0D40C32B39683400506124 /* SnapKit-Dynamic in Frameworks */,
 				2A69426F2B153E890070B194 /* FirebaseStorage in Frameworks */,
 				2A6942612B153E890070B194 /* FirebaseCrashlytics in Frameworks */,
 				2A6942672B153E890070B194 /* FirebaseFunctions in Frameworks */,
@@ -259,6 +255,7 @@
 				2A89E69E2B0941A9009056DD /* RxKeyboard in Frameworks */,
 				2A69424D2B153CF60070B194 /* FirebaseDynamicLinks in Frameworks */,
 				2A6942722B1762BF0070B194 /* GoogleSignIn in Frameworks */,
+				2ABB363C2B4715F600B3F073 /* SnapKit in Frameworks */,
 				2A69424B2B153CF60070B194 /* FirebaseCrashlytics in Frameworks */,
 				2A69424F2B153CF60070B194 /* FirebaseFirestore in Frameworks */,
 				2A6942532B153CF60070B194 /* FirebaseInAppMessaging-Beta in Frameworks */,
@@ -268,7 +265,6 @@
 				2A6942572B153CF60070B194 /* FirebaseRemoteConfig in Frameworks */,
 				2A6942592B153CF60070B194 /* FirebaseStorage in Frameworks */,
 				2A6942472B153CF60070B194 /* FirebaseAnalytics in Frameworks */,
-				2A89E69A2B094147009056DD /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,7 +485,7 @@
 				2A69426C2B153E890070B194 /* FirebaseRemoteConfig */,
 				2A69426E2B153E890070B194 /* FirebaseStorage */,
 				2AF5899C2B2F042E0027D928 /* SwiftDate */,
-				2A0D40C22B39683400506124 /* SnapKit-Dynamic */,
+				2ABB363D2B47171900B3F073 /* SnapKit */,
 			);
 			productName = PiCoShareExtension;
 			productReference = 2A89E6A72B0A32C6009056DD /* PiCoShareExtension.appex */;
@@ -514,7 +510,6 @@
 			packageProductDependencies = (
 				2AB0C51C2B08E354008BB7AE /* RxCocoa */,
 				2AB0C5242B08E354008BB7AE /* RxSwift */,
-				2A89E6992B094147009056DD /* SnapKit-Dynamic */,
 				2A89E69D2B0941A9009056DD /* RxKeyboard */,
 				2A6942462B153CF60070B194 /* FirebaseAnalytics */,
 				2A6942482B153CF60070B194 /* FirebaseAuth */,
@@ -530,6 +525,7 @@
 				2AD328902B29C92B002DA60F /* RxGesture */,
 				2A6161072B2B50D20093C688 /* SwiftDate */,
 				2A9711232B347DEC00A989E8 /* Kingfisher */,
+				2ABB363B2B4715F600B3F073 /* SnapKit */,
 			);
 			productName = PiCo;
 			productReference = 2AB0C4B32B08B77E008BB7AE /* PiCo.app */;
@@ -929,7 +925,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -967,7 +963,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1071,11 +1067,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2A0D40C22B39683400506124 /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2A89E6982B094147009056DD /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
-		};
 		2A4D48EE2B0A652200E776C7 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2AB0C5172B08E354008BB7AE /* XCRemoteSwiftPackageReference "RxSwift" */;
@@ -1196,11 +1187,6 @@
 			package = 2A6942702B1762BF0070B194 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
 		};
-		2A89E6992B094147009056DD /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2A89E6982B094147009056DD /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
-		};
 		2A89E69D2B0941A9009056DD /* RxKeyboard */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2A89E69C2B0941A9009056DD /* XCRemoteSwiftPackageReference "RxKeyboard" */;
@@ -1220,6 +1206,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2AB0C5172B08E354008BB7AE /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		2ABB363B2B4715F600B3F073 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A89E6982B094147009056DD /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		2ABB363D2B47171900B3F073 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A89E6982B094147009056DD /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 		2AD328902B29C92B002DA60F /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -39,6 +39,8 @@ class DetailViewController: UIViewController {
         detailTableView.delegate = self
         let detailInfoTableCell = UINib(nibName: "DetailInfoTableViewCell", bundle: nil)
         detailTableView.register(detailInfoTableCell, forCellReuseIdentifier: "DetailInfoTableViewCell")
+        let detailImagesTableCell = UINib(nibName: "DetailImagesTableViewCell", bundle: nil)
+        detailTableView.register(detailImagesTableCell, forCellReuseIdentifier: "DetailImagesTableViewCell")
     }
     
     func initData() {
@@ -83,7 +85,13 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case detailTableView:
-            return 1
+            switch section {
+            case 0:
+                return 1
+            
+            default:
+                return album.imageCount
+            }
             
         default:
             return 0
@@ -91,10 +99,23 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.row {
+        case 0:
+            let cell = detailTableView.dequeueReusableCell(withIdentifier: "DetailInfoTableViewCell", for: indexPath) as! DetailInfoTableViewCell
+            cell.setData(album: album)
+            return cell
+            
+        default:
+            let cell = detailTableView.dequeueReusableCell(withIdentifier: "DetailImagesTableViewCell") as! DetailImagesTableViewCell
+            cell.setData(album: album, indexPath: indexPath) {
+                self.detailTableView.beginUpdates()
+                self.detailTableView.layoutIfNeeded()
 
-        let cell = detailTableView.dequeueReusableCell(withIdentifier: "DetailInfoTableViewCell", for: indexPath) as! DetailInfoTableViewCell
-        cell.setData(album: album)
-        return cell
+                self.detailTableView.endUpdates()
+            }
+            return cell
+        }
+
     }
     
 }
