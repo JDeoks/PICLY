@@ -34,19 +34,20 @@ class DetailImagesTableViewCell: UITableViewCell {
         detailImageView.alpha = 0
     }
     
-    func setData(album: AlbumModel, indexPath: IndexPath,  updateTableView: @escaping (CGFloat) -> Void) {
+    func setData(album: AlbumModel, indexPath: IndexPath) {
         print("\(type(of: self)) - \(#function)")
 
         detailImageView.kf.indicatorType = .activity
-        detailImageView.kf.setImage(with: album.imageURLs[indexPath.row - 1]) { result in
+        detailImageView.kf.setImage(with: album.imageURLs[indexPath.row]) { result in
             switch result {
             case .success(let value):
-                let image = value.image
-                let newHeight = self.detailImageView.frame.width * image.size.height / image.size.width
-                self.layoutIfNeeded()
-                updateTableView(newHeight)
-                UIView.animate(withDuration: 0.2) {
-                    self.detailImageView.alpha = 1.0
+                print("이미지 성공")
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.2) {
+                        print("이미지 알파")
+                        self.detailImageView.alpha = 1.0
+                    }
+                    self.layoutIfNeeded()
                 }
 
             case .failure(let error):

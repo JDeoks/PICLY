@@ -82,7 +82,13 @@ class DetailViewController: UIViewController {
 // MARK: - UITableView
 extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {        
+        print("\(type(of: self)) - \(#function)")
+
         switch tableView {
         case detailTableView:
             switch section {
@@ -90,6 +96,7 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
                 return 1
             
             default:
+                print("album.imageCount", album.imageCount)
                 return album.imageCount
             }
             
@@ -99,24 +106,51 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
+        print("\(type(of: self)) - \(#function)")
+
+        switch indexPath.section {
         case 0:
             let cell = detailTableView.dequeueReusableCell(withIdentifier: "DetailInfoTableViewCell", for: indexPath) as! DetailInfoTableViewCell
             cell.setData(album: album)
             return cell
             
         default:
-            let cell = detailTableView.dequeueReusableCell(withIdentifier: "DetailImagesTableViewCell") as! DetailImagesTableViewCell
-//            cell.setData(album: album, indexPath: indexPath) {
-//                self.detailTableView.beginUpdates()
-//                self.detailTableView.layoutIfNeeded()
-//
-//                self.detailTableView.endUpdates()
-//            }
+            let cell = detailTableView.dequeueReusableCell(withIdentifier: "DetailImagesTableViewCell", for: indexPath) as! DetailImagesTableViewCell
+            cell.setData(album: album, indexPath: indexPath)
+            print("indexPath", indexPath)
+
             return cell
         }
 
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        print("\(type(of: self)) - \(#function)")
+
+        switch tableView {
+        case detailTableView:
+            switch indexPath.section {
+            case 0:
+                return UITableView.automaticDimension
+            
+            default:
+                let verticalPadding = CGFloat(8 * 2)
+                let horizontalPadding = CGFloat(16 * 2)
+                let aspectRatio = CGFloat(album.getImageAspectRatio(index: indexPath.row))
+                print("aspectRatio", aspectRatio)
+
+                let height = (aspectRatio * (tableView.frame.width - horizontalPadding) + verticalPadding)
+                print("height", height)
+
+                return height
+            }
+            
+        default:
+            return 0
+        }
+    }
+    
+    
     
 }
 

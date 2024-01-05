@@ -17,21 +17,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="412" height="393"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Yj-lB-uXW">
-                        <rect key="frame" x="0.0" y="0.0" width="412" height="393"/>
+                    <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QUt-0s-bt3">
+                        <rect key="frame" x="16" y="8" width="380" height="377"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="njF-e1-oar" firstAttribute="bottom" secondItem="4Yj-lB-uXW" secondAttribute="bottom" id="Hil-04-ddG"/>
-                <constraint firstItem="4Yj-lB-uXW" firstAttribute="top" secondItem="njF-e1-oar" secondAttribute="top" id="bqd-QX-Pme"/>
-                <constraint firstItem="4Yj-lB-uXW" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" id="fpT-xN-AAw"/>
-                <constraint firstItem="njF-e1-oar" firstAttribute="trailing" secondItem="4Yj-lB-uXW" secondAttribute="trailing" id="y3k-Pt-mrx"/>
+                <constraint firstItem="njF-e1-oar" firstAttribute="bottom" secondItem="QUt-0s-bt3" secondAttribute="bottom" constant="8" id="AA5-Vn-iCO"/>
+                <constraint firstItem="QUt-0s-bt3" firstAttribute="top" secondItem="njF-e1-oar" secondAttribute="top" constant="8" id="cnF-fu-pKe"/>
+                <constraint firstItem="QUt-0s-bt3" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" constant="16" id="waE-8H-SVL"/>
+                <constraint firstItem="njF-e1-oar" firstAttribute="trailing" secondItem="QUt-0s-bt3" secondAttribute="trailing" constant="16" id="yuF-wY-SpW"/>
             </constraints>
             <connections>
-                <outlet property="detailImageView" destination="4Yj-lB-uXW" id="7pO-Xs-4vX"/>
-                <outlet property="imageView" destination="4Yj-lB-uXW" id="h8C-Av-jg3"/>
+                <outlet property="detailImageView" destination="QUt-0s-bt3" id="B0h-Nx-UBi"/>
             </connections>
             <point key="canvasLocation" x="209.16030534351145" y="143.3098591549296"/>
         </tableViewCell>

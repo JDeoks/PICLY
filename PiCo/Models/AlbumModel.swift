@@ -90,4 +90,11 @@ class AlbumModel {
         return "\(days)일 \(hours)시간 \(minutes)분 후 만료"
     }
     
+    /// height / width
+    func getImageAspectRatio(index: Int) -> Float {
+        let width = Float(imageSizes[index][AlbumField.width.rawValue]!)
+        let height = Float(imageSizes[index][AlbumField.height.rawValue]!)
+        return height / width
+    }
+    
 }

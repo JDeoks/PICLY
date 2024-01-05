@@ -21,7 +21,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XIS-Og-dn9">
-                        <rect key="frame" x="0.0" y="0.0" width="409" height="266"/>
+                        <rect key="frame" x="0.0" y="0.0" width="409" height="258"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eVi-dD-BLf">
                                 <rect key="frame" x="0.0" y="0.0" width="409" height="42"/>
@@ -87,13 +87,13 @@
                                 <cells/>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FnG-e2-WaB">
-                                <rect key="frame" x="0.0" y="216" width="409" height="50"/>
+                                <rect key="frame" x="0.0" y="216" width="409" height="42"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="AYw-5v-gct">
-                                        <rect key="frame" x="16" y="0.0" width="59" height="50"/>
+                                        <rect key="frame" x="16" y="0.0" width="59" height="42"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gDd-34-nYI">
-                                                <rect key="frame" x="0.0" y="15.333333333333336" width="24" height="19.999999999999993"/>
+                                                <rect key="frame" x="0.0" y="11.333333333333334" width="24" height="20"/>
                                                 <color key="tintColor" name="SecondText"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="24" id="9cY-pI-5Nv"/>
@@ -101,7 +101,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,203" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6P-4P-OLa">
-                                                <rect key="frame" x="28" y="18" width="31" height="14.333333333333336"/>
+                                                <rect key="frame" x="28" y="14" width="31" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" name="SecondText"/>
                                                 <nil key="highlightedColor"/>
@@ -109,11 +109,11 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="alI-gd-zWp">
-                                        <rect key="frame" x="75" y="0.0" width="318" height="50"/>
+                                        <rect key="frame" x="75" y="0.0" width="318" height="42"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17일 7시간 12분 후 만료 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wym-JK-mO8">
-                                        <rect key="frame" x="393" y="0.0" width="0.0" height="50"/>
+                                        <rect key="frame" x="393" y="0.0" width="0.0" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" name="SecondText"/>
                                         <nil key="highlightedColor"/>
@@ -128,7 +128,7 @@
                 <constraints>
                     <constraint firstItem="XIS-Og-dn9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9BE-6M-hdM"/>
                     <constraint firstItem="XIS-Og-dn9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="T7q-DA-LBn"/>
-                    <constraint firstAttribute="bottom" secondItem="XIS-Og-dn9" secondAttribute="bottom" id="XqI-hc-eS7"/>
+                    <constraint firstAttribute="bottom" secondItem="XIS-Og-dn9" secondAttribute="bottom" constant="8" id="XqI-hc-eS7"/>
                     <constraint firstAttribute="trailing" secondItem="XIS-Og-dn9" secondAttribute="trailing" id="lFi-A8-Tzd"/>
                 </constraints>
             </tableViewCellContentView>
