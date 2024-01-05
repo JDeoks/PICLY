@@ -135,7 +135,7 @@ class MyAlbumsViewController: UIViewController {
 
 }
 
-// MARK: - 컬렉션 뷰
+// MARK: - UICollectionView
 extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
