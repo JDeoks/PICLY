@@ -267,6 +267,11 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
                         HapticManager.shared.triggerImpact()
                         self.uploadVM.imageTuples.remove(at: indexPath.row)
                         self.uploadVM.imageSizeTuples.remove(at: indexPath.row)
+                        // 빠진 index로 인해 배열 재구성 필요
+                        self.uploadVM.imageTuples = self.uploadVM.imageTuples.enumerated().map { ($0.offset, $0.element.1) }
+                        self.uploadVM.imageSizeTuples = self.uploadVM.imageSizeTuples.enumerated().map { ($0.offset, $0.element.1, $0.element.2) }
+                        print(self.uploadVM.imageTuples)
+                        print(self.uploadVM.imageSizeTuples)
                         DispatchQueue.main.async {
                             self.selectedImageCollectionView.reloadData()
                         }
@@ -423,12 +428,13 @@ extension UploadViewController: PHPickerViewControllerDelegate {
         }
         loadingView.loadingLabel.text = "사진 로딩 중"
         self.view.addSubview(self.loadingView)
-        
+        // 시작할 오프셋
+        let startingIndex = uploadVM.imageTuples.count
         let itemProviders = results.map(\.itemProvider)
         let dispatchGroup = DispatchGroup()
         
         DispatchQueue.global().async {
-            for (i, itemProvider) in itemProviders.enumerated() {
+            for (offset, itemProvider) in itemProviders.enumerated() {
                 if itemProvider.canLoadObject(ofClass: UIImage.self) {
                     dispatchGroup.enter()
                     itemProvider.loadObject(ofClass: UIImage.self) {image, error in
@@ -438,17 +444,20 @@ extension UploadViewController: PHPickerViewControllerDelegate {
                         guard let image = image as? UIImage else {
                             return
                         }
-                        self.uploadVM.imageTuples.append((i, image))
+                        self.uploadVM.imageTuples.append((startingIndex + offset, image))
+                        self.uploadVM.imageSizeTuples.append(self.getImageSizeTuple(index: startingIndex + offset, image: image))
                         print(self.uploadVM.imageTuples)
-                        self.uploadVM.imageSizeTuples.append(self.getImageSizeTuple(index: i, image: image))
                         print(self.uploadVM.imageSizeTuples)
-
                     }
                 }
             }
 
             dispatchGroup.notify(queue: .main) {
-//                self.uploadVM.imageTuples.sort { $0.0 < $1.0 }
+                self.uploadVM.imageTuples.sort { $0.0 < $1.0 }
+                self.uploadVM.imageSizeTuples.sort { $0.0 < $1.0 }
+                print("정렬 후")
+                print(self.uploadVM.imageTuples)
+                print(self.uploadVM.imageSizeTuples)
                 DispatchQueue.main.async {
                     self.selectedImageCollectionView.reloadData()
                     self.loadingView.removeFromSuperview()
@@ -456,14 +465,6 @@ extension UploadViewController: PHPickerViewControllerDelegate {
             }
         }
         picker.dismiss(animated: true)
-    }
-    
-    func getImageSize(image: UIImage) -> [String : Int] {
-        let size: [String: Int] = [
-            AlbumField.height.rawValue: Int(image.size.height),
-            AlbumField.width.rawValue: Int(image.size.width)
-        ]
-        return size
     }
     
     func getImageSizeTuple(index: Int, image: UIImage) -> (Int, CGFloat, CGFloat) {

@@ -111,9 +111,7 @@ class UploadViewModel {
                         guard let url = url else {
                             return
                         }
-                        print("덤프")
                         self.imageURLs.append((imageIdx,url))
-                        dump(self.imageURLs)
                         uploadGroup.leave()
                     }
                 }
