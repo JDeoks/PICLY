@@ -34,17 +34,9 @@ class UploadViewModel {
 // MARK: - 파이어베이스 업로드
     func uploadAlbum() {
         print("\(type(of: self)) - \(#function)")
-        
-        // 이미지 관련 배열 인덱스로 정렬
-        imageTuples.sort { $0.0 < $1.0 }
-        imageSizeTuples.sort { $0.0 < $1.0 }
-        print(imageTuples)
-        print(imageURLs)
-        print(imageSizeTuples)
 
         uploadAlbumDocToFireStore() { albumDocID in
             self.uploadImagesToStorage(albumDocID: albumDocID) {
-                print("\(#function) 성공")
                 self.updateImageURLsToAlbumDoc(albumDocID: albumDocID) {
                     self.uploadAlbumDone.onNext(())
                 }

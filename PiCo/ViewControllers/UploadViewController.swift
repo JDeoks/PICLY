@@ -428,7 +428,7 @@ extension UploadViewController: PHPickerViewControllerDelegate {
         }
         loadingView.loadingLabel.text = "사진 로딩 중"
         self.view.addSubview(self.loadingView)
-        // 시작할 오프셋
+        /// 시작할 오프셋
         let startingIndex = uploadVM.imageTuples.count
         let itemProviders = results.map(\.itemProvider)
         let dispatchGroup = DispatchGroup()
@@ -444,10 +444,9 @@ extension UploadViewController: PHPickerViewControllerDelegate {
                         guard let image = image as? UIImage else {
                             return
                         }
-                        self.uploadVM.imageTuples.append((startingIndex + offset, image))
-                        self.uploadVM.imageSizeTuples.append(self.getImageSizeTuple(index: startingIndex + offset, image: image))
-                        print(self.uploadVM.imageTuples)
-                        print(self.uploadVM.imageSizeTuples)
+                        let newIndex = startingIndex + offset
+                        self.uploadVM.imageTuples.append((newIndex, image))
+                        self.uploadVM.imageSizeTuples.append(self.getImageSizeTuple(index: newIndex, image: image))
                     }
                 }
             }
@@ -455,9 +454,6 @@ extension UploadViewController: PHPickerViewControllerDelegate {
             dispatchGroup.notify(queue: .main) {
                 self.uploadVM.imageTuples.sort { $0.0 < $1.0 }
                 self.uploadVM.imageSizeTuples.sort { $0.0 < $1.0 }
-                print("정렬 후")
-                print(self.uploadVM.imageTuples)
-                print(self.uploadVM.imageSizeTuples)
                 DispatchQueue.main.async {
                     self.selectedImageCollectionView.reloadData()
                     self.loadingView.removeFromSuperview()
