@@ -266,6 +266,7 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
                     .subscribe { _ in
                         HapticManager.shared.triggerImpact()
                         self.uploadVM.imageTuples.remove(at: indexPath.row)
+                        self.uploadVM.imageSizeTuples.remove(at: indexPath.row)
                         DispatchQueue.main.async {
                             self.selectedImageCollectionView.reloadData()
                         }
@@ -404,6 +405,7 @@ extension UploadViewController: PHPickerViewControllerDelegate {
     func presentPicker() {
         self.view.endEditing(true)
         var config = PHPickerConfiguration()
+        config.selection = .ordered
         config.filter = .images
         config.selectionLimit = maxImageCount - uploadVM.imageTuples.count
         
@@ -437,13 +439,16 @@ extension UploadViewController: PHPickerViewControllerDelegate {
                             return
                         }
                         self.uploadVM.imageTuples.append((i, image))
+                        print(self.uploadVM.imageTuples)
                         self.uploadVM.imageSizeTuples.append(self.getImageSizeTuple(index: i, image: image))
+                        print(self.uploadVM.imageSizeTuples)
+
                     }
                 }
             }
 
             dispatchGroup.notify(queue: .main) {
-                self.uploadVM.imageTuples.sort { $0.0 < $1.0 }
+//                self.uploadVM.imageTuples.sort { $0.0 < $1.0 }
                 DispatchQueue.main.async {
                     self.selectedImageCollectionView.reloadData()
                     self.loadingView.removeFromSuperview()

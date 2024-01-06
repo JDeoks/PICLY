@@ -37,8 +37,10 @@ class UploadViewModel {
         
         // 이미지 관련 배열 인덱스로 정렬
         imageTuples.sort { $0.0 < $1.0 }
-        imageURLs.sort { $0.0 < $1.0 }
         imageSizeTuples.sort { $0.0 < $1.0 }
+        print(imageTuples)
+        print(imageURLs)
+        print(imageSizeTuples)
 
         uploadAlbumDocToFireStore() { albumDocID in
             self.uploadImagesToStorage(albumDocID: albumDocID) {
@@ -109,7 +111,9 @@ class UploadViewModel {
                         guard let url = url else {
                             return
                         }
+                        print("덤프")
                         self.imageURLs.append((imageIdx,url))
+                        dump(self.imageURLs)
                         uploadGroup.leave()
                     }
                 }
@@ -117,6 +121,7 @@ class UploadViewModel {
         }
         
         uploadGroup.notify(queue: .main) {
+            self.imageURLs.sort { $0.0 < $1.0 }
             completion()
         }
     }
