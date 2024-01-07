@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     override init() {
         super.init()
-        Thread.sleep(forTimeInterval: 0.2)
+        Thread.sleep(forTimeInterval: 0.3)
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
