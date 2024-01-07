@@ -73,6 +73,8 @@ class DetailInfoTableViewCell: UITableViewCell {
         
         // remainTimeLabel
         remainTimeLabel.text = album.getTimeRemainingStr()
+        // TODO: 이게 맞나...
+        remainTimeLabel.textColor = remainTimeLabel.text == "만료" ? warnRed : secondText
         
         //album
         self.album = album

@@ -18,6 +18,8 @@ import FirebaseAuth
 
 class MyAlbumsViewController: UIViewController {
     
+    var filteredAlbums: [AlbumModel] = []
+    
     let disposeBag = DisposeBag()
     
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -118,6 +120,15 @@ class MyAlbumsViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        // searchTagTextField
+        searchTagTextField.rx.text
+            .orEmpty
+            .distinctUntilChanged()
+            .subscribe(onNext: { changedText in
+                self.updateFilteredAlbums(keyword: changedText)
+            })
+            .disposed(by: disposeBag)
+        
         hideKeyboardButton.rx.tap
             .subscribe { _ in
                 self.view.endEditing(true)
@@ -128,6 +139,7 @@ class MyAlbumsViewController: UIViewController {
     func bind() {
         DataManager.shared.fetchAlbumsDone
             .subscribe { _ in
+                self.filteredAlbums = DataManager.shared.albums
                 self.myAlbumsCollectionView.reloadData()
             }
             .disposed(by: disposeBag)
@@ -139,13 +151,13 @@ class MyAlbumsViewController: UIViewController {
 extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return DataManager.shared.albums.count
+        return filteredAlbums.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = myAlbumsCollectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumsCollectionViewCell", for: indexPath) as! MyAlbumsCollectionViewCell
-        if DataManager.shared.albums.indices.contains(indexPath.row) {
-            cell.setData(album: DataManager.shared.albums[indexPath.row])
+        if filteredAlbums.indices.contains(indexPath.row) {
+            cell.setData(album: filteredAlbums[indexPath.row])
             
             cell.copyLinkButton.rx.tap
                 .subscribe { _ in
@@ -164,7 +176,7 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         stopSearching()
-        SceneManager.shared.pushDetailVC(vc: self, album: DataManager.shared.albums[indexPath.row])
+        SceneManager.shared.pushDetailVC(vc: self, album: filteredAlbums[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -185,7 +197,6 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
 // MARK: - UITextField
 extension MyAlbumsViewController: UITextFieldDelegate {
     
-    /// 검색 시작 시 애니메이션
     func textFieldDidBeginEditing(_ textField: UITextField) {
         startSearching()
     }
@@ -203,6 +214,7 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         view.endEditing(true)
     }
     
+    /// 검색 시작 애니메이션
     func startSearching() {
         self.searchCancelButton.isHidden = false
         UIView.animate(withDuration: 0.1, animations: {
@@ -211,15 +223,39 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         })
     }
     
-    // 검색 취소 시
+    
     func stopSearching() {
+        // 검색 정보 초기화
+        if !(filteredAlbums.count == DataManager.shared.albums.count) {
+            searchTagTextField.text = ""
+            self.filteredAlbums = DataManager.shared.albums
+            myAlbumsCollectionView.reloadData()
+        }
+        // 검색 취소 애니메이션
         searchCancelButton.isHidden = true
-        searchTagTextField.text = ""
         view.endEditing(true)
         UIView.animate(withDuration: 0.1 ,animations: {
             self.titleStackView.isHidden = false
             self.view.layoutIfNeeded()
         })
+    }
+    
+    // TODO: 질문
+    func updateFilteredAlbums(keyword: String) {
+        print("\(type(of: self)) - \(#function)", keyword)
+        
+        if keyword == "" {
+            self.filteredAlbums = DataManager.shared.albums
+            myAlbumsCollectionView.reloadData()
+            return
+        }
+        filteredAlbums = DataManager.shared.albums.filter { album in
+            return album.tags.contains { tag in
+                return tag.contains(keyword)
+            }
+        }
+        dump(filteredAlbums)
+        myAlbumsCollectionView.reloadData()
     }
         
 }
