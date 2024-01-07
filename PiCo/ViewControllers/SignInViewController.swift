@@ -222,7 +222,7 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
             charset[Int(byte) % charset.count]
         }
         return String(nonce)
-        }
+    }
 
     private func sha256(_ input: String) -> String {
         let inputData = Data(input.utf8)

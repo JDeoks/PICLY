@@ -381,6 +381,14 @@ extension UploadViewController: UITextFieldDelegate {
         return true
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string == " " { // 공백이 입력되었는지 확인
+            textField.text?.append("_") // 텍스트 필드에 언더바 추가
+            return false // 시스템이 텍스트 필드에 문자를 추가하지 않도록 함
+        }
+        return true // 그 외의 경우에는 기본 동작을 수행
+    }
+    
 }
 
 // MARK: - Alert
