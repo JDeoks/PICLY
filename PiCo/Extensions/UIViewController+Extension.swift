@@ -7,9 +7,9 @@
 
 import UIKit
 
+// MARK: - ToastAlert
 extension UIViewController {
 
-    // 토스트
     func showToast(message : String) {
         let toastLabel = UILabel()
         toastLabel.numberOfLines = 2
@@ -41,6 +41,7 @@ extension UIViewController {
     }
 }
 
+// MARK: - UITextField
 extension UIViewController {
 
     // 키보드 숨기기

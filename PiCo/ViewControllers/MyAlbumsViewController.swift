@@ -182,11 +182,28 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
 
 }
 
-// MARK: - 텍스트 필드
+// MARK: - UITextField
 extension MyAlbumsViewController: UITextFieldDelegate {
     
     /// 검색 시작 시 애니메이션
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        startSearching()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // 입력된 스트링이 공백일때 언더바를 대신 추가
+        if string == " " {
+            textField.text?.append("_")
+            return false
+        }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+    }
+    
+    func startSearching() {
         self.searchCancelButton.isHidden = false
         UIView.animate(withDuration: 0.1, animations: {
             self.titleStackView.isHidden = true
@@ -198,11 +215,11 @@ extension MyAlbumsViewController: UITextFieldDelegate {
     func stopSearching() {
         searchCancelButton.isHidden = true
         searchTagTextField.text = ""
-        searchTagTextField.resignFirstResponder()
+        view.endEditing(true)
         UIView.animate(withDuration: 0.1 ,animations: {
             self.titleStackView.isHidden = false
             self.view.layoutIfNeeded()
         })
     }
-    
+        
 }

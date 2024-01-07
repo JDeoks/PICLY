@@ -26,35 +26,24 @@ class DetailImagesTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        detailImageView.image = nil
+    }
     
     func initUI() {
         print("\(type(of: self)) - \(#function)")
 
         // detailImageView
         detailImageView.layer.cornerRadius = 4
-        detailImageView.alpha = 0
+//        detailImageView.alpha = 0
     }
     
     func setData(album: AlbumModel, indexPath: IndexPath) {
         print("\(type(of: self)) - \(#function)")
 
+        let imageURL = album.imageURLs[indexPath.row]
         detailImageView.kf.indicatorType = .activity
-        detailImageView.kf.setImage(with: album.imageURLs[indexPath.row]) { result in
-            switch result {
-            case .success(let value):
-                print("이미지 성공")
-                DispatchQueue.main.async {
-                    UIView.animate(withDuration: 0.2) {
-                        print("이미지 알파")
-                        self.detailImageView.alpha = 1.0
-                    }
-                    self.layoutIfNeeded()
-                }
-
-            case .failure(let error):
-                print("Error loading image: \(error)")
-            }
-        }
+        detailImageView.kf.setImage(with: imageURL, options: [.transition(.fade(0.2))])
     }
 }
