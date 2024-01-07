@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,19 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="pG1-ob-Cgo">
-                                <rect key="frame" x="136.66666666666666" y="378.66666666666669" width="119.99999999999997" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="22Z-oi-GC1"/>
-                                    <constraint firstAttribute="height" constant="120" id="5fQ-0V-fr0"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="LZl-EC-R1a">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="HighlightBlue"/>
+                        <color key="backgroundColor" name="MainBackground"/>
                         <constraints>
-                            <constraint firstItem="pG1-ob-Cgo" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ZKW-fH-2Si"/>
-                            <constraint firstItem="pG1-ob-Cgo" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="cbu-He-xe8"/>
+                            <constraint firstAttribute="trailing" secondItem="LZl-EC-R1a" secondAttribute="trailing" id="AiN-rk-e2T"/>
+                            <constraint firstAttribute="bottom" secondItem="LZl-EC-R1a" secondAttribute="bottom" id="UJ2-CY-zev"/>
+                            <constraint firstItem="LZl-EC-R1a" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="WgM-eq-kZb"/>
+                            <constraint firstItem="LZl-EC-R1a" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="bGq-X7-ZHc"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,9 +37,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="751" height="1381"/>
-        <namedColor name="HighlightBlue">
-            <color red="0.51372549019607838" green="0.70588235294117652" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="Splash.jpg" width="2000" height="2000"/>
+        <namedColor name="MainBackground">
+            <color red="0.17254901960784313" green="0.17254901960784313" blue="0.20784313725490197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

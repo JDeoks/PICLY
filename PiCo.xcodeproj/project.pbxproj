@@ -17,6 +17,8 @@
 		2A0E08742B39BD5400D76501 /* DetailTagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0E08702B39BD5400D76501 /* DetailTagsCollectionViewCell.xib */; };
 		2A1960D72B0FAC92000935CF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1960D62B0FAC92000935CF /* SettingViewController.swift */; };
 		2A1BE96F2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1BE96D2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift */; };
+		2A1D74E52B4AF64C00E0964B /* Splash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2A1D74E42B4AF64C00E0964B /* Splash.jpg */; };
+		2A1D74E62B4AF64C00E0964B /* Splash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2A1D74E42B4AF64C00E0964B /* Splash.jpg */; };
 		2A282FDE2B31C34A0074C198 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A282FDD2B31C34A0074C198 /* SceneManager.swift */; };
 		2A2FA5962B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5942B0BBED900767310 /* SelectedImageCollectionViewCell.swift */; };
 		2A2FA5972B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5942B0BBED900767310 /* SelectedImageCollectionViewCell.swift */; };
@@ -169,6 +171,7 @@
 		2A0E08702B39BD5400D76501 /* DetailTagsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTagsCollectionViewCell.xib; sourceTree = "<group>"; };
 		2A1960D62B0FAC92000935CF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2A1BE96D2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlbumsCollectionViewCell.swift; sourceTree = "<group>"; };
+		2A1D74E42B4AF64C00E0964B /* Splash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash.jpg; sourceTree = "<group>"; };
 		2A282FDD2B31C34A0074C198 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
 		2A2FA5942B0BBED900767310 /* SelectedImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A2FA5952B0BBED900767310 /* SelectedImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedImageCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -452,6 +455,7 @@
 				2A6161022B2B50120093C688 /* Enums */,
 				2A89E6952B0937DA009056DD /* Extensions */,
 				2AB0C4BF2B08B77F008BB7AE /* Assets.xcassets */,
+				2A1D74E42B4AF64C00E0964B /* Splash.jpg */,
 				2AB0C4C42B08B77F008BB7AE /* Info.plist */,
 				2A6942732B17669A0070B194 /* GoogleService-Info.plist */,
 				2A3ADA732B2DD49500D40535 /* LaunchScreen.storyboard */,
@@ -592,6 +596,7 @@
 				2A0D40C82B3970CD00506124 /* RemoteConfigDefaults.plist in Resources */,
 				2A89E6AD2B0A32C6009056DD /* MainInterface.storyboard in Resources */,
 				2A0E08742B39BD5400D76501 /* DetailTagsCollectionViewCell.xib in Resources */,
+				2A1D74E62B4AF64C00E0964B /* Splash.jpg in Resources */,
 				2A4FF2CB2B35F70200A6FEF1 /* TagsCollectionViewCell.xib in Resources */,
 				2A6942762B1766A90070B194 /* GoogleService-Info.plist in Resources */,
 				2A2FA5992B0BBED900767310 /* SelectedImageCollectionViewCell.xib in Resources */,
@@ -605,6 +610,7 @@
 			files = (
 				2A3F756C2B33411400CE67D1 /* MyAlbumsCollectionViewCell.xib in Resources */,
 				2A4FF2CA2B35F70200A6FEF1 /* TagsCollectionViewCell.xib in Resources */,
+				2A1D74E52B4AF64C00E0964B /* Splash.jpg in Resources */,
 				2A8ED08E2B46FDF60068B0B8 /* DetailInfoTableViewCell.xib in Resources */,
 				2AD5F2CF2B0FADCE00475AC6 /* SettingsTableViewCell.xib in Resources */,
 				2A8ED0922B46FE0E0068B0B8 /* DetailImagesTableViewCell.xib in Resources */,
