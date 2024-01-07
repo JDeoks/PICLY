@@ -1,8 +1,8 @@
 //
-//  NSMutableAttributedString+Extension.swift
+//  NSMutableAttributedString+.swift
 //  PiCo
 //
-//  Created by 서정덕 on 11/30/23.
+//  Created by JDeoks on 1/7/24.
 //
 
 import Foundation
@@ -11,7 +11,7 @@ extension NSMutableAttributedString {
 
     public func setAsLink(textToFind: String, linkURL: String) -> Bool {
         
-        // 하이퍼링크를 추가하고자 하는 text의 위치, 글자 수 를 찾는다.
+        // 하이퍼링크를 추가하고자 하는 text의 위치, 글자 수를 찾는다.
         let foundRange = self.mutableString.range(of: textToFind)
         
         // text의 위치 존재 여부 확인

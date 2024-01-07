@@ -1,8 +1,8 @@
 //
-//  UIImage+Extension.swift
+//  UIImage+.swift
 //  PiCo
 //
-//  Created by JDeoks on 12/25/23.
+//  Created by JDeoks on 1/7/24.
 //
 
 import Foundation

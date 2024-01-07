@@ -1,8 +1,8 @@
 //
-//  UIApplication+Extension.swift
+//  UIApplication+.swift
 //  PiCo
 //
-//  Created by JDeoks on 12/19/23.
+//  Created by JDeoks on 1/7/24.
 //
 
 import Foundation
