@@ -32,8 +32,9 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        disposeBag = DisposeBag()
+        dDayLabel.textColor = UIColor(named: "SecondText")
         thumnailImageView.image = nil
+        disposeBag = DisposeBag()
     }
     
     func initUI() {
@@ -68,10 +69,13 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
         tagLabel.text = album.tags.isEmpty ? "" : "#\(album.tags[0])"
         
         // dDayLabel
-        if album.getDDay() < 0 {
-            dDayLabel.text = "D+\(-album.getDDay())"
+        
+        if album.expireTime < Date() {
+            dDayLabel.textColor = UIColor(named: "warnRed")
+            dDayLabel.text = "만료"
         } else {
-            dDayLabel.text = "D-\(album.getDDay())"
+            let dDay = album.getDDay()
+            dDayLabel.text = dDay == 0 ? "D-DAY" : "D-\(dDay)"
         }
         
         // thumbnailURL
