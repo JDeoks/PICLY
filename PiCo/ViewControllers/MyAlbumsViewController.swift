@@ -50,7 +50,7 @@ class MyAlbumsViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         // refreshControl
-        refreshControl.tintColor = UIColor(named: "SecondText")
+        refreshControl.tintColor = secondText
         refreshControl.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
         
         // myAlbumsCollectionView

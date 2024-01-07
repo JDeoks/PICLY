@@ -61,7 +61,7 @@ class ShareViewController: UIViewController {
         selectedImageCollectionView.collectionViewLayout = flowLayout
         
         // datePicker
-        expireDatePicker.tintColor = UIColor(named: "HighlightBlue")
+        expireDatePicker.tintColor = highlightBlue
     }
     
     func action() {

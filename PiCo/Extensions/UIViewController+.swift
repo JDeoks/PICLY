@@ -13,8 +13,8 @@ extension UIViewController {
     func showToast(message : String) {
         let toastLabel = UILabel()
         toastLabel.numberOfLines = 2
-        toastLabel.backgroundColor = UIColor(named: "TextFieldBackground")!.withAlphaComponent(0.9)
-        toastLabel.textColor = UIColor(named: "mainText")
+        toastLabel.backgroundColor = textFieldBackground.withAlphaComponent(0.9)
+        toastLabel.textColor = mainText
         toastLabel.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         toastLabel.textAlignment = .center
         toastLabel.text = message

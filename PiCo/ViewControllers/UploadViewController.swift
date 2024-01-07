@@ -55,7 +55,7 @@ class UploadViewController: UIViewController {
         tagTextField.delegate = self
         
         // datePicker
-        expireDatePicker.tintColor = UIColor(named: "HighlightBlue")
+        expireDatePicker.tintColor = highlightBlue
         
         // scrollView
         scrollView.delegate = self

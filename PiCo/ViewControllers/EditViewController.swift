@@ -37,7 +37,7 @@ class EditViewController: UIViewController {
         inputTagStackView.layer.cornerRadius = 4
         
         // datePicker
-        expireDatePicker.tintColor = UIColor(named: "HighlightBlue")
+        expireDatePicker.tintColor = highlightBlue
         scrollView.delegate = self
         
         // selectedImageCollectionView
