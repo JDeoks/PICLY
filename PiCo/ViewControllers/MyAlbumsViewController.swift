@@ -137,7 +137,7 @@ class MyAlbumsViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
-    
+
     func bind() {
         DataManager.shared.fetchAlbumsDone
             .subscribe { _ in
@@ -158,35 +158,33 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // 내 앨범이 없음
-        if DataManager.shared.albums.count == 0 {
+        if DataManager.shared.albums.isEmpty {
             let cell = myAlbumsCollectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumsDefaultCollectionViewCell", for: indexPath) as! MyAlbumsDefaultCollectionViewCell
             cell.setData(state: .empty)
             return cell
-        }
-        // 검색 결과가 없음
-        if filteredAlbums.count == 0 {
+        } else if filteredAlbums.isEmpty { // 검색 결과 없음
             let cell = myAlbumsCollectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumsDefaultCollectionViewCell", for: indexPath) as! MyAlbumsDefaultCollectionViewCell
             cell.setData(state: .noSearchResults)
             return cell
+        } else { // 표시할 앨범 있음
+            let cell = myAlbumsCollectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumsCollectionViewCell", for: indexPath) as! MyAlbumsCollectionViewCell
+            if filteredAlbums.indices.contains(indexPath.row) {
+                cell.setData(album: filteredAlbums[indexPath.row])
+                
+                cell.copyLinkButton.rx.tap
+                    .subscribe { _ in
+                        HapticManager.shared.triggerImpact()
+                        UIPasteboard.general.url = cell.albumURL
+                        self.showToast(message: "링크가 복사되었습니다.")
+                        print(cell.albumURL)
+                    }
+                    .disposed(by: cell.disposeBag)
+                
+            } else {
+                print("인덱스 오류")
+            }
+            return cell
         }
-        // 일반적인 상황
-        let cell = myAlbumsCollectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumsCollectionViewCell", for: indexPath) as! MyAlbumsCollectionViewCell
-        if filteredAlbums.indices.contains(indexPath.row) {
-            cell.setData(album: filteredAlbums[indexPath.row])
-            
-            cell.copyLinkButton.rx.tap
-                .subscribe { _ in
-                    HapticManager.shared.triggerImpact()
-                    UIPasteboard.general.url = cell.albumURL
-                    self.showToast(message: "링크가 복사되었습니다.")
-                    print(cell.albumURL)
-                }
-                .disposed(by: cell.disposeBag)
-            
-        } else {
-            print("인덱스 오류")
-        }
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -270,7 +268,7 @@ extension MyAlbumsViewController: UITextFieldDelegate {
     func updateFilteredAlbums(keyword: String) {
         print("\(type(of: self)) - \(#function)", keyword)
         
-        if keyword == "" {
+        if keyword.isEmpty {
             filteredAlbums = DataManager.shared.albums
             myAlbumsCollectionView.reloadData()
             return
@@ -280,7 +278,6 @@ extension MyAlbumsViewController: UITextFieldDelegate {
                 return tag.contains(keyword)
             }
         }
-        dump(filteredAlbums)
         myAlbumsCollectionView.reloadData()
     }
         

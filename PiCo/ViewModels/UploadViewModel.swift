@@ -45,7 +45,7 @@ class UploadViewModel {
     }
     
     /// AlbumModel을 FireStore에 추가
-    func uploadAlbumDocToFireStore( completion: @escaping (String) -> Void) {
+    private func uploadAlbumDocToFireStore( completion: @escaping (String) -> Void) {
         print("\(type(of: self)) - \(#function)")
         let imageSizes = getImageSizeDicts(images: imageSizeTuples)
         let documentData = AlbumModel.createDictToUpload(
@@ -68,7 +68,7 @@ class UploadViewModel {
     }
     
     /// 이미지를 Storage에 업로드
-    func uploadImagesToStorage(albumDocID: String, completion: @escaping () -> Void) {
+    private func uploadImagesToStorage(albumDocID: String, completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
         
         // 스토리지 ref = albumDocID/imageIndex
@@ -116,7 +116,7 @@ class UploadViewModel {
         }
     }
     
-    func updateImageURLsToAlbumDoc(albumDocID: String, completion: @escaping () -> Void) {
+    private func updateImageURLsToAlbumDoc(albumDocID: String, completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
 
         let albumDocRef = albumCollection.document(albumDocID)
@@ -134,7 +134,7 @@ class UploadViewModel {
         }
     }
     
-    func getImageSizeDicts(images: [(Int, CGFloat, CGFloat)]) -> [[String : Int]] {
+    private func getImageSizeDicts(images: [(Int, CGFloat, CGFloat)]) -> [[String : Int]] {
         return images.map { (_, height, width) in
             [
                 AlbumField.height.rawValue: Int(height),

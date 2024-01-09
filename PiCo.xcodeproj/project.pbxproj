@@ -31,7 +31,6 @@
 		2A3ADA742B2DD49500D40535 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3ADA732B2DD49500D40535 /* LaunchScreen.storyboard */; };
 		2A3ADA762B2E0DD600D40535 /* AcountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3ADA752B2E0DD600D40535 /* AcountViewController.swift */; };
 		2A3ADA792B2E2B9C00D40535 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3ADA782B2E2B9C00D40535 /* LoginManager.swift */; };
-		2A3ADA7A2B2E2B9C00D40535 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3ADA782B2E2B9C00D40535 /* LoginManager.swift */; };
 		2A3F756C2B33411400CE67D1 /* MyAlbumsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3F756B2B33411400CE67D1 /* MyAlbumsCollectionViewCell.xib */; };
 		2A3F756E2B33482F00CE67D1 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3F756D2B33482F00CE67D1 /* DataManager.swift */; };
 		2A3F756F2B33482F00CE67D1 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3F756D2B33482F00CE67D1 /* DataManager.swift */; };
@@ -666,7 +665,6 @@
 				2A6161052B2B502B0093C688 /* AuthProvider.swift in Sources */,
 				2A0D40CB2B3975B000506124 /* ConfigManager.swift in Sources */,
 				2A2FA5972B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */,
-				2A3ADA7A2B2E2B9C00D40535 /* LoginManager.swift in Sources */,
 				2A4FF2C52B35EB2500A6FEF1 /* UploadViewModel.swift in Sources */,
 				2A789AF82B4AA7F1004808E7 /* UIColors+.swift in Sources */,
 				2A4FF2C92B35F70200A6FEF1 /* TagsCollectionViewCell.swift in Sources */,
