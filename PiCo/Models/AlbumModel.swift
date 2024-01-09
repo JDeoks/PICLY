@@ -92,9 +92,12 @@ class AlbumModel {
     
     /// height / width
     func getImageAspectRatio(index: Int) -> Float {
-        let width = Float(imageSizes[index][AlbumField.width.rawValue]!)
-        let height = Float(imageSizes[index][AlbumField.height.rawValue]!)
-        return height / width
+        if imageSizes.indices.contains(index) {
+            let width = Float(imageSizes[index][AlbumField.width.rawValue] ?? 100)
+            let height = Float(imageSizes[index][AlbumField.height.rawValue] ?? 100)
+            return height / width
+        }
+        return 1.0
     }
     
 }
