@@ -12,6 +12,7 @@ import RxRelay
 
 class OnboardingViewController: UIViewController {
     
+    // TODO: OnboardingDataModel 추가
     let onboardingDatas =  [3, 3, 4, 52, 2]
     
     let currentPageIndex = BehaviorRelay<Int>(value: 0)
