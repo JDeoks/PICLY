@@ -110,6 +110,8 @@
 		2AB0C5252B08E354008BB7AE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB0C5242B08E354008BB7AE /* RxSwift */; };
 		2AB2AAFB2B4D0FC800186F2F /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2AAF92B4D0FC800186F2F /* OnboardingCollectionViewCell.swift */; };
 		2AB2AAFC2B4D0FC800186F2F /* OnboardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2AAFA2B4D0FC800186F2F /* OnboardingCollectionViewCell.xib */; };
+		2AB2AAFF2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2AAFD2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.swift */; };
+		2AB2AB002B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2AAFE2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.xib */; };
 		2AB79F982B4B0E670055A5E8 /* Splash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AB79F972B4B0E660055A5E8 /* Splash.jpg */; };
 		2ABB363C2B4715F600B3F073 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB363B2B4715F600B3F073 /* SnapKit */; };
 		2ABB363E2B47171900B3F073 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB363D2B47171900B3F073 /* SnapKit */; };
@@ -227,6 +229,8 @@
 		2AB0C4C42B08B77F008BB7AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AB2AAF92B4D0FC800186F2F /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		2AB2AAFA2B4D0FC800186F2F /* OnboardingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingCollectionViewCell.xib; sourceTree = "<group>"; };
+		2AB2AAFD2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlbumsDefaultCollectionViewCell.swift; sourceTree = "<group>"; };
+		2AB2AAFE2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAlbumsDefaultCollectionViewCell.xib; sourceTree = "<group>"; };
 		2AB79F972B4B0E660055A5E8 /* Splash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash.jpg; sourceTree = "<group>"; };
 		2ABE24442B3B321700F7C00D /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		2AD5F2CC2B0FADCE00475AC6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -303,8 +307,8 @@
 		2A1BE96C2B08E97C00703ED5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2AB2AAF82B4D0F9000186F2F /* OnboardingVC */,
 				2A3498522B0D694C00424868 /* LoadingIndicatorView.swift */,
+				2AB2AAF82B4D0F9000186F2F /* OnboardingVC */,
 				2A4007482B45B315006154A4 /* MyAlbumsVC */,
 				2A4007492B45B337006154A4 /* DetailVC */,
 				2A40074B2B45B377006154A4 /* UploadVC */,
@@ -330,6 +334,8 @@
 			children = (
 				2A1BE96D2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift */,
 				2A3F756B2B33411400CE67D1 /* MyAlbumsCollectionViewCell.xib */,
+				2AB2AAFD2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.swift */,
+				2AB2AAFE2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.xib */,
 			);
 			path = MyAlbumsVC;
 			sourceTree = "<group>";
@@ -635,6 +641,7 @@
 				2A2FA59D2B0BBEEE00767310 /* AddImageCollectionViewCell.xib in Resources */,
 				2A0D40C72B3970CD00506124 /* RemoteConfigDefaults.plist in Resources */,
 				2A2FA5982B0BBED900767310 /* SelectedImageCollectionViewCell.xib in Resources */,
+				2AB2AB002B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.xib in Resources */,
 				2AB0C4C02B08B77F008BB7AE /* Assets.xcassets in Resources */,
 				2AB0C4BE2B08B77E008BB7AE /* Main.storyboard in Resources */,
 				2AB2AAFC2B4D0FC800186F2F /* OnboardingCollectionViewCell.xib in Resources */,
@@ -713,6 +720,7 @@
 				2A0E08712B39BD5400D76501 /* DetailTagsCollectionViewCell.swift in Sources */,
 				2A8ED08D2B46FDF60068B0B8 /* DetailInfoTableViewCell.swift in Sources */,
 				2A2FA5962B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */,
+				2AB2AAFF2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
