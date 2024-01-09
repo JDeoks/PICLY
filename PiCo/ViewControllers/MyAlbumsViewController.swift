@@ -60,6 +60,8 @@ class MyAlbumsViewController: UIViewController {
         myAlbumsCollectionView.delegate = self
         let myAlbumsCollectionViewCell = UINib(nibName: "MyAlbumsCollectionViewCell", bundle: nil)
         myAlbumsCollectionView.register(myAlbumsCollectionViewCell, forCellWithReuseIdentifier: "MyAlbumsCollectionViewCell")
+        let myAlbumsDefaultCollectionViewCell = UINib(nibName: "MyAlbumsDefaultCollectionViewCell", bundle: nil)
+        myAlbumsCollectionView.register(myAlbumsDefaultCollectionViewCell, forCellWithReuseIdentifier: "MyAlbumsDefaultCollectionViewCell")
         myAlbumsCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         myAlbumsCollectionView.refreshControl = refreshControl
         // 드래그시 키보드 내림
@@ -151,10 +153,23 @@ class MyAlbumsViewController: UIViewController {
 extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredAlbums.count
+        return max(filteredAlbums.count, 1)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // 내 앨범이 없음
+        if DataManager.shared.albums.count == 0 {
+            let cell = myAlbumsCollectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumsDefaultCollectionViewCell", for: indexPath) as! MyAlbumsDefaultCollectionViewCell
+            cell.setData(state: .empty)
+            return cell
+        }
+        // 검색 결과가 없음
+        if filteredAlbums.count == 0 {
+            let cell = myAlbumsCollectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumsDefaultCollectionViewCell", for: indexPath) as! MyAlbumsDefaultCollectionViewCell
+            cell.setData(state: .noSearchResults)
+            return cell
+        }
+        // 일반적인 상황
         let cell = myAlbumsCollectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumsCollectionViewCell", for: indexPath) as! MyAlbumsCollectionViewCell
         if filteredAlbums.indices.contains(indexPath.row) {
             cell.setData(album: filteredAlbums[indexPath.row])
@@ -180,6 +195,13 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // 내 앨범이 없거나, 검색 결과가 없을 때
+        if filteredAlbums.count == 0 {
+            let cellWidth = collectionView.frame.width
+            let cellHeight = collectionView.frame.height / 2
+            return CGSize(width: cellWidth, height: cellHeight)
+        }
+        
         let width = collectionView.frame.width
         let itemsPerRow: CGFloat = 2
         let widthPadding = sectionInsets.left * (itemsPerRow + 1)
@@ -226,12 +248,13 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         })
     }
     
-    
     func stopSearching() {
+        print("\(type(of: self)) - \(#function)")
+        
+        searchTagTextField.text = ""
         // 검색 정보 초기화
         if !(filteredAlbums.count == DataManager.shared.albums.count) {
-            searchTagTextField.text = ""
-            self.filteredAlbums = DataManager.shared.albums
+            filteredAlbums = DataManager.shared.albums
             myAlbumsCollectionView.reloadData()
         }
         // 검색 취소 애니메이션
@@ -243,12 +266,12 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         })
     }
     
-    // TODO: 질문
+    // TODO: 질문 언더바 입력 하고
     func updateFilteredAlbums(keyword: String) {
         print("\(type(of: self)) - \(#function)", keyword)
         
         if keyword == "" {
-            self.filteredAlbums = DataManager.shared.albums
+            filteredAlbums = DataManager.shared.albums
             myAlbumsCollectionView.reloadData()
             return
         }

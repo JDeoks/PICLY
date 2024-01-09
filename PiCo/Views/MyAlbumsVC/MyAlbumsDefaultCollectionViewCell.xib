@@ -19,10 +19,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTx-jQ-ClO">
-                        <rect key="frame" x="126.66666666666666" y="118.66666666666669" width="334.66666666666674" height="43"/>
+                        <rect key="frame" x="144.99999999999997" y="120.99999999999999" width="298.33333333333326" height="38.333333333333329"/>
                         <string key="text">업로드한 앨범이 없습니다
 + 버튼을 눌러 앨범을 업로드하고 공유해보세요.</string>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" name="SecondText"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -35,6 +35,9 @@
                 <constraint firstItem="RTx-jQ-ClO" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="cb0-JE-oaE"/>
             </constraints>
             <size key="customSize" width="588" height="255"/>
+            <connections>
+                <outlet property="guideLabel" destination="RTx-jQ-ClO" id="ydi-cY-hbK"/>
+            </connections>
             <point key="canvasLocation" x="322" y="33"/>
         </collectionViewCell>
     </objects>

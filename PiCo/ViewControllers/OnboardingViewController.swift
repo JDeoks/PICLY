@@ -33,13 +33,13 @@ class OnboardingViewController: UIViewController {
     
     func initUI() {
         // skipButton
-        let attributedString = NSMutableAttributedString(string: "건너뛰기")
+        let attributedString = NSMutableAttributedString(string: skipButton.titleLabel?.text ?? "")
         attributedString.addAttribute(
             NSAttributedString.Key.underlineStyle,
             value: NSUnderlineStyle.single.rawValue,
             range: NSRange(location: 0, length: attributedString.length)
         )
-        let font = UIFont.systemFont(ofSize: 14) // 예시로 16 포인트 시스템 폰트를 사용
+        let font = UIFont.systemFont(ofSize: 14)
         attributedString.addAttribute(
             NSAttributedString.Key.font,
             value: font,
@@ -72,12 +72,14 @@ class OnboardingViewController: UIViewController {
     func action() {
         skipButton.rx.tap
             .subscribe { _ in
+                HapticManager.shared.triggerImpact()
                 self.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
 
         nextButton.rx.tap
             .subscribe { _ in
+                HapticManager.shared.triggerImpact()
                 // 시작 버튼 클릭
                 let endIdx = self.onboardingDatas.count - 1
                 if self.currentPageIndex.value < endIdx {
@@ -126,7 +128,7 @@ class OnboardingViewController: UIViewController {
 extension OnboardingViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return onboardingDatas.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

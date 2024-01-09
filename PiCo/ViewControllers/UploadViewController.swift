@@ -223,11 +223,7 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
                 return uploadVM.imageTuples.count
                 
             case 1:
-                if uploadVM.imageTuples.count < maxImageCount {
-                    return 1
-                } else {
-                    return 0
-                }
+                return uploadVM.imageTuples.count < maxImageCount ? 1 : 0
                 
             default:
                 return 0

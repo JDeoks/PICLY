@@ -79,6 +79,7 @@ class SignInViewController: UIViewController {
         signInWithGoogleButtonView.rx.tapGesture()
             .when(.recognized)
             .subscribe(onNext: { _ in
+                HapticManager.shared.triggerImpact()
                 self.startSignInWithGoogleFlow()
             })
             .disposed(by: disposeBag)
@@ -86,6 +87,7 @@ class SignInViewController: UIViewController {
         signInWithAppleButtonView.rx.tapGesture()
             .when(.recognized)
             .subscribe(onNext: { _ in
+                HapticManager.shared.triggerImpact()
                 self.startSignInWithAppleFlow()
             })
             .disposed(by: disposeBag)

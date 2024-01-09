@@ -92,6 +92,8 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
             // 계정 관리
             case 0:
                 SceneManager.shared.pushAccountVC(vc: self)
+            case 1:
+                SceneManager.shared.presentOnboardingVC(vc: self, animated: true)
             default:
                 return
             }
