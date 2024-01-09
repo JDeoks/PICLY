@@ -18,9 +18,11 @@ import FirebaseFirestore
 
 class SignInViewController: UIViewController {
     
+    var shouldShowOnboarding = true
     let userCollectionRef = Firestore.firestore().collection("Users")
     /// Unhashed nonce. 애플로그인 암호화에 사용
     fileprivate var currentNonce: String?
+    
     /// signInWithCredential() -> SignInViewController
     let signInWithCredentialDone = PublishSubject<Void>()
     let disposeBag = DisposeBag()
@@ -34,11 +36,18 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         print("\(type(of: self)) - \(#function)")
-        
         super.viewDidLoad()
+        
         initUI()
         action()
         bind()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if shouldShowOnboarding {
+            SceneManager.shared.presentOnboardingVC(vc: self, animated: false)
+            shouldShowOnboarding = false
+        }
     }
     
     func initUI() {

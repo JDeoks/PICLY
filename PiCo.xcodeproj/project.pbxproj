@@ -17,6 +17,7 @@
 		2A0E08742B39BD5400D76501 /* DetailTagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0E08702B39BD5400D76501 /* DetailTagsCollectionViewCell.xib */; };
 		2A1960D72B0FAC92000935CF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1960D62B0FAC92000935CF /* SettingViewController.swift */; };
 		2A1BE96F2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1BE96D2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift */; };
+		2A2654A52B4BE9BE002EF047 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2654A42B4BE9BE002EF047 /* OnboardingViewController.swift */; };
 		2A282FDE2B31C34A0074C198 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A282FDD2B31C34A0074C198 /* SceneManager.swift */; };
 		2A2FA5962B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5942B0BBED900767310 /* SelectedImageCollectionViewCell.swift */; };
 		2A2FA5972B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FA5942B0BBED900767310 /* SelectedImageCollectionViewCell.swift */; };
@@ -107,6 +108,8 @@
 		2AB0C4C02B08B77F008BB7AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB0C4BF2B08B77F008BB7AE /* Assets.xcassets */; };
 		2AB0C51D2B08E354008BB7AE /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB0C51C2B08E354008BB7AE /* RxCocoa */; };
 		2AB0C5252B08E354008BB7AE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB0C5242B08E354008BB7AE /* RxSwift */; };
+		2AB2AAFB2B4D0FC800186F2F /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2AAF92B4D0FC800186F2F /* OnboardingCollectionViewCell.swift */; };
+		2AB2AAFC2B4D0FC800186F2F /* OnboardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2AAFA2B4D0FC800186F2F /* OnboardingCollectionViewCell.xib */; };
 		2AB79F982B4B0E670055A5E8 /* Splash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AB79F972B4B0E660055A5E8 /* Splash.jpg */; };
 		2ABB363C2B4715F600B3F073 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB363B2B4715F600B3F073 /* SnapKit */; };
 		2ABB363E2B47171900B3F073 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB363D2B47171900B3F073 /* SnapKit */; };
@@ -170,6 +173,7 @@
 		2A0E08702B39BD5400D76501 /* DetailTagsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTagsCollectionViewCell.xib; sourceTree = "<group>"; };
 		2A1960D62B0FAC92000935CF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2A1BE96D2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlbumsCollectionViewCell.swift; sourceTree = "<group>"; };
+		2A2654A42B4BE9BE002EF047 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		2A282FDD2B31C34A0074C198 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
 		2A2FA5942B0BBED900767310 /* SelectedImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A2FA5952B0BBED900767310 /* SelectedImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedImageCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 		2AB0C4BD2B08B77E008BB7AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2AB0C4BF2B08B77F008BB7AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AB0C4C42B08B77F008BB7AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AB2AAF92B4D0FC800186F2F /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		2AB2AAFA2B4D0FC800186F2F /* OnboardingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingCollectionViewCell.xib; sourceTree = "<group>"; };
 		2AB79F972B4B0E660055A5E8 /* Splash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash.jpg; sourceTree = "<group>"; };
 		2ABE24442B3B321700F7C00D /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		2AD5F2CC2B0FADCE00475AC6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -281,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				2A6942772B17920A0070B194 /* SignInViewController.swift */,
+				2A2654A42B4BE9BE002EF047 /* OnboardingViewController.swift */,
 				2A9863FC2B0913BE0041686E /* MainTabBarController.swift */,
 				2AB0C4BA2B08B77E008BB7AE /* MyAlbumsViewController.swift */,
 				2A9863FA2B09104C0041686E /* DetailViewController.swift */,
@@ -296,6 +303,7 @@
 		2A1BE96C2B08E97C00703ED5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2AB2AAF82B4D0F9000186F2F /* OnboardingVC */,
 				2A3498522B0D694C00424868 /* LoadingIndicatorView.swift */,
 				2A4007482B45B315006154A4 /* MyAlbumsVC */,
 				2A4007492B45B337006154A4 /* DetailVC */,
@@ -462,6 +470,15 @@
 			path = PiCo;
 			sourceTree = "<group>";
 		};
+		2AB2AAF82B4D0F9000186F2F /* OnboardingVC */ = {
+			isa = PBXGroup;
+			children = (
+				2AB2AAF92B4D0FC800186F2F /* OnboardingCollectionViewCell.swift */,
+				2AB2AAFA2B4D0FC800186F2F /* OnboardingCollectionViewCell.xib */,
+			);
+			path = OnboardingVC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -620,6 +637,7 @@
 				2A2FA5982B0BBED900767310 /* SelectedImageCollectionViewCell.xib in Resources */,
 				2AB0C4C02B08B77F008BB7AE /* Assets.xcassets in Resources */,
 				2AB0C4BE2B08B77E008BB7AE /* Main.storyboard in Resources */,
+				2AB2AAFC2B4D0FC800186F2F /* OnboardingCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,12 +700,14 @@
 				2A8ED0912B46FE0E0068B0B8 /* DetailImagesTableViewCell.swift in Sources */,
 				2A3ADA762B2E0DD600D40535 /* AcountViewController.swift in Sources */,
 				2A6942782B17920A0070B194 /* SignInViewController.swift in Sources */,
+				2AB2AAFB2B4D0FC800186F2F /* OnboardingCollectionViewCell.swift in Sources */,
 				2A0D40CA2B3975B000506124 /* ConfigManager.swift in Sources */,
 				2ABE24452B3B321700F7C00D /* HapticManager.swift in Sources */,
 				2A3498532B0D694C00424868 /* LoadingIndicatorView.swift in Sources */,
 				2A89E6A02B094EEF009056DD /* EditViewController.swift in Sources */,
 				2A4FF2C42B35EB2500A6FEF1 /* UploadViewModel.swift in Sources */,
 				2A6F18D02B4AAAF800D8343D /* UIApplication+.swift in Sources */,
+				2A2654A52B4BE9BE002EF047 /* OnboardingViewController.swift in Sources */,
 				2A282FDE2B31C34A0074C198 /* SceneManager.swift in Sources */,
 				2A6160FF2B2B4E720093C688 /* UserModel.swift in Sources */,
 				2A0E08712B39BD5400D76501 /* DetailTagsCollectionViewCell.swift in Sources */,

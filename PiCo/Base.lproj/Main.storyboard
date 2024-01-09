@@ -1049,6 +1049,98 @@
             </objects>
             <point key="canvasLocation" x="1052.6717557251909" y="-716.19718309859161"/>
         </scene>
+        <!--OnboardingViewController-->
+        <scene sceneID="mGG-Sn-RHW">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingViewController" title="OnboardingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RwQ-bR-yVK" customClass="OnboardingViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ej7-yz-eBe">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="HNR-Fh-U1n">
+                                <rect key="frame" x="0.0" y="59" width="393" height="56"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PiCo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xV3-6Q-S6R">
+                                        <rect key="frame" x="23.999999999999996" y="11.333333333333329" width="61.666666666666657" height="33.666666666666664"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                        <color key="textColor" name="mainText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LBB-yQ-Y7u">
+                                        <rect key="frame" x="114.66666666666667" y="0.0" width="142.33333333333331" height="56"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYe-qI-1wn">
+                                        <rect key="frame" x="286" y="12.666666666666671" width="95" height="31"/>
+                                        <color key="tintColor" name="SecondText"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="건너뛰기">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="ABj-Ea-qhA"/>
+                                </constraints>
+                                <edgeInsets key="layoutMargins" top="0.0" left="24" bottom="0.0" right="12"/>
+                            </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="htK-n0-IGX">
+                                <rect key="frame" x="0.0" y="115" width="393" height="615"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="e4d-xS-O5l">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="RXP-VY-kWs">
+                                <rect key="frame" x="0.0" y="692.33333333333337" width="393" height="25.666666666666629"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJi-u4-4oS">
+                                <rect key="frame" x="16" y="746" width="361" height="56"/>
+                                <color key="backgroundColor" name="HighlightBlue"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="zJW-o2-9Md"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <color key="tintColor" name="MainText"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="드리고"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qdw-ov-TWw"/>
+                        <color key="backgroundColor" name="MainBackground"/>
+                        <constraints>
+                            <constraint firstItem="fJi-u4-4oS" firstAttribute="top" secondItem="htK-n0-IGX" secondAttribute="bottom" constant="16" id="GdU-7u-jgA"/>
+                            <constraint firstItem="qdw-ov-TWw" firstAttribute="trailing" secondItem="RXP-VY-kWs" secondAttribute="trailing" id="Hfd-6H-Fxd"/>
+                            <constraint firstItem="htK-n0-IGX" firstAttribute="leading" secondItem="qdw-ov-TWw" secondAttribute="leading" id="HsO-Co-KN5"/>
+                            <constraint firstItem="qdw-ov-TWw" firstAttribute="trailing" secondItem="fJi-u4-4oS" secondAttribute="trailing" constant="16" id="Jlc-YL-3Qu"/>
+                            <constraint firstItem="RXP-VY-kWs" firstAttribute="centerX" secondItem="qdw-ov-TWw" secondAttribute="centerX" id="Lsi-rN-aYG"/>
+                            <constraint firstItem="fJi-u4-4oS" firstAttribute="leading" secondItem="qdw-ov-TWw" secondAttribute="leading" constant="16" id="MXZ-Gj-ZLf"/>
+                            <constraint firstItem="RXP-VY-kWs" firstAttribute="leading" secondItem="qdw-ov-TWw" secondAttribute="leading" id="RgR-Dl-wEz"/>
+                            <constraint firstItem="qdw-ov-TWw" firstAttribute="trailing" secondItem="htK-n0-IGX" secondAttribute="trailing" id="Ton-6H-Lnw"/>
+                            <constraint firstItem="RXP-VY-kWs" firstAttribute="bottom" secondItem="htK-n0-IGX" secondAttribute="bottom" constant="-12" id="YGs-7d-k18"/>
+                            <constraint firstItem="qdw-ov-TWw" firstAttribute="bottom" secondItem="fJi-u4-4oS" secondAttribute="bottom" constant="16" id="bVZ-c8-yzW"/>
+                            <constraint firstItem="qdw-ov-TWw" firstAttribute="leading" secondItem="HNR-Fh-U1n" secondAttribute="leading" id="bjj-hx-soi"/>
+                            <constraint firstItem="htK-n0-IGX" firstAttribute="top" secondItem="HNR-Fh-U1n" secondAttribute="bottom" id="fF4-rs-Ym1"/>
+                            <constraint firstItem="HNR-Fh-U1n" firstAttribute="top" secondItem="qdw-ov-TWw" secondAttribute="top" id="pKe-xM-Fj3"/>
+                            <constraint firstItem="qdw-ov-TWw" firstAttribute="trailing" secondItem="HNR-Fh-U1n" secondAttribute="trailing" id="vhM-w3-t7w"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nextButton" destination="fJi-u4-4oS" id="AXR-MH-8FM"/>
+                        <outlet property="onboardingCollectionView" destination="htK-n0-IGX" id="whN-fI-a5m"/>
+                        <outlet property="onboardingPageControl" destination="RXP-VY-kWs" id="cNi-xI-tzj"/>
+                        <outlet property="skipButton" destination="dYe-qI-1wn" id="Bv1-XF-P8b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hi5-zX-jEP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1991.6030534351144" y="-716.19718309859161"/>
+        </scene>
         <!--내 앨범-->
         <scene sceneID="DCY-bt-Zrv">
             <objects>
@@ -1237,6 +1329,9 @@
         <namedColor name="MainBackground">
             <color red="0.17254901960784313" green="0.17254901960784313" blue="0.20784313725490197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="MainText">
+            <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="SecondText">
             <color red="0.69019607843137254" green="0.69019607843137254" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1247,7 +1342,7 @@
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

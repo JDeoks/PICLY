@@ -15,6 +15,7 @@ class SceneManager {
     
     enum Scene: String {
         case signIn = "SignInViewController"
+        case onboarding = "OnboardingViewController"
         case mainTab = "MainTabBarController"
         case myAlbum = "MyAlbumsViewController"
         case detail = "DetailViewController"
@@ -27,6 +28,15 @@ class SceneManager {
     
     private func getVC(scene: Scene) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: scene.rawValue)
+    }
+    
+    func presentOnboardingVC(vc: UIViewController, animated: Bool) {
+        print("\(type(of: self)) - \(#function)")
+        
+        let onboardingVC = getVC(scene: .onboarding) as! OnboardingViewController
+        onboardingVC.modalPresentationStyle = .overFullScreen
+        onboardingVC.modalTransitionStyle = .crossDissolve
+        vc.present(onboardingVC, animated: animated)
     }
     
     func pushDetailVC(vc: UIViewController, album: AlbumModel) {

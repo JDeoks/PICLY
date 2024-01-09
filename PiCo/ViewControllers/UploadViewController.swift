@@ -18,7 +18,6 @@ import FirebaseStorage
 class UploadViewController: UIViewController {
     
     let uploadVM = UploadViewModel()
-    
     let maxImageCount = 10
     
     let disposeBag = DisposeBag()
