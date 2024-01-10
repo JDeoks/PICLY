@@ -9,9 +9,12 @@ import UIKit
 
 class OnboardingCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet var onboardingtitleLabel: UILabel!
+    @IBOutlet var onboardingImageView: UIImageView!
+    @IBOutlet var onboardingDescLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
 }

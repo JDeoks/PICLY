@@ -13,7 +13,11 @@ import RxRelay
 class OnboardingViewController: UIViewController {
     
     // TODO: OnboardingDataModel 추가
-    let onboardingDatas =  [3, 3, 4, 52, 2]
+    let onboardingDatas =  [
+        ["손쉬운 익명 사진 공유", "onboarding1","PiCo는 사진을 빠르고 안전하게 공유하는\n새로운 방법입니다.\n앨범 단위로 사진을 업로드하고,\n링크를 통해 익명으로 손쉽게 공유하세요."],
+        ["익명성을 보장, 합니다.", "onboarding2", "공유된 링크를 통해  앨범에  접속한  사용자는\n작성자의 정보를 확인할 수 없습니다.\n나를 밝히지 않고 사진을 전달하고싶다면,\n PiCo가 최적의 선택지입니다."],
+        ["자동으로 만료되는 앨범.", "onboarding3","공유된 링크를 통해  앨범에  접속한  사용자는\n작성자의 정보를 확인할 수 없습니다.\n나를 밝히지 않고 사진을 전달하고 싶다면,\n PiCo가 최적의 선택지입니다."]
+    ]
     
     let currentPageIndex = BehaviorRelay<Int>(value: 0)
     let disposeBag = DisposeBag()
@@ -54,6 +58,7 @@ class OnboardingViewController: UIViewController {
         onboardingCollectionView.register(onboardingCollectionViewCell, forCellWithReuseIdentifier: "OnboardingCollectionViewCell")
         let onboardingFlowLayout = UICollectionViewFlowLayout()
         onboardingFlowLayout.scrollDirection = .horizontal
+        onboardingCollectionView.collectionViewLayout = onboardingFlowLayout
         onboardingCollectionView.isPagingEnabled = true
         
         // onboardingPageControl
@@ -133,18 +138,11 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = onboardingCollectionView.dequeueReusableCell(withReuseIdentifier: "OnboardingCollectionViewCell", for: indexPath) as! OnboardingCollectionViewCell
-        if indexPath.row  == 1{
-            cell.backgroundColor = .blue
-        }
-        if indexPath.row  == 2{
-            cell.backgroundColor = .gray
-        }        
-        if indexPath.row  == 3{
-            cell.backgroundColor = .brown
-        }
-        if indexPath.row  == 4{
-            cell.backgroundColor = .gray
-        }
+        cell.onboardingtitleLabel.text = onboardingDatas[indexPath.row][0]
+        cell.onboardingImageView.contentMode = .scaleAspectFill
+        cell.onboardingImageView.image = UIImage(named: onboardingDatas[indexPath.row][1])
+        cell.onboardingImageView.contentMode = .scaleAspectFill
+        cell.onboardingDescLabel.text = onboardingDatas[indexPath.row][2]
         return cell
     }
     
@@ -161,6 +159,20 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
         if currentPageIndex.value != newIndex {
             currentPageIndex.accept(newIndex)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    // 섹션 간의 수직 간격 설정
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+
+    // 섹션 내 아이템 간의 수평 간격 설정
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     
 }
