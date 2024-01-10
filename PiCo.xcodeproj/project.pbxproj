@@ -117,6 +117,8 @@
 		2ABE24452B3B321700F7C00D /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABE24442B3B321700F7C00D /* HapticManager.swift */; };
 		2ABE24462B3B321700F7C00D /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABE24442B3B321700F7C00D /* HapticManager.swift */; };
 		2AC0BD012B35C5E7002B7418 /* AlbumField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9711252B35C3D400A989E8 /* AlbumField.swift */; };
+		2ACD7C812B4EAEA200C39737 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACD7C802B4EAEA200C39737 /* UserManager.swift */; };
+		2ACD7C822B4EAEA200C39737 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACD7C802B4EAEA200C39737 /* UserManager.swift */; };
 		2AD328912B29C92B002DA60F /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 2AD328902B29C92B002DA60F /* RxGesture */; };
 		2AD5F2CE2B0FADCE00475AC6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5F2CC2B0FADCE00475AC6 /* SettingsTableViewCell.swift */; };
 		2AD5F2CF2B0FADCE00475AC6 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD5F2CD2B0FADCE00475AC6 /* SettingsTableViewCell.xib */; };
@@ -232,6 +234,7 @@
 		2AB2AAFE2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAlbumsDefaultCollectionViewCell.xib; sourceTree = "<group>"; };
 		2AB79F972B4B0E660055A5E8 /* Splash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash.jpg; sourceTree = "<group>"; };
 		2ABE24442B3B321700F7C00D /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		2ACD7C802B4EAEA200C39737 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		2AD5F2CC2B0FADCE00475AC6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		2AD5F2CD2B0FADCE00475AC6 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -324,6 +327,7 @@
 				2A3F756D2B33482F00CE67D1 /* DataManager.swift */,
 				2A0D40C92B3975B000506124 /* ConfigManager.swift */,
 				2ABE24442B3B321700F7C00D /* HapticManager.swift */,
+				2ACD7C802B4EAEA200C39737 /* UserManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -672,6 +676,7 @@
 				2AC0BD012B35C5E7002B7418 /* AlbumField.swift in Sources */,
 				2A3498542B0D694C00424868 /* LoadingIndicatorView.swift in Sources */,
 				2A0E08722B39BD5400D76501 /* DetailTagsCollectionViewCell.swift in Sources */,
+				2ACD7C822B4EAEA200C39737 /* UserManager.swift in Sources */,
 				2A89E6AA2B0A32C6009056DD /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -718,6 +723,7 @@
 				2A0E08712B39BD5400D76501 /* DetailTagsCollectionViewCell.swift in Sources */,
 				2A8ED08D2B46FDF60068B0B8 /* DetailInfoTableViewCell.swift in Sources */,
 				2A2FA5962B0BBED900767310 /* SelectedImageCollectionViewCell.swift in Sources */,
+				2ACD7C812B4EAEA200C39737 /* UserManager.swift in Sources */,
 				2AB2AAFF2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

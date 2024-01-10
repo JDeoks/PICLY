@@ -40,7 +40,7 @@ class AcountViewController: UIViewController {
     func initData() {
         print("\(type(of: self)) - \(#function)")
         
-        if let user = LoginManager.shared.getUserModelFromLocal() {
+        if let user = UserManager.shared.getUserModelFromLocal() {
             authProviderLabel.text = "\(user.authProvider.rawValue)로 로그인"
             emailLabel.text = user.email
             registrationDate.text = user.getCreationTimeString()
@@ -58,7 +58,7 @@ class AcountViewController: UIViewController {
         
         signOutButton.rx.tap
             .subscribe { _ in
-                LoginManager.shared.signOut()
+                UserManager.shared.signOut()
                 SceneManager.shared.setSignInVCAsRoot(animated: true)
             }
             .disposed(by: disposeBag)
@@ -66,7 +66,7 @@ class AcountViewController: UIViewController {
         deleteAccountButton.rx.tap
             .subscribe { _ in
                 // TODO: - 계정 삭제(올린 앨범들은 삭제되지 않습니다.)
-                LoginManager.shared.deleteUser()
+                UserManager.shared.deleteUser()
                 SceneManager.shared.setSignInVCAsRoot(animated: true)
             }
             .disposed(by: disposeBag)

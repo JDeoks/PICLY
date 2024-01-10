@@ -41,14 +41,14 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     func initData() {
         ConfigManager.shared.fetchRemoteConfig()
-        LoginManager.shared.fetchUserAuth()
-        LoginManager.shared.getUserModelFromServer()
+        UserManager.shared.fetchUserAuth()
+        UserManager.shared.getUserModelFromServer()
     }
     
     func bind() {
-        LoginManager.shared.fetchUserAuthFailed
+        UserManager.shared.fetchUserAuthFailed
             .subscribe { _ in
-                LoginManager.shared.signOut()
+                UserManager.shared.signOut()
                 SceneManager.shared.setSignInVCAsRoot(animated: false)
             }
             .disposed(by: disposeBag)
