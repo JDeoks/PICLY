@@ -11,6 +11,7 @@ import Firebase
 import FirebaseFirestore
 import FirebaseAuth
 
+/// 파이어베이스 통신 매니저
 class DataManager {
     
     static let shared = DataManager()
@@ -18,33 +19,42 @@ class DataManager {
     
     let albumsCollection = Firestore.firestore().collection("Albums")
     let usersCollection = Firestore.firestore().collection("Users")
-    var albums: [AlbumModel] = []
+    var myAlbums: [AlbumModel] = []
     
-    /// fetchAlbums() -> MyAlbumsViewController
-    let fetchAlbumsDone = PublishSubject<Void>()
+    ///updateMyAlbums() -> MyAlbumsViewController
+    let updateMyAlbumsDone = PublishSubject<Void>()
     
-    func fetchAlbums() {
+    func fetchMyAlbums() {
         print("\(type(of: self)) - \(#function)")
 
-        albums.removeAll()
         guard let userID = Auth.auth().currentUser?.uid else {
-            print("currentUser 없음 ")
+            print("\(#function): currentUser 없음 ")
             return
         }
-        albumsCollection
+        /// 내 앨범 최신순으로
+        let query = albumsCollection
             .whereField(AlbumField.ownerID.rawValue, isEqualTo: userID)
-            .order(by: AlbumField.creationTime.rawValue, descending: true) // 최신순 정렬
-            .getDocuments { (querySnapshot, error) in
-                if let error = error {
-                    print("Error getting documents: \(error)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        let album = AlbumModel(document: document)
-                        self.albums.append(album)
-                    }
-                    self.fetchAlbumsDone.onNext(())
-                }
+            .order(by: AlbumField.creationTime.rawValue, descending: true)
+        query.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                return
             }
+            guard let querySnapshot = querySnapshot else {
+                print("querySnapshot: nil")
+                return
+            }
+            self.updateMyAlbums(querySnapshot: querySnapshot)
+        }
+    }
+    
+    private func updateMyAlbums(querySnapshot: QuerySnapshot) {
+        myAlbums.removeAll()
+        for document in querySnapshot.documents {
+            let album = AlbumModel(document: document)
+            myAlbums.append(album)
+        }
+        self.updateMyAlbumsDone.onNext(())
     }
     
 }

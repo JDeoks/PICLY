@@ -171,7 +171,7 @@ class UploadViewController: UIViewController {
     func bind() {
         uploadVM.uploadAlbumDone
             .subscribe { _ in
-                DataManager.shared.fetchAlbums()
+                DataManager.shared.fetchMyAlbums()
                 self.loadingView.removeFromSuperview()
                 self.showUploadFinishedAlert()
             }

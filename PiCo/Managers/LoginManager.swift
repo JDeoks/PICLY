@@ -45,7 +45,6 @@ class LoginManager: NSObject {
     /// signInWithCredential() -> SignInViewController
     let signInWithCredentialDone = PublishSubject<Void>()
 
-
     /// uploadAlbum() -> SignInViewController
     let uploadAlbumDone = PublishSubject<Void>()
 

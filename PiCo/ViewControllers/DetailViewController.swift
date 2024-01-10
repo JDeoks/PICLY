@@ -71,7 +71,7 @@ class DetailViewController: UIViewController {
         deleteAlbumDone
             .subscribe { _ in
                 self.showToast(message: "삭제 성공")
-                DataManager.shared.fetchAlbums()
+                DataManager.shared.fetchMyAlbums()
                 self.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)

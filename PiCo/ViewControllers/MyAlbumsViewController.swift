@@ -77,13 +77,13 @@ class MyAlbumsViewController: UIViewController {
     
     @objc func pullToRefresh(_ sender: Any) {
         stopSearching()
-        DataManager.shared.fetchAlbums()
+        DataManager.shared.fetchMyAlbums()
         refreshControl.endRefreshing()
     }
     
     func initData() {
         //TODO: 내 데이터 fetch
-        DataManager.shared.fetchAlbums()
+        DataManager.shared.fetchMyAlbums()
     }
     
     func action() {
@@ -139,9 +139,9 @@ class MyAlbumsViewController: UIViewController {
     }
 
     func bind() {
-        DataManager.shared.fetchAlbumsDone
+        DataManager.shared.updateMyAlbumsDone
             .subscribe { _ in
-                self.filteredAlbums = DataManager.shared.albums
+                self.filteredAlbums = DataManager.shared.myAlbums
                 self.myAlbumsCollectionView.reloadData()
             }
             .disposed(by: disposeBag)
@@ -158,7 +158,7 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // 내 앨범이 없음
-        if DataManager.shared.albums.isEmpty {
+        if DataManager.shared.myAlbums.isEmpty {
             let cell = myAlbumsCollectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumsDefaultCollectionViewCell", for: indexPath) as! MyAlbumsDefaultCollectionViewCell
             cell.setData(state: .empty)
             return cell
@@ -251,8 +251,8 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         
         searchTagTextField.text = ""
         // 검색 정보 초기화
-        if !(filteredAlbums.count == DataManager.shared.albums.count) {
-            filteredAlbums = DataManager.shared.albums
+        if !(filteredAlbums.count == DataManager.shared.myAlbums.count) {
+            filteredAlbums = DataManager.shared.myAlbums
             myAlbumsCollectionView.reloadData()
         }
         // 검색 취소 애니메이션
@@ -269,11 +269,11 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         print("\(type(of: self)) - \(#function)", keyword)
         
         if keyword.isEmpty {
-            filteredAlbums = DataManager.shared.albums
+            filteredAlbums = DataManager.shared.myAlbums
             myAlbumsCollectionView.reloadData()
             return
         }
-        filteredAlbums = DataManager.shared.albums.filter { album in
+        filteredAlbums = DataManager.shared.myAlbums.filter { album in
             return album.tags.contains { tag in
                 return tag.contains(keyword)
             }
