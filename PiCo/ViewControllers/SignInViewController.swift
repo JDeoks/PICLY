@@ -39,9 +39,8 @@ class SignInViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if shouldShowOnboarding {
+        if UserManager.shared.hasCompletedInitialLaunch() == false {
             SceneManager.shared.presentOnboardingVC(vc: self, animated: false)
-            shouldShowOnboarding = false
         }
     }
     
@@ -95,6 +94,7 @@ class SignInViewController: UIViewController {
             .subscribe { _ in
                 self.loadingView.removeFromSuperview()
                 SceneManager.shared.setMainTabVCAsRoot(animated: true)
+                UserManager.shared.setHasCompletedInitialLaunch(true)
             }
             .disposed(by: disposeBag)
         

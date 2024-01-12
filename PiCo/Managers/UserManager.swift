@@ -26,6 +26,15 @@ class UserManager {
     /// fetchUserAuth() -> MainTabBarController
     let fetchUserAuthFailed = PublishSubject<Void>()
     
+    /// 첫 로그인 정보 설정
+    func hasCompletedInitialLaunch() -> Bool {
+        return UserDefaults.standard.bool(forKey: "hasCompletedInitialLaunch")
+    }
+
+    func setHasCompletedInitialLaunch(_ completed: Bool) {
+        UserDefaults.standard.set(completed, forKey: "hasCompletedInitialLaunch")
+    }
+    
     // MARK: - UserModel, UserDoc 처리
     /// LoginManager user 변수에 서버에 저장되어있는 UserModel 저장
     func getUserModelFromServer() {
