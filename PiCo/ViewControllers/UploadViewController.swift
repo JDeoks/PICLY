@@ -306,26 +306,30 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
 
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         switch collectionView {
         case tagsCollectionView:
-            return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+            return 8
             
         case selectedImageCollectionView:
-            if section == 0 {
-                if collectionView.numberOfItems(inSection: 0) == 0 {
-                    return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
-                } else {
-                    return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-                }
-            } else {
-                return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
-            }
+            return 8
             
         default:
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            return 0
         }
-         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        switch collectionView {
+        case tagsCollectionView:
+            return 8
+            
+        case selectedImageCollectionView:
+            return 8
+            
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -350,7 +354,28 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
             return .zero
         }
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        switch collectionView {
+        case tagsCollectionView:
+            return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+            
+        case selectedImageCollectionView:
+            if section == 0 {
+                if collectionView.numberOfItems(inSection: 0) == 0 {
+                    return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
+                } else {
+                    return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+                }
+            } else {
+                return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
+            }
+            
+        default:
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+    }
+    
 }
 
 // MARK: - ScrollView
@@ -373,13 +398,16 @@ extension UploadViewController: UITextFieldDelegate {
         currentTags.append(newTag)
         uploadVM.tags.accept(currentTags)
         tagTextField.text = ""
+        view.endEditing(true)
         return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // 입력된 스트링이 공백일때 언더바를 대신 추가
-        if string == " " {
-            textField.text?.append("_")
+        if string == " " && !textField.text!.isEmpty {
+            var currentTags = uploadVM.tags.value
+            currentTags.append(textField.text!)
+            uploadVM.tags.accept(currentTags)
+            tagTextField.text = ""
             return false
         }
         return true

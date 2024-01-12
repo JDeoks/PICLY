@@ -221,18 +221,6 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         startSearching()
     }
     
-    // TODO: 질문 직접대입하면 이벤트 안생김
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // 입력된 스트링이 공백일때 언더바를 대신 추가
-        if string == " " {
-            let newText = (textField.text ?? "") + "_"
-            textField.rx.text.onNext(newText)
-//            updateFilteredAlbums(keyword: textField.text!)
-            return false
-        }
-        return true
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
     }
