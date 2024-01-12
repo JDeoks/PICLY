@@ -46,25 +46,24 @@ class UploadViewModel {
     
     /// AlbumModel을 FireStore에 추가
     private func uploadAlbumDocToFireStore( completion: @escaping (String) -> Void) {
-        print("\(type(of: self)) - \(#function)")
-        let imageSizes = getImageSizeDicts(images: imageSizeTuples)
-        let documentData = AlbumModel.createDictToUpload(
-            expireTime: expireTime,
-            imageCount: imageTuples.count,
-            tags: tags.value,
-            imageSizes: imageSizes
-        )
-        var ref: DocumentReference? = nil
-        ref = albumCollection.addDocument(data: documentData) { err in
-            if let err = err {
-                print("\(#function) 실패: \(err)")
-            } else {
-                print("\(#function) 성공: \(ref!.documentID)")
-                let rootURL: URL = ConfigManager.shared.getRootURL()
-                self.albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(ref!.documentID)
-                completion(ref!.documentID)
-            }
-        }
+//        print("\(type(of: self)) - \(#function)")
+//        let imageSizes = getImageSizeDicts(images: imageSizeTuples)
+//        let documentData = AlbumModel.createDictToUpload(
+//            expireTime: expireTime,
+//            images: ,
+//            tags: tags.value,
+//        )
+//        var ref: DocumentReference? = nil
+//        ref = albumCollection.addDocument(data: documentData) { err in
+//            if let err = err {
+//                print("\(#function) 실패: \(err)")
+//            } else {
+//                print("\(#function) 성공: \(ref!.documentID)")
+//                let rootURL: URL = ConfigManager.shared.getRootURL()
+//                self.albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(ref!.documentID)
+//                completion(ref!.documentID)
+//            }
+//        }
     }
     
     /// 이미지를 Storage에 업로드

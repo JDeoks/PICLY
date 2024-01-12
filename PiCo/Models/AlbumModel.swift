@@ -58,7 +58,9 @@ class AlbumModel {
         return Int(days)
     }
     
-    static func createDictToUpload(expireTime: Date, imageCount: Int, tags: [String], imageSizes: [[String : Int]]) -> [String: Any] {
+    static func createDictToUpload(expireTime: Date, images: [UIImage], tags: [String]) -> [String: Any] {
+        let imageCount = images.count
+        let imageSizes = images.map { $0.getSizeDict() }
         let dictionary: [String: Any] = [
             AlbumField.ownerID.rawValue: Auth.auth().currentUser!.uid,
             AlbumField.creationTime.rawValue: Timestamp(date: Date()),

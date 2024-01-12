@@ -27,4 +27,19 @@ extension UIImage {
         return width / height
     }
     
+    func getSizeTuple() -> (CGFloat, CGFloat) {
+        let height = self.size.height
+        let width = self.size.width
+        return (width, height)
+    }
+    
+    func getSizeDict() -> [String : Int] {
+        let dict =
+        [
+            AlbumField.width.rawValue: Int(self.size.width),
+            AlbumField.height.rawValue: Int(self.size.height)
+        ]
+        return dict
+    }
+    
 }
