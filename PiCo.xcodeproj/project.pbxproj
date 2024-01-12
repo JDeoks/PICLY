@@ -86,6 +86,10 @@
 		2A789AFB2B4AA83C004808E7 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A789AF92B4AA83C004808E7 /* UIViewController+.swift */; };
 		2A789AFD2B4AA865004808E7 /* NSMutableAttributedString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A789AFC2B4AA865004808E7 /* NSMutableAttributedString+.swift */; };
 		2A789AFE2B4AA865004808E7 /* NSMutableAttributedString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A789AFC2B4AA865004808E7 /* NSMutableAttributedString+.swift */; };
+		2A82C66E2B502C190030D1B9 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A82C66C2B502C190030D1B9 /* OnboardingCollectionViewCell.swift */; };
+		2A82C66F2B502C190030D1B9 /* OnboardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A82C66D2B502C190030D1B9 /* OnboardingCollectionViewCell.xib */; };
+		2A82C6712B5165DB0030D1B9 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A82C6702B5165DB0030D1B9 /* ColorManager.swift */; };
+		2A82C6722B5165DB0030D1B9 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A82C6702B5165DB0030D1B9 /* ColorManager.swift */; };
 		2A89E6942B092D69009056DD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E6932B092D69009056DD /* UploadViewController.swift */; };
 		2A89E69E2B0941A9009056DD /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 2A89E69D2B0941A9009056DD /* RxKeyboard */; };
 		2A89E6A02B094EEF009056DD /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89E69F2B094EEF009056DD /* EditViewController.swift */; };
@@ -107,8 +111,6 @@
 		2AB0C4C02B08B77F008BB7AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB0C4BF2B08B77F008BB7AE /* Assets.xcassets */; };
 		2AB0C51D2B08E354008BB7AE /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB0C51C2B08E354008BB7AE /* RxCocoa */; };
 		2AB0C5252B08E354008BB7AE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB0C5242B08E354008BB7AE /* RxSwift */; };
-		2AB2AAFB2B4D0FC800186F2F /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2AAF92B4D0FC800186F2F /* OnboardingCollectionViewCell.swift */; };
-		2AB2AAFC2B4D0FC800186F2F /* OnboardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2AAFA2B4D0FC800186F2F /* OnboardingCollectionViewCell.xib */; };
 		2AB2AAFF2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2AAFD2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.swift */; };
 		2AB2AB002B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2AAFE2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.xib */; };
 		2AB79F982B4B0E670055A5E8 /* Splash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AB79F972B4B0E660055A5E8 /* Splash.jpg */; };
@@ -204,6 +206,9 @@
 		2A789AF62B4AA7F1004808E7 /* UIColors+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColors+.swift"; sourceTree = "<group>"; };
 		2A789AF92B4AA83C004808E7 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		2A789AFC2B4AA865004808E7 /* NSMutableAttributedString+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+.swift"; sourceTree = "<group>"; };
+		2A82C66C2B502C190030D1B9 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		2A82C66D2B502C190030D1B9 /* OnboardingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingCollectionViewCell.xib; sourceTree = "<group>"; };
+		2A82C6702B5165DB0030D1B9 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		2A89E6932B092D69009056DD /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		2A89E69F2B094EEF009056DD /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		2A89E6A72B0A32C6009056DD /* PiCoShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PiCoShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,8 +233,6 @@
 		2AB0C4BD2B08B77E008BB7AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2AB0C4BF2B08B77F008BB7AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AB0C4C42B08B77F008BB7AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2AB2AAF92B4D0FC800186F2F /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
-		2AB2AAFA2B4D0FC800186F2F /* OnboardingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingCollectionViewCell.xib; sourceTree = "<group>"; };
 		2AB2AAFD2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlbumsDefaultCollectionViewCell.swift; sourceTree = "<group>"; };
 		2AB2AAFE2B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAlbumsDefaultCollectionViewCell.xib; sourceTree = "<group>"; };
 		2AB79F972B4B0E660055A5E8 /* Splash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash.jpg; sourceTree = "<group>"; };
@@ -328,6 +331,7 @@
 				2A0D40C92B3975B000506124 /* ConfigManager.swift */,
 				2ABE24442B3B321700F7C00D /* HapticManager.swift */,
 				2ACD7C802B4EAEA200C39737 /* UserManager.swift */,
+				2A82C6702B5165DB0030D1B9 /* ColorManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -482,8 +486,8 @@
 		2AB2AAF82B4D0F9000186F2F /* OnboardingVC */ = {
 			isa = PBXGroup;
 			children = (
-				2AB2AAF92B4D0FC800186F2F /* OnboardingCollectionViewCell.swift */,
-				2AB2AAFA2B4D0FC800186F2F /* OnboardingCollectionViewCell.xib */,
+				2A82C66C2B502C190030D1B9 /* OnboardingCollectionViewCell.swift */,
+				2A82C66D2B502C190030D1B9 /* OnboardingCollectionViewCell.xib */,
 			);
 			path = OnboardingVC;
 			sourceTree = "<group>";
@@ -638,6 +642,7 @@
 				2AB79F982B4B0E670055A5E8 /* Splash.jpg in Resources */,
 				2AD5F2CF2B0FADCE00475AC6 /* SettingsTableViewCell.xib in Resources */,
 				2A8ED0922B46FE0E0068B0B8 /* DetailImagesTableViewCell.xib in Resources */,
+				2A82C66F2B502C190030D1B9 /* OnboardingCollectionViewCell.xib in Resources */,
 				2A3ADA742B2DD49500D40535 /* LaunchScreen.storyboard in Resources */,
 				2A6942742B17669B0070B194 /* GoogleService-Info.plist in Resources */,
 				2A0E08732B39BD5400D76501 /* DetailTagsCollectionViewCell.xib in Resources */,
@@ -647,7 +652,6 @@
 				2AB2AB002B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.xib in Resources */,
 				2AB0C4C02B08B77F008BB7AE /* Assets.xcassets in Resources */,
 				2AB0C4BE2B08B77E008BB7AE /* Main.storyboard in Resources */,
-				2AB2AAFC2B4D0FC800186F2F /* OnboardingCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +662,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A82C6722B5165DB0030D1B9 /* ColorManager.swift in Sources */,
 				2A789AFE2B4AA865004808E7 /* NSMutableAttributedString+.swift in Sources */,
 				2A40074C2B45B3AA006154A4 /* AddImageCollectionViewCell.swift in Sources */,
 				2A4D48FB2B0A781A00E776C7 /* AlbumModel.swift in Sources */,
@@ -695,6 +700,7 @@
 				2A1960D72B0FAC92000935CF /* SettingViewController.swift in Sources */,
 				2A6161042B2B502B0093C688 /* AuthProvider.swift in Sources */,
 				2A9863FB2B09104C0041686E /* DetailViewController.swift in Sources */,
+				2A82C6712B5165DB0030D1B9 /* ColorManager.swift in Sources */,
 				2A3F756E2B33482F00CE67D1 /* DataManager.swift in Sources */,
 				2A9711262B35C3D400A989E8 /* AlbumField.swift in Sources */,
 				2A6F18D22B4AAB1C00D8343D /* UIImage+.swift in Sources */,
@@ -710,9 +716,9 @@
 				2A8ED0912B46FE0E0068B0B8 /* DetailImagesTableViewCell.swift in Sources */,
 				2A3ADA762B2E0DD600D40535 /* AcountViewController.swift in Sources */,
 				2A6942782B17920A0070B194 /* SignInViewController.swift in Sources */,
-				2AB2AAFB2B4D0FC800186F2F /* OnboardingCollectionViewCell.swift in Sources */,
 				2A0D40CA2B3975B000506124 /* ConfigManager.swift in Sources */,
 				2ABE24452B3B321700F7C00D /* HapticManager.swift in Sources */,
+				2A82C66E2B502C190030D1B9 /* OnboardingCollectionViewCell.swift in Sources */,
 				2A3498532B0D694C00424868 /* LoadingIndicatorView.swift in Sources */,
 				2A89E6A02B094EEF009056DD /* EditViewController.swift in Sources */,
 				2A4FF2C42B35EB2500A6FEF1 /* UploadViewModel.swift in Sources */,

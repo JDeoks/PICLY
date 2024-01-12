@@ -12,11 +12,18 @@ import RxRelay
 
 class OnboardingViewController: UIViewController {
     
-    // TODO: OnboardingDataModel 추가
     let onboardingDatas =  [
-        ["손쉬운 익명 사진 공유", "onboarding1","PiCo는 사진을 빠르고 안전하게 공유하는\n새로운 방법입니다.\n앨범 단위로 사진을 업로드하고,\n링크를 통해 익명으로 손쉽게 공유하세요."],
-        ["익명성을 보장, 합니다.", "onboarding2", "공유된 링크를 통해  앨범에  접속한  사용자는\n작성자의 정보를 확인할 수 없습니다.\n나를 밝히지 않고 사진을 전달하고싶다면,\n PiCo가 최적의 선택지입니다."],
-        ["자동으로 만료되는 앨범.", "onboarding3","공유된 링크를 통해  앨범에  접속한  사용자는\n작성자의 정보를 확인할 수 없습니다.\n나를 밝히지 않고 사진을 전달하고 싶다면,\n PiCo가 최적의 선택지입니다."]
+        ["손쉬운 익명 사진 공유",
+         "onboarding1",
+         "PiCo는 사진을 빠르고 안전하게 공유하는\n새로운 방법입니다.\n\n앨범 단위로 사진을 업로드하고,\n링크를 통해 익명으로 손쉽게 공유하세요."
+        ],
+        ["익명성 보장",
+         "onboarding2",
+         "공유된 링크를 통해 앨범에 접속한 사용자는\n작성자의 정보를 확인할 수 없습니다.\n\n나를 밝히지 않고 사진을 전달하고 싶다면,\nPiCo가 최적의 선택지입니다."
+        ],
+        ["자동으로 만료되는 앨범", 
+         "onboarding3",
+         "앨범을 게시할 때 앨범의 만료시간을 설정할 수 있습니다.\n만료시간 이후에는 본인만 앨범을 확인할 수 있습니다.\n"]
     ]
     
     let currentPageIndex = BehaviorRelay<Int>(value: 0)
@@ -33,7 +40,22 @@ class OnboardingViewController: UIViewController {
         initData()
         action()
         bind()
+        print("onboardingCollectionView", onboardingCollectionView.frame.size)
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        guard let flowLayout = onboardingCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        
+        // 현재 뷰의 크기에 맞게 셀 크기 조정
+        flowLayout.itemSize = onboardingCollectionView.bounds.size
+        // 레이아웃을 무효화하고 갱신
+        flowLayout.invalidateLayout()
+        // 레이아웃 변경사항즉시 업데이트
+        onboardingCollectionView.layoutIfNeeded()
+    }
+
     
     func initUI() {
         // skipButton
@@ -62,8 +84,8 @@ class OnboardingViewController: UIViewController {
         onboardingCollectionView.isPagingEnabled = true
         
         // onboardingPageControl
-        onboardingPageControl.currentPageIndicatorTintColor = mainText
-        onboardingPageControl.pageIndicatorTintColor = secondText
+        onboardingPageControl.currentPageIndicatorTintColor = ColorManager.shared.mainText
+        onboardingPageControl.pageIndicatorTintColor = ColorManager.shared.secondText
 
         // nextButton
         nextButton.layer.cornerRadius = 4
@@ -121,7 +143,7 @@ class OnboardingViewController: UIViewController {
         // nextButton
         let endIdx = self.onboardingDatas.count - 1
         if idx == endIdx {
-            nextButton.setTitle("시작", for: .normal)
+            nextButton.setTitle("시작하기", for: .normal)
         } else {
             nextButton.setTitle("다음", for: .normal)
         }
@@ -139,18 +161,13 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = onboardingCollectionView.dequeueReusableCell(withReuseIdentifier: "OnboardingCollectionViewCell", for: indexPath) as! OnboardingCollectionViewCell
         cell.onboardingtitleLabel.text = onboardingDatas[indexPath.row][0]
-        cell.onboardingImageView.contentMode = .scaleAspectFill
         cell.onboardingImageView.image = UIImage(named: onboardingDatas[indexPath.row][1])
-        cell.onboardingImageView.contentMode = .scaleAspectFill
         cell.onboardingDescLabel.text = onboardingDatas[indexPath.row][2]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width
-        let height = collectionView.frame.height
-        
-        return CGSize(width: width, height: height)
+        return collectionView.bounds.size
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -169,7 +186,7 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-
+    
     // 섹션 내 아이템 간의 수평 간격 설정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0

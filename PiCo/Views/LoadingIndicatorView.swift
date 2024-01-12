@@ -16,7 +16,7 @@ class LoadingIndicatorView: UIView {
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.spacing = 0
-        stackView.backgroundColor = textFieldBackground
+        stackView.backgroundColor = ColorManager.shared.textFieldBackground
         stackView.layer.opacity = 0.7
         stackView.layer.cornerRadius = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +27,7 @@ class LoadingIndicatorView: UIView {
     
     lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.color = secondText
+        activityIndicator.color = ColorManager.shared.secondText
         activityIndicator.startAnimating()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicator
@@ -36,7 +36,7 @@ class LoadingIndicatorView: UIView {
     lazy var loadingLabel: UILabel = {
         let label = UILabel()
         label.text = guideMessage
-        label.textColor = secondText
+        label.textColor = ColorManager.shared.secondText
         label.font = .systemFont(ofSize: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

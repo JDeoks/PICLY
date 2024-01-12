@@ -32,7 +32,7 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        dDayLabel.textColor = secondText
+        dDayLabel.textColor = ColorManager.shared.secondText
         thumnailImageView.image = nil
         disposeBag = DisposeBag()
     }
@@ -71,7 +71,7 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
         // dDayLabel
         
         if album.expireTime < Date() {
-            dDayLabel.textColor = warnRed
+            dDayLabel.textColor = ColorManager.shared.warnRed
             dDayLabel.text = "만료"
         } else {
             let dDay = album.getDDay()

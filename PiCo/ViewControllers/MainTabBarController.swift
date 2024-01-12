@@ -33,8 +33,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     func initUI() {
         self.delegate = self
-        self.tabBar.tintColor = highlightBlue
-        self.tabBar.unselectedItemTintColor = secondText
+        self.tabBar.tintColor = ColorManager.shared.highlightBlue
+        self.tabBar.unselectedItemTintColor = ColorManager.shared.secondText
         self.tabBar.items?[0].title = "내 앨범"
         self.tabBar.items?[1].title = "설정"
     }
