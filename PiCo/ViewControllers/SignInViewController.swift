@@ -27,6 +27,8 @@ class SignInViewController: UIViewController {
     @IBOutlet var signInWithGoogleButtonView: UIView!
     @IBOutlet var signInWithAppleButtonView: UIView!
     @IBOutlet var googleLogoImageView: UIImageView!
+    @IBOutlet var continueWithEmailButtonView: UIView!
+    @IBOutlet var continueWithEmailLabel: UILabel!
     @IBOutlet var termsOfUseTextView: UITextView!
     
     override func viewDidLoad() {
@@ -53,6 +55,15 @@ class SignInViewController: UIViewController {
         
         // googleLogoImageView
         googleLogoImageView.layer.cornerRadius = 2
+
+        // continueWithEmailLabel
+        let attributedString = NSMutableAttributedString(string: continueWithEmailLabel.text!)
+        attributedString.addAttribute(
+            NSAttributedString.Key.underlineStyle,
+            value: NSUnderlineStyle.single.rawValue,
+            range: NSRange(location: 0, length: attributedString.length)
+        )
+        continueWithEmailLabel.attributedText = attributedString
         
         // termsOfUseTextView
         let linkedText = NSMutableAttributedString(attributedString: termsOfUseTextView.attributedText)
@@ -86,6 +97,13 @@ class SignInViewController: UIViewController {
                 self.view.addSubview(self.loadingView)
                 LoginManager.shared.startSignInWithAppleFlow(vc: self)
             })
+            .disposed(by: disposeBag)
+        
+        continueWithEmailButtonView.rx.tapGesture()
+            .when(.recognized)
+            .subscribe { _ in
+//                <#code#>
+            }
             .disposed(by: disposeBag)
     }
     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cBv-EY-rUV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y5Y-qd-R1f">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -180,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1993.1297709923663" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="1979" y="-2"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="eBn-0K-hgl">
@@ -913,7 +913,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jDY-XH-vdC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2812.9770992366412" y="1393.661971830986"/>
+            <point key="canvasLocation" x="2813" y="1394"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="D5T-2o-tVQ">
@@ -924,7 +924,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TBB-ZC-dJO">
-                                <rect key="frame" x="0.0" y="59" width="393" height="72"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="72"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로그인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7VV-TK-aKQ">
                                         <rect key="frame" x="24" y="19.333333333333325" width="72.666666666666671" height="33.666666666666657"/>
@@ -944,7 +944,7 @@
                                 <edgeInsets key="layoutMargins" top="0.0" left="24" bottom="0.0" right="24"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="anT-js-I09">
-                                <rect key="frame" x="24" y="155" width="345" height="210.33333333333337"/>
+                                <rect key="frame" x="24" y="198.99999999999997" width="345" height="274.33333333333326"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NaE-8a-MhB">
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="50.333333333333336"/>
@@ -955,11 +955,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8hT-B9-B8w">
-                                        <rect key="frame" x="0.0" y="74.333333333333343" width="345" height="56"/>
+                                        <rect key="frame" x="0.0" y="74.333333333333314" width="345" height="56"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google로 로그인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26u-3W-A4A">
-                                                <rect key="frame" x="113.66666666666666" y="18" width="118" height="20.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="112.66666666666666" y="18" width="119.66666666666666" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <color key="textColor" name="mainText"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -985,8 +985,8 @@
                                         <rect key="frame" x="0.0" y="154.33333333333331" width="345" height="56"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple로 로그인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ut0-M3-37f">
-                                                <rect key="frame" x="119" y="18" width="107.33333333333331" height="20.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="118" y="18" width="109.33333333333331" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <color key="textColor" name="BlackText"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1006,6 +1006,24 @@
                                             <constraint firstItem="ut0-M3-37f" firstAttribute="centerX" secondItem="hJx-ba-NTL" secondAttribute="centerX" id="HTW-tz-KQK"/>
                                             <constraint firstItem="gST-dK-bG9" firstAttribute="top" secondItem="hJx-ba-NTL" secondAttribute="top" constant="2" id="P8i-oe-9E9"/>
                                             <constraint firstItem="ut0-M3-37f" firstAttribute="centerY" secondItem="hJx-ba-NTL" secondAttribute="centerY" id="X2n-Vb-7e2"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2p-yw-ggm">
+                                        <rect key="frame" x="0.0" y="234.33333333333331" width="345" height="40"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일로 계속하기" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctQ-fR-41E">
+                                                <rect key="frame" x="0.0" y="0.0" width="345" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                <color key="textColor" name="SecondText"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="400-l5-KCv"/>
+                                            <constraint firstItem="ctQ-fR-41E" firstAttribute="top" secondItem="d2p-yw-ggm" secondAttribute="top" id="4Eo-fS-f4f"/>
+                                            <constraint firstAttribute="trailing" secondItem="ctQ-fR-41E" secondAttribute="trailing" id="4tI-Tw-9aN"/>
+                                            <constraint firstItem="ctQ-fR-41E" firstAttribute="leading" secondItem="d2p-yw-ggm" secondAttribute="leading" id="Umi-N6-d5l"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1038,7 +1056,10 @@
                             <constraint firstItem="anT-js-I09" firstAttribute="leading" secondItem="rUX-Cf-4zV" secondAttribute="leading" constant="24" id="xqz-22-TZl"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="7Ub-fq-T72"/>
                     <connections>
+                        <outlet property="continueWithEmailButtonView" destination="d2p-yw-ggm" id="2Pb-sl-3QH"/>
+                        <outlet property="continueWithEmailLabel" destination="ctQ-fR-41E" id="PY1-6z-OoB"/>
                         <outlet property="googleLogoImageView" destination="BDz-9D-hPf" id="t7W-dB-zVY"/>
                         <outlet property="signInWithAppleButtonView" destination="hJx-ba-NTL" id="cVh-6F-9JQ"/>
                         <outlet property="signInWithGoogleButtonView" destination="8hT-B9-B8w" id="CXa-Ur-SCa"/>
@@ -1047,7 +1068,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gY5-oI-5zR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1052.6717557251909" y="-716.19718309859161"/>
+            <point key="canvasLocation" x="1979.3893129770991" y="-716.19718309859161"/>
         </scene>
         <!--OnboardingViewController-->
         <scene sceneID="mGG-Sn-RHW">
@@ -1139,7 +1160,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hi5-zX-jEP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1991.6030534351144" y="-716.19718309859161"/>
+            <point key="canvasLocation" x="2813" y="-716"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="yef-OO-XnK">
+            <objects>
+                <viewController id="rT4-Zs-vqC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LWl-RO-le4">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="erb-wO-xf0"/>
+                        <color key="backgroundColor" name="MainBackground"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xx5-Ur-7uG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3633" y="-716"/>
         </scene>
         <!--내 앨범-->
         <scene sceneID="DCY-bt-Zrv">
@@ -1222,7 +1258,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iPl-ik-XhX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1993" y="1395"/>
+            <point key="canvasLocation" x="1978" y="1394"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="Hh6-Ld-vXK">
@@ -1294,7 +1330,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U5m-Ft-G6S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1066" y="1395"/>
+            <point key="canvasLocation" x="1066" y="1394"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="n8O-Kh-YNv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y5Y-qd-R1f" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XOE-cV-jJv">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cBv-EY-rUV" kind="relationship" relationship="rootViewController" id="2Y0-B9-sLJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hqQ-fD-DeJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1052.6717557251909" y="-716.19718309859161"/>
         </scene>
     </scenes>
     <resources>
