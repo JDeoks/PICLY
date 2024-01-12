@@ -45,9 +45,6 @@ class LoginManager: NSObject {
     /// signInWithCredential() -> SignInViewController
     let signInWithCredentialDone = PublishSubject<Void>()
 
-    /// uploadAlbum() -> SignInViewController
-    let uploadAlbumDone = PublishSubject<Void>()
-
 // MARK: - 구글 로그인
     func startSignInWithGoogleFlow(vc: UIViewController) {
         print("\(type(of: self)) - \(#function)")
@@ -172,7 +169,8 @@ extension LoginManager {
     
     // MARK: - 로그인 공통 로직
     func signInWithCredential(credential: AuthCredential, provider: AuthProvider) {
-//        vc.view.addSubview(loadingView)
+        print("\(type(of: self)) - \(#function)")
+
         Auth.auth().signIn(with: credential) { result, error in
             if let error = error {
                 // TODO: 로그인 실패 Alert
