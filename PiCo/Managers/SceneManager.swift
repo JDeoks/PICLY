@@ -14,6 +14,7 @@ class SceneManager {
     private init() { }
     
     enum Scene: String {
+        case signInNav = "SignInNavController"
         case signIn = "SignInViewController"
         case onboarding = "OnboardingViewController"
         case email = "EmailViewController"
@@ -83,17 +84,18 @@ class SceneManager {
     
     // TODO: - 최적화 필요 뷰 컨트롤러 계속 생성함
     func setSignInVCAsRoot(animated: Bool) {
+        let signInNavVC = getVC(scene: .signInNav) as! UINavigationController
+
         let window = UIApplication.shared.getWindow()
-        let signInVC = getVC(scene: .signIn)
         // 현재 루트 뷰 컨트롤러의 스냅샷 가져오기
         guard let snapshot = window.snapshotView(afterScreenUpdates: true) else {
             return
         }
         // 새 루트 뷰 컨트롤러 설정
-        window.rootViewController = signInVC
+        window.rootViewController = signInNavVC
         if animated {
             // 스냅샷을 새 루트 뷰 컨트롤러 위에 추가
-            signInVC.view.addSubview(snapshot)
+            signInNavVC.view.addSubview(snapshot)
             // 애니메이션을 통해 스냅샷을 서서히 사라지게 함
             UIView.animate(withDuration: 0.5, animations: {
                 snapshot.layer.opacity = 0
