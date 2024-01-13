@@ -19,10 +19,13 @@ class EditViewController: UIViewController {
     @IBOutlet var backButton: UIButton!
     @IBOutlet var saveButton: UIButton!
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var tagTitleLabel: UILabel!
     @IBOutlet var inputTagStackView: UIStackView!
     @IBOutlet var tagTextField: UITextField!
     @IBOutlet var collectionViewStackView: UIStackView!
+    @IBOutlet var imageTitleLabel: UILabel!
     @IBOutlet var selectedImageCollectionView: UICollectionView!
+    @IBOutlet var expireDateTitleLabel: UILabel!
     @IBOutlet var expireDatePicker: UIDatePicker!
     
     override func viewDidLoad() {
@@ -36,6 +39,14 @@ class EditViewController: UIViewController {
         // 태그 스택뷰
         inputTagStackView.layer.cornerRadius = 4
         
+        // tagTitleLabel
+        tagTitleLabel.font = .systemFont(ofSize: 14, weight: .bold)
+        
+        // imageTitleLabel
+        imageTitleLabel.font = .systemFont(ofSize: 14, weight: .bold)
+        // expireDateTitleLabel
+        expireDateTitleLabel.font = .systemFont(ofSize: 5, weight: .bold)
+
         // datePicker
         expireDatePicker.tintColor = ColorManager.shared.highlightBlue
         scrollView.delegate = self

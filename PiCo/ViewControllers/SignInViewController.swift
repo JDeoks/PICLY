@@ -34,19 +34,22 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         print("\(type(of: self)) - \(#function)")
         super.viewDidLoad()
-        
         initUI()
         action()
         bind()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if UserManager.shared.hasCompletedInitialLaunch() == false {
+        if UserManager.shared.hasCompletedInitialLaunch() == false && shouldShowOnboarding == true {
             SceneManager.shared.presentOnboardingVC(vc: self, animated: false)
+            shouldShowOnboarding = false
         }
     }
     
     func initUI() {
+        // navigation
+        self.navigationController?.navigationBar.isHidden = true
+
         // signInWithGoogleButtonView
         signInWithGoogleButtonView.layer.cornerRadius = 4
         
@@ -102,7 +105,7 @@ class SignInViewController: UIViewController {
         continueWithEmailButtonView.rx.tapGesture()
             .when(.recognized)
             .subscribe { _ in
-//                <#code#>
+                SceneManager.shared.pushEmailVC(vc: self, state: .signIn)
             }
             .disposed(by: disposeBag)
     }
@@ -122,5 +125,5 @@ class SignInViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
-    
+
 }

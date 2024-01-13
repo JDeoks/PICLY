@@ -22,10 +22,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print("currentUser 있음 mainVC")
             window?.rootViewController = mainVC
         } else {
-            let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
+            let SignInNavVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInNavController") as? UINavigationController
             print("currentUser 없음 loginVC")
 
-            window?.rootViewController = loginVC
+            window?.rootViewController = SignInNavVC
         }
     }
 

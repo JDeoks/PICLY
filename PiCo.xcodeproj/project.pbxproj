@@ -124,6 +124,9 @@
 		2AD328912B29C92B002DA60F /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 2AD328902B29C92B002DA60F /* RxGesture */; };
 		2AD5F2CE2B0FADCE00475AC6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5F2CC2B0FADCE00475AC6 /* SettingsTableViewCell.swift */; };
 		2AD5F2CF2B0FADCE00475AC6 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD5F2CD2B0FADCE00475AC6 /* SettingsTableViewCell.xib */; };
+		2AD7C4642B51B92C00AB0FBC /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7C4632B51B92C00AB0FBC /* EmailViewController.swift */; };
+		2AD7C4662B524BBA00AB0FBC /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7C4652B524BBA00AB0FBC /* State.swift */; };
+		2AD7C4672B524BBA00AB0FBC /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7C4652B524BBA00AB0FBC /* State.swift */; };
 		2AF5899D2B2F042E0027D928 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = 2AF5899C2B2F042E0027D928 /* SwiftDate */; };
 /* End PBXBuildFile section */
 
@@ -240,6 +243,8 @@
 		2ACD7C802B4EAEA200C39737 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		2AD5F2CC2B0FADCE00475AC6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		2AD5F2CD2B0FADCE00475AC6 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
+		2AD7C4632B51B92C00AB0FBC /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
+		2AD7C4652B524BBA00AB0FBC /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +302,7 @@
 			children = (
 				2A6942772B17920A0070B194 /* SignInViewController.swift */,
 				2A2654A42B4BE9BE002EF047 /* OnboardingViewController.swift */,
+				2AD7C4632B51B92C00AB0FBC /* EmailViewController.swift */,
 				2A9863FC2B0913BE0041686E /* MainTabBarController.swift */,
 				2AB0C4BA2B08B77E008BB7AE /* MyAlbumsViewController.swift */,
 				2A9863FA2B09104C0041686E /* DetailViewController.swift */,
@@ -412,6 +418,7 @@
 				2A6161032B2B502B0093C688 /* AuthProvider.swift */,
 				2A3F75702B33567900CE67D1 /* UserField.swift */,
 				2A9711252B35C3D400A989E8 /* AlbumField.swift */,
+				2AD7C4652B524BBA00AB0FBC /* State.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -665,6 +672,7 @@
 				2A82C6722B5165DB0030D1B9 /* ColorManager.swift in Sources */,
 				2A789AFE2B4AA865004808E7 /* NSMutableAttributedString+.swift in Sources */,
 				2A40074C2B45B3AA006154A4 /* AddImageCollectionViewCell.swift in Sources */,
+				2AD7C4672B524BBA00AB0FBC /* State.swift in Sources */,
 				2A4D48FB2B0A781A00E776C7 /* AlbumModel.swift in Sources */,
 				2A789AFB2B4AA83C004808E7 /* UIViewController+.swift in Sources */,
 				2A3F756F2B33482F00CE67D1 /* DataManager.swift in Sources */,
@@ -709,6 +717,7 @@
 				2AD5F2CE2B0FADCE00475AC6 /* SettingsTableViewCell.swift in Sources */,
 				2A3ADA792B2E2B9C00D40535 /* LoginManager.swift in Sources */,
 				2AB0C4B92B08B77E008BB7AE /* SceneDelegate.swift in Sources */,
+				2AD7C4642B51B92C00AB0FBC /* EmailViewController.swift in Sources */,
 				2A3F75712B33567900CE67D1 /* UserField.swift in Sources */,
 				2A6942402B1532D00070B194 /* WebViewController.swift in Sources */,
 				2A4D48FA2B0A781A00E776C7 /* AlbumModel.swift in Sources */,
@@ -725,6 +734,7 @@
 				2A6F18D02B4AAAF800D8343D /* UIApplication+.swift in Sources */,
 				2A2654A52B4BE9BE002EF047 /* OnboardingViewController.swift in Sources */,
 				2A282FDE2B31C34A0074C198 /* SceneManager.swift in Sources */,
+				2AD7C4662B524BBA00AB0FBC /* State.swift in Sources */,
 				2A6160FF2B2B4E720093C688 /* UserModel.swift in Sources */,
 				2A0E08712B39BD5400D76501 /* DetailTagsCollectionViewCell.swift in Sources */,
 				2A8ED08D2B46FDF60068B0B8 /* DetailInfoTableViewCell.swift in Sources */,

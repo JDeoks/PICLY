@@ -21,7 +21,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6P0-oW-ntg">
                         <rect key="frame" x="0.0" y="38" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                        <color key="textColor" name="mainText"/>
+                        <color key="textColor" name="MainText"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -39,7 +39,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <namedColor name="mainText">
+        <namedColor name="MainText">
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>

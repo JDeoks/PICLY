@@ -16,6 +16,7 @@ class SceneManager {
     enum Scene: String {
         case signIn = "SignInViewController"
         case onboarding = "OnboardingViewController"
+        case email = "EmailViewController"
         case mainTab = "MainTabBarController"
         case myAlbum = "MyAlbumsViewController"
         case detail = "DetailViewController"
@@ -37,6 +38,14 @@ class SceneManager {
         onboardingVC.modalPresentationStyle = .overFullScreen
         onboardingVC.modalTransitionStyle = .crossDissolve
         vc.present(onboardingVC, animated: animated)
+    }
+    
+    func pushEmailVC(vc: UIViewController, state: EmailVCState) {
+        print("\(type(of: self)) - \(#function)")
+        
+        let emailVC = getVC(scene: .email) as! EmailViewController
+        emailVC.setData(state: state)
+        vc.navigationController?.pushViewController(emailVC, animated: true)
     }
     
     func pushDetailVC(vc: UIViewController, album: AlbumModel) {

@@ -181,7 +181,7 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
 // MARK: - ActionSheet, Alert
 extension DetailViewController {
 
-    func showEditActionSheet() {
+    private func showEditActionSheet() {
         let actionSheet = UIAlertController(title: "메뉴", message: nil, preferredStyle: .actionSheet)
         
 //        actionSheet.addAction(UIAlertAction(title: "수정", style: .default, handler: { _ in
@@ -212,7 +212,8 @@ extension DetailViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    func showDeleteConfirmationAlert() {
+    /// 앨범 삭제 확인 alert
+    private func showDeleteConfirmationAlert() {
         let deleteAlert = UIAlertController(title: "앨범 삭제", message: "정말로 삭제하시겠습니까?", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
             self.loadingView.loadingLabel.text = ""
@@ -225,7 +226,8 @@ extension DetailViewController {
         self.present(deleteAlert, animated: true, completion: nil)
     }
     
-    func deleteAlbum() {
+    /// 앨범 삭제 로직
+    private func deleteAlbum() {
         print("\(type(of: self)) - \(#function)")
 
         deleteAlbumDoc {
@@ -235,9 +237,8 @@ extension DetailViewController {
         }
     }
     
-    func deleteAlbumDoc(completion: @escaping () -> Void) {
+    private func deleteAlbumDoc(completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
-
         
         albumsCollection.document(album.albumID).delete() { err in
             if let err = err {
@@ -252,7 +253,7 @@ extension DetailViewController {
         }
     }
     
-    func deleteAlbumImage(completion: @escaping () -> Void) {
+    private func deleteAlbumImage(completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
         
         let albumImagesRef = Storage.storage().reference().child(album.albumID)
@@ -294,7 +295,7 @@ extension DetailViewController {
 // MARK: - UIActivityViewController
 extension DetailViewController {
     
-    func shareURL(url: URL) {
+    private func shareURL(url: URL) {
         let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
 
         // 아이패드에서 실행될 경우
@@ -305,7 +306,6 @@ extension DetailViewController {
                 popoverController.permittedArrowDirections = []
             }
         }
-
         self.present(activityViewController, animated: true, completion: nil)
     }
     

@@ -25,12 +25,14 @@ class UploadViewController: UIViewController {
     lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
     let sectionInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 
+    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var uploadButton: UIButton!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var inputTagStackView: UIStackView!
     @IBOutlet var tagTextField: UITextField!
     @IBOutlet var tagsCollectionView: UICollectionView!
+    @IBOutlet var imageCountLabel: UILabel!
     @IBOutlet var collectionViewStackView: UIStackView!
     @IBOutlet var selectedImageCollectionView: UICollectionView!
     @IBOutlet var expireDatePicker: UIDatePicker!
@@ -47,6 +49,9 @@ class UploadViewController: UIViewController {
     }
     
     func initUI() {
+        // titleLabel
+        titleLabel.text = "앨범 업로드"
+        
         // 태그 스택뷰
         inputTagStackView.layer.cornerRadius = 4
         
@@ -268,6 +273,7 @@ extension UploadViewController: UICollectionViewDataSource, UICollectionViewDele
                         print(self.uploadVM.imageTuples)
                         print(self.uploadVM.imageSizeTuples)
                         DispatchQueue.main.async {
+                            self.imageCountLabel.text = "\(self.uploadVM.imageTuples.count)/10"
                             self.selectedImageCollectionView.reloadData()
                         }
                     }
@@ -487,6 +493,7 @@ extension UploadViewController: PHPickerViewControllerDelegate {
                 self.uploadVM.imageTuples.sort { $0.0 < $1.0 }
                 self.uploadVM.imageSizeTuples.sort { $0.0 < $1.0 }
                 DispatchQueue.main.async {
+                    self.imageCountLabel.text = "\(self.uploadVM.imageTuples.count)/10"
                     self.selectedImageCollectionView.reloadData()
                     self.loadingView.removeFromSuperview()
                 }
