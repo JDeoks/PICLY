@@ -190,7 +190,7 @@ extension LoginManager {
                         self.imageTuples.sort { $0.0 < $1.0 }
                         let images: [UIImage] = self.imageTuples.map{ return $1 }
                         let albumDict = AlbumModel.createDictToUpload(expireTime: expireDate, images: images, tags: self.tags)
-                        DataManager.shared.uploadAlbum(albumDict: albumDict, images: images) {
+                        DataManager.shared.uploadAlbum(albumDict: albumDict, images: images) { albumURL in
                             self.signInWithCredentialDone.onNext(())
                         }
                     }

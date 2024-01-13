@@ -31,7 +31,7 @@ class UploadViewModel {
     /// uploadAlbum() -> UploadViewController
     let uploadAlbumDone = PublishSubject<Void>()
     
-// MARK: - 파이어베이스 업로드
+    // MARK: - 파이어베이스 업로드
     func uploadAlbum() {
         print("\(type(of: self)) - \(#function)")
 
@@ -43,7 +43,8 @@ class UploadViewModel {
             tags: tags.value
         )
         
-        DataManager.shared.uploadAlbum(albumDict: albumDict, images: images) {
+        DataManager.shared.uploadAlbum(albumDict: albumDict, images: images) { albumURL in
+            self.albumURL = albumURL
             self.uploadAlbumDone.onNext(())
         }
 

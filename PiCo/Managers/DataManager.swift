@@ -60,13 +60,15 @@ class DataManager {
     }
     
     // MARK: - 파이어베이스 업로드
-    func uploadAlbum(albumDict: [String : Any], images: [UIImage], complition: @escaping () -> Void) {
-            print("\(type(of: self)) - \(#function)")
-
+    func uploadAlbum(albumDict: [String : Any], images: [UIImage], complition: @escaping (_ albumURL: URL) -> Void) {
+        print("\(type(of: self)) - \(#function)")
+        
+        let rootURL: URL = ConfigManager.shared.getRootURL()
         uploadAlbumDocToFireStore(albumDict: albumDict, images: images) { albumDocID in
             self.uploadImagesToStorage(albumDocID: albumDocID, images: images) { imageURLTuples in
                 self.updateImageURLsToAlbumDoc(albumDocID: albumDocID, imageURLTuples: imageURLTuples) {
-                    complition()
+                    let albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(albumDocID)
+                    complition(albumURL)
                 }
             }
         }
