@@ -93,6 +93,7 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     }
     
     func setData(album: AlbumModel) {
+        // SkeletonView
         if album.isSkeleton {
             let skeletonAnimation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight, duration: 1, autoreverses: true)
             self.showAnimatedGradientSkeleton(usingGradient: .init(colors: [.lightGray, .gray]), animation: skeletonAnimation, transition: .none)
@@ -101,6 +102,7 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
             multiImageView.isHidden = true
             return
         }
+        
         // thumnailImageView
         let skeletonAnimation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight, duration: 1, autoreverses: true)
         thumnailImageView.showAnimatedGradientSkeleton(usingGradient: .init(colors: [.lightGray, .gray]), animation: skeletonAnimation, transition: .none)
