@@ -83,7 +83,8 @@ class MyAlbumsViewController: UIViewController {
     }
     
     func initData() {
-        //TODO: 내 데이터 fetch
+        // fetch 하기 전 스켈레톤으로 초기화
+        DataManager.shared.myAlbums = [AlbumModel(), AlbumModel(), AlbumModel()]
         DataManager.shared.fetchMyAlbums()
     }
     
@@ -129,6 +130,7 @@ class MyAlbumsViewController: UIViewController {
             .orEmpty
             .distinctUntilChanged()
             .subscribe(onNext: { changedText in
+                print("changedText")
                 self.updateFilteredAlbums(keyword: changedText)
             })
             .disposed(by: disposeBag)

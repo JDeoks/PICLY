@@ -290,6 +290,8 @@ extension LoginManager {
             return "이메일을 입력해주세요"
         case "The email address is badly formatted.":
             return "이메일을 형식에 맞게 기입해주세요."
+        case "Network error (such as timeout, interrupted connection or unreachable host) has occurred.":
+            return "네트워크 오류. \n연결을 확인하고 다시 시도해 주세요."
         default:
             return error.localizedDescription
         }

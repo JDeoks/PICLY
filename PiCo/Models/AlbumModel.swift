@@ -23,6 +23,7 @@ class AlbumModel {
     var imageSizes: [[String: Int]]
     var tags: [String]
     var viewCount: Int
+    var isSkeleton: Bool
     
     init(document: DocumentSnapshot) {
         self.albumID = document.documentID
@@ -37,6 +38,22 @@ class AlbumModel {
         self.imageSizes = (document.data()?[AlbumField.imageSizes.rawValue] as? [[String: Int]])!
         self.tags = document.data()?[AlbumField.tags.rawValue] as! [String]
         self.viewCount = document.data()?[AlbumField.viewCount.rawValue] as! Int
+        self.isSkeleton = false
+    }
+    
+    /// 스켈레톤뷰 생성
+    init() {
+        self.albumID = ""
+        self.ownerID = ""
+        self.creationTime = Date()
+        self.expireTime = Date()
+        self.thumbnailURL = nil
+        self.imageURLs = [URL(string: "https://jdeoks.notion.site/PiCo-97084d79dfe649918ba5179298f158f9?pvs=4")!]
+        self.imageCount = 0
+        self.imageSizes = [["": 0]]
+        self.tags = [""]
+        self.viewCount = 0
+        self.isSkeleton = true
     }
         
     func getCreationTimeStr() -> String {

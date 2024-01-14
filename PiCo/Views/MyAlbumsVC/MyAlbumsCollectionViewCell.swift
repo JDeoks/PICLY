@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import FirebaseStorage
 import Kingfisher
+import SkeletonView
 
 class MyAlbumsCollectionViewCell: UICollectionViewCell {
     
@@ -19,6 +20,7 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var thumnailImageView: UIImageView!
     @IBOutlet var copyLinkButton: UIButton!
+    @IBOutlet var tagLabelContainerView: UIStackView!
     @IBOutlet var creationTimeLabel: UILabel!
     @IBOutlet var tagLabel: UILabel!
     @IBOutlet var dDayLabel: UILabel!
@@ -32,16 +34,38 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        dDayLabel.textColor = ColorManager.shared.secondText
+        
+        // view
+        self.stopSkeletonAnimation()
+        self.hideSkeleton()
+        
+        // thumnailImageView
         thumnailImageView.image = nil
+        thumnailImageView.kf.cancelDownloadTask()
+        thumnailImageView.stopSkeletonAnimation()
+        thumnailImageView.hideSkeleton()
+        
+        // dDayLabel
+        dDayLabel.textColor = ColorManager.shared.secondText
+        
+        // copyLinkButton
+        copyLinkButton.isHidden = false
+        // gradientView
+        gradientView.isHidden = false
+        
+        // multiImageView
+        multiImageView.isHidden = false
+        
         disposeBag = DisposeBag()
     }
     
     func initUI() {
         // view
         self.layer.cornerRadius = 4
-        
+        self.isSkeletonable = true
+
         // thumnailImageView
+        thumnailImageView.isSkeletonable = true
         thumnailImageView.contentMode = .scaleAspectFill
         thumnailImageView.layer.cornerRadius = 4
         thumnailImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -49,15 +73,38 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
         
         // gradientView
         let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.colors = [CGColor(red: 0, green: 0, blue: 0, alpha: 0.8), CGColor(red: 0, green: 0, blue: 0, alpha: 0.5), CGColor(red: 0, green: 0, blue: 0, alpha: 0)]
+        gradient.colors = [CGColor(red: 0, green: 0, blue: 0, alpha: 0.4), CGColor(red: 0, green: 0, blue: 0, alpha: 0.2), CGColor(red: 0, green: 0, blue: 0, alpha: 0)]
         gradient.frame = gradientView.bounds
-        gradient.locations = [0.0 ,0.5, 1.0]
+        gradient.locations = [0.0 ,0.6, 1.0]
         gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradient.endPoint = CGPoint(x: 0.0, y: 1.0)
         gradientView.layer.addSublayer(gradient)
+        
+        // creationTimeLabel
+        creationTimeLabel.isSkeletonable = true
+        creationTimeLabel.linesCornerRadius = 2
+        
+        // tagLabelContainerView
+        tagLabelContainerView.isSkeletonable = true
+        
+        // tagLabel
+        tagLabel.isSkeletonable = true
+        tagLabel.linesCornerRadius = 2
     }
     
     func setData(album: AlbumModel) {
+        if album.isSkeleton {
+            let skeletonAnimation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight, duration: 1, autoreverses: true)
+            self.showAnimatedGradientSkeleton(usingGradient: .init(colors: [.lightGray, .gray]), animation: skeletonAnimation, transition: .none)
+            copyLinkButton.isHidden = true
+            gradientView.isHidden = true
+            multiImageView.isHidden = true
+            return
+        }
+        // thumnailImageView
+        let skeletonAnimation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight, duration: 1, autoreverses: true)
+        thumnailImageView.showAnimatedGradientSkeleton(usingGradient: .init(colors: [.lightGray, .gray]), animation: skeletonAnimation, transition: .none)
+        
         // albumURL
         let rootURL: URL = ConfigManager.shared.getRootURL()
         albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(album.albumID)
@@ -69,7 +116,6 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
         tagLabel.text = album.tags.isEmpty ? "" : "#\(album.tags[0])"
         
         // dDayLabel
-        
         if album.expireTime < Date() {
             dDayLabel.textColor = ColorManager.shared.warnRed
             dDayLabel.text = "만료"
@@ -80,13 +126,9 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
         
         // thumbnailURL
         thumbnailURL = album.thumbnailURL
-        let cnt = album.imageCount
         
-        if album.imageCount > 1 {
-            multiImageView.isHidden = false
-        } else {
-            multiImageView.isHidden = true
-        }
+        // multiImageView
+        multiImageView.isHidden = album.imageCount > 1 ? false : true
         
         // others
         fetchThumbnail(albumID: album.albumID)
@@ -95,8 +137,10 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     func fetchThumbnail(albumID: String) {
         print("\(type(of: self)) - \(#function)")
         
-        thumnailImageView.kf.indicatorType = .activity
-        thumnailImageView.kf.setImage(with: thumbnailURL, placeholder: nil, options: [.transition(.fade(0.5))], progressBlock: nil)
+        thumnailImageView.kf.setImage(with: thumbnailURL, placeholder: nil, options: [.transition(.fade(0.5))], progressBlock: nil) { _ in
+            self.thumnailImageView.stopSkeletonAnimation()
+            self.thumnailImageView.hideSkeleton()
+        }
     }
 
 }

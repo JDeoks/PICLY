@@ -45,11 +45,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="UYO-c6-YdI">
-                                <rect key="frame" x="68.333333333333343" y="0.0" width="122.33333333333334" height="20"/>
+                                <rect key="frame" x="68.333333333333314" y="0.0" width="97.666666666666686" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="D-3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlC-dD-9uj">
-                                <rect key="frame" x="190.66666666666666" y="0.0" width="25.333333333333343" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlC-dD-9uj">
+                                <rect key="frame" x="166" y="0.0" width="50" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" name="SecondText"/>
                                 <nil key="highlightedColor"/>
@@ -130,6 +130,7 @@
                 <outlet property="gradientView" destination="IqJ-ga-VOx" id="8g5-ml-pHd"/>
                 <outlet property="multiImageView" destination="hrU-2C-dUF" id="9wU-pK-Ifj"/>
                 <outlet property="tagLabel" destination="ayv-Ud-0Bp" id="XKd-82-FMF"/>
+                <outlet property="tagLabelContainerView" destination="olx-Ne-eAi" id="L65-UC-wX0"/>
                 <outlet property="thumnailImageView" destination="FGf-2R-85K" id="Etf-ug-L2Y"/>
             </connections>
             <point key="canvasLocation" x="277.86259541984731" y="169.36619718309859"/>

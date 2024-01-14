@@ -86,6 +86,7 @@
 		2A789AFB2B4AA83C004808E7 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A789AF92B4AA83C004808E7 /* UIViewController+.swift */; };
 		2A789AFD2B4AA865004808E7 /* NSMutableAttributedString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A789AFC2B4AA865004808E7 /* NSMutableAttributedString+.swift */; };
 		2A789AFE2B4AA865004808E7 /* NSMutableAttributedString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A789AFC2B4AA865004808E7 /* NSMutableAttributedString+.swift */; };
+		2A7BBE3D2B53DE46005650EE /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 2A7BBE3C2B53DE46005650EE /* SkeletonView */; };
 		2A82C66E2B502C190030D1B9 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A82C66C2B502C190030D1B9 /* OnboardingCollectionViewCell.swift */; };
 		2A82C66F2B502C190030D1B9 /* OnboardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A82C66D2B502C190030D1B9 /* OnboardingCollectionViewCell.xib */; };
 		2A82C6712B5165DB0030D1B9 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A82C6702B5165DB0030D1B9 /* ColorManager.swift */; };
@@ -275,6 +276,7 @@
 			files = (
 				2A6942552B153CF60070B194 /* FirebaseMessaging in Frameworks */,
 				2AB0C51D2B08E354008BB7AE /* RxCocoa in Frameworks */,
+				2A7BBE3D2B53DE46005650EE /* SkeletonView in Frameworks */,
 				2A6161082B2B50D20093C688 /* SwiftDate in Frameworks */,
 				2AD328912B29C92B002DA60F /* RxGesture in Frameworks */,
 				2A6942492B153CF60070B194 /* FirebaseAuth in Frameworks */,
@@ -571,6 +573,7 @@
 				2A6161072B2B50D20093C688 /* SwiftDate */,
 				2A9711232B347DEC00A989E8 /* Kingfisher */,
 				2ABB363B2B4715F600B3F073 /* SnapKit */,
+				2A7BBE3C2B53DE46005650EE /* SkeletonView */,
 			);
 			productName = PiCo;
 			productReference = 2AB0C4B32B08B77E008BB7AE /* PiCo.app */;
@@ -613,6 +616,7 @@
 				2AD3288F2B29C92B002DA60F /* XCRemoteSwiftPackageReference "RxGesture" */,
 				2A6161062B2B50D20093C688 /* XCRemoteSwiftPackageReference "SwiftDate" */,
 				2A9711222B347DEC00A989E8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				2A7BBE3B2B53DE46005650EE /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = 2AB0C4B42B08B77E008BB7AE /* Products */;
 			projectDirPath = "";
@@ -1084,6 +1088,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		2A7BBE3B2B53DE46005650EE /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.30.4;
+			};
+		};
 		2A89E6982B094147009056DD /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1246,6 +1258,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2A6942702B1762BF0070B194 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
+		};
+		2A7BBE3C2B53DE46005650EE /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A7BBE3B2B53DE46005650EE /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
 		};
 		2A89E69D2B0941A9009056DD /* RxKeyboard */ = {
 			isa = XCSwiftPackageProductDependency;

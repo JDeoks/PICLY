@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import FirebaseAuth
 import FirebaseRemoteConfig
+import SkeletonView
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     

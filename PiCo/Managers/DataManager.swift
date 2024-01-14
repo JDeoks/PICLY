@@ -20,7 +20,7 @@ class DataManager {
     
     let albumsCollection = Firestore.firestore().collection("Albums")
     let usersCollection = Firestore.firestore().collection("Users")
-    var myAlbums: [AlbumModel] = []
+    var myAlbums: [AlbumModel] = [AlbumModel(), AlbumModel(), AlbumModel()]
     
     ///updateMyAlbums() -> MyAlbumsViewController
     let updateMyAlbumsDone = PublishSubject<Void>()
