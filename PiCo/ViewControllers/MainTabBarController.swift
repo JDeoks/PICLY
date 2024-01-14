@@ -48,6 +48,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     func bind() {
         UserManager.shared.fetchUserAuthFailed
             .subscribe { _ in
+                print("fetchUserAuthFailed")
                 UserManager.shared.signOut()
                 SceneManager.shared.setSignInVCAsRoot(animated: false)
             }

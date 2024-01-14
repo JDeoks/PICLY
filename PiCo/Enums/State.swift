@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum EmailVCState {
+enum EmailSignInVCState {
     case signIn
     case signUp
 }

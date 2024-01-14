@@ -111,8 +111,9 @@ class SignInViewController: UIViewController {
     }
     
     func bind() {
-        LoginManager.shared.signInWithCredentialDone
+        LoginManager.shared.signInProcessDone
             .subscribe { _ in
+                print("signInProcessDone")
                 self.loadingView.removeFromSuperview()
                 SceneManager.shared.setMainTabVCAsRoot(animated: true)
                 UserManager.shared.setHasCompletedInitialLaunch(true)

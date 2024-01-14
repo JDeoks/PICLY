@@ -17,7 +17,7 @@ class SceneManager {
         case signInNav = "SignInNavController"
         case signIn = "SignInViewController"
         case onboarding = "OnboardingViewController"
-        case email = "EmailViewController"
+        case email = "EmailSignInViewController"
         case mainTab = "MainTabBarController"
         case myAlbum = "MyAlbumsViewController"
         case detail = "DetailViewController"
@@ -41,10 +41,10 @@ class SceneManager {
         vc.present(onboardingVC, animated: animated)
     }
     
-    func pushEmailVC(vc: UIViewController, state: EmailVCState) {
+    func pushEmailVC(vc: UIViewController, state: EmailSignInVCState) {
         print("\(type(of: self)) - \(#function)")
         
-        let emailVC = getVC(scene: .email) as! EmailViewController
+        let emailVC = getVC(scene: .email) as! EmailSignInViewController
         emailVC.setData(state: state)
         vc.navigationController?.pushViewController(emailVC, animated: true)
     }

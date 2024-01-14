@@ -70,7 +70,7 @@ class DetailViewController: UIViewController {
     func bind() {
         deleteAlbumDone
             .subscribe { _ in
-                self.showToast(message: "삭제 성공")
+                self.showToast(message: "삭제 성공", keyboardHeight: 0)
                 DataManager.shared.fetchMyAlbums()
                 self.navigationController?.popViewController(animated: true)
             }
@@ -116,7 +116,7 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
                 .subscribe { _ in
                     HapticManager.shared.triggerImpact()
                     UIPasteboard.general.url = self.albumURL
-                    self.showToast(message: "링크가 복사되었습니다.")
+                    self.showToast(message: "링크가 복사되었습니다.", keyboardHeight: 0)
                 }
                 .disposed(by: cell.disposeBag)
             cell.selectionStyle = .none
@@ -244,7 +244,7 @@ extension DetailViewController {
             if let err = err {
                 print("\(#function) 실패: \(err)")
                 // TODO: 앨범 삭제 실패 토스트
-                self.showToast(message: "삭제 실패")
+                self.showToast(message: "삭제 실패", keyboardHeight: 0)
                 self.navigationController?.popViewController(animated: true)
             } else {
                 print("Document successfully removed!")
@@ -261,13 +261,13 @@ extension DetailViewController {
             if let error = error {
                 print("Error in listing files: \(error)")
                 self.loadingView.removeFromSuperview()
-                self.showToast(message: "삭제 실패")
+                self.showToast(message: "삭제 실패", keyboardHeight: 0)
                 return
             }
             guard let result = result else {
                 print("\(#function) result 없음")
                 self.loadingView.removeFromSuperview()
-                self.showToast(message: "삭제 실패")
+                self.showToast(message: "삭제 실패", keyboardHeight: 0)
                 return
             }
             let dispatchGroup = DispatchGroup()

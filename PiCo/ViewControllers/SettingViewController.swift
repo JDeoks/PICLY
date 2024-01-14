@@ -11,10 +11,9 @@ class SettingViewController: UIViewController {
     
     let menus = [
         ["계정 관리", "튜토리얼 보기"],
-        ["피코 더 알아보기", "이용약관", "개인정보 처리방침","오픈소스 라이센스", "개발자 정보", "버전"]]
+        ["이용약관", "개인정보 처리방침","오픈소스 라이센스", "개발자 정보", "버전"]]
     let menuImages = ["person.fill", "book.fill", "star.fill"]
     let urls = [
-        "https://jdeoks.notion.site/jdeoks/PiCo-f6f39f80fc274800bc8b1b2f62b44c30",
         "https://jdeoks.notion.site/5cc8688a9432444eaad7a8fdc4e4e38a",
         "https://jdeoks.notion.site/bace573d0a294bdeae4a92464448bcac",
         "https://jdeoks.notion.site/ca304e392e1246abbd51fe0bc37e76bb",
@@ -60,15 +59,16 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.section {
         case 0:
             cell.menuImageView.image = UIImage(systemName: menuImages[indexPath.row])
+            
         case 1:
             cell.imageContainerView.isHidden = true
-            if indexPath.row == 5 {
+            if indexPath.row == 4 {
                 cell.versionLabel.text = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
             }
+            
         default:
             return cell
         }
-        
         return cell
     }
     

@@ -50,7 +50,6 @@ class UserManager {
                 let user = UserModel(document: document)
                 self.setUserModelToLocal(user: user)
                 print(user)
-                self.setUserModelToLocal(user: user)
                 self.getUserModelDone.onNext(())
             } else {
                 print("User Doc 없음")

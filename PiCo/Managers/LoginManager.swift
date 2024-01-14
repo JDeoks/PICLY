@@ -31,19 +31,18 @@ class LoginManager: NSObject {
     let albumCollection = Firestore.firestore().collection("Albums")
     let userCollectionRef = Firestore.firestore().collection("Users")
     /// 선택한 사진 배열  param1: index, param2: image
-    var imageTuples: [(Int, UIImage)] = [(0, UIImage(named: "defaultImage")!)]
+    var images: [UIImage] = [UIImage(named: "defaultImage")!]
     var tags = ["PiCo", "새로운", "공유의", "시작"]
     /// 기본 앨범 썸네일 URL
     var thumbnailURL: URL?
     /// 앨범에 추가할 이미지 접근 URLs
     var imageURLs: [(Int, URL)] = []
-    /// param1: index, param2: height, param3: width
-    var imageSizeTuples: [(Int, CGFloat, CGFloat)] = [(0, UIImage(named: "defaultImage")!.size.height, UIImage(named: "defaultImage")!.size.width)]
-    
+    /// createUserWithEmail() -> EmailSignInVC
+    let createUserWithEmailFailed = PublishSubject<String>()
     /// startSignInWithGoogleFlow(), startSignInWithAppleFlow() -> SignInViewController, SettingViewController
-    let signInFailed = PublishSubject<Void>()
+    let signInFailed = PublishSubject<String>()
     /// signInWithCredential() -> SignInViewController
-    let signInWithCredentialDone = PublishSubject<Void>()
+    let signInProcessDone = PublishSubject<Void>()
 
 // MARK: - 구글 로그인
     func startSignInWithGoogleFlow(vc: UIViewController) {
@@ -65,13 +64,12 @@ class LoginManager: NSObject {
         GIDSignIn.sharedInstance.signIn(withPresenting: requestingLoginVC) { [unowned self] result, error in
             if let error = error {
                 // TODO: 로그인 실패 Alert
-                signInFailed.onNext(())
-                print("구글 signIn 실패: \(error)")
+                signInFailed.onNext("로그인 실패\n\(error.localizedDescription)")
                 return
             }
             guard let user = result?.user, let idToken = user.idToken?.tokenString else {
                 // TODO: 로그인 실패 Alert
-                print("user 또는 idToken 정보 가져오기 실패")
+                signInFailed.onNext("로그인 실패\nuser 없음")
                 return
             }
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
@@ -154,7 +152,7 @@ extension LoginManager: ASAuthorizationControllerDelegate, ASAuthorizationContro
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
-        signInFailed.onNext(())
+        signInFailed.onNext("Apple 로그인 실패")
         print("Sign in with Apple errored: \(error)")
     }
     
@@ -167,7 +165,7 @@ extension LoginManager: ASAuthorizationControllerDelegate, ASAuthorizationContro
 
 extension LoginManager {
     
-    // MARK: - 로그인 공통 로직
+    // MARK: - OAuth 공통 로직
     func signInWithCredential(credential: AuthCredential, provider: AuthProvider) {
         print("\(type(of: self)) - \(#function)")
 
@@ -184,23 +182,17 @@ extension LoginManager {
             // 첫 로그인 시 User Collection에 Doc 추가
             self.isFirstLogin(user: user) { isFirstLogin in
                 if isFirstLogin {
-                    print("첫 번째 로그인")
-                    self.addUserToDB(user: user, provider: provider) {
-                        let expireDate = Calendar.current.date(byAdding: .day, value: 30, to: Date())!
-                        self.imageTuples.sort { $0.0 < $1.0 }
-                        let images: [UIImage] = self.imageTuples.map{ return $1 }
-                        let albumDict = AlbumModel.createDictToUpload(expireTime: expireDate, images: images, tags: self.tags)
-                        DataManager.shared.uploadAlbum(albumDict: albumDict, images: images) { albumURL in
-                            self.signInWithCredentialDone.onNext(())
-                        }
+                    self.setUpFirstLogin(user: user, provider: provider) {
+                        self.signInProcessDone.onNext(())
                     }
                 } else {
                     print("기존 사용자")
-                    self.signInWithCredentialDone.onNext(())
+                    self.signInProcessDone.onNext(())
                 }
             }
         }
     }
+    
     
     /// User Collection에 userID의 Doc이 있는지 검사
     private func isFirstLogin(user: User, completion: @escaping (Bool) -> Void) {
@@ -222,8 +214,59 @@ extension LoginManager {
         }
     }
     
+    // MARK: - 이메일 로그인, 회원가입
+    /// 사진,  이메일, 이름, 비밀번호로 회원가입
+    func createUserWithEmail(email: String, password: String) {
+        print("\(type(of: self)) - \(#function)")
+
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                print(error.localizedDescription)
+                let errorMessage = self.convertErrorToMessage(error: error)
+                self.createUserWithEmailFailed.onNext(errorMessage)
+                return
+            }
+            guard let authResult = authResult else {
+                self.createUserWithEmailFailed.onNext("회원가입 실패\nauthResult 없음")
+                return
+            }
+            let user = authResult.user
+            self.setUpFirstLogin(user: user, provider: .email) {
+                self.performLogin(email: email, password: password)
+            }
+        }
+    }
+    
+    func performLogin(email: String, password: String) {
+        print("\(type(of: self)) - \(#function)")
+
+        Auth.auth().signIn(withEmail: email, password: password) {authResult, error in
+            if let error = error {
+                print("performLogin 오류\(error.localizedDescription)")
+                self.signInFailed.onNext("아이디 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 확인해주세요")
+                return
+            }
+            print("\(#function) 성공")
+            self.signInProcessDone.onNext(())
+        }
+    }
+    
+    // MARK: - 로그인 공통 로직
+    
+    func setUpFirstLogin(user: User, provider: AuthProvider, completion: @escaping () -> Void) {
+        print("\(type(of: self)) - \(#function)")
+
+        self.addUserDocToDB(user: user, provider: provider) {
+            let expireDate = Calendar.current.date(byAdding: .day, value: 30, to: Date())!
+            let albumDict = AlbumModel.createDictToUpload(expireTime: expireDate, images: self.images, tags: self.tags)
+            DataManager.shared.uploadAlbum(albumDict: albumDict, images: self.images) { albumURL in
+                completion()
+            }
+        }
+    }
+    
     /// 유저 Doc 생성
-    private func addUserToDB(user: User, provider: AuthProvider, completion: @escaping () -> Void) {
+    private func addUserDocToDB(user: User, provider: AuthProvider, completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
 
         userCollectionRef.document(user.uid).setData(UserModel.createDictToUpload(provider: provider, user: user)){ err in
@@ -235,5 +278,22 @@ extension LoginManager {
             }
         }
     }
+    
+    // MARK: - 에러 메시지 처리
+    func convertErrorToMessage(error: Error) -> String{
+        switch error.localizedDescription {
+        case "The password must be 6 characters long or more.":
+            return "비밀번호는 6자 이상이어야 합니다."
+        case "The email address is already in use by another account.":
+            return "이미 계정이 존재합니다."
+        case "An email address must be provided.":
+            return "이메일을 입력해주세요"
+        case "The email address is badly formatted.":
+            return "이메일을 형식에 맞게 기입해주세요."
+        default:
+            return error.localizedDescription
+        }
+    }
 
 }
+

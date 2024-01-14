@@ -19,7 +19,8 @@ class UploadViewController: UIViewController {
     
     let uploadVM = UploadViewModel()
     let maxImageCount = 10
-    
+    private var keyboardHeight: CGFloat = 0
+
     let disposeBag = DisposeBag()
     
     lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -115,7 +116,7 @@ class UploadViewController: UIViewController {
         uploadButton.rx.tap
             .subscribe { _ in
                 if self.uploadVM.imageTuples.isEmpty {
-                    self.showToast(message: "선택된 이미지가 없습니다.")
+                    self.showToast(message: "선택된 이미지가 없습니다.", keyboardHeight: self.keyboardHeight)
                     return
                 }
                 HapticManager.shared.triggerImpact()
@@ -136,7 +137,8 @@ class UploadViewController: UIViewController {
                 guard let strongSelf = self else {
                     return
                 }
-                UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+                strongSelf.keyboardHeight = keyboardVisibleHeight
+                UIView.animate(withDuration: 0, delay: 0, options: .curveEaseInOut, animations: {
                     strongSelf.keyboardToolContainerView.snp.updateConstraints { make in
                         if keyboardVisibleHeight == 0 {
                             let containerViewHeight = strongSelf.keyboardToolContainerView.frame.height

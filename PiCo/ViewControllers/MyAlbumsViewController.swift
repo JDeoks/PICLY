@@ -18,11 +18,12 @@ import FirebaseAuth
 
 class MyAlbumsViewController: UIViewController {
     
-    var filteredAlbums: [AlbumModel] = []
+    private var filteredAlbums: [AlbumModel] = []
+    private var keyboardHeight: CGFloat = 0
     
     let disposeBag = DisposeBag()
     
-    let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    private let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     let refreshControl = UIRefreshControl()
     
     @IBOutlet var titleStackView: UIStackView!
@@ -108,7 +109,8 @@ class MyAlbumsViewController: UIViewController {
                 guard let strongSelf = self else {
                     return
                 }
-                UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+                strongSelf.keyboardHeight = keyboardVisibleHeight
+                UIView.animate(withDuration: 0.0, delay: 0, options: .curveEaseInOut, animations: {
                     strongSelf.keyboardToolContainerView.snp.updateConstraints { make in
                         if keyboardVisibleHeight == 0 {
                             let containerViewHeight = strongSelf.keyboardToolContainerView.frame.height
@@ -117,7 +119,7 @@ class MyAlbumsViewController: UIViewController {
                             make.bottom.equalToSuperview().inset(keyboardVisibleHeight).priority(1000)
                         }
                     }
-                    strongSelf.view.layoutIfNeeded() // 중요: 레이아웃 즉시 업데이트
+                    strongSelf.view.layoutIfNeeded()
                 })
             })
             .disposed(by: disposeBag)
@@ -175,7 +177,7 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
                     .subscribe { _ in
                         HapticManager.shared.triggerImpact()
                         UIPasteboard.general.url = cell.albumURL
-                        self.showToast(message: "링크가 복사되었습니다.")
+                        self.showToast(message: "링크가 복사되었습니다.", keyboardHeight: self.keyboardHeight)
                         print(cell.albumURL)
                     }
                     .disposed(by: cell.disposeBag)

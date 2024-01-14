@@ -31,28 +31,29 @@ class ConfigManager {
 //    }
     
     func fetchRemoteConfig() {
-        print("\(type(of: self)) - \(#function)")
-        
-        // TODO: nil일때만 기본값 적용
-        print(defaultRootURL)
-        UserDefaults.standard.set(defaultRootURL, forKey: "rootURL")
-        let remoteConfig = RemoteConfig.remoteConfig()
-        remoteConfig.fetch { (status, error) in
-            if status != .success {
-                print("실패 status: \(status)")
-                return
-            }
-            guard let urlString = remoteConfig.configValue(forKey: "rootURL").stringValue else {
-                print("forKey: rootURL 없음")
-                return
-            }
-            guard let url = URL(string: urlString) else {
-                print("URL 변환 실패")
-                return
-            }
-            UserDefaults.standard.set(url, forKey: "rootURL")
-            print("\(type(of: self)) - \(#function) \(url)")
-        }
+//        print("\(type(of: self)) - \(#function)")
+//        
+//        // TODO: nil일때만 기본값 적용
+//        print(defaultRootURL)
+//        UserDefaults.standard.set(defaultRootURL, forKey: "rootURL")
+//        let remoteConfig = RemoteConfig.remoteConfig()
+//        remoteConfig.fetch { (status, error) in
+//            if status != .success {
+//                print("실패 status: \(status)")
+//                return
+//            }
+//            guard let urlString = remoteConfig.configValue(forKey: "rootURL").stringValue else {
+//                print("forKey: rootURL 없음")
+//                return
+//            }
+//            print("urlString:",urlString)
+//            guard let url = URL(string: urlString) else {
+//                print("URL 변환 실패")
+//                return
+//            }
+//            UserDefaults.standard.set(url, forKey: "rootURL")
+//            print("\(type(of: self)) - \(#function) \(url)")
+//        }
     }
     
     func getRootURL() -> URL {
