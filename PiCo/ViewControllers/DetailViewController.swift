@@ -45,7 +45,7 @@ class DetailViewController: UIViewController {
     
     func initData() {
         // albumURL
-        let rootURL: URL = ConfigManager.shared.getRootURL()
+        let rootURL: URL = ConfigManager.shared.getRootURLFromLocal()
         albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(album.albumID)
         
         // others

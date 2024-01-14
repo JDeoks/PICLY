@@ -20,9 +20,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         super.viewDidLoad()
         initUI()
-        initData()
-        bind()
-
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -39,21 +36,5 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.items?[0].title = "내 앨범"
         self.tabBar.items?[1].title = "설정"
     }
-    
-    func initData() {
-        ConfigManager.shared.fetchRemoteConfig()
-        UserManager.shared.fetchUserAuth()
-        UserManager.shared.getUserModelFromServer()
-    }
-    
-    func bind() {
-        UserManager.shared.fetchUserAuthFailed
-            .subscribe { _ in
-                print("fetchUserAuthFailed")
-                UserManager.shared.signOut()
-                SceneManager.shared.setSignInVCAsRoot(animated: false)
-            }
-            .disposed(by: disposeBag)
-    }
-    
+
 }

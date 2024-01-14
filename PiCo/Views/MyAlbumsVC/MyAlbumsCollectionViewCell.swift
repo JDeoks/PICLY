@@ -108,7 +108,7 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
         thumnailImageView.showAnimatedGradientSkeleton(usingGradient: .init(colors: [.lightGray, .gray]), animation: skeletonAnimation, transition: .none)
         
         // albumURL
-        let rootURL: URL = ConfigManager.shared.getRootURL()
+        let rootURL: URL = ConfigManager.shared.getRootURLFromLocal()
         albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(album.albumID)
         
         // creationTimeLabel

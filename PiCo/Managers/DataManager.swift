@@ -63,7 +63,7 @@ class DataManager {
     func uploadAlbum(albumDict: [String : Any], images: [UIImage], complition: @escaping (_ albumURL: URL) -> Void) {
         print("\(type(of: self)) - \(#function)")
         
-        let rootURL: URL = ConfigManager.shared.getRootURL()
+        let rootURL: URL = ConfigManager.shared.getRootURLFromLocal()
         uploadAlbumDocToFireStore(albumDict: albumDict, images: images) { albumDocID in
             self.uploadImagesToStorage(albumDocID: albumDocID, images: images) { imageURLTuples in
                 self.updateImageURLsToAlbumDoc(albumDocID: albumDocID, imageURLTuples: imageURLTuples) {
@@ -84,7 +84,7 @@ class DataManager {
                 print("\(#function) 실패: \(err)")
             } else {
                 print("\(#function) 성공: \(ref!.documentID)")
-                let rootURL: URL = ConfigManager.shared.getRootURL()
+                let rootURL: URL = ConfigManager.shared.getRootURLFromLocal()
                 completion(ref!.documentID)
             }
         }

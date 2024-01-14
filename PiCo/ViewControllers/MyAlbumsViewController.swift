@@ -85,6 +85,9 @@ class MyAlbumsViewController: UIViewController {
     func initData() {
         // fetch 하기 전 스켈레톤으로 초기화
         DataManager.shared.myAlbums = [AlbumModel(), AlbumModel(), AlbumModel()]
+        ConfigManager.shared.fetchRemoteConfig()
+        UserManager.shared.fetchUserAuth()
+        UserManager.shared.getUserModelFromServer()
         DataManager.shared.fetchMyAlbums()
     }
     
@@ -143,10 +146,38 @@ class MyAlbumsViewController: UIViewController {
     }
 
     func bind() {
+        print("\(type(of: self)) - \(#function)")
+
         DataManager.shared.updateMyAlbumsDone
             .subscribe { _ in
                 self.filteredAlbums = DataManager.shared.myAlbums
                 self.myAlbumsCollectionView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        ConfigManager.shared.fetchRemoteConfigDone
+            .subscribe { _ in
+                print("fetchRemoteConfigDone")
+                if ConfigManager.shared.getIsMaintainedFromLocal() {
+                    DispatchQueue.main.async {
+                        self.ShowLockAlert(message: "서비스 점검중입니다.")
+                    }
+                    return
+                }
+                if ConfigManager.shared.isMinimumVersionSatisfied() == false{
+                    DispatchQueue.main.async {
+                        self.ShowLockAlert(message: "업데이트가 필요합니다.\n앱스토어에서 앱을 업데이트 해주세요.")
+                    }
+                    return
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        UserManager.shared.fetchUserAuthFailed
+            .subscribe { _ in
+                print("fetchUserAuthFailed")
+                UserManager.shared.signOut()
+                SceneManager.shared.setSignInVCAsRoot(animated: false)
             }
             .disposed(by: disposeBag)
     }
@@ -273,4 +304,14 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         myAlbumsCollectionView.reloadData()
     }
         
+}
+
+// MARK: - Alert
+extension MyAlbumsViewController {
+
+    func ShowLockAlert(message: String) {
+        let sheet = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        present(sheet, animated: true)
+    }
+    
 }

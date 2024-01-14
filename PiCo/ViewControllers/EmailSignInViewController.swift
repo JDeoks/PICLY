@@ -90,6 +90,7 @@ class EmailSignInViewController: UIViewController {
         // 회원가입 페이지 이동 버튼
         moveToSignupButton.rx.tap
             .subscribe { _ in
+                HapticManager.shared.triggerImpact()
                 SceneManager.shared.pushEmailVC(vc: self, state: .signUp)
             }
             .disposed(by: disposeBag)
@@ -113,6 +114,7 @@ class EmailSignInViewController: UIViewController {
             .subscribe { _ in
                 print("siginInButton: \(self.emailSignInVCState)")
                 self.view.addSubview(self.loadingView)
+                HapticManager.shared.triggerImpact()
                 switch self.emailSignInVCState {
                 case .signIn:
                     self.signIn()
@@ -130,7 +132,7 @@ class EmailSignInViewController: UIViewController {
                     return
                 }
                 strongSelf.keyboardHeight = keyboardVisibleHeight == 0 ? 40 : keyboardVisibleHeight
-                UIView.animate(withDuration: 0, delay: 0.05, options: .curveEaseInOut, animations: {
+                UIView.animate(withDuration: 0, delay: 0.05, options: .curveEaseOut, animations: {
                     strongSelf.signInContainerStackView.snp.updateConstraints { make in
                         make.bottom.equalToSuperview().inset(keyboardVisibleHeight).priority(1000)
                         
