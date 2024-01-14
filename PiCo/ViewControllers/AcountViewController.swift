@@ -58,14 +58,15 @@ class AcountViewController: UIViewController {
         
         signOutButton.rx.tap
             .subscribe { _ in
-                UserManager.shared.signOut()
-                SceneManager.shared.setSignInVCAsRoot(animated: true)
+                HapticManager.shared.triggerImpact()
+                self.showUploadFinishedAlert()
             }
             .disposed(by: disposeBag)
         
         deleteAccountButton.rx.tap
             .subscribe { _ in
                 // TODO: - 계정 삭제(올린 앨범들은 삭제되지 않습니다.)
+                HapticManager.shared.triggerImpact()
                 UserManager.shared.deleteUser()
                 SceneManager.shared.setSignInVCAsRoot(animated: true)
             }
@@ -76,4 +77,20 @@ class AcountViewController: UIViewController {
         print("\(type(of: self)) - \(#function)")
     }
 
+}
+
+extension AcountViewController {
+
+    func showUploadFinishedAlert() {
+        let sheet = UIAlertController(title: "로그아웃", message: "로그아웃하시겠습니까?", preferredStyle: .alert)
+        let loginAction = UIAlertAction(title: "로그아웃", style: .destructive, handler: { _ in
+            UserManager.shared.signOut()
+            SceneManager.shared.setSignInVCAsRoot(animated: true)
+        })
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        sheet.addAction(loginAction)
+        sheet.addAction(cancelAction)
+        present(sheet, animated: true)
+    }
+    
 }
