@@ -27,13 +27,13 @@ class ConfigManager {
     
     enum RemoteConfigKey: String {
         case rootURL = "rootURL"
-        case isChecking = "isServerMaintenance"
+        case maintenanceNotice = "maintenanceNotice"
         case minimumVersion = "minimumVersion"
     }
     
     let remoteConfig: RemoteConfig = RemoteConfig.remoteConfig()
     let defaultRootURL: URL = URL(string: "https://picoweb.vercel.app/")!
-    let defaultIsChecking: Bool = false
+    let defaultMaintenanceNotice: String = ""
     let defaultMinimumVersion: String = "1.0"
     
     /// Config 서버값 fetch해서 UserDefaults에 저장
@@ -73,11 +73,14 @@ class ConfigManager {
             print("forKey: rootURL 없음")
         }
         
-        // isChecking
-        let isChecking = self.remoteConfig.configValue(forKey: RemoteConfigKey.isChecking.rawValue).boolValue
-        print("isChecking:", isChecking)
-        UserDefaults.standard.set(isChecking, forKey: RemoteConfigKey.isChecking.rawValue)
-        
+        // maintenanceNotice
+        if let maintenanceNotice = self.remoteConfig.configValue(forKey: RemoteConfigKey.maintenanceNotice.rawValue).stringValue {
+            print("maintenanceNotice:",maintenanceNotice)
+            UserDefaults.standard.set(maintenanceNotice, forKey: RemoteConfigKey.maintenanceNotice.rawValue)
+        } else {
+            print("forKey: maintenanceNotice 없음")
+        }
+
         // minimumVersion
         if let minimumVersion = self.remoteConfig.configValue(forKey: RemoteConfigKey.minimumVersion.rawValue).stringValue {
             print("minimumVersion:",minimumVersion)
@@ -108,17 +111,14 @@ class ConfigManager {
         return rootURL
     }
     
-    func getIsMaintainedFromLocal() -> Bool {
+    func getIsCheckingFromLocal() -> String {
         print("\(type(of: self)) - \(#function)")
 
-        if UserDefaults.standard.object(forKey: RemoteConfigKey.isChecking.rawValue) != nil {
-            // 해당 키가 존재하는 경우
-            return UserDefaults.standard.bool(forKey: RemoteConfigKey.isChecking.rawValue)
-        } else {
-            // 해당 키가 존재하지 않는 경우
-            print("forKey: isChecking 없음. 기본 값 사용")
-            return defaultIsChecking
+        guard let maintenanceNotice = UserDefaults.standard.string(forKey: RemoteConfigKey.maintenanceNotice.rawValue) else {
+            print("forKey: maintenanceNotice 없음. 기본 값 사용")
+            return defaultMaintenanceNotice
         }
+        return maintenanceNotice
     }
     
     func getMinimumVersionFromLocal() -> String {

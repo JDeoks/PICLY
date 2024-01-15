@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        if isUserLoggedIn() {
+        if isUserLoggedIn() && UserManager.shared.hasCompletedInitialLaunch(){
             let mainVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController
             print("currentUser 있음 mainVC")
             window?.rootViewController = mainVC
