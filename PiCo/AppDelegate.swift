@@ -85,6 +85,6 @@ extension AppDelegate {
 //        let window = UIApplication.shared.getWindow()
 //        window.rootViewController = signInVC
 //    }
-    
+
 }
 
