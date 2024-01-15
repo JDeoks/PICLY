@@ -13,10 +13,11 @@ import RxKeyboard
 class EmailSignInViewController: UIViewController {
     
     private var emailSignInVCState: EmailSignInVCState = .signIn
-    private var keyboardHeight: CGFloat = 40
+    let loginManager = LoginManager()
 
     let disposeBag = DisposeBag()
     
+    private var keyboardHeight: CGFloat = 40
     lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
 
     @IBOutlet var backButton: UIButton!
@@ -144,14 +145,23 @@ class EmailSignInViewController: UIViewController {
     }
     
     func bind() {
-        LoginManager.shared.signInFailed
+        loginManager.signInProcessDone
+            .subscribe { _ in
+                print("signInProcessDone")
+                self.loadingView.removeFromSuperview()
+                SceneManager.shared.setMainTabVCAsRoot(animated: true)
+                UserManager.shared.setHasCompletedInitialLaunch(true)
+            }
+            .disposed(by: disposeBag)
+        
+        loginManager.signInFailed
             .subscribe { errorMsg in
                 self.loadingView.removeFromSuperview()
                 self.showToast(message: errorMsg, keyboardHeight: self.keyboardHeight)
             }
             .disposed(by: disposeBag)
         
-        LoginManager.shared.createUserWithEmailFailed
+        loginManager.createUserWithEmailFailed
             .subscribe { errorMsg in
                 self.loadingView.removeFromSuperview()
                 self.showToast(message: errorMsg, keyboardHeight: self.keyboardHeight)
@@ -164,7 +174,7 @@ class EmailSignInViewController: UIViewController {
 
         let email = self.emailTextField.text!
         let password = self.passwordTextField.text!
-        LoginManager.shared.performLogin(email: email, password: password)
+        self.loginManager.performLogin(email: email, password: password)
     }
     
     func signUp() {
@@ -172,7 +182,7 @@ class EmailSignInViewController: UIViewController {
 
         let email = self.emailTextField.text!
         let password = self.passwordTextField.text!
-        LoginManager.shared.createUserWithEmail(email: email, password: password)
+        self.loginManager.createUserWithEmail(email: email, password: password)
     }
     
 }

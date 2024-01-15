@@ -76,3 +76,13 @@ extension UIViewController {
     }
     
 }
+
+// MARK: - Alert
+extension UIViewController {
+
+    func showLockAlert(message: String) {
+        let sheet = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        present(sheet, animated: true)
+    }
+    
+}

@@ -95,13 +95,15 @@ class UploadViewController: UIViewController {
     
     func initData() {
         // datePicker
-        expireDatePicker.date = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
+        expireDatePicker.date = Calendar.current.date(byAdding: .day, value: 7, to: Date())!
         var dateComponents = DateComponents()
-        dateComponents.month = 1 // 1달 후까지의 범위 설정
-        let maxDate = Calendar.current.date(byAdding: dateComponents, to: Date())
+        let maxDate = Calendar.current.date(byAdding: .day, value: 30, to: Date())
         // 현재부터 한달 뒤 까지 선택 가능하게 설정
         expireDatePicker.minimumDate = Date()
         expireDatePicker.maximumDate = maxDate
+        
+        // leftTimeLabel
+        leftTimeLabel.text = "7일 0시간 후"
     }
 
     func action() {

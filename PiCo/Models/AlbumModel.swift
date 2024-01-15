@@ -17,7 +17,7 @@ class AlbumModel {
     var ownerID: String
     var creationTime: Date
     var expireTime: Date
-    var thumbnailURL: URL?
+    var thumbnailURL: URL
     var imageURLs: [URL]
     var imageCount: Int
     var imageSizes: [[String: Int]]
@@ -26,28 +26,39 @@ class AlbumModel {
     var isSkeleton: Bool
     
     init(document: DocumentSnapshot) {
+        let defaultImageURLStr = "https://firebasestorage.googleapis.com/v0/b/pico-a81e4.appspot.com/o/defaultImage.jpg?alt=media&token=d187fb1e-376c-4ee3-8944-498efe6ec305"
+        let defaultImageURL = URL(string: defaultImageURLStr)!
+
+        let data = document.data() ?? [:]  // 중복된 document.data() 호출을 줄임
+
         self.albumID = document.documentID
-        self.ownerID = document.data()?[AlbumField.ownerID.rawValue] as! String
-        self.creationTime = (document.data()?[AlbumField.creationTime.rawValue] as! Timestamp).dateValue()
-        self.expireTime = (document.data()?[AlbumField.expireTime.rawValue] as! Timestamp).dateValue()
-        let thumbnailURLString = document.data()?[AlbumField.thumbnailURL.rawValue] as! String
-        self.thumbnailURL = URL(string: thumbnailURLString)!
-        let imageURLsStrArray = document.data()?[AlbumField.imageURLs.rawValue] as! [String]
+        self.ownerID = data[AlbumField.ownerID.rawValue] as? String ?? ""
+        self.creationTime = (data[AlbumField.creationTime.rawValue] as? Timestamp)?.dateValue() ?? Date()
+        self.expireTime = (data[AlbumField.expireTime.rawValue] as? Timestamp)?.dateValue() ?? Date()
+
+        let thumbnailURLString = data[AlbumField.thumbnailURL.rawValue] as? String
+        self.thumbnailURL = URL(string: thumbnailURLString ?? defaultImageURLStr) ?? defaultImageURL
+
+        let imageURLsStrArray = data[AlbumField.imageURLs.rawValue] as? [String] ?? [defaultImageURLStr]
         self.imageURLs = imageURLsStrArray.compactMap { URL(string: $0) }
-        self.imageCount = document.data()?[AlbumField.imageCount.rawValue] as! Int
-        self.imageSizes = (document.data()?[AlbumField.imageSizes.rawValue] as? [[String: Int]])!
-        self.tags = document.data()?[AlbumField.tags.rawValue] as! [String]
-        self.viewCount = document.data()?[AlbumField.viewCount.rawValue] as! Int
+
+        self.imageCount = data[AlbumField.imageCount.rawValue] as? Int ?? 1
+        self.imageSizes = data[AlbumField.imageSizes.rawValue] as? [[String: Int]] ?? [[AlbumField.width.rawValue: 1000], [AlbumField.height.rawValue: 1000]]
+        self.tags = data[AlbumField.tags.rawValue] as? [String] ?? []
+        self.viewCount = data[AlbumField.viewCount.rawValue] as? Int ?? 0
         self.isSkeleton = false
     }
     
     /// 스켈레톤뷰 생성
     init() {
+        let defaultImageURLStr = "https://firebasestorage.googleapis.com/v0/b/pico-a81e4.appspot.com/o/defaultImage.jpg?alt=media&token=d187fb1e-376c-4ee3-8944-498efe6ec305"
+        let defaultImageURL = URL(string: defaultImageURLStr)!
+        
         self.albumID = ""
         self.ownerID = ""
         self.creationTime = Date()
         self.expireTime = Date()
-        self.thumbnailURL = nil
+        self.thumbnailURL = defaultImageURL
         self.imageURLs = [URL(string: "https://jdeoks.notion.site/PiCo-97084d79dfe649918ba5179298f158f9?pvs=4")!]
         self.imageCount = 0
         self.imageSizes = [["": 0]]

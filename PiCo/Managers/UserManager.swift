@@ -36,7 +36,7 @@ class UserManager {
     }
     
     // MARK: - UserModel, UserDoc 처리
-    /// LoginManager user 변수에 서버에 저장되어있는 UserModel 저장
+    /// 서버에 있는 UserModel을 로컬에 저장
     func getUserModelFromServer() {
         print("\(type(of: self)) - \(#function)")
 
@@ -117,68 +117,7 @@ class UserManager {
         }
     }
     
-    // MARK: - 로그아웃, 회원 탈퇴
-    /// 로그아웃
-    func signOut() {
-        print("\(type(of: self)) - \(#function)")
-        
-        do {
-            try Auth.auth().signOut()
-            // 성공적으로 로그아웃 처리됨
-            print("성공적으로 로그아웃됨")
-            UserDefaults.standard.removeObject(forKey: "currentUserModel")
-        } catch let signOutError as NSError {
-            // 로그아웃 과정에서 오류 발생
-            print("로그아웃 실패: \(signOutError.localizedDescription)")
-        }
-    }
-    
-    /// 회원 탈퇴
-    func deleteUser() {
-        print("\(type(of: self)) - \(#function)")
-        let user = Auth.auth().currentUser
-        var credential: AuthCredential
 
-        // Prompt the user to re-provide their sign-in credentials
-
-//        user?.reauthenticate(with: credential) { error in
-//          if let error = error {
-//            // An error happened.
-//          } else {
-//            // User re-authenticated.
-//          }
-//        }
-
-        guard let user = Auth.auth().currentUser else {
-            print("로그인된 사용자가 없습니다.")
-            return
-        }
-        deleteUserDoc(userID: user.uid)
-
-        // Firestore에서 사용자 문서 삭제
-        userCollectionRef.document(user.uid).delete() { error in
-            if let error = error {
-                // Firestore 문서 삭제 실패
-                print("Firestore 사용자 문서 삭제 실패: \(error)")
-                return
-            } else {
-                // Firestore 문서 삭제 성공, 이제 Firebase 계정 삭제
-                user.delete { error in
-                    if let error = error {
-                        // Firebase 계정 삭제 실패
-                        print("\(type(of: self)) - \(#function) 실패: \(error)")
-                    } else {
-                        // Firebase 계정 삭제 성공
-                        print("\(type(of: self)) - \(#function) 성공")
-                    }
-                }
-            }
-        }
-    }
-    
-    private func deleteUserDoc(userID: String) {
-        // TODO: 유저Doc 삭제
-    }
     
     // MARK: - 에러 핸들링
     private func handleFirebaseAuthError(error: NSError) {

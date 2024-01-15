@@ -18,6 +18,8 @@ import FirebaseAuth
 
 class MyAlbumsViewController: UIViewController {
     
+    let loginManager = LoginManager()
+    
     private var filteredAlbums: [AlbumModel] = []
     private var keyboardHeight: CGFloat = 0
     
@@ -161,13 +163,13 @@ class MyAlbumsViewController: UIViewController {
                 //
                 if !ConfigManager.shared.getIsCheckingFromLocal().isEmpty {
                     DispatchQueue.main.async {
-                        self.ShowLockAlert(message: ConfigManager.shared.getIsCheckingFromLocal())
+                        self.showLockAlert(message: ConfigManager.shared.getIsCheckingFromLocal())
                     }
                     return
                 }
                 if ConfigManager.shared.isMinimumVersionSatisfied() == false {
                     DispatchQueue.main.async {
-                        self.ShowLockAlert(message: "업데이트가 필요합니다.\n앱스토어에서 앱을 업데이트 해주세요.")
+                        self.showLockAlert(message: "업데이트가 필요합니다.\n앱스토어에서 앱을 업데이트 해주세요.")
                     }
                     return
                 }
@@ -177,7 +179,7 @@ class MyAlbumsViewController: UIViewController {
         UserManager.shared.fetchUserAuthFailed
             .subscribe { _ in
                 print("fetchUserAuthFailed")
-                UserManager.shared.signOut()
+                self.loginManager.signOut(completion: { result in })
                 SceneManager.shared.setSignInVCAsRoot(animated: false)
             }
             .disposed(by: disposeBag)
@@ -307,12 +309,3 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         
 }
 
-// MARK: - Alert
-extension MyAlbumsViewController {
-
-    func ShowLockAlert(message: String) {
-        let sheet = UIAlertController(title: message, message: nil, preferredStyle: .alert)
-        present(sheet, animated: true)
-    }
-    
-}

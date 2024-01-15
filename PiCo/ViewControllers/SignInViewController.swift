@@ -18,6 +18,7 @@ import FirebaseFirestore
 
 class SignInViewController: UIViewController {
     
+    let loginManager = LoginManager()
     var shouldShowOnboarding = true
     
     let disposeBag = DisposeBag()
@@ -89,7 +90,7 @@ class SignInViewController: UIViewController {
             .subscribe(onNext: { _ in
                 HapticManager.shared.triggerImpact()
                 self.view.addSubview(self.loadingView)
-                LoginManager.shared.startSignInWithGoogleFlow(vc: self)
+                self.loginManager.startSignInWithGoogleFlow(vc: self)
             })
             .disposed(by: disposeBag)
         
@@ -98,7 +99,7 @@ class SignInViewController: UIViewController {
             .subscribe(onNext: { _ in
                 HapticManager.shared.triggerImpact()
                 self.view.addSubview(self.loadingView)
-                LoginManager.shared.startSignInWithAppleFlow(vc: self)
+                self.loginManager.startSignInWithAppleFlow(vc: self)
             })
             .disposed(by: disposeBag)
         
@@ -111,7 +112,7 @@ class SignInViewController: UIViewController {
     }
     
     func bind() {
-        LoginManager.shared.signInProcessDone
+        loginManager.signInProcessDone
             .subscribe { _ in
                 print("signInProcessDone")
                 self.loadingView.removeFromSuperview()
@@ -120,7 +121,7 @@ class SignInViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        LoginManager.shared.signInFailed
+        loginManager.signInFailed
             .subscribe { _ in
                 self.loadingView.removeFromSuperview()
             }

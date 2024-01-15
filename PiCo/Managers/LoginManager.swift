@@ -17,10 +17,8 @@ import FirebaseCore
 import FirebaseStorage
 
 class LoginManager: NSObject {
-    
-    static let shared = LoginManager()
-    
-    private override init() {
+        
+    override init() {
         super.init()
     }
     
@@ -240,7 +238,7 @@ extension LoginManager {
     func performLogin(email: String, password: String) {
         print("\(type(of: self)) - \(#function)")
 
-        Auth.auth().signIn(withEmail: email, password: password) {authResult, error in
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 print("performLogin 오류\(error.localizedDescription)")
                 self.signInFailed.onNext("아이디 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 확인해주세요")
@@ -279,8 +277,70 @@ extension LoginManager {
         }
     }
     
+    // MARK: - 로그아웃, 회원 탈퇴
+    /// 회원 탈퇴
+    func deleteUser(completion: @escaping (_ result: Bool) -> Void) {
+        print("\(type(of: self)) - \(#function)")
+        
+        guard let user = Auth.auth().currentUser else {
+            completion(false)
+            return
+        }
+        user.delete { error in
+            if error != nil {  // 에러가 발생한 경우
+                completion(false)  // 재인증 함수 호출
+            } else {  // 에러가 발생하지 않은 경우
+                self.signOut { result in
+                    if result {
+                        self.deleteUserDoc(userID: user.uid) { result in
+                            completion(result)
+                        }
+                    } else {
+                        completion(false)
+                    }
+                }
+            }
+        }
+    }
+    
+    /// 로그아웃
+    func signOut(completion: @escaping (_ result: Bool) -> Void) {
+        print("\(type(of: self)) - \(#function)")
+        
+        do {
+            try Auth.auth().signOut()
+            // 성공적으로 로그아웃 처리됨
+            print("성공적으로 로그아웃됨")
+            UserDefaults.standard.removeObject(forKey: "currentUserModel")
+            completion(true)
+        } catch let signOutError as NSError {
+            // 로그아웃 과정에서 오류 발생
+            print("로그아웃 실패: \(signOutError.localizedDescription)")
+            completion(false)
+        }
+    }
+    
+    private func deleteUserDoc(userID: String, completion: @escaping (_ result: Bool) -> Void) {
+        print("\(type(of: self)) - \(#function)")
+
+//         TODO: 유저Doc 삭제
+        // Firestore에서 사용자 문서 삭제
+        userCollectionRef.document(userID).delete() { error in
+            if let error = error {
+                // Firestore 문서 삭제 실패
+                print("Firestore 사용자 문서 삭제 실패: \(error)")
+                completion(false)
+                return
+            } else {
+                completion(true)
+            }
+        }
+    }
+    
     // MARK: - 에러 메시지 처리
     func convertErrorToMessage(error: Error) -> String{
+        print("\(type(of: self)) - \(#function)")
+
         switch error.localizedDescription {
         case "The password must be 6 characters long or more.":
             return "비밀번호는 6자 이상이어야 합니다."
