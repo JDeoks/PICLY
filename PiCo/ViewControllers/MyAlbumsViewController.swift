@@ -95,7 +95,6 @@ class MyAlbumsViewController: UIViewController {
         DataManager.shared.myAlbums = [AlbumModel(), AlbumModel(), AlbumModel()]
         ConfigManager.shared.fetchRemoteConfig()
         UserManager.shared.fetchUserAuth()
-        UserManager.shared.getUserModelFromServer()
         DataManager.shared.fetchMyAlbums()
     }
     

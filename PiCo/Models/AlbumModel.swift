@@ -28,9 +28,8 @@ class AlbumModel {
     init(document: DocumentSnapshot) {
         let defaultImageURLStr = "https://firebasestorage.googleapis.com/v0/b/pico-a81e4.appspot.com/o/defaultImage.jpg?alt=media&token=d187fb1e-376c-4ee3-8944-498efe6ec305"
         let defaultImageURL = URL(string: defaultImageURLStr)!
-
-        let data = document.data() ?? [:]  // 중복된 document.data() 호출을 줄임
-
+        let data = document.data() ?? [:]
+        
         self.albumID = document.documentID
         self.ownerID = data[AlbumField.ownerID.rawValue] as? String ?? ""
         self.creationTime = (data[AlbumField.creationTime.rawValue] as? Timestamp)?.dateValue() ?? Date()

@@ -21,8 +21,6 @@ class UserManager {
     let albumCollection = Firestore.firestore().collection("Albums")
     let userCollectionRef = Firestore.firestore().collection("Users")
     
-    /// getUserModelFromServer() -> AcountViewController
-    let getUserModelDone = PublishSubject<Void>()
     /// fetchUserAuth() -> MainTabBarController
     let fetchUserAuthFailed = PublishSubject<Void>()
     
@@ -35,7 +33,7 @@ class UserManager {
         UserDefaults.standard.set(completed, forKey: "hasCompletedInitialLaunch")
     }
     
-    // MARK: - UserModel, UserDoc 처리
+    // MARK: - 서버 UserModel, UserDoc 처리
     // TODO: 코드 개선 필요
     /// 유저 Doc 생성
     func uploadUserDocToDB(user: User, provider: AuthProvider, completion: @escaping () -> Void) {
@@ -51,69 +49,14 @@ class UserManager {
         }
     }
     
-    /// 서버에 있는 UserModel을 로컬에 저장
-    func getUserModelFromServer() {
-        print("\(type(of: self)) - \(#function)")
-
-        guard let user = Auth.auth().currentUser else {
-            return
+    func getCurrentUserModel() -> UserModel? {
+        guard let currentUser = Auth.auth().currentUser else {
+            return nil 
         }
-
-        let userDocRef = userCollectionRef.document(user.uid)
-        userDocRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let user = UserModel(document: document)
-                self.setUserModelToLocal(user: user)
-                print(user)
-                self.getUserModelDone.onNext(())
-            } else {
-                self.uploadUserDocToDB(user: user, provider: AuthProvider(string: user.providerData[0].providerID) ?? .email, completion: {
-                    self.getUserModelFromServer()
-                })
-            }
-        }
+        let user = UserModel(user: currentUser)
+        return user
     }
-        
-    /// 로컬에 저장된 UserModel 반환
-    func getUserModelFromLocal() -> UserModel? {
-        print("\(type(of: self)) - \(#function)")
-        
-        guard let data = UserDefaults.standard.data(forKey: "currentUserModel") else {
-            print("UserDefaults에서 currentUser 가져오기 실패")
-            return nil
-        }
 
-        do {
-            // 디코딩 사용에 허용된 클래스 목록 정의
-            let allowedClasses = [UserModel.self, NSString.self, NSDate.self, NSArray.self] as [AnyClass]
-            let allowedClassesSet = NSSet(array: allowedClasses)
-
-            // NSKeyedUnarchiver를 사용하여 data를 UserModel 객체로 디코딩
-            if let user = try NSKeyedUnarchiver.unarchivedObject(ofClasses: allowedClassesSet as! Set<AnyHashable>, from: data) as? UserModel {
-                print("UserModel 디코딩 성공")
-                return user
-            } else {
-                print("UserModel 디코딩 실패: 디코딩된 객체가 UserModel 타입이 아님")
-            }
-        } catch {
-            print("UserModel 디코딩 실패: \(error)")
-        }
-        return nil
-    }
-    
-    /// UserModel을 로컬에 저장
-    func setUserModelToLocal(user: UserModel) {
-        print("\(type(of: self)) - \(#function)")
-
-        do {
-            let encodedData = try NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
-            UserDefaults.standard.set(encodedData, forKey: "currentUserModel")
-            print("UserModel 인코딩 성공")
-        } catch {
-            print("UserModel 인코딩 실패: \(error)")
-        }
-    }
-    
     // MARK: - Auth 정보 처리
     /// 서버에서 유저 Auth 정보 받아 갱신
     func fetchUserAuth() {
@@ -168,4 +111,5 @@ class UserManager {
             self.fetchUserAuthFailed.onNext(())
         }
     }
+    
 }
