@@ -14,7 +14,17 @@ enum AuthProvider: String {
     case apple = "Apple"
 
     init?(string: String) {
-        self.init(rawValue: string)
+        switch string {
+        case "password":
+            self = .email
+        case "google.com":
+            self = .google
+        case "apple.com":
+            self = .apple
+        default:
+            return nil
+        }
     }
     
 }
+

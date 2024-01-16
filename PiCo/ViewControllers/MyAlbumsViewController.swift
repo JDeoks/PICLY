@@ -43,6 +43,12 @@ class MyAlbumsViewController: UIViewController {
         initData()
         action()
         bind()
+        if let user = Auth.auth().currentUser {
+            for provider in user.providerData {
+                let providerID = provider.providerID
+                print("로그인 방식: \(providerID)")
+            }
+        }
     }
     
     func initUI() {

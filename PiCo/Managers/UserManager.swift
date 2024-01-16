@@ -36,15 +36,30 @@ class UserManager {
     }
     
     // MARK: - UserModel, UserDoc 처리
+    // TODO: 코드 개선 필요
+    /// 유저 Doc 생성
+    func addUserDocToDB(user: User, provider: AuthProvider, completion: @escaping () -> Void) {
+        print("\(type(of: self)) - \(#function)")
+
+        userCollectionRef.document(user.uid).setData(UserModel.createDictToUpload(provider: provider, user: user)){ err in
+            if let err = err {
+              print("\(#function) 유저 등록 실패: \(err)")
+            } else {
+              print("\(#function) 유저 등록 성공")
+                completion()
+            }
+        }
+    }
+    
     /// 서버에 있는 UserModel을 로컬에 저장
     func getUserModelFromServer() {
         print("\(type(of: self)) - \(#function)")
 
-        guard let userID = Auth.auth().currentUser?.uid else {
+        guard let user = Auth.auth().currentUser else {
             return
         }
 
-        let userDocRef = userCollectionRef.document(userID)
+        let userDocRef = userCollectionRef.document(user.uid)
         userDocRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let user = UserModel(document: document)
@@ -52,7 +67,9 @@ class UserManager {
                 print(user)
                 self.getUserModelDone.onNext(())
             } else {
-                print("User Doc 없음")
+                self.addUserDocToDB(user: user, provider: AuthProvider(string: user.providerData[0].providerID) ?? .email, completion: {
+                    self.getUserModelFromServer()
+                })
             }
         }
     }

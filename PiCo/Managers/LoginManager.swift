@@ -254,24 +254,10 @@ extension LoginManager {
     func setUpFirstLogin(user: User, provider: AuthProvider, completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
 
-        self.addUserDocToDB(user: user, provider: provider) {
+        UserManager.shared.addUserDocToDB(user: user, provider: provider) {
             let expireDate = Calendar.current.date(byAdding: .day, value: 30, to: Date())!
             let albumDict = AlbumModel.createDictToUpload(expireTime: expireDate, images: self.images, tags: self.tags)
             DataManager.shared.uploadAlbum(albumDict: albumDict, images: self.images) { albumURL in
-                completion()
-            }
-        }
-    }
-    
-    /// 유저 Doc 생성
-    private func addUserDocToDB(user: User, provider: AuthProvider, completion: @escaping () -> Void) {
-        print("\(type(of: self)) - \(#function)")
-
-        userCollectionRef.document(user.uid).setData(UserModel.createDictToUpload(provider: provider, user: user)){ err in
-            if let err = err {
-              print("\(#function) 유저 등록 실패: \(err)")
-            } else {
-              print("\(#function) 유저 등록 성공")
                 completion()
             }
         }
@@ -283,21 +269,26 @@ extension LoginManager {
         print("\(type(of: self)) - \(#function)")
         
         guard let user = Auth.auth().currentUser else {
+            print("\(#function) currentUser 없음")
             completion(false)
             return
         }
         user.delete { error in
             if error != nil {  // 에러가 발생한 경우
+                print("\(#function) user.delete:", error!.localizedDescription)
                 completion(false)  // 재인증 함수 호출
             } else {  // 에러가 발생하지 않은 경우
-                self.signOut { result in
-                    if result {
-                        self.deleteUserDoc(userID: user.uid) { result in
-                            completion(result)
-                        }
-                    } else {
-                        completion(false)
+                print("\(#function) user.delete error == nil")
+            }
+            self.signOut { result in
+                if result {
+                    print("\(#function) signOut 성공")
+                    self.deleteUserDoc(userID: user.uid) { result in
+                        completion(result)
                     }
+                } else {
+                    print("\(#function) signOut 실패")
+                    completion(false)
                 }
             }
         }
