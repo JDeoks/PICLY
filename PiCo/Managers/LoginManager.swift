@@ -241,7 +241,7 @@ extension LoginManager {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 print("performLogin 오류\(error.localizedDescription)")
-                self.signInFailed.onNext("아이디 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 확인해주세요")
+                self.signInFailed.onNext("이메일 혹은 비밀번호가 일치하지 않습니다.")
                 return
             }
             print("\(#function) 성공")
@@ -254,7 +254,7 @@ extension LoginManager {
     func setUpFirstLogin(user: User, provider: AuthProvider, completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
 
-        UserManager.shared.addUserDocToDB(user: user, provider: provider) {
+        UserManager.shared.uploadUserDocToDB(user: user, provider: provider) {
             let expireDate = Calendar.current.date(byAdding: .day, value: 30, to: Date())!
             let albumDict = AlbumModel.createDictToUpload(expireTime: expireDate, images: self.images, tags: self.tags)
             DataManager.shared.uploadAlbum(albumDict: albumDict, images: self.images) { albumURL in
@@ -273,6 +273,7 @@ extension LoginManager {
             completion(false)
             return
         }
+        print("\(#function) currentUser 있음")
         user.delete { error in
             if error != nil {  // 에러가 발생한 경우
                 print("\(#function) user.delete:", error!.localizedDescription)
@@ -313,18 +314,19 @@ extension LoginManager {
     
     private func deleteUserDoc(userID: String, completion: @escaping (_ result: Bool) -> Void) {
         print("\(type(of: self)) - \(#function)")
+        print("Firestore 사용자 문서 삭제 ")
 
 //         TODO: 유저Doc 삭제
         // Firestore에서 사용자 문서 삭제
         userCollectionRef.document(userID).delete() { error in
             if let error = error {
                 // Firestore 문서 삭제 실패
-                print("Firestore 사용자 문서 삭제 실패: \(error)")
+                print("Firestore 사용자 문서 삭제 실패: \(error.localizedDescription)")
                 completion(false)
                 return
-            } else {
-                completion(true)
             }
+            print("Firestore 사용자 문서 삭제 성공")
+            completion(true)
         }
     }
     

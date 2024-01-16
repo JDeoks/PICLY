@@ -38,7 +38,7 @@ class UserManager {
     // MARK: - UserModel, UserDoc 처리
     // TODO: 코드 개선 필요
     /// 유저 Doc 생성
-    func addUserDocToDB(user: User, provider: AuthProvider, completion: @escaping () -> Void) {
+    func uploadUserDocToDB(user: User, provider: AuthProvider, completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
 
         userCollectionRef.document(user.uid).setData(UserModel.createDictToUpload(provider: provider, user: user)){ err in
@@ -67,13 +67,13 @@ class UserManager {
                 print(user)
                 self.getUserModelDone.onNext(())
             } else {
-                self.addUserDocToDB(user: user, provider: AuthProvider(string: user.providerData[0].providerID) ?? .email, completion: {
+                self.uploadUserDocToDB(user: user, provider: AuthProvider(string: user.providerData[0].providerID) ?? .email, completion: {
                     self.getUserModelFromServer()
                 })
             }
         }
     }
-    
+        
     /// 로컬에 저장된 UserModel 반환
     func getUserModelFromLocal() -> UserModel? {
         print("\(type(of: self)) - \(#function)")
@@ -133,9 +133,7 @@ class UserManager {
             self.fetchUserAuthFailed.onNext(())
         }
     }
-    
-
-    
+        
     // MARK: - 에러 핸들링
     private func handleFirebaseAuthError(error: NSError) {
         switch error.code {

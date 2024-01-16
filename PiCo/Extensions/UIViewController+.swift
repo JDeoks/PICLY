@@ -80,8 +80,12 @@ extension UIViewController {
 // MARK: - Alert
 extension UIViewController {
 
-    func showLockAlert(message: String) {
+    func showNoticeAlert(message: String, isLocked: Bool = true) {
         let sheet = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default)
+        if !isLocked {
+            sheet.addAction(okAction)
+        }
         present(sheet, animated: true)
     }
     

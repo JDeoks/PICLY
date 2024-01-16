@@ -30,7 +30,7 @@ class UserModel: NSObject, NSSecureCoding {
         self.email = document.data()?[UserField.email.rawValue] as? String ?? "email 없음"
         self.creationTime = (document.data()?[UserField.creationTime.rawValue] as? Timestamp)?.dateValue() ?? Date()
         print("\(UserField.authProvider.rawValue)")
-        self.authProvider = AuthProvider(rawValue: document.data()?[UserField.authProvider.rawValue] as? String ?? "email") ?? .email
+        self.authProvider = AuthProvider(rawValue: document.data()?[UserField.authProvider.rawValue] as? String ?? "Email") ?? .email
         print(authProvider)
     }
 

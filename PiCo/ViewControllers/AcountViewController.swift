@@ -109,7 +109,7 @@ extension AcountViewController {
                 if result {
                     self.showAccountDeletedAlert()
                 } else {
-                    self.showLockAlert(message: "탈퇴 실패.\n앱을 다시 실행해주세요.")
+                    self.showNoticeAlert(message: "탈퇴 실패.\n앱을 다시 실행해주세요.")
                 }
             }
         })
@@ -140,7 +140,7 @@ extension AcountViewController {
             if result {
                 SceneManager.shared.setSignInVCAsRoot(animated: true)
             } else {
-                self.showLockAlert(message: "로그아웃 실패.\n앱을 다시 실행해주세요.")
+                self.showNoticeAlert(message: "로그아웃 실패.\n앱을 다시 실행해주세요.")
             }
             self.loadingView.removeFromSuperview()
         }

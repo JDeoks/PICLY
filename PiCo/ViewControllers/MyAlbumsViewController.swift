@@ -169,13 +169,13 @@ class MyAlbumsViewController: UIViewController {
                 //
                 if !ConfigManager.shared.getIsCheckingFromLocal().isEmpty {
                     DispatchQueue.main.async {
-                        self.showLockAlert(message: ConfigManager.shared.getIsCheckingFromLocal())
+                        self.showNoticeAlert(message: ConfigManager.shared.getIsCheckingFromLocal())
                     }
                     return
                 }
                 if ConfigManager.shared.isMinimumVersionSatisfied() == false {
                     DispatchQueue.main.async {
-                        self.showLockAlert(message: "업데이트가 필요합니다.\n앱스토어에서 앱을 업데이트 해주세요.")
+                        self.showNoticeAlert(message: "업데이트가 필요합니다.\n앱스토어에서 앱을 업데이트 해주세요.")
                     }
                     return
                 }
