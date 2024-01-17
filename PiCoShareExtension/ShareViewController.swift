@@ -10,6 +10,8 @@ import RxSwift
 import RxCocoa
 import UniformTypeIdentifiers
 import MobileCoreServices
+import Firebase
+import FirebaseAuth
 
 class ShareViewController: UIViewController {
     
@@ -35,6 +37,8 @@ class ShareViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        print(Auth.auth().userAccessGroup!)
         initUI()
         handleSharedFile()
         action()

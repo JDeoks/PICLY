@@ -33,7 +33,7 @@ class UserManager {
         UserDefaults.standard.set(completed, forKey: "hasCompletedInitialLaunch")
     }
     
-    // MARK: - 서버 UserModel, UserDoc 처리
+    // MARK: - UserModel, UserDoc 처리
     // TODO: 코드 개선 필요
     /// 유저 Doc 생성
     func uploadUserDocToDB(user: User, provider: AuthProvider, completion: @escaping () -> Void) {

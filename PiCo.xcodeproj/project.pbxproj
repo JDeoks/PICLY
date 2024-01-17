@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A0D40C72B3970CD00506124 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A0D40C62B3970CD00506124 /* RemoteConfigDefaults.plist */; };
-		2A0D40C82B3970CD00506124 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A0D40C62B3970CD00506124 /* RemoteConfigDefaults.plist */; };
 		2A0D40CA2B3975B000506124 /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D40C92B3975B000506124 /* ConfigManager.swift */; };
 		2A0D40CB2B3975B000506124 /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D40C92B3975B000506124 /* ConfigManager.swift */; };
 		2A0E08712B39BD5400D76501 /* DetailTagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0E086F2B39BD5400D76501 /* DetailTagsCollectionViewCell.swift */; };
@@ -178,7 +176,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2A0D40C62B3970CD00506124 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		2A0D40C92B3975B000506124 /* ConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigManager.swift; sourceTree = "<group>"; };
 		2A0E086F2B39BD5400D76501 /* DetailTagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A0E08702B39BD5400D76501 /* DetailTagsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTagsCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -448,7 +445,6 @@
 				2A89E6AB2B0A32C6009056DD /* MainInterface.storyboard */,
 				2A89E6AE2B0A32C6009056DD /* Info.plist */,
 				2A6942752B1766A90070B194 /* GoogleService-Info.plist */,
-				2A0D40C62B3970CD00506124 /* RemoteConfigDefaults.plist */,
 			);
 			path = PiCoShareExtension;
 			sourceTree = "<group>";
@@ -638,7 +634,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A0D40C82B3970CD00506124 /* RemoteConfigDefaults.plist in Resources */,
 				2AE98D482B56B4D200B9D399 /* GoogleService-Info-Dev.plist in Resources */,
 				2A89E6AD2B0A32C6009056DD /* MainInterface.storyboard in Resources */,
 				2A0E08742B39BD5400D76501 /* DetailTagsCollectionViewCell.xib in Resources */,
@@ -664,7 +659,6 @@
 				2A6942742B17669B0070B194 /* GoogleService-Info.plist in Resources */,
 				2A0E08732B39BD5400D76501 /* DetailTagsCollectionViewCell.xib in Resources */,
 				2A2FA59D2B0BBEEE00767310 /* AddImageCollectionViewCell.xib in Resources */,
-				2A0D40C72B3970CD00506124 /* RemoteConfigDefaults.plist in Resources */,
 				2A2FA5982B0BBED900767310 /* SelectedImageCollectionViewCell.xib in Resources */,
 				2AB2AB002B4D26F400186F2F /* MyAlbumsDefaultCollectionViewCell.xib in Resources */,
 				2AE98D472B56B4D200B9D399 /* GoogleService-Info-Dev.plist in Resources */,
@@ -830,9 +824,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Deok.PiCo.dev.PiCoShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Dev;
 		};
@@ -855,12 +853,17 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Deok.PiCo.PiCoShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Production;
 		};

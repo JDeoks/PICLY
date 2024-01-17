@@ -16,14 +16,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print("\(type(of: self)) - \(#function)")
         
         guard let _ = (scene as? UIWindowScene) else { return }
-        
+
         if isUserLoggedIn() && UserManager.shared.hasCompletedInitialLaunch(){
             let mainVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController
-            print("currentUser 있음 mainVC")
+            
             window?.rootViewController = mainVC
         } else {
             let SignInNavVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInNavController") as? UINavigationController
-            print("currentUser 없음 loginVC")
 
             window?.rootViewController = SignInNavVC
         }
@@ -63,11 +62,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 extension SceneDelegate {
 
     func isUserLoggedIn() -> Bool {
-        if let user = Auth.auth().currentUser {
-            return true
-        } else {
+        print("\(type(of: self)) - \(#function)")
+
+        do {
+            try Auth.auth().useUserAccessGroup("group.com.Deok.PiCo.Share")
+        } catch let error {
+            print("Error setting user access group: \(error)")
             return false
         }
+
+        return Auth.auth().currentUser != nil
     }
     
 }
