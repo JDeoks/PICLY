@@ -229,6 +229,30 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="NeH-b4-8Qk"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="sho-Gi-eHM"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aB6-US-TCf">
+                                <rect key="frame" x="0.0" y="868" width="393" height="48"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgm-1w-8LB">
+                                        <rect key="frame" x="337" y="0.0" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="48" id="7xU-Wh-NOv"/>
+                                            <constraint firstAttribute="height" constant="48" id="Ke6-VA-zCb"/>
+                                        </constraints>
+                                        <color key="tintColor" name="HighlightBlue"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="keyboard.chevron.compact.down" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="14"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="TextFieldBackground"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="pgm-1w-8LB" secondAttribute="trailing" constant="8" id="Ueo-s8-j2p"/>
+                                    <constraint firstItem="pgm-1w-8LB" firstAttribute="top" secondItem="aB6-US-TCf" secondAttribute="top" id="gKB-tB-Lt7"/>
+                                    <constraint firstAttribute="bottom" secondItem="pgm-1w-8LB" secondAttribute="bottom" id="pPP-XN-3s2"/>
+                                    <constraint firstAttribute="height" constant="48" id="rSd-Mv-pu3"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1Xd-am-t49"/>
                         <color key="backgroundColor" name="MainBackground"/>
@@ -236,8 +260,11 @@
                             <constraint firstItem="1Xd-am-t49" firstAttribute="leading" secondItem="wlM-zs-zN0" secondAttribute="leading" id="91V-rz-daY"/>
                             <constraint firstAttribute="bottom" secondItem="uwW-9f-tbg" secondAttribute="bottom" id="DOf-vf-naU"/>
                             <constraint firstItem="wlM-zs-zN0" firstAttribute="top" secondItem="1Xd-am-t49" secondAttribute="top" id="EfJ-g9-WKa"/>
+                            <constraint firstItem="aB6-US-TCf" firstAttribute="leading" secondItem="1Xd-am-t49" secondAttribute="leading" id="FaZ-aX-DAR"/>
+                            <constraint firstItem="1Xd-am-t49" firstAttribute="trailing" secondItem="aB6-US-TCf" secondAttribute="trailing" id="FpP-F9-Rv6"/>
                             <constraint firstItem="1Xd-am-t49" firstAttribute="trailing" secondItem="wlM-zs-zN0" secondAttribute="trailing" id="K6W-R3-uDo"/>
                             <constraint firstItem="FIv-v3-yc9" firstAttribute="centerY" secondItem="wlM-zs-zN0" secondAttribute="centerY" id="Qgg-GA-yrL"/>
+                            <constraint firstItem="aB6-US-TCf" firstAttribute="top" secondItem="wbc-yd-nQP" secondAttribute="bottom" priority="750" constant="16" id="Sgi-DS-dYU"/>
                             <constraint firstItem="FIv-v3-yc9" firstAttribute="centerX" secondItem="wlM-zs-zN0" secondAttribute="centerX" id="k2M-53-RfD"/>
                             <constraint firstItem="1Xd-am-t49" firstAttribute="leading" secondItem="uwW-9f-tbg" secondAttribute="leading" id="kIG-uT-xcK"/>
                             <constraint firstItem="uwW-9f-tbg" firstAttribute="top" secondItem="wlM-zs-zN0" secondAttribute="bottom" id="uya-l8-c5t"/>
@@ -249,10 +276,12 @@
                         <outlet property="collectionViewStackView" destination="UpW-w5-MSp" id="8xh-Za-bSB"/>
                         <outlet property="expireAfterLabel" destination="C2W-xy-owV" id="4rQ-YY-crZ"/>
                         <outlet property="expireDatePicker" destination="UNo-Pp-Yve" id="3Tr-SX-9Qx"/>
-                        <outlet property="inputTagStackView" destination="QTd-sS-hnb" id="kJs-yf-okh"/>
-                        <outlet property="inputTagTextField" destination="dYv-gu-fs8" id="GBa-rc-OkI"/>
+                        <outlet property="hideKeyboardButton" destination="pgm-1w-8LB" id="MtM-Lw-mhM"/>
+                        <outlet property="keyboardToolContainerView" destination="aB6-US-TCf" id="hHw-cM-hVE"/>
                         <outlet property="scrollView" destination="uwW-9f-tbg" id="kNA-dG-hAD"/>
                         <outlet property="selectedImageCollectionView" destination="Xay-Zt-G6W" id="sLd-3i-AnN"/>
+                        <outlet property="tagStackView" destination="QTd-sS-hnb" id="kJs-yf-okh"/>
+                        <outlet property="tagTextField" destination="dYv-gu-fs8" id="GBa-rc-OkI"/>
                         <outlet property="tagsCollectionView" destination="8HY-x7-mlx" id="2Cz-8T-998"/>
                         <outlet property="uploadButton" destination="lPZ-Ty-hl7" id="0gc-3e-y2p"/>
                     </connections>
@@ -263,6 +292,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="keyboard.chevron.compact.down" catalog="system" width="128" height="100"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="HighlightBlue">
             <color red="0.51372549019607838" green="0.70588235294117652" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

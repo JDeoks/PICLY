@@ -118,6 +118,7 @@
 		2AC0BD012B35C5E7002B7418 /* AlbumField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9711252B35C3D400A989E8 /* AlbumField.swift */; };
 		2AC5E9CF2B580FB100A029F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2AC5E9CE2B580FB100A029F3 /* GoogleService-Info.plist */; };
 		2AC5E9D12B580FBF00A029F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2AC5E9D02B580FBF00A029F3 /* GoogleService-Info.plist */; };
+		2AC5E9D52B58279400A029F3 /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 2AC5E9D42B58279400A029F3 /* RxKeyboard */; };
 		2ACD7C812B4EAEA200C39737 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACD7C802B4EAEA200C39737 /* UserManager.swift */; };
 		2ACD7C822B4EAEA200C39737 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACD7C802B4EAEA200C39737 /* UserManager.swift */; };
 		2AD328912B29C92B002DA60F /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 2AD328902B29C92B002DA60F /* RxGesture */; };
@@ -257,6 +258,7 @@
 				2A4D48F12B0A652200E776C7 /* RxSwift in Frameworks */,
 				2A4D48EF2B0A652200E776C7 /* RxCocoa in Frameworks */,
 				2ABB363E2B47171900B3F073 /* SnapKit in Frameworks */,
+				2AC5E9D52B58279400A029F3 /* RxKeyboard in Frameworks */,
 				2A69426B2B153E890070B194 /* FirebaseMessaging in Frameworks */,
 				2A6942692B153E890070B194 /* FirebaseInAppMessaging-Beta in Frameworks */,
 				2A69426F2B153E890070B194 /* FirebaseStorage in Frameworks */,
@@ -533,6 +535,7 @@
 				2A69426E2B153E890070B194 /* FirebaseStorage */,
 				2AF5899C2B2F042E0027D928 /* SwiftDate */,
 				2ABB363D2B47171900B3F073 /* SnapKit */,
+				2AC5E9D42B58279400A029F3 /* RxKeyboard */,
 			);
 			productName = PiCoShareExtension;
 			productReference = 2A89E6A72B0A32C6009056DD /* PiCoShareExtension.appex */;
@@ -1330,6 +1333,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2A89E6982B094147009056DD /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		2AC5E9D42B58279400A029F3 /* RxKeyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A89E69C2B0941A9009056DD /* XCRemoteSwiftPackageReference "RxKeyboard" */;
+			productName = RxKeyboard;
 		};
 		2AD328902B29C92B002DA60F /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;
