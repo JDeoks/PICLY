@@ -30,6 +30,7 @@ class ShareViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var inputTagStackView: UIStackView!
     @IBOutlet var inputTagTextField: UITextField!
+    @IBOutlet var tagsCollectionView: UICollectionView!
     @IBOutlet var collectionViewStackView: UIStackView!
     @IBOutlet var selectedImageCollectionView: UICollectionView!
     @IBOutlet var expireDatePicker: UIDatePicker!
@@ -38,7 +39,7 @@ class ShareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        print(Auth.auth().userAccessGroup!)
+//        showToast(message: Auth.auth().userAccessGroup ?? "ㅇ", keyboardHeight: 0)
         initUI()
         handleSharedFile()
         action()

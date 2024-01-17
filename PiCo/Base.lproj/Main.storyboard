@@ -666,10 +666,10 @@
                                                                         <rect key="frame" x="0.0" y="25" width="361" height="56"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="z30-70-tu3">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="186.33333333333334" height="56"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="192.33333333333334" height="56"/>
                                                                                 <subviews>
                                                                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="T8b-wq-pt4">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="186.33333333333334" height="56"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="192.33333333333334" height="56"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="56" id="ybp-Jf-GcL"/>
                                                                                         </constraints>
@@ -683,7 +683,7 @@
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </stackView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1일 0시간 후" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sY6-ig-gZ5">
-                                                                                <rect key="frame" x="194.33333333333334" y="0.0" width="15" height="56"/>
+                                                                                <rect key="frame" x="200.33333333333334" y="0.0" width="80.666666666666657" height="56"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <color key="tintColor" name="SecondText"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -691,7 +691,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3wk-Lq-Jvt">
-                                                                                <rect key="frame" x="217.33333333333337" y="0.0" width="143.66666666666663" height="56"/>
+                                                                                <rect key="frame" x="289" y="0.0" width="72" height="56"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </view>
                                                                         </subviews>
