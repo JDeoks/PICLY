@@ -25,4 +25,3 @@ class ColorManager {
     let appleLoginBackground: UIColor! = UIColor(named: "AppleLoginBackground")
     
 }
-

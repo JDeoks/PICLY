@@ -48,7 +48,9 @@ class ShareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Hello")
-        showToast(message: Auth.auth().userAccessGroup ?? "ㅇ", keyboardHeight: 0)
+        
+        initFirebase()
+        showToast(message: "ㅇ", keyboardHeight: 0)
         initUI()
         handleSharedFile()
         action()
@@ -122,6 +124,16 @@ class ShareViewController: UIViewController {
     
     func bind() {
 
+    }
+    
+    func initFirebase() {
+        var googleServiceFileName = Bundle.main.bundleIdentifier == PiCoConstants.shareExDevBundleID ? PiCoConstants.devPList : PiCoConstants.productionPList
+        
+        if let filePath = Bundle.main.path(forResource: googleServiceFileName, ofType: "plist") {
+            if let options = FirebaseOptions(contentsOfFile: filePath) {
+                FirebaseApp.configure(options: options)
+            }
+        }
     }
     
     /// 공유 받은 사진 이미지 sharedImage에 저장

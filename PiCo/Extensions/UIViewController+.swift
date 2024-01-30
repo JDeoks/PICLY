@@ -12,7 +12,6 @@ extension UIViewController {
 
     func showToast(message : String, keyboardHeight: CGFloat) {
 
-        
         let toastLabel = UILabel()
         toastLabel.numberOfLines = 2
         toastLabel.backgroundColor = ColorManager.shared.highlightBlue.withAlphaComponent(0.9)

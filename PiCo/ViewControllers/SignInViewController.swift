@@ -12,6 +12,7 @@ import RxCocoa
 import RxGesture
 import CryptoKit
 import AuthenticationServices
+import Firebase
 import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
@@ -35,6 +36,14 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         print("\(type(of: self)) - \(#function)")
         super.viewDidLoad()
+        
+        print("애널리틱스 로그 찍음")
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "id-\(title!)",
+            AnalyticsParameterItemName: title!,
+            AnalyticsParameterContentType: "cont",
+        ])
+        
         initUI()
         action()
         bind()

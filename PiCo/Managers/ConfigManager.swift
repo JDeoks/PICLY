@@ -14,8 +14,13 @@ class ConfigManager {
     
     static let shared = ConfigManager()
     
-    let fetchRemoteConfigDone = PublishSubject<Void>()
+    let remoteConfig: RemoteConfig = RemoteConfig.remoteConfig()
+    let defaultRootURL: URL = URL(string: "https://picoweb.vercel.app/")!
+    let defaultMaintenanceNotice: String = ""
+    let defaultMinimumVersion: String = "1.0"
     
+    let fetchRemoteConfigDone = PublishSubject<Void>()
+
     private init() {
         print("\(type(of: self)) - \(#function)")
 
@@ -30,11 +35,6 @@ class ConfigManager {
         case maintenanceNotice = "maintenanceNotice"
         case minimumVersion = "minimumVersion"
     }
-    
-    let remoteConfig: RemoteConfig = RemoteConfig.remoteConfig()
-    let defaultRootURL: URL = URL(string: "https://picoweb.vercel.app/")!
-    let defaultMaintenanceNotice: String = ""
-    let defaultMinimumVersion: String = "1.0"
     
     /// Config 서버값 fetch해서 UserDefaults에 저장
     func fetchRemoteConfig() {

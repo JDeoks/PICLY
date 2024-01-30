@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--My Albums View Controller-->
+        <!--MyAlbumsViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MyAlbumsViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="MyAlbumsViewController" id="BYZ-38-t0r" customClass="MyAlbumsViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -182,10 +182,10 @@
             </objects>
             <point key="canvasLocation" x="1979" y="-2"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--DetailViewController-->
         <scene sceneID="eBn-0K-hgl">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dvb-ZR-6Iu" customClass="DetailViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" title="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dvb-ZR-6Iu" customClass="DetailViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WIV-Vy-xZ8">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -492,10 +492,10 @@
             </objects>
             <point key="canvasLocation" x="3632.8244274809158" y="-2.1126760563380285"/>
         </scene>
-        <!--Upload View Controller-->
+        <!--UploadViewController-->
         <scene sceneID="xLj-Ce-k4g">
             <objects>
-                <viewController storyboardIdentifier="UploadViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ErN-Sq-TPx" customClass="UploadViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UploadViewController" title="UploadViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ErN-Sq-TPx" customClass="UploadViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFit" id="q1a-f3-QPN">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -794,10 +794,10 @@
             </objects>
             <point key="canvasLocation" x="2812.9770992366412" y="705.63380281690149"/>
         </scene>
-        <!--Acount View Controller-->
+        <!--AcountViewController-->
         <scene sceneID="c7A-l7-gLa">
             <objects>
-                <viewController storyboardIdentifier="AcountViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZIN-KI-NRq" customClass="AcountViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AcountViewController" title="AcountViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZIN-KI-NRq" customClass="AcountViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="25t-k9-XlD">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -937,10 +937,10 @@
             </objects>
             <point key="canvasLocation" x="2813" y="1394"/>
         </scene>
-        <!--Sign In View Controller-->
+        <!--SignInViewController-->
         <scene sceneID="D5T-2o-tVQ">
             <objects>
-                <viewController storyboardIdentifier="SignInViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cBv-EY-rUV" customClass="SignInViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" title="SignInViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cBv-EY-rUV" customClass="SignInViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="56d-J3-rBT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1184,10 +1184,10 @@
             </objects>
             <point key="canvasLocation" x="2813" y="-716"/>
         </scene>
-        <!--Email Sign In View Controller-->
+        <!--EmailSignInViewController-->
         <scene sceneID="yef-OO-XnK">
             <objects>
-                <viewController storyboardIdentifier="EmailSignInViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rT4-Zs-vqC" customClass="EmailSignInViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EmailSignInViewController" title="EmailSignInViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rT4-Zs-vqC" customClass="EmailSignInViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LWl-RO-le4">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1420,10 +1420,10 @@ QnV0dG9uGxsbA
             </objects>
             <point key="canvasLocation" x="1066.4122137404579" y="-2.1126760563380285"/>
         </scene>
-        <!--Setting View Controller-->
+        <!--SettingViewController-->
         <scene sceneID="m7z-sJ-4dD">
             <objects>
-                <viewController storyboardIdentifier="SettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="A0Z-cV-bYU" customClass="SettingViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingViewController" title="SettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="A0Z-cV-bYU" customClass="SettingViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eMg-vh-gNC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1484,10 +1484,10 @@ QnV0dG9uGxsbA
             </objects>
             <point key="canvasLocation" x="1978" y="1394"/>
         </scene>
-        <!--Web View Controller-->
+        <!--WebViewController-->
         <scene sceneID="Hh6-Ld-vXK">
             <objects>
-                <viewController storyboardIdentifier="WebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lqi-h2-dSq" customClass="WebViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewController" title="WebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lqi-h2-dSq" customClass="WebViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nzY-YZ-hja">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1518,10 +1518,10 @@ QnV0dG9uGxsbA
             </objects>
             <point key="canvasLocation" x="2813" y="2108"/>
         </scene>
-        <!--Main Tab Bar Controller-->
+        <!--MainTabBarController-->
         <scene sceneID="Y8P-Kx-bFF">
             <objects>
-                <tabBarController storyboardIdentifier="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bjZ-wD-UON" customClass="MainTabBarController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" title="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bjZ-wD-UON" customClass="MainTabBarController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ped-Bw-feH">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

@@ -12,6 +12,7 @@ import RxKeyboard
 import SnapKit
 import PhotosUI
 import SwiftDate
+import Firebase
 import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
@@ -39,6 +40,14 @@ class MyAlbumsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("\(type(of: self)) - \(#function)")
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "id-\(title!)",
+            AnalyticsParameterItemName: title!,
+            AnalyticsParameterContentType: "cont",
+        ])
+        
         initUI()
         initData()
         action()
