@@ -273,25 +273,52 @@ extension LoginManager {
             completion(false)
             return
         }
+        
         print("\(#function) currentUser 있음")
-        user.delete { error in
-            if error != nil {  // 에러가 발생한 경우
-                print("\(#function) user.delete:", error!.localizedDescription)
-                completion(false)  // 재인증 함수 호출
-            } else {  // 에러가 발생하지 않은 경우
-                print("\(#function) user.delete error == nil")
+        self.deleteUserDoc { result in
+            print("\(#function) deleteUserDoc result: \(result)")
+            if !result {
+                completion(false)
+                return
             }
-            self.signOut { result in
-                if result {
-                    print("\(#function) signOut 성공")
-                    self.deleteUserDoc(userID: user.uid) { result in
+            user.delete { error in
+                if error != nil {  // 에러가 발생한 경우
+                    print("\(#function) user.delete:", error!.localizedDescription)
+                    completion(false)  // 재인증 함수 호출
+                } else {  // 에러가 발생하지 않은 경우
+                    print("\(#function) user.delete error == nil")
+                }
+                self.signOut { result in
+                    print("\(#function) signOut result: \(result)")
+                    if result {
                         completion(result)
+                    } else {
+                        completion(false)
                     }
-                } else {
-                    print("\(#function) signOut 실패")
-                    completion(false)
                 }
             }
+        }
+    }
+    
+    /// UsersCollection에서 현재유저 삭제
+    private func deleteUserDoc(completion: @escaping (_ result: Bool) -> Void) {
+        print("\(type(of: self)) - \(#function)")
+
+        guard let user = Auth.auth().currentUser else {
+            print("\(#function) currentUser 없음")
+            completion(false)
+            return
+        }
+        // Firestore에서 사용자 문서 삭제
+        userCollectionRef.document(user.uid).delete() { error in
+            if let error = error {
+                // Firestore 문서 삭제 실패
+                print("Firestore 사용자 문서 삭제 실패: \(error.localizedDescription)")
+                completion(false)
+                return
+            }
+            print("Firestore 사용자 문서 삭제 성공")
+            completion(true)
         }
     }
     
@@ -309,24 +336,6 @@ extension LoginManager {
             // 로그아웃 과정에서 오류 발생
             print("로그아웃 실패: \(signOutError.localizedDescription)")
             completion(false)
-        }
-    }
-    
-    private func deleteUserDoc(userID: String, completion: @escaping (_ result: Bool) -> Void) {
-        print("\(type(of: self)) - \(#function)")
-        print("Firestore 사용자 문서 삭제 ")
-
-//         TODO: 유저Doc 삭제
-        // Firestore에서 사용자 문서 삭제
-        userCollectionRef.document(userID).delete() { error in
-            if let error = error {
-                // Firestore 문서 삭제 실패
-                print("Firestore 사용자 문서 삭제 실패: \(error.localizedDescription)")
-                completion(false)
-                return
-            }
-            print("Firestore 사용자 문서 삭제 성공")
-            completion(true)
         }
     }
     

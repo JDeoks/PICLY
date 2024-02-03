@@ -7,7 +7,6 @@
 
 import UIKit
 import RxSwift
-import RxSwift
 import RxRelay
 
 class OnboardingViewController: UIViewController {
@@ -36,6 +35,7 @@ class OnboardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initUI()
         initData()
         action()
@@ -55,7 +55,6 @@ class OnboardingViewController: UIViewController {
         // 레이아웃 변경사항즉시 업데이트
         onboardingCollectionView.layoutIfNeeded()
     }
-
     
     func initUI() {
         // skipButton
