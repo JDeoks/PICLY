@@ -194,7 +194,7 @@ class MyAlbumsViewController: UIViewController {
             .subscribe { _ in
                 print("fetchUserAuthFailed")
                 self.loginManager.signOut(completion: { result in })
-                SceneManager.shared.setSignInVCAsRoot(animated: false)
+                SceneManager.shared.setSignInNavVCAsRoot(animated: false)
             }
             .disposed(by: disposeBag)
     }

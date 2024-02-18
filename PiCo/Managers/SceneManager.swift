@@ -32,6 +32,14 @@ class SceneManager {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: scene.rawValue)
     }
     
+    /// 탈퇴시 실행하는 재로그인에 사용
+    func presentSignInNavVC(vc: UIViewController) {
+        print("\(type(of: self)) - \(#function)")
+
+        let signInNavVC = getVC(scene: .signInNav) as! UINavigationController
+        vc.present(signInNavVC, animated: true)
+    }
+    
     func presentOnboardingVC(vc: UIViewController, animated: Bool) {
         print("\(type(of: self)) - \(#function)")
         
@@ -47,6 +55,15 @@ class SceneManager {
         let emailVC = getVC(scene: .email) as! EmailSignInViewController
         emailVC.setData(state: state)
         vc.navigationController?.pushViewController(emailVC, animated: true)
+    }
+    
+    func presentEmailVC(vc: UIViewController, state: EmailSignInVCState) {
+        print("\(type(of: self)) - \(#function)")
+        
+        let emailVC = getVC(scene: .email) as! EmailSignInViewController
+        emailVC.setData(state: state)
+        vc.present(emailVC, animated: true)
+
     }
     
     func pushDetailVC(vc: UIViewController, album: AlbumModel) {
@@ -83,7 +100,7 @@ class SceneManager {
     }
     
     // TODO: - 최적화 필요 뷰 컨트롤러 계속 생성함
-    func setSignInVCAsRoot(animated: Bool) {
+    func setSignInNavVCAsRoot(animated: Bool) {
         let signInNavVC = getVC(scene: .signInNav) as! UINavigationController
 
         let window = UIApplication.shared.getWindow()

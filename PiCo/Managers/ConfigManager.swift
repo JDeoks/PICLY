@@ -15,7 +15,7 @@ class ConfigManager {
     static let shared = ConfigManager()
     
     let remoteConfig: RemoteConfig = RemoteConfig.remoteConfig()
-    let defaultRootURL: URL = URL(string: "https://picoweb.vercel.app/")!
+    let defaultRootURL: URL = URL(string: "https://www.pico.net.co/")!
     let defaultMaintenanceNotice: String = ""
     let defaultMinimumVersion: String = "1.0"
     

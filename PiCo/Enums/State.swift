@@ -10,4 +10,5 @@ import Foundation
 enum EmailSignInVCState {
     case signIn
     case signUp
+    case reauthentication
 }

@@ -37,7 +37,6 @@ class SignInViewController: UIViewController {
         print("\(type(of: self)) - \(#function)")
         super.viewDidLoad()
         
-        print("애널리틱스 로그 찍음")
         Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
             AnalyticsParameterItemID: "id-\(title!)",
             AnalyticsParameterItemName: title!,
@@ -54,6 +53,10 @@ class SignInViewController: UIViewController {
             SceneManager.shared.presentOnboardingVC(vc: self, animated: false)
             shouldShowOnboarding = false
         }
+    }
+    
+    deinit {
+        print("\(type(of: self)) - \(#function)")
     }
     
     func initUI() {

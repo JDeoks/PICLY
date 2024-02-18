@@ -74,10 +74,17 @@ class EmailSignInViewController: UIViewController {
         switch emailSignInVCState {
         case .signIn:
             pageTitleLabel.text = "로그인"
+            
         case .signUp:
             pageTitleLabel.text = "회원가입"
             moveToSignupButton.isHidden = true
             siginInButton.setTitle("회원가입", for: .normal)
+            
+        case .reauthentication:
+            backButton.isHidden = true
+            pageTitleLabel.text = "로그인"
+            moveToSignupButton.isHidden = true
+            emailTextField.text = UserManager.shared.getCurrentUserModel()?.email
         }
     }
     
@@ -121,6 +128,8 @@ class EmailSignInViewController: UIViewController {
                     self.signIn()
                 case .signUp:
                     self.signUp()
+                case .reauthentication:
+                    self.signIn()
                 }
             }
             .disposed(by: disposeBag)

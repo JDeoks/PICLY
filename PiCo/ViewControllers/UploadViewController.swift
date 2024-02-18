@@ -97,7 +97,7 @@ class UploadViewController: UIViewController {
         // datePicker
         expireDatePicker.date = Calendar.current.date(byAdding: .day, value: 7, to: Date())!
         var dateComponents = DateComponents()
-        let maxDate = Calendar.current.date(byAdding: .day, value: 30, to: Date())
+        let maxDate = Calendar.current.date(byAdding: .year, value: 1, to: Date())
         // 현재부터 한달 뒤 까지 선택 가능하게 설정
         expireDatePicker.minimumDate = Date()
         expireDatePicker.maximumDate = maxDate

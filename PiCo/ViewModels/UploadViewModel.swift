@@ -26,7 +26,7 @@ class UploadViewModel {
     /// param1: index, param2: height, param3: width
     var imageSizeTuples: [(Int, CGFloat, CGFloat)] = []
 //    var imageSizes: [[String : Int]] = []
-    var expireTime = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
+    var expireTime = Calendar.current.date(byAdding: .day, value: 7, to: Date())!
     var tags = BehaviorRelay<[String]>(value: [])
     /// uploadAlbum() -> UploadViewController
     let uploadAlbumDone = PublishSubject<Void>()
