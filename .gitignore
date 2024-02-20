@@ -17,6 +17,9 @@ DerivedData/
 # Pods
 Pods/
 
+#Fonts
+*.ttf
+
 # Carthage
 Carthage/
 

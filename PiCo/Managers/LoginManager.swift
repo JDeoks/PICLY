@@ -43,7 +43,7 @@ class LoginManager: NSObject {
     let signInProcessDone = PublishSubject<Void>()
 
 // MARK: - 구글 로그인
-    func startSignInWithGoogleFlow(vc: UIViewController) { 
+    func startSignInWithGoogleFlow(vc: UIViewController) {
         print("\(type(of: self)) - \(#function)")
         
         // 로그인 요청한 vc 설정
