@@ -1,6 +1,6 @@
 //
 //  ShareViewController.swift
-//  PiCoShareExtension
+//  PICLYShareExtension
 //
 //  Created by 서정덕 on 11/19/23.
 //
@@ -127,7 +127,7 @@ class ShareViewController: UIViewController {
     }
     
     func initFirebase() {
-        var googleServiceFileName = Bundle.main.bundleIdentifier == PiCoConstants.shareExDevBundleID ? PiCoConstants.devPList : PiCoConstants.productionPList
+        var googleServiceFileName = Bundle.main.bundleIdentifier == PICLYConstants.shareExDevBundleID ? PICLYConstants.devPList : PICLYConstants.productionPList
         
         if let filePath = Bundle.main.path(forResource: googleServiceFileName, ofType: "plist") {
             if let options = FirebaseOptions(contentsOfFile: filePath) {
