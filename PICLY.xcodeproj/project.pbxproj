@@ -380,13 +380,13 @@
 				2A6161022B2B50120093C688 /* Enums */,
 				2A89E6952B0937DA009056DD /* Extensions */,
 				2AC64E472B84EFF000571533 /* Fonts */,
+				2AE855CD2B5FE1AC00C1A34C /* PICLYConstants.swift */,
 				2AB0C4BF2B08B77F008BB7AE /* Assets.xcassets */,
 				2AB79F972B4B0E660055A5E8 /* Splash.jpg */,
 				2AC5E9CA2B580F7900A029F3 /* Info.plist */,
 				2AE855C72B5FD99700C1A34C /* GoogleService-Info-Dev.plist */,
 				2AC64E4C2B85143000571533 /* GoogleService-Info-Production.plist */,
 				2A3ADA732B2DD49500D40535 /* LaunchScreen.storyboard */,
-				2AE855CD2B5FE1AC00C1A34C /* PICLYConstants.swift */,
 			);
 			path = PICLY;
 			sourceTree = "<group>";

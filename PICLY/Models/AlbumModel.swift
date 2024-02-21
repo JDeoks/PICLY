@@ -24,10 +24,9 @@ class AlbumModel {
     var tags: [String]
     var viewCount: Int
     var isSkeleton: Bool
-    let defaultImageURLStr = "https://firebasestorage.googleapis.com/v0/b/pico-a81e4.appspot.com/o/defaultImage.jpg?alt=media&token=3d4ec053-7345-4128-b853-f8c8bef72113"
     
     init(document: DocumentSnapshot) {
-        let defaultImageURL = URL(string: defaultImageURLStr)!
+        let defaultImageURL = URL(string: PICLYConstants.defaultImageURLStr)!
         let data = document.data() ?? [:]
         
         self.albumID = document.documentID
@@ -36,9 +35,9 @@ class AlbumModel {
         self.expireTime = (data[AlbumField.expireTime.rawValue] as? Timestamp)?.dateValue() ?? Date()
 
         let thumbnailURLString = data[AlbumField.thumbnailURL.rawValue] as? String
-        self.thumbnailURL = URL(string: thumbnailURLString ?? defaultImageURLStr) ?? defaultImageURL
+        self.thumbnailURL = URL(string: thumbnailURLString ?? PICLYConstants.defaultImageURLStr) ?? defaultImageURL
 
-        let imageURLsStrArray = data[AlbumField.imageURLs.rawValue] as? [String] ?? [defaultImageURLStr]
+        let imageURLsStrArray = data[AlbumField.imageURLs.rawValue] as? [String] ?? [PICLYConstants.defaultImageURLStr]
         self.imageURLs = imageURLsStrArray.compactMap { URL(string: $0) }
 
         self.imageCount = data[AlbumField.imageCount.rawValue] as? Int ?? 1
@@ -54,9 +53,9 @@ class AlbumModel {
         self.ownerID = ""
         self.creationTime = Date()
         self.expireTime = Date()
-        let defaultImageURL = URL(string: defaultImageURLStr)!
+        let defaultImageURL = URL(string: PICLYConstants.defaultImageURLStr)!
         self.thumbnailURL = defaultImageURL
-        self.imageURLs = [URL(string: "https://jdeoks.notion.site/PICLY-97084d79dfe649918ba5179298f158f9?pvs=4")!]
+        self.imageURLs = [URL(string: PICLYConstants.defaultImageURLStr)!]
         self.imageCount = 0
         self.imageSizes = [["": 0]]
         self.tags = [""]

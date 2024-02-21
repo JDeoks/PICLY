@@ -13,7 +13,7 @@ import SkeletonView
 
 class MyAlbumsCollectionViewCell: UICollectionViewCell {
     
-    var albumURL = URL(string: "https://www.pico.net.co/")!
+    var albumURL = PICLYConstants.defaultRootURL
     var thumbnailURL: URL!
     var imageURLs: [URL] = []
     var disposeBag = DisposeBag()

@@ -15,7 +15,6 @@ class ConfigManager {
     static let shared = ConfigManager()
     
     let remoteConfig: RemoteConfig = RemoteConfig.remoteConfig()
-    let defaultRootURL: URL = URL(string: "https://www.pico.net.co/")!
     let defaultMaintenanceNotice: String = ""
     let defaultMinimumVersion: String = "1.0"
     
@@ -106,7 +105,7 @@ class ConfigManager {
 
         guard let rootURL = UserDefaults.standard.url(forKey: RemoteConfigKey.rootURL.rawValue) else {
             print("forKey: rootURL 없음. 기본 값 사용")
-            return defaultRootURL
+            return PICLYConstants.defaultRootURL
         }
         return rootURL
     }
