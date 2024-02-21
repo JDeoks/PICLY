@@ -19,7 +19,7 @@
         <!--MyAlbumsViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="MyAlbumsViewController" id="BYZ-38-t0r" customClass="MyAlbumsViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="MyAlbumsViewController" id="BYZ-38-t0r" customClass="MyAlbumsViewController" customModule="PICLY" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,22 +28,22 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="56"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="U3b-cU-qGr">
-                                        <rect key="frame" x="24" y="0.0" width="144.66666666666666" height="56"/>
+                                        <rect key="frame" x="24" y="0.0" width="152" height="56"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PICLY" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCo-M8-BXX">
-                                                <rect key="frame" x="0.0" y="0.0" width="59.666666666666664" height="56"/>
-                                                <fontDescription key="fontDescription" name="Bayon-Regular" family="Bayon" pointSize="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="67" height="56"/>
+                                                <fontDescription key="fontDescription" name="Bayon-Regular" family="Bayon" pointSize="36"/>
                                                 <color key="textColor" name="MainText"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CEW-WM-sQ7">
-                                                <rect key="frame" x="88.666666666666671" y="0.0" width="56.000000000000014" height="56"/>
+                                                <rect key="frame" x="96" y="0.0" width="56" height="56"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Dql-ZL-X5o">
-                                        <rect key="frame" x="197.66666666666663" y="8" width="171.33333333333337" height="40"/>
+                                        <rect key="frame" x="205" y="8" width="164" height="40"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="soy-lT-gJy">
                                                 <rect key="frame" x="8" y="8.9999999999999964" width="24" height="22.333333333333332"/>
@@ -55,7 +55,7 @@
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="태그 검색" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UID-xT-SBR">
-                                                <rect key="frame" x="39.999999999999993" y="0.0" width="85.333333333333314" height="40"/>
+                                                <rect key="frame" x="40" y="0.0" width="78" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="8Kq-2E-afD"/>
@@ -69,7 +69,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOG-2E-sQY">
-                                                <rect key="frame" x="133.33333333333334" y="5.6666666666666714" width="30" height="29"/>
+                                                <rect key="frame" x="126" y="5.6666666666666714" width="30" height="29"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="YYQ-Bk-ADb"/>
@@ -191,7 +191,7 @@
         <!--DetailViewController-->
         <scene sceneID="eBn-0K-hgl">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" title="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dvb-ZR-6Iu" customClass="DetailViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" title="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dvb-ZR-6Iu" customClass="DetailViewController" customModule="PICLY" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WIV-Vy-xZ8">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -275,7 +275,7 @@
         <!--Edit View Controller-->
         <scene sceneID="mwF-Wo-W1y">
             <objects>
-                <viewController storyboardIdentifier="EditViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZkL-80-O6N" customClass="EditViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZkL-80-O6N" customClass="EditViewController" customModule="PICLY" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DLw-p7-h93">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -501,7 +501,7 @@
         <!--UploadViewController-->
         <scene sceneID="xLj-Ce-k4g">
             <objects>
-                <viewController storyboardIdentifier="UploadViewController" title="UploadViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ErN-Sq-TPx" customClass="UploadViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UploadViewController" title="UploadViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ErN-Sq-TPx" customClass="UploadViewController" customModule="PICLY" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFit" id="q1a-f3-QPN">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -803,7 +803,7 @@
         <!--AcountViewController-->
         <scene sceneID="c7A-l7-gLa">
             <objects>
-                <viewController storyboardIdentifier="AcountViewController" title="AcountViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZIN-KI-NRq" customClass="AcountViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AcountViewController" title="AcountViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZIN-KI-NRq" customClass="AcountViewController" customModule="PICLY" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="25t-k9-XlD">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -946,7 +946,7 @@
         <!--SignInViewController-->
         <scene sceneID="D5T-2o-tVQ">
             <objects>
-                <viewController storyboardIdentifier="SignInViewController" title="SignInViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cBv-EY-rUV" customClass="SignInViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" title="SignInViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cBv-EY-rUV" customClass="SignInViewController" customModule="PICLY" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="56d-J3-rBT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1101,7 +1101,7 @@
         <!--OnboardingViewController-->
         <scene sceneID="mGG-Sn-RHW">
             <objects>
-                <viewController storyboardIdentifier="OnboardingViewController" title="OnboardingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RwQ-bR-yVK" customClass="OnboardingViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardingViewController" title="OnboardingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RwQ-bR-yVK" customClass="OnboardingViewController" customModule="PICLY" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ej7-yz-eBe">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1110,17 +1110,17 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="56"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PICLY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xV3-6Q-S6R">
-                                        <rect key="frame" x="23.999999999999996" y="0.0" width="59.666666666666657" height="56"/>
-                                        <fontDescription key="fontDescription" name="Bayon-Regular" family="Bayon" pointSize="32"/>
+                                        <rect key="frame" x="24" y="0.0" width="67" height="56"/>
+                                        <fontDescription key="fontDescription" name="Bayon-Regular" family="Bayon" pointSize="36"/>
                                         <color key="textColor" name="MainText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LBB-yQ-Y7u">
-                                        <rect key="frame" x="112.66666666666667" y="0.0" width="142.33333333333331" height="56"/>
+                                        <rect key="frame" x="120.00000000000001" y="0.0" width="142.33333333333337" height="56"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYe-qI-1wn">
-                                        <rect key="frame" x="284" y="12.666666666666671" width="97" height="31"/>
+                                        <rect key="frame" x="291.33333333333331" y="12.666666666666671" width="89.666666666666686" height="31"/>
                                         <color key="tintColor" name="SecondText"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="건너뛰기">
@@ -1193,7 +1193,7 @@
         <!--EmailSignInViewController-->
         <scene sceneID="yef-OO-XnK">
             <objects>
-                <viewController storyboardIdentifier="EmailSignInViewController" title="EmailSignInViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rT4-Zs-vqC" customClass="EmailSignInViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EmailSignInViewController" title="EmailSignInViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rT4-Zs-vqC" customClass="EmailSignInViewController" customModule="PICLY" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LWl-RO-le4">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1429,7 +1429,7 @@ QnV0dG9uGxsbA
         <!--SettingViewController-->
         <scene sceneID="m7z-sJ-4dD">
             <objects>
-                <viewController storyboardIdentifier="SettingViewController" title="SettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="A0Z-cV-bYU" customClass="SettingViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingViewController" title="SettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="A0Z-cV-bYU" customClass="SettingViewController" customModule="PICLY" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eMg-vh-gNC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1493,7 +1493,7 @@ QnV0dG9uGxsbA
         <!--WebViewController-->
         <scene sceneID="Hh6-Ld-vXK">
             <objects>
-                <viewController storyboardIdentifier="WebViewController" title="WebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lqi-h2-dSq" customClass="WebViewController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewController" title="WebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lqi-h2-dSq" customClass="WebViewController" customModule="PICLY" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nzY-YZ-hja">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1527,7 +1527,7 @@ QnV0dG9uGxsbA
         <!--MainTabBarController-->
         <scene sceneID="Y8P-Kx-bFF">
             <objects>
-                <tabBarController storyboardIdentifier="MainTabBarController" title="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bjZ-wD-UON" customClass="MainTabBarController" customModule="PiCo" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" title="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bjZ-wD-UON" customClass="MainTabBarController" customModule="PICLY" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ped-Bw-feH">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

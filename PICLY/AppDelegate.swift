@@ -21,13 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         FirebaseConfiguration.shared.setLoggerLevel(.min)
-        UIFont.familyNames.sorted().forEach { familyName in
-            print("*** \(familyName) ***")
-            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
-                print("\(fontName)")
-            }
-            print("---------------------")
-        }
         return true
     }
 

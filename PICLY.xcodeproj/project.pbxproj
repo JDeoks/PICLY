@@ -149,12 +149,8 @@
 		2A82C6702B5165DB0030D1B9 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		2A89E6932B092D69009056DD /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		2A89E69F2B094EEF009056DD /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
-		2A89E6A92B0A32C6009056DD /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		2A89E6AC2B0A32C6009056DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		2A89E6B62B0A338E009056DD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
-		2A89E6B82B0A338E009056DD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		2A89E6B92B0A35DE009056DD /* PICLY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = PICLY.entitlements; path = /Users/jeongdeok/git/PICLY/PICLY/PICLY.entitlements; sourceTree = "<absolute>"; };
-		2A89E6BA2B0A369B009056DD /* PiCoShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PiCoShareExtension.entitlements; sourceTree = "<group>"; };
 		2A8ED08B2B46FDF60068B0B8 /* DetailInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoTableViewCell.swift; sourceTree = "<group>"; };
 		2A8ED08C2B46FDF60068B0B8 /* DetailInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailInfoTableViewCell.xib; sourceTree = "<group>"; };
 		2A8ED08F2B46FE0E0068B0B8 /* DetailImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImagesTableViewCell.swift; sourceTree = "<group>"; };
@@ -173,8 +169,6 @@
 		2AB79F972B4B0E660055A5E8 /* Splash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash.jpg; sourceTree = "<group>"; };
 		2ABE24442B3B321700F7C00D /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		2AC5E9CA2B580F7900A029F3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2AC5E9CC2B580FA300A029F3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2AC5E9CE2B580FB100A029F3 /* GoogleService-Info-Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Production.plist"; sourceTree = "<group>"; };
 		2AC64E4A2B84F61600571533 /* Bayon-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Bayon-Regular.ttf"; path = "../../../../Downloads/Bayon/Bayon-Regular.ttf"; sourceTree = "<group>"; };
 		2AC64E4C2B85143000571533 /* GoogleService-Info-Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Production.plist"; sourceTree = "<group>"; };
 		2ACD7C802B4EAEA200C39737 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -183,7 +177,6 @@
 		2AD7C4632B51B92C00AB0FBC /* EmailSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInViewController.swift; sourceTree = "<group>"; };
 		2AD7C4652B524BBA00AB0FBC /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		2AE855C72B5FD99700C1A34C /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
-		2AE855CA2B5FDFA300C1A34C /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
 		2AE855CD2B5FE1AC00C1A34C /* PICLYConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PICLYConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -355,24 +348,10 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		2A89E6A82B0A32C6009056DD /* PiCoShareExtension */ = {
-			isa = PBXGroup;
-			children = (
-				2AC5E9CC2B580FA300A029F3 /* Info.plist */,
-				2AC5E9CE2B580FB100A029F3 /* GoogleService-Info-Production.plist */,
-				2AE855CA2B5FDFA300C1A34C /* GoogleService-Info-Dev.plist */,
-				2A89E6BA2B0A369B009056DD /* PiCoShareExtension.entitlements */,
-				2A89E6A92B0A32C6009056DD /* ShareViewController.swift */,
-				2A89E6AB2B0A32C6009056DD /* MainInterface.storyboard */,
-			);
-			path = PiCoShareExtension;
-			sourceTree = "<group>";
-		};
 		2AB0C4AA2B08B77E008BB7AE = {
 			isa = PBXGroup;
 			children = (
 				2AB0C4B52B08B77E008BB7AE /* PICLY */,
-				2A89E6A82B0A32C6009056DD /* PiCoShareExtension */,
 				2AB0C4B42B08B77E008BB7AE /* Products */,
 				2A4D48ED2B0A652200E776C7 /* Frameworks */,
 			);
@@ -621,15 +600,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		2A89E6AB2B0A32C6009056DD /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A89E6AC2B0A32C6009056DD /* Base */,
-				2A89E6B82B0A338E009056DD /* ko */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 		2AB0C4BC2B08B77E008BB7AE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

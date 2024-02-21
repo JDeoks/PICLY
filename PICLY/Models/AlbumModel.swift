@@ -24,9 +24,9 @@ class AlbumModel {
     var tags: [String]
     var viewCount: Int
     var isSkeleton: Bool
+    let defaultImageURLStr = "https://firebasestorage.googleapis.com/v0/b/pico-a81e4.appspot.com/o/defaultImage.jpg?alt=media&token=3d4ec053-7345-4128-b853-f8c8bef72113"
     
     init(document: DocumentSnapshot) {
-        let defaultImageURLStr = "https://firebasestorage.googleapis.com/v0/b/pico-a81e4.appspot.com/o/defaultImage.jpg?alt=media&token=d187fb1e-376c-4ee3-8944-498efe6ec305"
         let defaultImageURL = URL(string: defaultImageURLStr)!
         let data = document.data() ?? [:]
         
@@ -50,15 +50,13 @@ class AlbumModel {
     
     /// 스켈레톤뷰 생성
     init() {
-        let defaultImageURLStr = "https://firebasestorage.googleapis.com/v0/b/pico-a81e4.appspot.com/o/defaultImage.jpg?alt=media&token=d187fb1e-376c-4ee3-8944-498efe6ec305"
-        let defaultImageURL = URL(string: defaultImageURLStr)!
-        
         self.albumID = ""
         self.ownerID = ""
         self.creationTime = Date()
         self.expireTime = Date()
+        let defaultImageURL = URL(string: defaultImageURLStr)!
         self.thumbnailURL = defaultImageURL
-        self.imageURLs = [URL(string: "https://jdeoks.notion.site/PiCo-97084d79dfe649918ba5179298f158f9?pvs=4")!]
+        self.imageURLs = [URL(string: "https://jdeoks.notion.site/PICLY-97084d79dfe649918ba5179298f158f9?pvs=4")!]
         self.imageCount = 0
         self.imageSizes = [["": 0]]
         self.tags = [""]

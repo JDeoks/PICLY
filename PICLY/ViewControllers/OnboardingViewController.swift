@@ -22,7 +22,7 @@ class OnboardingViewController: UIViewController {
         ],
         ["자동으로 만료되는 앨범", 
          "onboarding3",
-         "앨범을 게시할 때 앨범의 만료시간을 설정할 수 있습니다.\n만료시간 이후에는 본인만 앨범을 확인할 수 있습니다.\n\n이제는 더욱 편하게 앨범을 관리하세요."]
+         "앨범을 게시할 때는 만료시간을 설정하세요.\n\n만료시간 이후에 링크는 자동으로 만료되며,\n본인만 앨범을 확인할 수 있습니다.\n\n이제는 더욱 편하게 앨범을 관리하세요."]
     ]
     
     let currentPageIndex = BehaviorRelay<Int>(value: 0)
