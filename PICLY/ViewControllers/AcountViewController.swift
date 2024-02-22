@@ -81,6 +81,7 @@ class AcountViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+    // TODO: 비지니스 로직 질무
     func bind() {
         print("\(type(of: self)) - \(#function)")
         
@@ -95,6 +96,13 @@ class AcountViewController: UIViewController {
                         } else {
                             self.showDeleteAccountAlert()
                         }
+                    }
+                } else {
+                    if self.previousUser.email != UserManager.shared.getCurrentUserModel()?.email {
+                        self.showNoticeAlert(message: "로그인한 계정이 다릅니다.\n앱을 다시 실행해주세요.")
+                        self.loginManager.signOut { result in }
+                    } else {
+                        self.showDeleteAccountAlert()
                     }
                 }
 
@@ -199,12 +207,13 @@ extension AcountViewController {
         switch user.authProvider {
         case .google:
             loginManager.startSignInWithGoogleFlow(vc: self)
+            
         case .apple:
             loginManager.startSignInWithAppleFlow(vc: self)
+            
         case .email:
             SceneManager.shared.presentEmailVC(vc: self, state: .reauthentication)
         }
-
     }
     
 }
