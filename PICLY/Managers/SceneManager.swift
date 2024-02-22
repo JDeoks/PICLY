@@ -32,6 +32,7 @@ class SceneManager {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: scene.rawValue)
     }
     
+    // MARK: - signInNav
     /// 탈퇴시 실행하는 재로그인에 사용
     func presentSignInNavVC(vc: UIViewController) {
         print("\(type(of: self)) - \(#function)")
@@ -40,6 +41,7 @@ class SceneManager {
         vc.present(signInNavVC, animated: true)
     }
     
+    // MARK: - onboardingVC
     func presentOnboardingVC(vc: UIViewController, animated: Bool) {
         print("\(type(of: self)) - \(#function)")
         
@@ -49,6 +51,7 @@ class SceneManager {
         vc.present(onboardingVC, animated: animated)
     }
     
+    // MARK: - emailVC
     func pushEmailVC(vc: UIViewController, state: EmailSignInVCState) {
         print("\(type(of: self)) - \(#function)")
         
@@ -57,15 +60,17 @@ class SceneManager {
         vc.navigationController?.pushViewController(emailVC, animated: true)
     }
     
-    func presentEmailVC(vc: UIViewController, state: EmailSignInVCState) {
+    /// 재인증에 사용
+    func presentEmailVC(vc: UIViewController, state: EmailSignInVCState){
         print("\(type(of: self)) - \(#function)")
-        
+        let vc = vc as! AcountViewController
         let emailVC = getVC(scene: .email) as! EmailSignInViewController
         emailVC.setData(state: state)
+        emailVC.loginManager = vc.loginManager
         vc.present(emailVC, animated: true)
-
     }
     
+    // MARK: - detailVC
     func pushDetailVC(vc: UIViewController, album: AlbumModel) {
         print("\(type(of: self)) - \(#function)")
         
@@ -75,6 +80,7 @@ class SceneManager {
         vc.navigationController?.pushViewController(detailVC, animated: true)
     }
     
+    // MARK: - uploadVC
     func presentUploadVC(vc: UIViewController) {
         print("\(type(of: self)) - \(#function)")
         
@@ -83,6 +89,7 @@ class SceneManager {
         vc.present(uploadVC, animated: true)
     }
 
+    // MARK: - accountVC
     func pushAccountVC(vc: UIViewController) {
         print("\(type(of: self)) - \(#function)")
         
@@ -91,6 +98,7 @@ class SceneManager {
         vc.navigationController?.pushViewController(accountVC, animated: true)
     }
     
+    // MARK: - webVC
     func presentWebVC(vc: UIViewController, url: URL) {
         print("\(type(of: self)) - \(#function)")
         
@@ -99,6 +107,7 @@ class SceneManager {
         vc.present(webVC, animated: true)
     }
     
+    // MARK: - 루트뷰 컨트롤러 설정
     // TODO: - 최적화 필요 뷰 컨트롤러 계속 생성함
     func setSignInNavVCAsRoot(animated: Bool) {
         let signInNavVC = getVC(scene: .signInNav) as! UINavigationController

@@ -13,7 +13,7 @@ import RxKeyboard
 class EmailSignInViewController: UIViewController {
     
     private var emailSignInVCState: EmailSignInVCState = .signIn
-    let loginManager = LoginManager()
+    var loginManager = LoginManager()
 
     let disposeBag = DisposeBag()
     
@@ -156,10 +156,20 @@ class EmailSignInViewController: UIViewController {
     func bind() {
         loginManager.signInProcessDone
             .subscribe { _ in
-                print("signInProcessDone")
+                print("\(type(of: self)) - signInProcessDone")
+                
                 self.loadingView.removeFromSuperview()
-                SceneManager.shared.setMainTabVCAsRoot(animated: true)
-                UserManager.shared.setHasCompletedInitialLaunch(true)
+
+                switch self.emailSignInVCState {
+                case .signIn:
+                    SceneManager.shared.setMainTabVCAsRoot(animated: true)
+                    UserManager.shared.setHasCompletedInitialLaunch(true)
+                case .signUp:
+                    SceneManager.shared.setMainTabVCAsRoot(animated: true)
+                    UserManager.shared.setHasCompletedInitialLaunch(true)
+                case .reauthentication:
+                    return
+                }
             }
             .disposed(by: disposeBag)
         

@@ -78,7 +78,7 @@
 		2ABB363C2B4715F600B3F073 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB363B2B4715F600B3F073 /* SnapKit */; };
 		2ABE24452B3B321700F7C00D /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABE24442B3B321700F7C00D /* HapticManager.swift */; };
 		2AC64E4B2B84F61600571533 /* Bayon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2AC64E4A2B84F61600571533 /* Bayon-Regular.ttf */; };
-		2AC64E4D2B85143000571533 /* GoogleService-Info-Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2AC64E4C2B85143000571533 /* GoogleService-Info-Production.plist */; };
+		2AC64E512B87B58200571533 /* GoogleService-Info-Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2AC64E502B87B58100571533 /* GoogleService-Info-Production.plist */; };
 		2ACD7C812B4EAEA200C39737 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACD7C802B4EAEA200C39737 /* UserManager.swift */; };
 		2AD328912B29C92B002DA60F /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 2AD328902B29C92B002DA60F /* RxGesture */; };
 		2AD5F2CE2B0FADCE00475AC6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5F2CC2B0FADCE00475AC6 /* SettingsTableViewCell.swift */; };
@@ -170,7 +170,7 @@
 		2ABE24442B3B321700F7C00D /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		2AC5E9CA2B580F7900A029F3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AC64E4A2B84F61600571533 /* Bayon-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Bayon-Regular.ttf"; path = "../../../../Downloads/Bayon/Bayon-Regular.ttf"; sourceTree = "<group>"; };
-		2AC64E4C2B85143000571533 /* GoogleService-Info-Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Production.plist"; sourceTree = "<group>"; };
+		2AC64E502B87B58100571533 /* GoogleService-Info-Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Production.plist"; sourceTree = "<group>"; };
 		2ACD7C802B4EAEA200C39737 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		2AD5F2CC2B0FADCE00475AC6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		2AD5F2CD2B0FADCE00475AC6 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
@@ -385,7 +385,7 @@
 				2AB79F972B4B0E660055A5E8 /* Splash.jpg */,
 				2AC5E9CA2B580F7900A029F3 /* Info.plist */,
 				2AE855C72B5FD99700C1A34C /* GoogleService-Info-Dev.plist */,
-				2AC64E4C2B85143000571533 /* GoogleService-Info-Production.plist */,
+				2AC64E502B87B58100571533 /* GoogleService-Info-Production.plist */,
 				2A3ADA732B2DD49500D40535 /* LaunchScreen.storyboard */,
 			);
 			path = PICLY;
@@ -502,8 +502,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AC64E512B87B58200571533 /* GoogleService-Info-Production.plist in Resources */,
 				2A3F756C2B33411400CE67D1 /* MyAlbumsCollectionViewCell.xib in Resources */,
-				2AC64E4D2B85143000571533 /* GoogleService-Info-Production.plist in Resources */,
 				2A4FF2CA2B35F70200A6FEF1 /* TagsCollectionViewCell.xib in Resources */,
 				2A8ED08E2B46FDF60068B0B8 /* DetailInfoTableViewCell.xib in Resources */,
 				2AB79F982B4B0E670055A5E8 /* Splash.jpg in Resources */,
@@ -742,7 +742,7 @@
 				CODE_SIGN_ENTITLEMENTS = PICLY/PICLY.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 39JATSZXJT;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -761,7 +761,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Deok.PiCo.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Deok.PICLY.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -782,7 +782,7 @@
 				CODE_SIGN_ENTITLEMENTS = PICLY/PICLY.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 39JATSZXJT;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -801,7 +801,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Deok.PiCo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Deok.PICLY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

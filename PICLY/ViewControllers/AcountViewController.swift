@@ -86,12 +86,18 @@ class AcountViewController: UIViewController {
         
         loginManager.signInProcessDone
             .subscribe { _ in
-                if self.previousUser.email != UserManager.shared.getCurrentUserModel()?.email {
-                    self.showNoticeAlert(message: "로그인한 계정이 다릅니다.\n앱을 다시 실행해주세요.")
-                    self.loginManager.signOut { result in }
-                } else {
-                    self.showDeleteAccountAlert()
+                print("\(type(of: self)) - signInProcessDone")
+                if let vc = self.presentedViewController {
+                    vc.dismiss(animated: true) {
+                        if self.previousUser.email != UserManager.shared.getCurrentUserModel()?.email {
+                            self.showNoticeAlert(message: "로그인한 계정이 다릅니다.\n앱을 다시 실행해주세요.")
+                            self.loginManager.signOut { result in }
+                        } else {
+                            self.showDeleteAccountAlert()
+                        }
+                    }
                 }
+
             }.disposed(by: disposeBag)
     }
 

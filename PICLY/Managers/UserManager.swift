@@ -28,7 +28,8 @@ class UserManager {
     func hasCompletedInitialLaunch() -> Bool {
         return UserDefaults.standard.bool(forKey: "hasCompletedInitialLaunch")
     }
-
+    
+    /// 첫 실행 정보 저장
     func setHasCompletedInitialLaunch(_ completed: Bool) {
         UserDefaults.standard.set(completed, forKey: "hasCompletedInitialLaunch")
     }
