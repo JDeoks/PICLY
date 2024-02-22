@@ -94,7 +94,7 @@ class AcountViewController: UIViewController {
                             self.showNoticeAlert(message: "로그인한 계정이 다릅니다.\n앱을 다시 실행해주세요.")
                             self.loginManager.signOut { result in }
                         } else {
-                            self.showDeleteAccountAlert()
+                            self.showDeleteAccountAlert() 
                         }
                     }
                 } else {
