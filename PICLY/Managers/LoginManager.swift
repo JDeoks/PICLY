@@ -191,7 +191,6 @@ extension LoginManager {
         }
     }
     
-    
     /// User Collection에 userID의 Doc이 있는지 검사
     private func isFirstLogin(user: User, completion: @escaping (Bool) -> Void) {
         print("\(type(of: self)) - \(#function)")
@@ -250,7 +249,7 @@ extension LoginManager {
     }
     
     // MARK: - 로그인 공통 로직
-    
+    /// 첫 로그인 시 실행하는 로직. UserDoc 생성, 기본 AlbumDoc 생성
     func setUpFirstLogin(user: User, provider: AuthProvider, completion: @escaping () -> Void) {
         print("\(type(of: self)) - \(#function)")
 

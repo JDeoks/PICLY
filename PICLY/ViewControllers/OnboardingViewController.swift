@@ -32,7 +32,8 @@ class OnboardingViewController: UIViewController {
     @IBOutlet var onboardingCollectionView: UICollectionView!
     @IBOutlet var onboardingPageControl: UIPageControl!
     @IBOutlet var nextButton: UIButton!
-    
+
+    // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,6 +57,7 @@ class OnboardingViewController: UIViewController {
         onboardingCollectionView.layoutIfNeeded()
     }
     
+    // MARK: - initUI
     func initUI() {
         // skipButton
         let attributedString = NSMutableAttributedString(string: skipButton.titleLabel?.text ?? "")
@@ -90,11 +92,13 @@ class OnboardingViewController: UIViewController {
         nextButton.layer.cornerRadius = 4
     }
     
+    // MARK: - initData
     func initData() {
         // onboardingPageControl
         onboardingPageControl.numberOfPages = onboardingDatas.count
     }
     
+    // MARK: - action
     func action() {
         skipButton.rx.tap
             .subscribe { _ in
@@ -123,6 +127,7 @@ class OnboardingViewController: UIViewController {
         currentPageIndex.accept(sender.currentPage)
     }
     
+    // MARK: - bind
     func bind() {
         currentPageIndex
             .subscribe { newPageIndex in

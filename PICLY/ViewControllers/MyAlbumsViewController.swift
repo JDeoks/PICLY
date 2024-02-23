@@ -53,12 +53,6 @@ class MyAlbumsViewController: UIViewController {
         initData()
         action()
         bind()
-        if let user = Auth.auth().currentUser {
-            for provider in user.providerData {
-                let providerID = provider.providerID
-                print("로그인 방식: \(providerID)")
-            }
-        }
     }
     
     func initUI() {
@@ -112,12 +106,14 @@ class MyAlbumsViewController: UIViewController {
     }
     
     func action() {
+        // 검색 취소 버튼
         searchCancelButton.rx.tap
             .subscribe { _ in
                 self.stopSearching()
             }
             .disposed(by: disposeBag)
         
+        // 글 작성 버튼
         plusButton.rx.tap
             .subscribe { _ in
                 HapticManager.shared.triggerImpact()
@@ -126,7 +122,7 @@ class MyAlbumsViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        // 키보드 툴바
+        // 키보드 툴바 위치
         RxKeyboard.instance.visibleHeight
             .skip(1)
             .drive(onNext: { [weak self] keyboardVisibleHeight in
@@ -148,7 +144,14 @@ class MyAlbumsViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        // searchTagTextField
+        // 키보드 내리기 버튼
+        hideKeyboardButton.rx.tap
+            .subscribe { _ in
+                self.view.endEditing(true)
+            }
+            .disposed(by: disposeBag)
+        
+        // 검색 창 텍스트
         searchTagTextField.rx.text
             .orEmpty
             .distinctUntilChanged()
@@ -156,12 +159,6 @@ class MyAlbumsViewController: UIViewController {
                 print("changedText")
                 self.updateFilteredAlbums(keyword: changedText)
             })
-            .disposed(by: disposeBag)
-        
-        hideKeyboardButton.rx.tap
-            .subscribe { _ in
-                self.view.endEditing(true)
-            }
             .disposed(by: disposeBag)
     }
 

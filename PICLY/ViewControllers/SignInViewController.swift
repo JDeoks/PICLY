@@ -33,6 +33,7 @@ class SignInViewController: UIViewController {
     @IBOutlet var continueWithEmailLabel: UILabel!
     @IBOutlet var termsOfUseTextView: UITextView!
     
+    // MARK: - LifeCycles
     override func viewDidLoad() {
         print("\(type(of: self)) - \(#function)")
         super.viewDidLoad()
@@ -59,6 +60,7 @@ class SignInViewController: UIViewController {
         print("\(type(of: self)) - \(#function)")
     }
     
+    // MARK: - initUI
     func initUI() {
         // navigation
         self.navigationController?.navigationBar.isHidden = true
@@ -96,6 +98,7 @@ class SignInViewController: UIViewController {
         }
     }
     
+    // MARK: - action
     func action() {
         signInWithGoogleButtonView.rx.tapGesture()
             .when(.recognized)
@@ -123,6 +126,7 @@ class SignInViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+    // MARK: - bind
     func bind() {
         loginManager.signInProcessDone
             .subscribe { _ in

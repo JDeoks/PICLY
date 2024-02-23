@@ -32,6 +32,7 @@ class EmailSignInViewController: UIViewController {
     @IBOutlet var siginInButton: UIButton!
     @IBOutlet var signInContainerStackView: UIStackView!
 
+    // MARK: - LifeCycles
     override func viewDidLoad() {
         print("\(type(of: self)) - \(#function): \(emailSignInVCState)")
         super.viewDidLoad()
@@ -48,6 +49,7 @@ class EmailSignInViewController: UIViewController {
         emailSignInVCState = state
     }
     
+    // MARK: - initUI
     private func initUI() {
         // scrollView
         scrollView.alwaysBounceVertical = true
@@ -70,6 +72,7 @@ class EmailSignInViewController: UIViewController {
         siginInButton.layer.cornerRadius = 4
     }
     
+    // MARK: - initData
     private func initData() {
         switch emailSignInVCState {
         case .signIn:
@@ -88,7 +91,9 @@ class EmailSignInViewController: UIViewController {
         }
     }
     
+    // MARK: - action
     private func action() {
+        // 뒤로 가기 버튼
         backButton.rx.tap
             .subscribe { _ in
                 self.navigationController?.popViewController(animated: true)
@@ -125,11 +130,11 @@ class EmailSignInViewController: UIViewController {
                 HapticManager.shared.triggerImpact()
                 switch self.emailSignInVCState {
                 case .signIn:
-                    self.signIn()
+                    self.performSignIn()
                 case .signUp:
-                    self.signUp()
+                    self.perFormSignUp()
                 case .reauthentication:
-                    self.signIn()
+                    self.performSignIn()
                 }
             }
             .disposed(by: disposeBag)
@@ -153,7 +158,8 @@ class EmailSignInViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    func bind() {
+    // MARK: - bind
+    private func bind() {
         loginManager.signInProcessDone
             .subscribe { _ in
                 print("\(type(of: self)) - signInProcessDone")
@@ -175,6 +181,8 @@ class EmailSignInViewController: UIViewController {
         
         loginManager.signInFailed
             .subscribe { errorMsg in
+                print("\(type(of: self)) - signInFailed")
+
                 self.loadingView.removeFromSuperview()
                 self.showToast(message: errorMsg, keyboardHeight: self.keyboardHeight)
             }
@@ -182,13 +190,15 @@ class EmailSignInViewController: UIViewController {
         
         loginManager.createUserWithEmailFailed
             .subscribe { errorMsg in
+                print("\(type(of: self)) - createUserWithEmailFailed")
+
                 self.loadingView.removeFromSuperview()
                 self.showToast(message: errorMsg, keyboardHeight: self.keyboardHeight)
             }
             .disposed(by: disposeBag)
     }
     
-    func signIn() {
+    func performSignIn() {
         print("\(type(of: self)) - \(#function)")
 
         let email = self.emailTextField.text!
@@ -196,7 +206,7 @@ class EmailSignInViewController: UIViewController {
         self.loginManager.performLogin(email: email, password: password)
     }
     
-    func signUp() {
+    func perFormSignUp() {
         print("\(type(of: self)) - \(#function)")
 
         let email = self.emailTextField.text!

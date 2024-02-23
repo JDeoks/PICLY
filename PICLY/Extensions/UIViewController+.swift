@@ -20,7 +20,7 @@ extension UIViewController {
         toastLabel.textAlignment = .center
         toastLabel.text = message
         toastLabel.alpha = 1.0
-        toastLabel.layer.cornerRadius = 8.7
+        toastLabel.layer.cornerRadius = 8
         toastLabel.clipsToBounds = true
         self.view.addSubview(toastLabel)
 
