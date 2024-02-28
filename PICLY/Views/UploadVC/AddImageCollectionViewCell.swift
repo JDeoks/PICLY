@@ -18,6 +18,6 @@ class AddImageCollectionViewCell: UICollectionViewCell {
     }
 
     func initUI() {
-        containerView.layer.cornerRadius = 8
+        containerView.layer.cornerRadius = 4
     }
 }

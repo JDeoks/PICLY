@@ -642,7 +642,7 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="128" id="Aye-iG-Btr"/>
                                                                         </constraints>
-                                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="8" minimumInteritemSpacing="8" id="Oud-cn-Lbp">
+                                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Oud-cn-Lbp">
                                                                             <size key="itemSize" width="128" height="128"/>
                                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -704,10 +704,10 @@
                                                                     </stackView>
                                                                 </subviews>
                                                             </stackView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OvN-zO-aUW">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSY-8D-USI">
                                                                 <rect key="frame" x="16" y="93.000000000000057" width="361" height="93.333333333333314"/>
-                                                                <string key="text">다른 사용자의 창작물이나 지적 재산권을 존중해주세요.  무단으로 타인의 작품을 사용하는 행위는 금지되어 있습니다.선정적이거나 모욕적인 이미지, 비속어를 포함한 내용은 업로드하지 말아주세요.
-타인의 개인정보가 노출되지 않도록 주의해주세요. 업로드한 앨범이 신고를 당하면 계정 이용이 제한될 수 있습니다.</string>
+                                                                <string key="text">다른 사용자의 창작물이나 지적 재산권을 존중해주세요.   무단으로 타인의 작품을 사용하는 행위는 금지되어 있습니다.선정적이거나 모욕적인 이미지, 비속어를 포함한 내용은 업로드하지 말아주세요.
+타인의 개인정보가 노출되지 않도록 주의해주세요. 업로드한 앨범이 신고당할 경우, 계정 이용이 제한될 수 있습니다.</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" name="SecondText"/>
                                                                 <nil key="highlightedColor"/>
@@ -1116,11 +1116,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LBB-yQ-Y7u">
-                                        <rect key="frame" x="120.00000000000001" y="0.0" width="142.33333333333337" height="56"/>
+                                        <rect key="frame" x="120.00000000000001" y="0.0" width="128.33333333333337" height="56"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYe-qI-1wn">
-                                        <rect key="frame" x="291.33333333333331" y="12.666666666666671" width="89.666666666666686" height="31"/>
+                                        <rect key="frame" x="277.33333333333331" y="12.666666666666671" width="103.66666666666669" height="31"/>
                                         <color key="tintColor" name="SecondText"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="건너뛰기">

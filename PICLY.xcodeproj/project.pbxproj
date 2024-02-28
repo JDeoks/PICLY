@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2A0E08712B39BD5400D76501 /* DetailTagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0E086F2B39BD5400D76501 /* DetailTagsCollectionViewCell.swift */; };
 		2A0E08732B39BD5400D76501 /* DetailTagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0E08702B39BD5400D76501 /* DetailTagsCollectionViewCell.xib */; };
+		2A17B4932B8F95B400F899FC /* ReportField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17B4922B8F95B400F899FC /* ReportField.swift */; };
 		2A1960D72B0FAC92000935CF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1960D62B0FAC92000935CF /* SettingViewController.swift */; };
 		2A1BE96F2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1BE96D2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift */; };
 		2A2654A52B4BE9BE002EF047 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2654A42B4BE9BE002EF047 /* OnboardingViewController.swift */; };
@@ -116,6 +117,7 @@
 		2A0D40C92B3975B000506124 /* ConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigManager.swift; sourceTree = "<group>"; };
 		2A0E086F2B39BD5400D76501 /* DetailTagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A0E08702B39BD5400D76501 /* DetailTagsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTagsCollectionViewCell.xib; sourceTree = "<group>"; };
+		2A17B4922B8F95B400F899FC /* ReportField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportField.swift; sourceTree = "<group>"; };
 		2A1960D62B0FAC92000935CF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2A1BE96D2B08E9B300703ED5 /* MyAlbumsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlbumsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A2654A42B4BE9BE002EF047 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				2A6161032B2B502B0093C688 /* AuthProvider.swift */,
 				2A3F75702B33567900CE67D1 /* UserField.swift */,
 				2A9711252B35C3D400A989E8 /* AlbumField.swift */,
+				2A17B4922B8F95B400F899FC /* ReportField.swift */,
 				2AD7C4652B524BBA00AB0FBC /* State.swift */,
 			);
 			path = Enums;
@@ -580,6 +583,7 @@
 				2A6942782B17920A0070B194 /* SignInViewController.swift in Sources */,
 				2ABE24452B3B321700F7C00D /* HapticManager.swift in Sources */,
 				2A82C66E2B502C190030D1B9 /* OnboardingCollectionViewCell.swift in Sources */,
+				2A17B4932B8F95B400F899FC /* ReportField.swift in Sources */,
 				2AE855CE2B5FE1AC00C1A34C /* PICLYConstants.swift in Sources */,
 				2A3498532B0D694C00424868 /* LoadingIndicatorView.swift in Sources */,
 				2A89E6A02B094EEF009056DD /* EditViewController.swift in Sources */,
