@@ -39,6 +39,7 @@ class MyAlbumsViewController: UIViewController {
     @IBOutlet var keyboardToolContainerView: UIView!
     @IBOutlet var hideKeyboardButton: UIButton!
     
+    // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         print("\(type(of: self)) - \(#function)")
@@ -55,7 +56,8 @@ class MyAlbumsViewController: UIViewController {
         bind()
     }
     
-    func initUI() {
+    // MARK: - initUI
+    private func initUI() {
         // titleLabel
         titleLabel.text = "PICLY"
         
@@ -97,6 +99,7 @@ class MyAlbumsViewController: UIViewController {
         refreshControl.endRefreshing()
     }
     
+    // MARK: - initData
     func initData() {
         // fetch 하기 전 스켈레톤으로 초기화
         DataManager.shared.myAlbums = [AlbumModel(), AlbumModel(), AlbumModel()]
@@ -105,6 +108,7 @@ class MyAlbumsViewController: UIViewController {
         DataManager.shared.fetchMyAlbums()
     }
     
+    // MARK: - action
     func action() {
         // 검색 취소 버튼
         searchCancelButton.rx.tap
@@ -162,6 +166,7 @@ class MyAlbumsViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
+    // MARK: - bind
     func bind() {
         print("\(type(of: self)) - \(#function)")
 
