@@ -188,7 +188,7 @@ extension SettingViewController {
         self.loadingView.removeFromSuperview()
         present(reportSubmitFailedAlert, animated: true)
     }
-    
+     
     // MARK: - 신고하기 로직
     func submitReport(urlStr: String) {
         print("\(type(of: self)) - \(#function)")
