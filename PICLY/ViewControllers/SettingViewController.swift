@@ -10,10 +10,10 @@ import FirebaseFirestore
 
 class SettingViewController: UIViewController {
     
-    let menus = [
+    var menus = [
         ["계정 관리", "튜토리얼 보기", "신고하기"],
         ["이용약관", "개인정보 처리방침","오픈소스 라이센스", "개발자 정보", "버전"]]
-    let menuImages = ["person.fill", "book.fill", "exclamationmark.triangle.fill"]
+    var menuImages = ["person.fill", "book.fill", "exclamationmark.triangle.fill"]
     let urls = [
         "https://jdeoks.notion.site/5cc8688a9432444eaad7a8fdc4e4e38a",
         "https://jdeoks.notion.site/bace573d0a294bdeae4a92464448bcac",
@@ -29,10 +29,12 @@ class SettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initUI()
+        initData()
     }
     
-    func initUI() {
+    private func initUI() {
         // 네비게이션 바
         self.navigationController?.navigationBar.isHidden = true
 
@@ -41,6 +43,14 @@ class SettingViewController: UIViewController {
         menuTableView.delegate = self
         let settingsTableViewCell = UINib(nibName: "SettingsTableViewCell", bundle: nil)
         menuTableView.register(settingsTableViewCell, forCellReuseIdentifier: "SettingsTableViewCell")
+    }
+    
+    private func initData() {
+        if UserManager.shared.getCurrentUserModel()?.email == "duginee@naver.com" {
+            menus[0].append("유저 차단하기")
+            menuImages.append("person.crop.circle.fill.badge.xmark")
+            menuTableView.reloadData()
+        }
     }
 
 }
@@ -105,6 +115,10 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
             // 신고하기
             case 2:
                 showReportAlert()
+            
+            // 유저 차단하기
+            case 3:
+                showBlockUserAlert()
                 
             default:
                 return
@@ -129,12 +143,12 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension SettingViewController {
     
-    // MARK: - Alert
+    // MARK: - 신고하기 로직
     /// 신고제출하기 Alert 표시
     func showReportAlert() {
         print("\(type(of: self)) - \(#function)")
         
-        let reportAlert = UIAlertController(title: "신고하기", message: "신고하실 앨범의 URL을 입력해주세요.", preferredStyle: .alert)
+        let reportAlert = UIAlertController(title: "신고하기", message: "신고할 앨범의 URL을 입력해주세요.", preferredStyle: .alert)
         
         reportAlert.addTextField { textField in
             textField.placeholder = "URL을 입력해주세요."
@@ -144,7 +158,7 @@ extension SettingViewController {
             }
         }
         
-        // 제출 버튼, 처음에는 비활성화 상태로 시작합니다.
+        // 제출 버튼, 처음에는 비활성화 상태로 시작.
         let submitAction = UIAlertAction(title: "제출", style: .default) { action in
             // 제출 로직
             self.view.addSubview(self.loadingView)
@@ -153,7 +167,7 @@ extension SettingViewController {
             }
             self.submitReport(urlStr: urlStr)
         }
-        submitAction.isEnabled = false // 초기에는 제출 버튼을 비활성화합니다.
+        submitAction.isEnabled = false // 초기에는 제출 버튼을 비활성화.
         reportAlert.addAction(submitAction)
         
         // 취소 버튼
@@ -189,7 +203,6 @@ extension SettingViewController {
         present(reportSubmitFailedAlert, animated: true)
     }
      
-    // MARK: - 신고하기 로직
     func submitReport(urlStr: String) {
         print("\(type(of: self)) - \(#function)")
         
@@ -211,5 +224,50 @@ extension SettingViewController {
         }
     }
     
+    // MARK: - 유저 차단 로직
+    
+    func showBlockUserAlert() {
+        print("\(type(of: self)) - \(#function)")
+        
+        let reportAlert = UIAlertController(title: "유저 차단하기", message: "차단할 유저의 URL을 입력해주세요.", preferredStyle: .alert)
+        
+        reportAlert.addTextField { textField in
+            textField.placeholder = "URL을 입력해주세요."
+            // 텍스트 필드의 텍스트가 변경될 때마다 호출될 클로저를 설정
+            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { _ in
+                reportAlert.actions.first?.isEnabled = !textField.text!.isEmpty
+            }
+        }
+        
+        // 제출 버튼, 처음에는 비활성화 상태로 시작.
+        let submitAction = UIAlertAction(title: "제출", style: .default) { action in
+            // 제출 로직
+            self.view.addSubview(self.loadingView)
+            guard let urlStr = reportAlert.textFields?.first?.text else {
+                return
+            }
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+                self.showBlockUserCompletedAlert()
+            }
+        }
+        submitAction.isEnabled = false // 초기에는 제출 버튼을 비활성화.
+        reportAlert.addAction(submitAction)
+        
+        // 취소 버튼
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        reportAlert.addAction(cancelAction)
+        
+        present(reportAlert, animated: true)
+    }
+    
+    func showBlockUserCompletedAlert() {
+        let reportSubmitedAlert = UIAlertController(title: "차단 완료", message: nil, preferredStyle: .alert)
+        // 확인
+        let okAction = UIAlertAction(title: "확인", style: .default)
+        reportSubmitedAlert.addAction(okAction)
+        
+        self.loadingView.removeFromSuperview()
+        present(reportSubmitedAlert, animated: true)
+    }
 }
 
