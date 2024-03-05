@@ -200,10 +200,10 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLG-qi-ldM">
-                                        <rect key="frame" x="16" y="12" width="32" height="32"/>
+                                        <rect key="frame" x="16" y="8" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="32" id="1UD-O4-ZvH"/>
-                                            <constraint firstAttribute="height" constant="32" id="BbJ-be-PDa"/>
+                                            <constraint firstAttribute="width" constant="40" id="1UD-O4-ZvH"/>
+                                            <constraint firstAttribute="height" constant="40" id="BbJ-be-PDa"/>
                                         </constraints>
                                         <color key="tintColor" name="MainText"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -213,13 +213,14 @@
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6cT-CF-e3e">
-                                        <rect key="frame" x="48" y="3" width="304.66666666666669" height="50"/>
+                                        <rect key="frame" x="56" y="3" width="281" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EU1-zU-5zA">
-                                        <rect key="frame" x="352.66666666666669" y="4" width="24.333333333333314" height="48"/>
+                                        <rect key="frame" x="337" y="8" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="EGY-Q9-C78"/>
+                                            <constraint firstAttribute="height" constant="40" id="EGY-Q9-C78"/>
+                                            <constraint firstAttribute="width" constant="40" id="TKI-ar-GEb"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <color key="tintColor" name="MainText"/>
@@ -290,10 +291,10 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKp-U4-U90">
-                                        <rect key="frame" x="16" y="12" width="32" height="32"/>
+                                        <rect key="frame" x="16" y="12" width="40" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="25r-DC-jGY"/>
-                                            <constraint firstAttribute="width" constant="32" id="ifI-ST-eYt"/>
+                                            <constraint firstAttribute="width" constant="40" id="ifI-ST-eYt"/>
                                         </constraints>
                                         <color key="tintColor" name="MainText"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -303,13 +304,14 @@
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uSW-b3-T58">
-                                        <rect key="frame" x="48" y="3" width="302" height="50"/>
+                                        <rect key="frame" x="56" y="3" width="281" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJG-0F-N9p">
-                                        <rect key="frame" x="350" y="4" width="27" height="48"/>
+                                        <rect key="frame" x="337" y="8" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="5au-v4-IXt"/>
+                                            <constraint firstAttribute="height" constant="40" id="5au-v4-IXt"/>
+                                            <constraint firstAttribute="width" constant="40" id="G6z-6r-umy"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <color key="tintColor" name="MainText"/>
@@ -510,10 +512,10 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ct0-Re-na1">
-                                        <rect key="frame" x="16" y="12" width="32" height="32"/>
+                                        <rect key="frame" x="16" y="8" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="LXK-uc-gBF"/>
-                                            <constraint firstAttribute="width" constant="32" id="cMw-y7-yXx"/>
+                                            <constraint firstAttribute="height" constant="40" id="LXK-uc-gBF"/>
+                                            <constraint firstAttribute="width" constant="40" id="cMw-y7-yXx"/>
                                         </constraints>
                                         <color key="tintColor" name="MainText"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -522,13 +524,13 @@
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1D-xU-2XH">
-                                        <rect key="frame" x="48" y="3" width="302" height="50"/>
+                                        <rect key="frame" x="56" y="3" width="286" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMo-7y-Pf2">
-                                        <rect key="frame" x="350" y="4" width="27" height="48"/>
+                                        <rect key="frame" x="342" y="8" width="35" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="riG-qE-4Al"/>
+                                            <constraint firstAttribute="height" constant="40" id="riG-qE-4Al"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <color key="tintColor" name="MainText"/>
@@ -812,10 +814,10 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnA-dK-TTn">
-                                        <rect key="frame" x="16" y="12" width="32" height="32"/>
+                                        <rect key="frame" x="16" y="8" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="32" id="d1P-PB-ZzU"/>
-                                            <constraint firstAttribute="height" constant="32" id="usF-uq-nHu"/>
+                                            <constraint firstAttribute="width" constant="40" id="d1P-PB-ZzU"/>
+                                            <constraint firstAttribute="height" constant="40" id="usF-uq-nHu"/>
                                         </constraints>
                                         <color key="tintColor" name="MainText"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -824,7 +826,7 @@
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gCm-zd-Vrx">
-                                        <rect key="frame" x="48" y="3" width="329" height="50"/>
+                                        <rect key="frame" x="56" y="3" width="321" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -1627,7 +1629,7 @@ QnV0dG9uGxsbA
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

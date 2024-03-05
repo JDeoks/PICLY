@@ -134,6 +134,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
                 return
             }
             SceneManager.shared.presentWebVC(vc: self, url: url)
+            
         default:
             return
         }
