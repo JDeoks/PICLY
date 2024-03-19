@@ -50,10 +50,10 @@ class MyAlbumsViewController: UIViewController {
             AnalyticsParameterContentType: "cont",
         ])
         
-        initUI()
-        initData()
-        action()
-        bind()
+//        initUI()
+//        initData()
+//        action()
+//        bind()
     }
     
     // MARK: - initUI

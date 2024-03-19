@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y5Y-qd-R1f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y5Y-qd-R1f">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -93,17 +93,6 @@
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="24" bottom="0.0" right="24"/>
                             </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JsP-fG-yj1">
-                                <rect key="frame" x="0.0" y="159" width="393" height="610"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RCy-F7-gLQ">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jay-PG-fmp">
                                 <rect key="frame" x="0.0" y="768" width="393" height="1"/>
                                 <color key="backgroundColor" name="CollectionViewCellBackground"/>
@@ -154,18 +143,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="MainBackground"/>
                         <constraints>
-                            <constraint firstItem="JsP-fG-yj1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0JQ-kw-i1s"/>
                             <constraint firstItem="egv-dB-yvn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5cQ-JL-eKl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="PWe-Lj-u3a" secondAttribute="top" id="BJv-El-8Pa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PWe-Lj-u3a" secondAttribute="trailing" id="H50-01-rAv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="egv-dB-yvn" secondAttribute="trailing" id="KVR-8K-smP"/>
                             <constraint firstItem="jay-PG-fmp" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Lfo-lb-cLl"/>
                             <constraint firstItem="vC8-Rx-iJb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-24" id="SiY-9P-XTn"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JsP-fG-yj1" secondAttribute="trailing" id="U9q-hq-QF4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jay-PG-fmp" secondAttribute="trailing" id="VXy-ao-IVe"/>
                             <constraint firstItem="PWe-Lj-u3a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="axK-Sl-HMW"/>
-                            <constraint firstItem="JsP-fG-yj1" firstAttribute="top" secondItem="PWe-Lj-u3a" secondAttribute="bottom" id="c2g-O2-x1H"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JsP-fG-yj1" secondAttribute="bottom" id="dl8-Fq-Bkf"/>
                             <constraint firstItem="jay-PG-fmp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gBb-bI-yBR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vC8-Rx-iJb" secondAttribute="trailing" constant="24" id="mDp-tW-vRq"/>
                             <constraint firstItem="egv-dB-yvn" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="bottom" priority="500" id="w0D-sV-hRc"/>
@@ -175,7 +160,6 @@
                     <connections>
                         <outlet property="hideKeyboardButton" destination="EuR-2t-szH" id="Lja-Ey-weF"/>
                         <outlet property="keyboardToolContainerView" destination="egv-dB-yvn" id="3wb-zL-CLd"/>
-                        <outlet property="myAlbumsCollectionView" destination="JsP-fG-yj1" id="Kn5-d9-gEc"/>
                         <outlet property="plusButton" destination="vC8-Rx-iJb" id="SEm-Td-U2c"/>
                         <outlet property="searchCancelButton" destination="iOG-2E-sQY" id="Gy8-sA-siT"/>
                         <outlet property="searchTagStackView" destination="Dql-ZL-X5o" id="dDq-pZ-N0f"/>
