@@ -19,7 +19,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         print("\(type(of: self)) - \(#function)")
         
         super.viewDidLoad()
-        //initUI()
+        initUI()
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -37,7 +37,4 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.items?[1].title = "설정"
     }
 
-    deinit {
-        print("\(type(of: self)) - \(#function)")
-    }
 }

@@ -1,96 +1,192 @@
 
-/* Class = "UILabel"; text = "설정"; ObjectID = "8UD-j7-E6Y"; */
-"8UD-j7-E6Y.text" = "설정";
+/* Class = "UITextField"; placeholder = "태그를 입력하세요"; ObjectID = "05B-OF-ZkV"; */
+"05B-OF-ZkV.placeholder" = "태그를 입력하세요";
 
-/* Class = "UILabel"; text = "태그"; ObjectID = "9j9-IZ-L4U"; */
-"9j9-IZ-L4U.text" = "태그";
+/* Class = "UIViewController"; title = "EmailSignInViewController"; ObjectID = "0Bw-qN-rwv"; */
+"0Bw-qN-rwv.title" = "EmailSignInViewController";
 
-/* Class = "UILabel"; text = "2023.08.12 08:40"; ObjectID = "B5t-ej-LAK"; */
-"B5t-ej-LAK.text" = "2023.08.12 08:40";
+/* Class = "UIButton"; normalTitle = "다음"; ObjectID = "0bS-y7-unW"; */
+"0bS-y7-unW.normalTitle" = "다음";
 
-/* Class = "UIButton"; normalTitle = "완료"; ObjectID = "BMo-7y-Pf2"; */
-"BMo-7y-Pf2.normalTitle" = "완료";
+/* Class = "UILabel"; text = "로그인"; ObjectID = "22l-Ms-w3s"; */
+"22l-Ms-w3s.text" = "로그인";
 
-/* Class = "UITabBarItem"; title = "설정"; ObjectID = "I3X-2L-WBK"; */
-"I3X-2L-WBK.title" = "설정";
+/* Class = "UIViewController"; title = "AcountViewController"; ObjectID = "25X-js-ERZ"; */
+"25X-js-ERZ.title" = "AcountViewController";
 
-/* Class = "UILabel"; text = "사진"; ObjectID = "KPJ-Wm-Mwr"; */
-"KPJ-Wm-Mwr.text" = "사진";
+/* Class = "UILabel"; text = "앨범 상세정보"; ObjectID = "4Gn-ky-wfv"; */
+"4Gn-ky-wfv.text" = "앨범 상세정보";
 
-/* Class = "UILabel"; text = "다른 사용자의 창작물이나 지적 재산권을 존중해주세요.  무단으로 타인의 작품을 사용하는 행위는 금지되어 있습니다.선정적이거나 모욕적인 이미지, 비속어를 포함한 내용은 업로드하지 말아주세요.\n타인의 개인정보가 노출되지 않도록 주의해주세요."; ObjectID = "N4O-Tv-kut"; */
-"N4O-Tv-kut.text" = "다른 사용자의 창작물이나 지적 재산권을 존중해주세요.  무단으로 타인의 작품을 사용하는 행위는 금지되어 있습니다.선정적이거나 모욕적인 이미지, 비속어를 포함한 내용은 업로드하지 말아주세요.\n타인의 개인정보가 노출되지 않도록 주의해주세요.";
+/* Class = "UILabel"; text = "이메일"; ObjectID = "5Qs-Lp-Yxq"; */
+"5Qs-Lp-Yxq.text" = "이메일";
 
-/* Class = "UILabel"; text = "사진"; ObjectID = "OgO-Wp-g70"; */
-"OgO-Wp-g70.text" = "사진";
+/* Class = "UIViewController"; title = "DetailViewController"; ObjectID = "5br-GC-EYE"; */
+"5br-GC-EYE.title" = "DetailViewController";
 
-/* Class = "UILabel"; text = "다른 사용자의 창작물이나 지적 재산권을 존중해주세요.  무단으로 타인의 작품을 사용하는 행위는 금지되어 있습니다.선정적이거나 모욕적인 이미지, 비속어를 포함한 내용은 업로드하지 말아주세요.\n타인의 개인정보가 노출되지 않도록 주의해주세요."; ObjectID = "OvN-zO-aUW"; */
-"OvN-zO-aUW.text" = "다른 사용자의 창작물이나 지적 재산권을 존중해주세요.  무단으로 타인의 작품을 사용하는 행위는 금지되어 있습니다.선정적이거나 모욕적인 이미지, 비속어를 포함한 내용은 업로드하지 말아주세요.\n타인의 개인정보가 노출되지 않도록 주의해주세요.";
+/* Class = "UITextView"; text = "위의 “Google/Apple/이메일로 로그인”을 클릭하면 \n이용약관 및 개인정보처리방침을 읽고 이해했으며,\n그에 동의하는 것으로 간주됩니다."; ObjectID = "5kB-wd-60Z"; */
+"5kB-wd-60Z.text" = "위의 “Google/Apple/이메일로 로그인”을 클릭하면 \n이용약관 및 개인정보처리방침을 읽고 이해했으며,\n그에 동의하는 것으로 간주됩니다.";
 
-/* Class = "UILabel"; text = "만료 기한"; ObjectID = "PFM-er-qtN"; */
-"PFM-er-qtN.text" = "만료 기한";
+/* Class = "UILabel"; text = "PICLY"; ObjectID = "5yo-1c-ccd"; */
+"5yo-1c-ccd.text" = "PICLY";
 
-/* Class = "UITextField"; placeholder = "태그를 입력하세요"; ObjectID = "Qmr-j9-N8i"; */
-"Qmr-j9-N8i.placeholder" = "태그를 입력하세요";
+/* Class = "UILabel"; text = "태그"; ObjectID = "8fh-1j-J5b"; */
+"8fh-1j-J5b.text" = "태그";
 
-/* Class = "UITextField"; placeholder = "태그 검색"; ObjectID = "UID-xT-SBR"; */
-"UID-xT-SBR.placeholder" = "태그 검색";
+/* Class = "UILabel"; text = "로그인 정보"; ObjectID = "99j-Ko-LKI"; */
+"99j-Ko-LKI.text" = "로그인 정보";
 
-/* Class = "UILabel"; text = "태그"; ObjectID = "WOM-8Q-fPi"; */
-"WOM-8Q-fPi.text" = "태그";
+/* Class = "UILabel"; text = "1일 0시간 후"; ObjectID = "9py-vb-X2R"; */
+"9py-vb-X2R.text" = "1일 0시간 후";
 
-/* Class = "UILabel"; text = "1일 0시간 후"; ObjectID = "WWh-FV-4lU"; */
-"WWh-FV-4lU.text" = "1일 0시간 후";
+/* Class = "UILabel"; text = " "; ObjectID = "A2x-EN-VWT"; */
+"A2x-EN-VWT.text" = " ";
 
-/* Class = "UILabel"; text = "PICLY"; ObjectID = "aCo-M8-BXX"; */
-"aCo-M8-BXX.text" = "PICLY";
+/* Class = "UIButton"; configuration.title = "건너뛰기"; ObjectID = "AJ2-fH-JMY"; */
+"AJ2-fH-JMY.configuration.title" = "건너뛰기";
 
-/* Class = "UILabel"; text = "17일 7시간 12분 후 만료 "; ObjectID = "bbt-Qp-rMr"; */
-"bbt-Qp-rMr.text" = "17일 7시간 12분 후 만료 ";
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "AJ2-fH-JMY"; */
+"AJ2-fH-JMY.normalTitle" = "Button";
 
-/* Class = "UILabel"; text = "# 파도_사진"; ObjectID = "bgC-FW-PeJ"; */
-"bgC-FW-PeJ.text" = "# 파도_사진";
+/* Class = "UILabel"; text = "1일 0시간 후"; ObjectID = "ATh-sf-bAl"; */
+"ATh-sf-bAl.text" = "1일 0시간 후";
 
-/* Class = "UITextField"; placeholder = "태그를 입력하세요"; ObjectID = "gyk-y1-Jdj"; */
-"gyk-y1-Jdj.placeholder" = "태그를 입력하세요";
+/* Class = "UILabel"; text = "계정 관리"; ObjectID = "Awh-cu-bGj"; */
+"Awh-cu-bGj.text" = "계정 관리";
 
-/* Class = "UITextField"; text = "# 파도_사진"; ObjectID = "gyk-y1-Jdj"; */
-"gyk-y1-Jdj.text" = "# 파도_사진";
+/* Class = "UILabel"; text = "이메일로 로그인"; ObjectID = "Axh-T2-Ygw"; */
+"Axh-T2-Ygw.text" = "이메일로 로그인";
 
-/* Class = "UIButton"; normalTitle = "저장"; ObjectID = "hJG-0F-N9p"; */
-"hJG-0F-N9p.normalTitle" = "저장";
+/* Class = "UIViewController"; title = "MyAlbumsViewController"; ObjectID = "CXd-Fl-nSx"; */
+"CXd-Fl-nSx.title" = "MyAlbumsViewController";
 
-/* Class = "UILabel"; text = "상세정보"; ObjectID = "hYw-Mz-Pax"; */
-"hYw-Mz-Pax.text" = "상세정보";
+/* Class = "UILabel"; text = "앨범 업로드"; ObjectID = "ECr-Nw-fLH"; */
+"ECr-Nw-fLH.text" = "앨범 업로드";
 
-/* Class = "UIButton"; normalTitle = "취소"; ObjectID = "iOG-2E-sQY"; */
-"iOG-2E-sQY.normalTitle" = "취소";
+/* Class = "UILabel"; text = " "; ObjectID = "GBc-U3-kJV"; */
+"GBc-U3-kJV.text" = " ";
 
-/* Class = "UIButton"; configuration.title = "링크 공유"; ObjectID = "jcw-8l-Muk"; */
-"jcw-8l-Muk.configuration.title" = "링크 공유";
+/* Class = "UITextField"; placeholder = "태그 검색"; ObjectID = "JMC-st-Vb3"; */
+"JMC-st-Vb3.placeholder" = "태그 검색";
 
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "jcw-8l-Muk"; */
-"jcw-8l-Muk.normalTitle" = "Button";
+/* Class = "UIViewController"; title = "SettingViewController"; ObjectID = "KD8-K0-BrC"; */
+"KD8-K0-BrC.title" = "SettingViewController";
 
-/* Class = "UITabBarItem"; title = "내 사진"; ObjectID = "n5A-VP-0PV"; */
-"n5A-VP-0PV.title" = "내 사진";
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "L1Y-Og-DOI"; */
+"L1Y-Og-DOI.normalTitle" = "Button";
 
-/* Class = "UILabel"; text = "클릭해서 사진을 선택하세요"; ObjectID = "olj-bY-KiW"; */
-"olj-bY-KiW.text" = "클릭해서 사진을 선택하세요";
+/* Class = "UIViewController"; title = "OnboardingViewController"; ObjectID = "Luf-3j-2r3"; */
+"Luf-3j-2r3.title" = "OnboardingViewController";
 
-/* Class = "UILabel"; text = "1,203"; ObjectID = "rCe-KJ-uFf"; */
-"rCe-KJ-uFf.text" = "1,203";
+/* Class = "UITabBarItem"; title = "내 앨범"; ObjectID = "OKw-GJ-3eu"; */
+"OKw-GJ-3eu.title" = "내 앨범";
 
-/* Class = "UILabel"; text = "클릭해서 사진을 선택하세요"; ObjectID = "rUT-oG-BUX"; */
-"rUT-oG-BUX.text" = "클릭해서 사진을 선택하세요";
+/* Class = "UIViewController"; title = "WebViewController"; ObjectID = "OXg-Js-qvi"; */
+"OXg-Js-qvi.title" = "WebViewController";
 
-/* Class = "UILabel"; text = "1일 0시간 후"; ObjectID = "sY6-ig-gZ5"; */
-"sY6-ig-gZ5.text" = "1일 0시간 후";
+/* Class = "UILabel"; text = "Apple로 로그인"; ObjectID = "Pfk-47-fTl"; */
+"Pfk-47-fTl.text" = "Apple로 로그인";
 
-/* Class = "UILabel"; text = "만료 기한"; ObjectID = "wjS-Be-TZZ"; */
-"wjS-Be-TZZ.text" = "만료 기한";
+/* Class = "UIButton"; normalTitle = "계정 탈퇴"; ObjectID = "QzI-Pa-sYV"; */
+"QzI-Pa-sYV.normalTitle" = "계정 탈퇴";
 
-/* Class = "UILabel"; text = "사진 업로드"; ObjectID = "x5D-40-ch5"; */
-"x5D-40-ch5.text" = "사진 업로드";
+/* Class = "UILabel"; text = "Google로 로그인"; ObjectID = "Rso-zj-Brf"; */
+"Rso-zj-Brf.text" = "Google로 로그인";
 
-/* Class = "UILabel"; text = "정보 수정"; ObjectID = "yWE-hl-9H7"; */
-"yWE-hl-9H7.text" = "정보 수정";
+/* Class = "UILabel"; text = "가입일"; ObjectID = "UaB-C6-wXn"; */
+"UaB-C6-wXn.text" = "가입일";
+
+/* Class = "UILabel"; text = " "; ObjectID = "Ue9-ZL-3R1"; */
+"Ue9-ZL-3R1.text" = " ";
+
+/* Class = "UILabel"; text = "0/10"; ObjectID = "VcR-79-U8r"; */
+"VcR-79-U8r.text" = "0/10";
+
+/* Class = "UIViewController"; title = "SignInViewController"; ObjectID = "Vl9-9j-reS"; */
+"Vl9-9j-reS.title" = "SignInViewController";
+
+/* Class = "UIButton"; normalTitle = "취소"; ObjectID = "WO5-5K-NPg"; */
+"WO5-5K-NPg.normalTitle" = "취소";
+
+/* Class = "UITextField"; placeholder = "비밀번호를 입력하세요"; ObjectID = "YTZ-5Y-yQU"; */
+"YTZ-5Y-yQU.placeholder" = "비밀번호를 입력하세요";
+
+/* Class = "UITabBarController"; title = "MainTabBarController"; ObjectID = "ZII-sP-Chb"; */
+"ZII-sP-Chb.title" = "MainTabBarController";
+
+/* Class = "UILabel"; text = "로그인하고 나의 사진을 공유하세요.\n공유하는 사진은 익명으로 업로드되며, 내 정보가 저장되지 않습니다."; ObjectID = "aXm-7A-xHj"; */
+"aXm-7A-xHj.text" = "로그인하고 나의 사진을 공유하세요.\n공유하는 사진은 익명으로 업로드되며, 내 정보가 저장되지 않습니다.";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "bcL-p4-UoO"; */
+"bcL-p4-UoO.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "만료 기한"; ObjectID = "bmf-H6-TAB"; */
+"bmf-H6-TAB.text" = "만료 기한";
+
+/* Class = "UILabel"; text = "PICLY"; ObjectID = "e01-48-dpY"; */
+"e01-48-dpY.text" = "PICLY";
+
+/* Class = "UILabel"; text = "사진"; ObjectID = "e2U-r7-1RL"; */
+"e2U-r7-1RL.text" = "사진";
+
+/* Class = "UILabel"; text = "#"; ObjectID = "enn-ZV-z8S"; */
+"enn-ZV-z8S.text" = "#";
+
+/* Class = "UITabBarItem"; title = "설정"; ObjectID = "fKB-Qz-A1r"; */
+"fKB-Qz-A1r.title" = "설정";
+
+/* Class = "UILabel"; text = "사진"; ObjectID = "h4V-2A-tUm"; */
+"h4V-2A-tUm.text" = "사진";
+
+/* Class = "UILabel"; text = "설정"; ObjectID = "hMk-Zl-jBb"; */
+"hMk-Zl-jBb.text" = "설정";
+
+/* Class = "UIButton"; normalTitle = "로그아웃"; ObjectID = "jFu-iI-LIw"; */
+"jFu-iI-LIw.normalTitle" = "로그아웃";
+
+/* Class = "UILabel"; text = "다른 사용자의 창작물이나 지적 재산권을 존중해주세요.   무단으로 타인의 작품을 사용하는 행위는 금지되어 있습니다.선정적이거나 모욕적인 이미지, 비속어를 포함한 내용은 업로드하지 말아주세요.\n타인의 개인정보가 노출되지 않도록 주의해주세요. 업로드한 앨범이 신고당할 경우, 계정 이용이 제한될 수 있습니다."; ObjectID = "jcz-IV-X5B"; */
+"jcz-IV-X5B.text" = "다른 사용자의 창작물이나 지적 재산권을 존중해주세요.   무단으로 타인의 작품을 사용하는 행위는 금지되어 있습니다.선정적이거나 모욕적인 이미지, 비속어를 포함한 내용은 업로드하지 말아주세요.\n타인의 개인정보가 노출되지 않도록 주의해주세요. 업로드한 앨범이 신고당할 경우, 계정 이용이 제한될 수 있습니다.";
+
+/* Class = "UITextField"; placeholder = "태그를 입력하세요"; ObjectID = "jwL-nB-VeX"; */
+"jwL-nB-VeX.placeholder" = "태그를 입력하세요";
+
+/* Class = "UIButton"; normalTitle = "로그인"; ObjectID = "nKc-Oj-e4C"; */
+"nKc-Oj-e4C.normalTitle" = "로그인";
+
+/* Class = "UILabel"; text = "만료 기한"; ObjectID = "nNn-tT-W9X"; */
+"nNn-tT-W9X.text" = "만료 기한";
+
+/* Class = "UILabel"; text = "비밀번호"; ObjectID = "o09-Uz-kaw"; */
+"o09-Uz-kaw.text" = "비밀번호";
+
+/* Class = "UILabel"; text = "다른 사용자의 창작물이나 지적 재산권을 존중해주세요.  무단으로 타인의 작품을 사용하는 행위는 금지되어 있습니다.선정적이거나 모욕적인 이미지, 비속어를 포함한 내용은 업로드하지 말아주세요.\n타인의 개인정보가 노출되지 않도록 주의해주세요."; ObjectID = "o9w-Fn-5QT"; */
+"o9w-Fn-5QT.text" = "다른 사용자의 창작물이나 지적 재산권을 존중해주세요.  무단으로 타인의 작품을 사용하는 행위는 금지되어 있습니다.선정적이거나 모욕적인 이미지, 비속어를 포함한 내용은 업로드하지 말아주세요.\n타인의 개인정보가 노출되지 않도록 주의해주세요.";
+
+/* Class = "UIButton"; normalTitle = "회원가입"; ObjectID = "qNA-IC-tEX"; */
+"qNA-IC-tEX.normalTitle" = "회원가입";
+
+/* Class = "UIButton"; normalTitle = "완료"; ObjectID = "qhw-hY-RrE"; */
+"qhw-hY-RrE.normalTitle" = "완료";
+
+/* Class = "UILabel"; text = "태그"; ObjectID = "sE6-dX-A14"; */
+"sE6-dX-A14.text" = "태그";
+
+/* Class = "UIButton"; normalTitle = "저장"; ObjectID = "u8b-pX-cpx"; */
+"u8b-pX-cpx.normalTitle" = "저장";
+
+/* Class = "UITextField"; placeholder = "이메일을 입력하세요"; ObjectID = "x4V-LI-bG5"; */
+"x4V-LI-bG5.placeholder" = "이메일을 입력하세요";
+
+/* Class = "UIViewController"; title = "UploadViewController"; ObjectID = "x6f-c1-wvW"; */
+"x6f-c1-wvW.title" = "UploadViewController";
+
+/* Class = "UILabel"; text = "로그인"; ObjectID = "xw4-yZ-ZLY"; */
+"xw4-yZ-ZLY.text" = "로그인";
+
+/* Class = "UILabel"; text = "이메일"; ObjectID = "xzP-kb-lAU"; */
+"xzP-kb-lAU.text" = "이메일";
+
+/* Class = "UILabel"; text = "정보 수정"; ObjectID = "yTN-t2-Drs"; */
+"yTN-t2-Drs.text" = "정보 수정";
+
+/* Class = "UILabel"; text = "#"; ObjectID = "ypf-9K-6JA"; */
+"ypf-9K-6JA.text" = "#";

@@ -15,17 +15,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         print("\(type(of: self)) - \(#function)")
         
-//        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let _ = (scene as? UIWindowScene) else { return }
 
-//        if isUserLoggedIn() && UserManager.shared.hasCompletedInitialLaunch(){
-//            let mainVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController
-////            
-//            window?.rootViewController = mainVC
-//        } else {
-//            let SignInNavVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInNavController") as? UINavigationController
-//
-//            window?.rootViewController = SignInNavVC
-//        }
+        if isUserLoggedIn() && UserManager.shared.hasCompletedInitialLaunch(){
+            let mainVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") as? MainTabBarController
+
+            window?.rootViewController = mainVC
+        } else {
+            let SignInNavVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignInNavController") as? UINavigationController
+
+            window?.rootViewController = SignInNavVC
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

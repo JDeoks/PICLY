@@ -50,10 +50,10 @@ class MyAlbumsViewController: UIViewController {
             AnalyticsParameterContentType: "cont",
         ])
         
-//        initUI()
-//        initData()
-//        action()
-//        bind()
+        initUI()
+        initData()
+        action()
+        bind()
     }
     
     // MARK: - initUI
@@ -285,11 +285,13 @@ extension MyAlbumsViewController: UITextFieldDelegate {
     
     /// 검색 시작 애니메이션
     func startSearching() {
-        self.searchCancelButton.isHidden = false
-        UIView.animate(withDuration: 0.1, animations: {
+        UIView.animate(withDuration: 0.1) {
             self.titleStackView.isHidden = true
             self.view.layoutIfNeeded()
-        })
+        } completion: { _ in
+            self.searchCancelButton.isHidden = false
+            self.view.layoutIfNeeded()
+        }
     }
     
     func stopSearching() {
@@ -301,6 +303,7 @@ extension MyAlbumsViewController: UITextFieldDelegate {
             filteredAlbums = DataManager.shared.myAlbums
             myAlbumsCollectionView.reloadData()
         }
+        
         // 검색 취소 애니메이션
         searchCancelButton.isHidden = true
         view.endEditing(true)

@@ -38,22 +38,22 @@ class SignInViewController: UIViewController {
         print("\(type(of: self)) - \(#function)")
         super.viewDidLoad()
         
-//        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
-//            AnalyticsParameterItemID: "id-\(title!)",
-//            AnalyticsParameterItemName: title!,
-//            AnalyticsParameterContentType: "cont",
-//        ])
-//        
-//        initUI()
-//        action()
-//        bind()
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "id-\(title!)",
+            AnalyticsParameterItemName: title!,
+            AnalyticsParameterContentType: "cont",
+        ])
+        
+        initUI()
+        action()
+        bind()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        if UserManager.shared.hasCompletedInitialLaunch() == false && shouldShowOnboarding == true {
-//            SceneManager.shared.presentOnboardingVC(vc: self, animated: false)
-//            shouldShowOnboarding = false
-//        }
+        if UserManager.shared.hasCompletedInitialLaunch() == false && shouldShowOnboarding == true {
+            SceneManager.shared.presentOnboardingVC(vc: self, animated: false)
+            shouldShowOnboarding = false
+        }
     }
     
     deinit {
