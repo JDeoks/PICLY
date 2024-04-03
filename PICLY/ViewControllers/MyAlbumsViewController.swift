@@ -16,6 +16,7 @@ import Firebase
 import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
+import RxGesture
 
 class MyAlbumsViewController: UIViewController {
     
@@ -164,6 +165,59 @@ class MyAlbumsViewController: UIViewController {
                 self.updateFilteredAlbums(keyword: changedText)
             })
             .disposed(by: disposeBag)
+        
+        // myAlbumsCollectionView
+        // 홀드시 색 변화
+        myAlbumsCollectionView.rx.longPressGesture(configuration: { longPress, delegate in
+            longPress.minimumPressDuration = 0.2
+        })
+            .asObservable()
+            .when(.began, .cancelled, .changed, .ended)
+            .subscribe { gestureEvent in
+                print("myAlbumsCollectionView - longPress -> 홀드시 색 변화")
+                guard let recognizer = gestureEvent.element else {
+                    return
+                }
+                let location: CGPoint = recognizer.location(in: self.myAlbumsCollectionView)
+                guard let indexPath = self.myAlbumsCollectionView.indexPathForItem(at: location) else {
+                    return
+                }
+                guard let cell = self.myAlbumsCollectionView.cellForItem(at: indexPath) as? MyAlbumsCollectionViewCell else {
+                    return
+                }
+                switch recognizer.state {
+                case .began:
+                    UIView.animate(withDuration: 0.2) {
+                        cell.alpha = 0.5
+                    }
+                case .cancelled, .changed, .ended:
+                    UIView.animate(withDuration: 0.1) {
+                        cell.alpha = 1
+                    }
+                default:
+                    return
+                }
+            }
+            .disposed(by: disposeBag)
+        // longPress -> 진동, 삭제 alert
+        myAlbumsCollectionView.rx.longPressGesture(configuration: { longPress, delegate in
+            longPress.minimumPressDuration = 0.5
+        })
+            .asObservable()
+            .when(.began)
+            .subscribe { gestureEvent in
+                print("myAlbumsCollectionView - longPressGesture -> 진동, 삭제 alert")
+                
+                guard let recognizer = gestureEvent.element else {
+                    return
+                }
+                let location: CGPoint = recognizer.location(in: self.myAlbumsCollectionView)
+                let indexPath = self.myAlbumsCollectionView.indexPathForItem(at: location)
+                HapticManager.shared.triggerImpact()
+                print(indexPath?.row, DataManager.shared.myAlbums[indexPath?.row ?? 0].getCreationTimeStr())
+            }
+            .disposed(by: disposeBag)
+
     }
 
     // MARK: - bind
