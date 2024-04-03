@@ -21,6 +21,7 @@ import RxGesture
 class MyAlbumsViewController: UIViewController {
     
     let loginManager = LoginManager()
+    let myAlbumsViewModel = MyAlbumsViewModel()
     
     private var filteredAlbums: [AlbumModel] = []
     private var keyboardHeight: CGFloat = 0
@@ -96,17 +97,16 @@ class MyAlbumsViewController: UIViewController {
     
     @objc func pullToRefresh(_ sender: Any) {
         stopSearching()
-        DataManager.shared.fetchMyAlbums()
+        myAlbumsViewModel.fetchMyAlbums()
         refreshControl.endRefreshing()
     }
     
     // MARK: - initData
     func initData() {
         // fetch 하기 전 스켈레톤으로 초기화
-        DataManager.shared.myAlbums = [AlbumModel(), AlbumModel(), AlbumModel()]
         ConfigManager.shared.fetchRemoteConfig()
         UserManager.shared.fetchUserAuth()
-        DataManager.shared.fetchMyAlbums()
+        myAlbumsViewModel.fetchMyAlbums()
     }
     
     // MARK: - action
@@ -167,7 +167,7 @@ class MyAlbumsViewController: UIViewController {
             .disposed(by: disposeBag)
         
         // myAlbumsCollectionView
-        // 홀드시 색 변화
+        // longPress -> 색 변화
         myAlbumsCollectionView.rx.longPressGesture(configuration: { longPress, delegate in
             longPress.minimumPressDuration = 0.2
         })
@@ -214,7 +214,7 @@ class MyAlbumsViewController: UIViewController {
                 let location: CGPoint = recognizer.location(in: self.myAlbumsCollectionView)
                 let indexPath = self.myAlbumsCollectionView.indexPathForItem(at: location)
                 HapticManager.shared.triggerImpact()
-                print(indexPath?.row, DataManager.shared.myAlbums[indexPath?.row ?? 0].getCreationTimeStr())
+                print(indexPath?.row, self.myAlbumsViewModel.myAlbums[indexPath?.row ?? 0].getCreationTimeStr())
             }
             .disposed(by: disposeBag)
 
@@ -224,9 +224,9 @@ class MyAlbumsViewController: UIViewController {
     func bind() {
         print("\(type(of: self)) - \(#function)")
 
-        DataManager.shared.updateMyAlbumsDone
+        myAlbumsViewModel.updateMyAlbumsDone
             .subscribe { _ in
-                self.filteredAlbums = DataManager.shared.myAlbums
+                self.filteredAlbums = self.myAlbumsViewModel.myAlbums
                 self.myAlbumsCollectionView.reloadData()
             }
             .disposed(by: disposeBag)
@@ -257,6 +257,19 @@ class MyAlbumsViewController: UIViewController {
                 SceneManager.shared.setSignInNavVCAsRoot(animated: false)
             }
             .disposed(by: disposeBag)
+        
+        DataManager.shared.albumDeleted
+            .subscribe { albumID in
+                self.myAlbumsViewModel.fetchMyAlbums()
+                self.showToast(message: "삭제 완료", keyboardHeight: self.keyboardHeight)
+            }
+            .disposed(by: disposeBag)
+        
+        DataManager.shared.albumUploaded
+            .subscribe { albumID in
+                self.myAlbumsViewModel.fetchMyAlbums()
+            }
+            .disposed(by: disposeBag)
     }
 
 }
@@ -270,7 +283,7 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // 내 앨범이 없음
-        if DataManager.shared.myAlbums.isEmpty {
+        if myAlbumsViewModel.myAlbums.isEmpty {
             let cell = myAlbumsCollectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumsDefaultCollectionViewCell", for: indexPath) as! MyAlbumsDefaultCollectionViewCell
             cell.setData(state: .empty)
             return cell
@@ -353,8 +366,8 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         
         searchTagTextField.text = ""
         // 검색 정보 초기화
-        if !(filteredAlbums.count == DataManager.shared.myAlbums.count) {
-            filteredAlbums = DataManager.shared.myAlbums
+        if !(filteredAlbums.count == myAlbumsViewModel.myAlbums.count) {
+            filteredAlbums = myAlbumsViewModel.myAlbums
             myAlbumsCollectionView.reloadData()
         }
         
@@ -372,11 +385,11 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         print("\(type(of: self)) - \(#function)", keyword)
         
         if keyword.isEmpty {
-            filteredAlbums = DataManager.shared.myAlbums
+            filteredAlbums = myAlbumsViewModel.myAlbums
             myAlbumsCollectionView.reloadData()
             return
         }
-        filteredAlbums = DataManager.shared.myAlbums.filter { album in
+        filteredAlbums = myAlbumsViewModel.myAlbums.filter { album in
             return album.tags.contains { tag in
                 return tag.contains(keyword)
             }

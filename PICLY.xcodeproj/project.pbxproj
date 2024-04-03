@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2A51A3EF2BB8492C00E7F5EA /* Bayon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A51A3EE2BB8492C00E7F5EA /* Bayon-Regular.ttf */; };
+		2A636A6B2BBDB8E3000C96F3 /* MyAlbumsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A636A6A2BBDB8E3000C96F3 /* MyAlbumsViewModel.swift */; };
 		2AACE7402BB82EF7007999A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACE73F2BB82EF7007999A6 /* AppDelegate.swift */; };
 		2AACE7422BB82EF7007999A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACE7412BB82EF7007999A6 /* SceneDelegate.swift */; };
 		2AACE7472BB82EF7007999A6 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2AACE7462BB82EF7007999A6 /* Base */; };
@@ -90,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		2A51A3EE2BB8492C00E7F5EA /* Bayon-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bayon-Regular.ttf"; sourceTree = "<group>"; };
+		2A636A6A2BBDB8E3000C96F3 /* MyAlbumsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlbumsViewModel.swift; sourceTree = "<group>"; };
 		2AACE73C2BB82EF7007999A6 /* PICLY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PICLY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AACE73F2BB82EF7007999A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AACE7412BB82EF7007999A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 		2AACE7A62BB8369E007999A6 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				2A636A6A2BBDB8E3000C96F3 /* MyAlbumsViewModel.swift */,
 				2AACE7A72BB836C8007999A6 /* UploadViewModel.swift */,
 			);
 			path = ViewModels;
@@ -504,6 +507,7 @@
 				2AACE7C22BB836F9007999A6 /* AddImageCollectionViewCell.swift in Sources */,
 				2AACE7CC2BB836F9007999A6 /* MyAlbumsDefaultCollectionViewCell.swift in Sources */,
 				2AACE7FD2BB83748007999A6 /* UIColors+.swift in Sources */,
+				2A636A6B2BBDB8E3000C96F3 /* MyAlbumsViewModel.swift in Sources */,
 				2AACE7E82BB8372E007999A6 /* SceneManager.swift in Sources */,
 				2AACE78C2BB83525007999A6 /* LoadingIndicatorView.swift in Sources */,
 				2AACE79C2BB8368B007999A6 /* OnboardingViewController.swift in Sources */,

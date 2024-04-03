@@ -68,13 +68,11 @@ class DetailViewController: UIViewController {
     }
     
     func bind() {
-        deleteAlbumDone
-            .subscribe { _ in
-                self.showToast(message: "삭제 성공", keyboardHeight: 0)
-                DataManager.shared.fetchMyAlbums()
-                self.navigationController?.popViewController(animated: true)
-            }
-            .disposed(by: disposeBag)
+//        deleteAlbumDone
+//            .subscribe { _ in
+//
+//            }
+//            .disposed(by: disposeBag)
     }
 
 }
@@ -232,7 +230,8 @@ extension DetailViewController {
 
         deleteAlbumDoc {
             self.deleteAlbumImage {
-                self.deleteAlbumDone.onNext(())
+                DataManager.shared.albumDeleted.onNext(self.album.albumID)
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }

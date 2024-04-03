@@ -44,6 +44,7 @@ class UploadViewModel {
         )
         DataManager.shared.uploadAlbum(albumDict: albumDict, images: images) { albumURL in
             self.albumURL = albumURL
+            DataManager.shared.albumUploaded.onNext(())
             self.uploadAlbumDone.onNext(())
         }
     }
