@@ -230,16 +230,16 @@
 		2AACE7532BB82F87007999A6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2AACE7962BB8368B007999A6 /* AcountViewController.swift */,
-				2AACE7982BB8368B007999A6 /* DetailViewController.swift */,
-				2AACE7902BB8368B007999A6 /* EditViewController.swift */,
+				2AACE7912BB8368B007999A6 /* OnboardingViewController.swift */,
+				2AACE79A2BB8368B007999A6 /* SignInViewController.swift */,
 				2AACE7922BB8368B007999A6 /* EmailSignInViewController.swift */,
 				2AACE7952BB8368B007999A6 /* MainTabBarController.swift */,
 				2AACE7932BB8368B007999A6 /* MyAlbumsViewController.swift */,
-				2AACE7912BB8368B007999A6 /* OnboardingViewController.swift */,
-				2AACE7992BB8368B007999A6 /* SettingViewController.swift */,
-				2AACE79A2BB8368B007999A6 /* SignInViewController.swift */,
+				2AACE7982BB8368B007999A6 /* DetailViewController.swift */,
 				2AACE7942BB8368B007999A6 /* UploadViewController.swift */,
+				2AACE7902BB8368B007999A6 /* EditViewController.swift */,
+				2AACE7992BB8368B007999A6 /* SettingViewController.swift */,
+				2AACE7962BB8368B007999A6 /* AcountViewController.swift */,
 				2AACE7972BB8368B007999A6 /* WebViewController.swift */,
 			);
 			path = ViewControllers;

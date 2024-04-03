@@ -332,3 +332,6 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         
 }
 
+extension MyAlbumsViewController: UIGestureRecognizerDelegate {
+    
+}
