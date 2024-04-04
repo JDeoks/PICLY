@@ -17,8 +17,8 @@ class AlbumModel {
     var ownerID: String
     var creationTime: Date
     var expireTime: Date
-    var thumbnailURL: URL
-    var imageURLs: [URL]
+    var thumbnailURL: URL?
+    var imageURLs: [URL?]
     var imageCount: Int
     var imageSizes: [[String: Int]]
     var tags: [String]
@@ -35,10 +35,10 @@ class AlbumModel {
         self.expireTime = (data[AlbumField.expireTime.rawValue] as? Timestamp)?.dateValue() ?? Date()
 
         let thumbnailURLString = data[AlbumField.thumbnailURL.rawValue] as? String
-        self.thumbnailURL = URL(string: thumbnailURLString ?? PICLYConstants.defaultImageURLStr) ?? defaultImageURL
+        self.thumbnailURL = URL(string: thumbnailURLString ?? "nil")
 
-        let imageURLsStrArray = data[AlbumField.imageURLs.rawValue] as? [String] ?? [PICLYConstants.defaultImageURLStr]
-        self.imageURLs = imageURLsStrArray.compactMap { URL(string: $0) }
+        let imageURLsStrArray = data[AlbumField.imageURLs.rawValue] as? [String]
+        self.imageURLs = imageURLsStrArray?.compactMap { URL(string: $0) } ?? []
 
         self.imageCount = data[AlbumField.imageCount.rawValue] as? Int ?? 1
         self.imageSizes = data[AlbumField.imageSizes.rawValue] as? [[String: Int]] ?? [[AlbumField.width.rawValue: 1000], [AlbumField.height.rawValue: 1000]]
@@ -53,9 +53,8 @@ class AlbumModel {
         self.ownerID = ""
         self.creationTime = Date()
         self.expireTime = Date()
-        let defaultImageURL = URL(string: PICLYConstants.defaultImageURLStr)!
-        self.thumbnailURL = defaultImageURL
-        self.imageURLs = [URL(string: PICLYConstants.defaultImageURLStr)!]
+        self.thumbnailURL = nil
+        self.imageURLs = []
         self.imageCount = 0
         self.imageSizes = [["": 0]]
         self.tags = [""]

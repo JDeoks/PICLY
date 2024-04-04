@@ -15,15 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     override init() {
         super.init()
+        
         Thread.sleep(forTimeInterval: 0.3)
-        // TODO: 지워야됨
-        UIFont.familyNames.sorted().forEach { familyName in
-            print("*** \(familyName) ***")
-            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
-                print("\(fontName)")
-            }
-            print("---------------------")
-        }
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

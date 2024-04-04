@@ -27,6 +27,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initUI()
         initData()
         action()
@@ -47,9 +48,6 @@ class DetailViewController: UIViewController {
         // albumURL
         let rootURL: URL = ConfigManager.shared.getRootURLFromLocal()
         albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(album.albumID)
-        
-        // others
-        let storageRef = Storage.storage().reference().child(album.albumID)
     }
     
     func action() {
@@ -95,7 +93,8 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
             
             default:
                 print("album.imageCount", album.imageCount)
-                return album.imageCount
+                print("album.imageURLs.count", album.imageURLs.count)
+                return album.imageURLs.count
             }
             
         default:
@@ -242,7 +241,6 @@ extension DetailViewController {
         albumsCollection.document(album.albumID).delete() { err in
             if let err = err {
                 print("\(#function) 실패: \(err)")
-                // TODO: 앨범 삭제 실패 토스트
                 self.showToast(message: "삭제 실패", keyboardHeight: 0)
                 self.navigationController?.popViewController(animated: true)
             } else {

@@ -316,7 +316,7 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("\(type(of: self)) - \(#function)")
 
-        print(filteredAlbums[indexPath.row].getCreationTimeStr())
+        print(filteredAlbums[indexPath.row].imageURLs)
         SceneManager.shared.pushDetailVC(vc: self, album: filteredAlbums[indexPath.row])
         stopSearching()
         

@@ -139,7 +139,14 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
     func fetchThumbnail(albumID: String) {
         print("\(type(of: self)) - \(#function)")
         
-        thumnailImageView.kf.setImage(with: thumbnailURL, placeholder: nil, options: [.transition(.fade(0.5))], progressBlock: nil) { _ in
+        thumnailImageView.kf.setImage(with: thumbnailURL, placeholder: nil, options: [.transition(.fade(0.5))], progressBlock: nil) { result in
+            switch result {
+            case .success(_):
+                break
+            case .failure(let error):
+                print(error.errorDescription)
+                
+            }
             self.thumnailImageView.stopSkeletonAnimation()
             self.thumnailImageView.hideSkeleton()
         }
