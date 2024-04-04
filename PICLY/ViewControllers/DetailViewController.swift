@@ -12,9 +12,9 @@ import FirebaseStorage
 
 class DetailViewController: UIViewController {
     
-    let albumsCollection = Firestore.firestore().collection("Albums")
-    var album: AlbumModel!
-    var albumURL: URL?
+    let detailViewModel = DetailViewModel()
+    
+    
     
     let deleteAlbumDone = PublishSubject<Void>()
     let disposeBag = DisposeBag()
@@ -45,9 +45,14 @@ class DetailViewController: UIViewController {
     }
     
     func initData() {
-        // albumURL
+        // detailViewModel.albumURL
         let rootURL: URL = ConfigManager.shared.getRootURLFromLocal()
-        albumURL = rootURL.appendingPathComponent("Album").appendingPathComponent(album.albumID)
+        if let albumID = detailViewModel.album?.albumID {
+            let url = rootURL.appendingPathComponent("Album").appendingPathComponent(albumID)
+            detailViewModel.albumURL = url
+        } else {
+            detailViewModel.albumURL = nil
+        }
     }
     
     func action() {
@@ -66,11 +71,7 @@ class DetailViewController: UIViewController {
     }
     
     func bind() {
-//        deleteAlbumDone
-//            .subscribe { _ in
-//
-//            }
-//            .disposed(by: disposeBag)
+
     }
 
 }
@@ -92,8 +93,10 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
                 return 1
             
             default:
-                print("album.imageCount", album.imageCount)
-                print("album.imageURLs.count", album.imageURLs.count)
+                guard let album = detailViewModel.album else {
+                    return 0
+                }
+                print("detailViewModel.album.imageCount:", album.imageCount, "album.imageURLs.count:", album.imageURLs.count)
                 return album.imageURLs.count
             }
             
@@ -108,12 +111,16 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.section {
         case 0:
             let cell = detailTableView.dequeueReusableCell(withIdentifier: "DetailInfoTableViewCell", for: indexPath) as! DetailInfoTableViewCell
-            cell.setData(album: album)
+            cell.setData(album: detailViewModel.album)
             cell.copyLinkButton.rx.tap
                 .subscribe { _ in
                     HapticManager.shared.triggerImpact()
-                    UIPasteboard.general.url = self.albumURL
-                    self.showToast(message: "링크가 복사되었습니다.", keyboardHeight: 0)
+                    if let url = self.detailViewModel.albumURL {
+                        UIPasteboard.general.url = url
+                        self.showToast(message: "링크가 복사되었습니다.", keyboardHeight: 0)
+                    }
+                    UIPasteboard.general.url = self.detailViewModel.albumURL
+                    
                 }
                 .disposed(by: cell.disposeBag)
             cell.selectionStyle = .none
@@ -222,71 +229,7 @@ extension DetailViewController {
         deleteAlert.addAction(cancelAction)
         self.present(deleteAlert, animated: true, completion: nil)
     }
-    
-    /// 앨범 삭제 로직
-    private func deleteAlbum() {
-        print("\(type(of: self)) - \(#function)")
 
-        deleteAlbumDoc {
-            self.deleteAlbumImage {
-                DataManager.shared.albumDeleted.onNext(self.album.albumID)
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
-    }
-    
-    private func deleteAlbumDoc(completion: @escaping () -> Void) {
-        print("\(type(of: self)) - \(#function)")
-        
-        albumsCollection.document(album.albumID).delete() { err in
-            if let err = err {
-                print("\(#function) 실패: \(err)")
-                self.showToast(message: "삭제 실패", keyboardHeight: 0)
-                self.navigationController?.popViewController(animated: true)
-            } else {
-                print("Document successfully removed!")
-                completion()
-            }
-        }
-    }
-    
-    private func deleteAlbumImage(completion: @escaping () -> Void) {
-        print("\(type(of: self)) - \(#function)")
-        
-        let albumImagesRef = Storage.storage().reference().child(album.albumID)
-        albumImagesRef.listAll { (result, error) in
-            if let error = error {
-                print("Error in listing files: \(error)")
-                self.loadingView.removeFromSuperview()
-                self.showToast(message: "삭제 실패", keyboardHeight: 0)
-                return
-            }
-            guard let result = result else {
-                print("\(#function) result 없음")
-                self.loadingView.removeFromSuperview()
-                self.showToast(message: "삭제 실패", keyboardHeight: 0)
-                return
-            }
-            let dispatchGroup = DispatchGroup()
-            
-            for item in result.items {
-                dispatchGroup.enter()
-                item.delete { error in
-                    if let error = error {
-                        print("Error deleting file: \(error)")
-                    } else {
-                        print("File deleted successfully")
-                    }
-                    dispatchGroup.leave()
-                }
-            }
-            
-            dispatchGroup.notify(queue: .main) {
-                self.loadingView.removeFromSuperview()
-                completion()
-            }
-        }
-    }
 }
 
 // MARK: - UIActivityViewController
