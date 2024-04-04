@@ -163,6 +163,7 @@ class MyAlbumsViewController: UIViewController {
             .subscribe(onNext: { changedText in
                 print("changedText")
                 self.updateFilteredAlbums(keyword: changedText)
+                print(self.filteredAlbums.count)
             })
             .disposed(by: disposeBag)
         
@@ -313,8 +314,12 @@ extension MyAlbumsViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        stopSearching()
+        print("\(type(of: self)) - \(#function)")
+
+        print(filteredAlbums[indexPath.row].getCreationTimeStr())
         SceneManager.shared.pushDetailVC(vc: self, album: filteredAlbums[indexPath.row])
+        stopSearching()
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -352,6 +357,8 @@ extension MyAlbumsViewController: UITextFieldDelegate {
     
     /// 검색 시작 애니메이션
     func startSearching() {
+        print("\(type(of: self)) - \(#function)")
+
         UIView.animate(withDuration: 0.1) {
             self.titleStackView.isHidden = true
             self.view.layoutIfNeeded()
