@@ -262,7 +262,7 @@ class MyAlbumsViewController: UIViewController {
         DataManager.shared.albumDeleted
             .subscribe { albumID in
                 self.myAlbumsViewModel.fetchMyAlbums()
-                self.showToast(message: "삭제 완료", keyboardHeight: self.keyboardHeight)
+                self.showToast(message: "앨범 삭제에 성공했습니다.", keyboardHeight: self.keyboardHeight)
             }
             .disposed(by: disposeBag)
         
@@ -271,6 +271,8 @@ class MyAlbumsViewController: UIViewController {
                 self.myAlbumsViewModel.fetchMyAlbums()
             }
             .disposed(by: disposeBag)
+        
+        
     }
 
 }

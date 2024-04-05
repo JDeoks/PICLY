@@ -6,20 +6,24 @@
 //
 
 import Foundation
+import RxSwift
 
 class DetailViewModel {
     
     var album: AlbumModel?
-    var albumURL: URL?
     
-    func deleteAlbum() {
-        DataManager.shared.deleteAlbum(albumID: "8gkQOdOfUHao2QuttWdG") { result in
-            print("8gkQOdOfUHao2QuttWdG")
+    let deleteAlbumDone = PublishSubject<String>()
+    let deleteAlbumFailed = PublishSubject<String>()
+
+    func deleteAlbum(albumID: String) {
+        print("\(type(of: self)) - \(#function)")
+
+        DataManager.shared.deleteAlbum(albumID: albumID) { result in
             switch result {
             case .success():
-                print("삭제 성공")
+                self.deleteAlbumDone.onNext(self.album?.albumID ?? "")
             case .failure(let error):
-                print(error.localizedDescription)
+                self.deleteAlbumFailed.onNext(error.localizedDescription)
             }
         }
 

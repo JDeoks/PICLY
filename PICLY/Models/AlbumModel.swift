@@ -25,6 +25,14 @@ class AlbumModel {
     var viewCount: Int
     var isSkeleton: Bool
     
+    var url: URL {
+        get {
+            let rootURL: URL = ConfigManager.shared.getRootURLFromLocal()
+            let url = rootURL.appendingPathComponent("Album").appendingPathComponent(albumID)
+            return url
+        }
+    }
+    
     init(document: DocumentSnapshot) {
         let defaultImageURL = URL(string: PICLYConstants.defaultImageURLStr)!
         let data = document.data() ?? [:]

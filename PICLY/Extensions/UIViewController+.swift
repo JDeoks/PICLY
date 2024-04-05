@@ -10,7 +10,7 @@ import UIKit
 // MARK: - ToastAlert
 extension UIViewController {
 
-    func showToast(message : String, keyboardHeight: CGFloat) {
+    func showToast(message : String, keyboardHeight: CGFloat = 0) {
 
         let toastLabel = UILabel()
         toastLabel.numberOfLines = 2

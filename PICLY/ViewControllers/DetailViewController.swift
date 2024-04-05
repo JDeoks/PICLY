@@ -14,9 +14,6 @@ class DetailViewController: UIViewController {
     
     let detailViewModel = DetailViewModel()
     
-    
-    
-    let deleteAlbumDone = PublishSubject<Void>()
     let disposeBag = DisposeBag()
     
     lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -45,14 +42,7 @@ class DetailViewController: UIViewController {
     }
     
     func initData() {
-        // detailViewModel.albumURL
-        let rootURL: URL = ConfigManager.shared.getRootURLFromLocal()
-        if let albumID = detailViewModel.album?.albumID {
-            let url = rootURL.appendingPathComponent("Album").appendingPathComponent(albumID)
-            detailViewModel.albumURL = url
-        } else {
-            detailViewModel.albumURL = nil
-        }
+
     }
     
     func action() {
@@ -71,7 +61,19 @@ class DetailViewController: UIViewController {
     }
     
     func bind() {
-
+        detailViewModel.deleteAlbumDone
+            .subscribe { deletedAlbumID in
+                DataManager.shared.albumDeleted.onNext(deletedAlbumID)
+                self.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        detailViewModel.deleteAlbumFailed
+            .subscribe { errorMSG in
+                print("삭제 실패:\(errorMSG)")
+                self.showToast(message: "앨범 삭제에 실패했습니다.")
+            }
+            .disposed(by: disposeBag)
     }
 
 }
@@ -111,16 +113,16 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.section {
         case 0:
             let cell = detailTableView.dequeueReusableCell(withIdentifier: "DetailInfoTableViewCell", for: indexPath) as! DetailInfoTableViewCell
-            cell.setData(album: detailViewModel.album)
+            guard let album = detailViewModel.album else {
+                print("\(type(of: self)) - \(#function) album 없음")
+                return cell
+            }
+            cell.setData(album: album)
             cell.copyLinkButton.rx.tap
                 .subscribe { _ in
                     HapticManager.shared.triggerImpact()
-                    if let url = self.detailViewModel.albumURL {
-                        UIPasteboard.general.url = url
-                        self.showToast(message: "링크가 복사되었습니다.", keyboardHeight: 0)
-                    }
-                    UIPasteboard.general.url = self.detailViewModel.albumURL
-                    
+                    UIPasteboard.general.url = album.url
+                    self.showToast(message: "링크가 복사되었습니다.", keyboardHeight: 0)
                 }
                 .disposed(by: cell.disposeBag)
             cell.selectionStyle = .none
@@ -128,6 +130,10 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
             
         default:
             let cell = detailTableView.dequeueReusableCell(withIdentifier: "DetailImagesTableViewCell", for: indexPath) as! DetailImagesTableViewCell
+            guard let album = detailViewModel.album else {
+                print("\(type(of: self)) - \(#function) album 없음")
+                return cell
+            }
             cell.setData(album: album, indexPath: indexPath)
             cell.selectionStyle = .none
 
@@ -145,6 +151,10 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
                 return UITableView.automaticDimension
             
             default:
+                guard let album = detailViewModel.album else {
+                    print("\(type(of: self)) - \(#function) album 없음")
+                    return 0
+                }
                 let verticalPadding = CGFloat(8 * 2)
                 let horizontalPadding = CGFloat(16 * 2)
                 let aspectRatio = CGFloat(album.getImageAspectRatio(index: indexPath.row))
@@ -156,8 +166,6 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
             return 0
         }
     }
-    
-    
     
 }
 
@@ -186,6 +194,8 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
 extension DetailViewController {
 
     private func showEditActionSheet() {
+        print("\(type(of: self)) - \(#function)")
+
         let actionSheet = UIAlertController(title: "메뉴", message: nil, preferredStyle: .actionSheet)
         
 //        actionSheet.addAction(UIAlertAction(title: "수정", style: .default, handler: { _ in
@@ -195,10 +205,11 @@ extension DetailViewController {
 //        }))
 
         actionSheet.addAction(UIAlertAction(title: "공유", style: .default, handler: { _ in
-            guard let url = self.albumURL else {
+            guard let album = self.detailViewModel.album else {
+                print("\(type(of: self)) - \(#function) album 없음")
                 return
             }
-            self.shareURL(url: url)
+            self.shareURL(url: album.url)
         }))
         actionSheet.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
             self.showDeleteConfirmationAlert()
@@ -218,11 +229,19 @@ extension DetailViewController {
     
     /// 앨범 삭제 확인 alert
     private func showDeleteConfirmationAlert() {
+        print("\(type(of: self)) - \(#function)")
+
+        
         let deleteAlert = UIAlertController(title: "앨범 삭제", message: "정말로 삭제하시겠습니까?", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
+            guard let album = self.detailViewModel.album else {
+                print("\(type(of: self)) - \(#function) album 없음")
+                
+                return
+            }
             self.loadingView.loadingLabel.text = ""
             self.view.addSubview(self.loadingView)
-            self.deleteAlbum()
+            self.detailViewModel.deleteAlbum(albumID: album.albumID)
         })
         deleteAlert.addAction(confirmAction)
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -236,6 +255,8 @@ extension DetailViewController {
 extension DetailViewController {
     
     private func shareURL(url: URL) {
+        print("\(type(of: self)) - \(#function)")
+
         let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
 
         // 아이패드에서 실행될 경우
