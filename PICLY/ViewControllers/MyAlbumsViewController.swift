@@ -175,7 +175,6 @@ class MyAlbumsViewController: UIViewController {
             .asObservable()
             .when(.began, .cancelled, .changed, .ended)
             .subscribe { gestureEvent in
-                print("myAlbumsCollectionView - longPress -> 홀드시 색 변화")
                 guard let recognizer = gestureEvent.element else {
                     return
                 }
@@ -188,6 +187,7 @@ class MyAlbumsViewController: UIViewController {
                 }
                 switch recognizer.state {
                 case .began:
+                    print("myAlbumsCollectionView - longPressGesture(.began) -> 홀드시 색 변화")
                     UIView.animate(withDuration: 0.2) {
                         cell.alpha = 0.5
                     }
@@ -207,7 +207,7 @@ class MyAlbumsViewController: UIViewController {
             .asObservable()
             .when(.began)
             .subscribe { gestureEvent in
-                print("myAlbumsCollectionView - longPressGesture -> 진동, 삭제 alert")
+                print("myAlbumsCollectionView - longPressGesture(.began) -> 진동, 삭제 alert")
                 
                 guard let recognizer = gestureEvent.element else {
                     return
@@ -225,7 +225,7 @@ class MyAlbumsViewController: UIViewController {
     func bind() {
         print("\(type(of: self)) - \(#function)")
 
-        myAlbumsViewModel.updateMyAlbumsDone
+        myAlbumsViewModel.fetchMyAlbumsDone
             .subscribe { _ in
                 self.filteredAlbums = self.myAlbumsViewModel.myAlbums
                 self.myAlbumsCollectionView.reloadData()
