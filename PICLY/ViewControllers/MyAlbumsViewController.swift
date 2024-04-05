@@ -189,11 +189,11 @@ class MyAlbumsViewController: UIViewController {
                 switch recognizer.state {
                 case .began:
                     print("myAlbumsCollectionView - longPressGesture(.began) -> 홀드시 색 변화")
-                    UIView.animate(withDuration: 0.2) {
+                    UIView.animate(withDuration: 0.5) {
                         cell.alpha = 0.5
                     }
                 case .cancelled, .changed, .ended:
-                    UIView.animate(withDuration: 0.1) {
+                    UIView.animate(withDuration: 0.2) {
                         cell.alpha = 1
                     }
                 default:
@@ -203,7 +203,7 @@ class MyAlbumsViewController: UIViewController {
             .disposed(by: disposeBag)
         // longPress -> 진동, 삭제 alert
         myAlbumsCollectionView.rx.longPressGesture(configuration: { longPress, delegate in
-            longPress.minimumPressDuration = 0.5
+            longPress.minimumPressDuration = 0.7
         })
             .asObservable()
             .when(.began)
