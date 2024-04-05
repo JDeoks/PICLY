@@ -35,14 +35,18 @@ class MyAlbumsViewModel {
         }
     }
 
-
-    func deleteAlbum(albumID: String) {
+    func deleteAlbum(album: AlbumModel?) {
         print("\(type(of: self)) - \(#function)")
+        
+        guard let album = album else {
+            self.deleteAlbumFailed.onNext("선택된 앨범 없음")
+            return
+        }
 
-        DataManager.shared.deleteAlbum(albumID: albumID) { result in
+        DataManager.shared.deleteAlbum(albumID: album.albumID) { result in
             switch result {
             case .success():
-                self.deleteAlbumDone.onNext(self.album?.albumID ?? "")
+                self.deleteAlbumDone.onNext(album.albumID)
             case .failure(let error):
                 self.deleteAlbumFailed.onNext(error.localizedDescription)
             }

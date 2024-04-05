@@ -96,13 +96,11 @@ class ConfigManager {
         let currentAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.1"
         let minimumVersion = getMinimumVersionFromLocal()
         print("currentAppVersion: ", currentAppVersion, "minimumVersion: ", minimumVersion)
-        print(currentAppVersion.compare(minimumVersion, options: .numeric) != .orderedAscending)
+        print("유효한 버전 확인:", currentAppVersion.compare(minimumVersion, options: .numeric) != .orderedAscending)
         return currentAppVersion.compare(minimumVersion, options: .numeric) != .orderedAscending
     }
     
     func getRootURLFromLocal() -> URL {
-        print("\(type(of: self)) - \(#function)")
-
         guard let rootURL = UserDefaults.standard.url(forKey: RemoteConfigKey.rootURL.rawValue) else {
             print("forKey: rootURL 없음. 기본 값 사용")
             return PICLYConstants.defaultRootURL

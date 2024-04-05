@@ -29,6 +29,7 @@ class MyAlbumsViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     private let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    lazy var loadingView = LoadingIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
     let refreshControl = UIRefreshControl()
     
     @IBOutlet var titleLabel: UILabel!
@@ -214,8 +215,14 @@ class MyAlbumsViewController: UIViewController {
                 }
                 let location: CGPoint = recognizer.location(in: self.myAlbumsCollectionView)
                 let indexPath = self.myAlbumsCollectionView.indexPathForItem(at: location)
-                HapticManager.shared.triggerImpact()
-                print(indexPath?.row, self.myAlbumsViewModel.myAlbums[indexPath?.row ?? 0].getCreationTimeStr())
+                guard let index = indexPath?.row else {
+                    print("error: myAlbumsCollectionView - longPressGesture(.began) -> 진동, 삭제 alert -> indexPath 없음")
+                    return
+                }
+                if self.myAlbumsViewModel.myAlbums.indices.contains(index) {
+                    HapticManager.shared.triggerImpact()
+                    self.showDeleteConfirmationAlert(album: self.myAlbumsViewModel.myAlbums[index])
+                }
             }
             .disposed(by: disposeBag)
 
@@ -229,6 +236,20 @@ class MyAlbumsViewController: UIViewController {
             .subscribe { _ in
                 self.filteredAlbums = self.myAlbumsViewModel.myAlbums
                 self.myAlbumsCollectionView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        myAlbumsViewModel.deleteAlbumDone
+            .subscribe { albumID in
+                DataManager.shared.albumDeleted.onNext(albumID)
+            }
+            .disposed(by: disposeBag)
+        
+        myAlbumsViewModel.deleteAlbumFailed
+            .subscribe { errorMSG in
+                print("삭제 실패:\(errorMSG)")
+                self.loadingView.removeFromSuperview()
+                self.showToast(message: "앨범 삭제에 실패했습니다.")
             }
             .disposed(by: disposeBag)
         
@@ -258,21 +279,20 @@ class MyAlbumsViewController: UIViewController {
                 SceneManager.shared.setSignInNavVCAsRoot(animated: false)
             }
             .disposed(by: disposeBag)
-        
-        DataManager.shared.albumDeleted
-            .subscribe { albumID in
-                self.myAlbumsViewModel.fetchMyAlbums()
-                self.showToast(message: "앨범 삭제에 성공했습니다.", keyboardHeight: self.keyboardHeight)
-            }
-            .disposed(by: disposeBag)
-        
+                
         DataManager.shared.albumUploaded
             .subscribe { albumID in
                 self.myAlbumsViewModel.fetchMyAlbums()
             }
             .disposed(by: disposeBag)
         
-        
+        DataManager.shared.albumDeleted
+            .subscribe { albumID in
+                self.loadingView.removeFromSuperview()
+                self.myAlbumsViewModel.fetchMyAlbums()
+                self.showToast(message: "앨범 삭제에 성공했습니다.", keyboardHeight: self.keyboardHeight)
+            }
+            .disposed(by: disposeBag)
     }
 
 }
@@ -405,9 +425,24 @@ extension MyAlbumsViewController: UITextFieldDelegate {
         }
         myAlbumsCollectionView.reloadData()
     }
+    
+    // MARK: - 앨범 삭제
+    /// 앨범 삭제 확인 alert
+    private func showDeleteConfirmationAlert(album: AlbumModel) {
+        print("\(type(of: self)) - \(#function)")
+        
+        let deleteAlert = UIAlertController(title: "앨범 삭제", message: "앨범을 삭제하시겠습니까?", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
+            self.loadingView.loadingLabel.text = ""
+            self.view.addSubview(self.loadingView)
+            self.myAlbumsViewModel.deleteAlbum(album: album)
+        })
+        deleteAlert.addAction(confirmAction)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        deleteAlert.addAction(cancelAction)
+        self.present(deleteAlert, animated: true, completion: nil)
+    }
         
 }
 
-extension MyAlbumsViewController: UIGestureRecognizerDelegate {
-    
-}
+

@@ -64,6 +64,7 @@ class DetailViewController: UIViewController {
         detailViewModel.deleteAlbumDone
             .subscribe { deletedAlbumID in
                 DataManager.shared.albumDeleted.onNext(deletedAlbumID)
+                self.loadingView.removeFromSuperview()
                 self.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
@@ -241,7 +242,7 @@ extension DetailViewController {
             }
             self.loadingView.loadingLabel.text = ""
             self.view.addSubview(self.loadingView)
-            self.detailViewModel.deleteAlbum(albumID: album.albumID)
+            self.detailViewModel.deleteAlbum()
         })
         deleteAlert.addAction(confirmAction)
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)

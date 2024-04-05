@@ -136,9 +136,7 @@ class MyAlbumsCollectionViewCell: UICollectionViewCell {
         fetchThumbnail(albumID: album.albumID)
     }
     
-    func fetchThumbnail(albumID: String) {
-        print("\(type(of: self)) - \(#function)")
-        
+    func fetchThumbnail(albumID: String) {        
         thumnailImageView.kf.setImage(with: thumbnailURL, placeholder: nil, options: [.transition(.fade(0.5))], progressBlock: nil) { result in
             switch result {
             case .success(_):
