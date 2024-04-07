@@ -135,6 +135,7 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
                 print("\(type(of: self)) - \(#function) album 없음")
                 return cell
             }
+            
             cell.setData(album: album, indexPath: indexPath)
             cell.selectionStyle = .none
 

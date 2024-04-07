@@ -169,9 +169,10 @@ class MyAlbumsViewController: UIViewController {
             .disposed(by: disposeBag)
         
         // myAlbumsCollectionView
-        // longPress -> 색 변화
-        myAlbumsCollectionView.rx.longPressGesture(configuration: { longPress, delegate in
-            longPress.minimumPressDuration = 0.2
+        // longPress -> 색 변화
+        myAlbumsCollectionView.rx.longPressGesture(configuration: { recognizer, delegate in
+            recognizer.minimumPressDuration = 0.2
+            recognizer.allowableMovement = 30
         })
             .asObservable()
             .when(.began, .cancelled, .changed, .ended)
@@ -202,8 +203,9 @@ class MyAlbumsViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         // longPress -> 진동, 삭제 alert
-        myAlbumsCollectionView.rx.longPressGesture(configuration: { longPress, delegate in
-            longPress.minimumPressDuration = 0.7
+        myAlbumsCollectionView.rx.longPressGesture(configuration: { recognizer, delegate in
+            recognizer.minimumPressDuration = 0.7
+//            recognizer.allowableMovement = 30
         })
             .asObservable()
             .when(.began)

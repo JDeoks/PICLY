@@ -273,6 +273,47 @@
             </objects>
             <point key="canvasLocation" x="2812.9770992366412" y="-2.1126760563380285"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="stu-oO-eqf">
+            <objects>
+                <viewController id="5ad-Jr-UDX" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fp4-3E-Mjq">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1t0-3g-8V7">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6TM-Er-yyu">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y94-So-MHB">
+                                <rect key="frame" x="0.0" y="59" width="393" height="56"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0YV-5F-LVR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0YV-5F-LVR" firstAttribute="top" secondItem="y94-So-MHB" secondAttribute="bottom" constant="-56" id="K2B-LD-h0F"/>
+                            <constraint firstItem="0YV-5F-LVR" firstAttribute="trailing" secondItem="1t0-3g-8V7" secondAttribute="trailing" id="O2r-Qv-W0g"/>
+                            <constraint firstItem="1t0-3g-8V7" firstAttribute="top" secondItem="fp4-3E-Mjq" secondAttribute="top" id="OLx-lQ-lwj"/>
+                            <constraint firstItem="y94-So-MHB" firstAttribute="top" secondItem="0YV-5F-LVR" secondAttribute="top" id="P24-FG-AfH"/>
+                            <constraint firstItem="y94-So-MHB" firstAttribute="leading" secondItem="0YV-5F-LVR" secondAttribute="leading" id="Prx-da-hNk"/>
+                            <constraint firstItem="1t0-3g-8V7" firstAttribute="leading" secondItem="0YV-5F-LVR" secondAttribute="leading" id="THv-Gw-fu6"/>
+                            <constraint firstItem="0YV-5F-LVR" firstAttribute="trailing" secondItem="y94-So-MHB" secondAttribute="trailing" id="WEM-5v-EUd"/>
+                            <constraint firstAttribute="bottom" secondItem="1t0-3g-8V7" secondAttribute="bottom" id="tMU-9A-fEM"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1hE-Il-ZSg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3633" y="-2"/>
+        </scene>
         <!--Edit View Controller-->
         <scene sceneID="tQ6-5m-KHF">
             <objects>
@@ -497,7 +538,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N5X-xp-wsd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3632.8244274809158" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="3633" y="706"/>
         </scene>
         <!--UploadViewController-->
         <scene sceneID="TD0-oW-Jov">
@@ -1523,7 +1564,7 @@ QnV0dG9uGxsbA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dcp-tl-eNE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2813" y="2108"/>
+            <point key="canvasLocation" x="2813" y="2098"/>
         </scene>
         <!--MainTabBarController-->
         <scene sceneID="Ifg-Ba-LW6">
@@ -1627,6 +1668,9 @@ QnV0dG9uGxsbA
         <namedColor name="mainText">
             <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

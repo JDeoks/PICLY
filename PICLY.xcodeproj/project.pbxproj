@@ -88,6 +88,7 @@
 		2AACE8012BB83790007999A6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2AACE8002BB83790007999A6 /* GoogleService-Info.plist */; };
 		2AACE8032BB83831007999A6 /* PICLYConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACE8022BB83831007999A6 /* PICLYConstants.swift */; };
 		2AACE80B2BB8409A007999A6 /* Splash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AACE80A2BB84099007999A6 /* Splash.jpg */; };
+		2AD472F42BC28696005AAE23 /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD472F32BC28696005AAE23 /* ImageViewerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,6 +160,7 @@
 		2AACE8082BB83B9B007999A6 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2AACE8092BB83F8E007999A6 /* PICLY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PICLY.entitlements; sourceTree = "<group>"; };
 		2AACE80A2BB84099007999A6 /* Splash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash.jpg; sourceTree = "<group>"; };
+		2AD472F32BC28696005AAE23 /* ImageViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +242,7 @@
 				2AACE7952BB8368B007999A6 /* MainTabBarController.swift */,
 				2AACE7932BB8368B007999A6 /* MyAlbumsViewController.swift */,
 				2AACE7982BB8368B007999A6 /* DetailViewController.swift */,
+				2AD472F32BC28696005AAE23 /* ImageViewerViewController.swift */,
 				2AACE7942BB8368B007999A6 /* UploadViewController.swift */,
 				2AACE7902BB8368B007999A6 /* EditViewController.swift */,
 				2AACE7992BB8368B007999A6 /* SettingViewController.swift */,
@@ -528,6 +531,7 @@
 				2AACE7A12BB8368B007999A6 /* AcountViewController.swift in Sources */,
 				2AACE7FC2BB83748007999A6 /* UIApplication+.swift in Sources */,
 				2AACE7422BB82EF7007999A6 /* SceneDelegate.swift in Sources */,
+				2AD472F42BC28696005AAE23 /* ImageViewerViewController.swift in Sources */,
 				2AACE7CE2BB836F9007999A6 /* DetailImagesTableViewCell.swift in Sources */,
 				2AACE7E92BB8372E007999A6 /* UserManager.swift in Sources */,
 				2AACE7FE2BB83748007999A6 /* UIImage+.swift in Sources */,
