@@ -67,6 +67,7 @@ class MyAlbumsViewController: UIViewController {
         // 검색 바
         searchTagStackView.layer.cornerRadius = 4
         searchTagTextField.delegate = self
+        searchTagTextField.attributedPlaceholder = NSAttributedString(string: "태그 검색", attributes: [NSAttributedString.Key.foregroundColor : ColorManager.shared.secondText])
         searchCancelButton.isHidden = true
         
         // 내비게이션

@@ -21,6 +21,7 @@ class SceneManager {
         case mainTab = "MainTabBarController"
         case myAlbum = "MyAlbumsViewController"
         case detail = "DetailViewController"
+        case imageViewer = "ImageViewerViewController"
         case upload = "UploadViewController"
         case edit = "EditViewController"
         case setting = "SettingViewController"
@@ -78,6 +79,15 @@ class SceneManager {
         detailVC.detailViewModel.album = album
         detailVC.hidesBottomBarWhenPushed = true
         vc.navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
+    // MARK: - imageViewerVC
+    func presentImageViewerVC(vc: UIViewController) {
+        print("\(type(of: self)) - \(#function)")
+        
+        let imageViewerVC = getVC(scene: .imageViewer)
+        imageViewerVC.modalPresentationStyle = .overFullScreen
+        vc.present(imageViewerVC, animated: true)
     }
     
     // MARK: - uploadVC

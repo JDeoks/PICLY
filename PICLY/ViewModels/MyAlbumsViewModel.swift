@@ -10,7 +10,7 @@ import RxSwift
 
 class MyAlbumsViewModel {
     
-    var myAlbums: [AlbumModel] = [AlbumModel(), AlbumModel(), AlbumModel()]
+    var myAlbums: [AlbumModel] = [AlbumModel(), AlbumModel(), AlbumModel(), AlbumModel(), AlbumModel()]
     
     /// fetchMyAlbums() -> MyAlbumsViewController
     let fetchMyAlbumsDone = PublishSubject<Void>()

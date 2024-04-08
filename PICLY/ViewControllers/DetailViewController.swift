@@ -169,6 +169,10 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        SceneManager.shared.presentImageViewerVC(vc: self)
+    }
+    
 }
 
 // MARK: - UICollectionView

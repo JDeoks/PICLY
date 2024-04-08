@@ -89,6 +89,8 @@
 		2AACE8032BB83831007999A6 /* PICLYConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACE8022BB83831007999A6 /* PICLYConstants.swift */; };
 		2AACE80B2BB8409A007999A6 /* Splash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AACE80A2BB84099007999A6 /* Splash.jpg */; };
 		2AD472F42BC28696005AAE23 /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD472F32BC28696005AAE23 /* ImageViewerViewController.swift */; };
+		2AD472F82BC28A18005AAE23 /* ImageViewerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD472F72BC28A18005AAE23 /* ImageViewerCollectionViewCell.xib */; };
+		2AD472F92BC28A18005AAE23 /* ImageViewerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD472F62BC28A18005AAE23 /* ImageViewerCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -161,6 +163,8 @@
 		2AACE8092BB83F8E007999A6 /* PICLY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PICLY.entitlements; sourceTree = "<group>"; };
 		2AACE80A2BB84099007999A6 /* Splash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash.jpg; sourceTree = "<group>"; };
 		2AD472F32BC28696005AAE23 /* ImageViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
+		2AD472F62BC28A18005AAE23 /* ImageViewerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerCollectionViewCell.swift; sourceTree = "<group>"; };
+		2AD472F72BC28A18005AAE23 /* ImageViewerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewerCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,11 +260,12 @@
 			isa = PBXGroup;
 			children = (
 				2AACE78B2BB83525007999A6 /* LoadingIndicatorView.swift */,
-				2AACE7BE2BB836F9007999A6 /* DetailVC */,
-				2AACE7B72BB836F9007999A6 /* MyAlbumsVC */,
 				2AACE7C12BB836F9007999A6 /* OnboardingVC */,
-				2AACE7B22BB836F8007999A6 /* SettingVC */,
+				2AACE7B72BB836F9007999A6 /* MyAlbumsVC */,
+				2AACE7BE2BB836F9007999A6 /* DetailVC */,
+				2AD472F52BC289C8005AAE23 /* ImageViewerVC */,
 				2AACE7AF2BB836F8007999A6 /* UploadVC */,
+				2AACE7B22BB836F8007999A6 /* SettingVC */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -385,6 +390,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		2AD472F52BC289C8005AAE23 /* ImageViewerVC */ = {
+			isa = PBXGroup;
+			children = (
+				2AD472F62BC28A18005AAE23 /* ImageViewerCollectionViewCell.swift */,
+				2AD472F72BC28A18005AAE23 /* ImageViewerCollectionViewCell.xib */,
+			);
+			path = ImageViewerVC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -476,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AACE7D52BB836F9007999A6 /* OnboardingCollectionViewCell.xib in Resources */,
+				2AD472F82BC28A18005AAE23 /* ImageViewerCollectionViewCell.xib in Resources */,
 				2AACE7CB2BB836F9007999A6 /* MyAlbumsCollectionViewCell.xib in Resources */,
 				2AACE7D12BB836F9007999A6 /* DetailInfoTableViewCell.xib in Resources */,
 				2AACE7C92BB836F9007999A6 /* SettingsTableViewCell.xib in Resources */,
@@ -509,6 +524,7 @@
 				2AACE7A02BB8368B007999A6 /* MainTabBarController.swift in Sources */,
 				2AACE7A42BB8368B007999A6 /* SettingViewController.swift in Sources */,
 				2AACE7F12BB83740007999A6 /* AuthProvider.swift in Sources */,
+				2AD472F92BC28A18005AAE23 /* ImageViewerCollectionViewCell.swift in Sources */,
 				2AACE7C82BB836F9007999A6 /* SettingsTableViewCell.swift in Sources */,
 				2AACE7C22BB836F9007999A6 /* AddImageCollectionViewCell.swift in Sources */,
 				2AACE7CC2BB836F9007999A6 /* MyAlbumsDefaultCollectionViewCell.swift in Sources */,

@@ -58,7 +58,7 @@ class OnboardingViewController: UIViewController {
     }
     
     // MARK: - initUI
-    func initUI() {
+    private func initUI() {
         // skipButton
         let attributedString = NSMutableAttributedString(string: skipButton.titleLabel?.text ?? "")
         attributedString.addAttribute(
