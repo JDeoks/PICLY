@@ -170,7 +170,10 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        SceneManager.shared.presentImageViewerVC(vc: self)
+        guard let album = detailViewModel.album else {
+            return
+        }
+        SceneManager.shared.presentImageViewerVC(vc: self, album: album, indexPath: IndexPath(row: indexPath.row, section: 0))
     }
     
 }

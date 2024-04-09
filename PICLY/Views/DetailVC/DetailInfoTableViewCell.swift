@@ -39,17 +39,6 @@ class DetailInfoTableViewCell: UITableViewCell {
         disposeBag = DisposeBag()
     }
     
-    func initUI() {
-        // tagsCollectionView
-        tagsCollectionView.dataSource = self
-        tagsCollectionView.delegate = self
-        let tagsCollectionViewCell = UINib(nibName: "DetailTagsCollectionViewCell", bundle: nil)
-        tagsCollectionView.register(tagsCollectionViewCell, forCellWithReuseIdentifier: "DetailTagsCollectionViewCell")
-        let tagsFlowLayout = UICollectionViewFlowLayout()
-        tagsFlowLayout.scrollDirection = .horizontal
-        tagsCollectionView.collectionViewLayout = tagsFlowLayout
-    }
-    
     func setData(album: AlbumModel) {
         print("\(type(of: self)) - \(#function)")
 
@@ -78,6 +67,17 @@ class DetailInfoTableViewCell: UITableViewCell {
         
         //album
         self.album = album
+    }
+    
+    func initUI() {
+        // tagsCollectionView
+        tagsCollectionView.dataSource = self
+        tagsCollectionView.delegate = self
+        let tagsCollectionViewCell = UINib(nibName: "DetailTagsCollectionViewCell", bundle: nil)
+        tagsCollectionView.register(tagsCollectionViewCell, forCellWithReuseIdentifier: "DetailTagsCollectionViewCell")
+        let tagsFlowLayout = UICollectionViewFlowLayout()
+        tagsFlowLayout.scrollDirection = .horizontal
+        tagsCollectionView.collectionViewLayout = tagsFlowLayout
     }
     
 }

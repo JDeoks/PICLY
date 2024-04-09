@@ -82,12 +82,13 @@ class SceneManager {
     }
     
     // MARK: - imageViewerVC
-    func presentImageViewerVC(vc: UIViewController) {
+    func presentImageViewerVC(vc: UIViewController, album: AlbumModel, indexPath: IndexPath) {
         print("\(type(of: self)) - \(#function)")
         
-        let imageViewerVC = getVC(scene: .imageViewer)
+        let imageViewerVC = getVC(scene: .imageViewer) as! ImageViewerViewController
+        imageViewerVC.setData(album: album, indexPath: indexPath)
         imageViewerVC.modalPresentationStyle = .overFullScreen
-        vc.present(imageViewerVC, animated: true)
+        vc.present(imageViewerVC, animated: false)
     }
     
     // MARK: - uploadVC

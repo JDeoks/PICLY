@@ -38,17 +38,6 @@ class DetailImagesTableViewCell: UITableViewCell {
         detailImageView.image = nil
     }
     
-    func initUI() {
-        print("\(type(of: self)) - \(#function)")
-        
-        // view
-        self.isSkeletonable = true
-
-        // detailImageView
-        detailImageView.isSkeletonable = true
-        detailImageView.layer.cornerRadius = 4
-    }
-    
     func setData(album: AlbumModel, indexPath: IndexPath) {
         print("\(type(of: self)) - \(#function)")
 
@@ -61,4 +50,17 @@ class DetailImagesTableViewCell: UITableViewCell {
             self.hideSkeleton()
         }
     }
+    
+    // MARK: - initUI
+    private func initUI() {
+        print("\(type(of: self)) - \(#function)")
+        
+        // view
+        self.isSkeletonable = true
+
+        // detailImageView
+        detailImageView.isSkeletonable = true
+        detailImageView.layer.cornerRadius = 4
+    }
+    
 }

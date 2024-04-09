@@ -58,6 +58,7 @@ class UploadViewController: UIViewController {
         
         // tagTextField
         tagTextField.delegate = self
+        tagTextField.attributedPlaceholder = NSAttributedString(string: "태그를 입력하세요", attributes: [NSAttributedString.Key.foregroundColor : ColorManager.shared.secondText.withAlphaComponent(0.22)])
         
         // datePicker
         expireDatePicker.tintColor = ColorManager.shared.highlightBlue
