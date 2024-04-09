@@ -284,7 +284,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1t0-3g-8V7">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6TM-Er-yyu">
                                     <size key="itemSize" width="128" height="128"/>
@@ -322,6 +322,7 @@
                                         <state key="normal" title="저장"/>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
                             </stackView>
                         </subviews>
@@ -330,12 +331,12 @@
                         <constraints>
                             <constraint firstItem="0YV-5F-LVR" firstAttribute="top" secondItem="y94-So-MHB" secondAttribute="bottom" constant="-56" id="K2B-LD-h0F"/>
                             <constraint firstItem="0YV-5F-LVR" firstAttribute="trailing" secondItem="1t0-3g-8V7" secondAttribute="trailing" id="O2r-Qv-W0g"/>
-                            <constraint firstItem="1t0-3g-8V7" firstAttribute="top" secondItem="fp4-3E-Mjq" secondAttribute="top" id="OLx-lQ-lwj"/>
+                            <constraint firstItem="1t0-3g-8V7" firstAttribute="top" secondItem="0YV-5F-LVR" secondAttribute="top" id="OLx-lQ-lwj"/>
                             <constraint firstItem="y94-So-MHB" firstAttribute="top" secondItem="0YV-5F-LVR" secondAttribute="top" id="P24-FG-AfH"/>
                             <constraint firstItem="y94-So-MHB" firstAttribute="leading" secondItem="0YV-5F-LVR" secondAttribute="leading" id="Prx-da-hNk"/>
                             <constraint firstItem="1t0-3g-8V7" firstAttribute="leading" secondItem="0YV-5F-LVR" secondAttribute="leading" id="THv-Gw-fu6"/>
                             <constraint firstItem="0YV-5F-LVR" firstAttribute="trailing" secondItem="y94-So-MHB" secondAttribute="trailing" id="WEM-5v-EUd"/>
-                            <constraint firstAttribute="bottom" secondItem="1t0-3g-8V7" secondAttribute="bottom" id="tMU-9A-fEM"/>
+                            <constraint firstItem="0YV-5F-LVR" firstAttribute="bottom" secondItem="1t0-3g-8V7" secondAttribute="bottom" id="tMU-9A-fEM"/>
                         </constraints>
                     </view>
                     <connections>

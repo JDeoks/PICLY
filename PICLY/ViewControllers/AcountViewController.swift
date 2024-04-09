@@ -138,9 +138,7 @@ extension AcountViewController {
             self.performReauthentication()
         })
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
-        sheet.addAction(signOutAction)
-        sheet.addAction(cancelAction)
-        present(sheet, animated: true)
+        
     }
     
     /// 회원 탈퇴 Alert

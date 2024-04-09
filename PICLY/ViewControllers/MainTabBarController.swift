@@ -23,8 +23,17 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        print("\(type(of: self)) - \(#function)")
+
         if tabBarController.selectedViewController !== viewController {
             HapticManager.shared.triggerImpact()
+        } else {
+            if let navController = viewController as? UINavigationController, let myAlbumsVC = navController.topViewController as? MyAlbumsViewController {
+                print("MyAlbumsVC 있음")
+                myAlbumsVC.myAlbumsCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredVertically, animated: true)
+            } else {
+                print("MyAlbumsVC 없음")
+            }
         }
         return true
     }

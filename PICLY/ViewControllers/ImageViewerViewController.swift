@@ -67,9 +67,53 @@ class ImageViewerViewController: UIViewController {
     private func action() {
         closeButton.rx.tap
             .subscribe { _ in
-                self.dismiss(animated: false)
+                self.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
+        
+        
+        saveImageButton.rx.tap
+            .subscribe { _ in
+                let width = self.imageViewerCollectionView.frame.width
+                let index = Int(self.imageViewerCollectionView.contentOffset.x / width)
+                guard let cell = self.imageViewerCollectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? ImageViewerCollectionViewCell else {
+                    print("saveImageButton.rx.tap - cell: nil")
+                    self.showToast(message: "이미지 저장 실패.")
+                    return
+                }
+                guard let image = cell.imageViewerImageView.image else {
+                    print("saveImageButton.rx.tap - image: nil")
+                    self.showToast(message: "이미지 저장 실패.")
+                    return
+                }
+                UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
+            }
+    }
+    
+    @objc func imageSaved(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeMutableRawPointer?) {
+        print("\(type(of: self)) - \(#function)")
+
+        if let error = error {
+            print(error.localizedDescription)
+            showImageAccessAlert()
+        } else {
+            self.showToast(message: "이미지가 저장되었습니다.")
+        }
+    }
+    
+    func showImageAccessAlert() {
+        let sheet = UIAlertController(title: "앨범 권한 필요", message: "앨범 접근 권한이 부여되지 않았습니다.\n설정에서 변경해주세요.", preferredStyle: .alert)
+        let moveAction = UIAlertAction(title: "이동", style: .default, handler: { _ in
+            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                if UIApplication.shared.canOpenURL(appSettings) {
+                    UIApplication.shared.open(appSettings)
+                }
+            }
+        })
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        sheet.addAction(moveAction)
+        sheet.addAction(cancelAction)
+        present(sheet, animated: true)
     }
     
 }

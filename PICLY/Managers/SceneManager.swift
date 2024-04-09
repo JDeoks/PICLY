@@ -88,7 +88,21 @@ class SceneManager {
         let imageViewerVC = getVC(scene: .imageViewer) as! ImageViewerViewController
         imageViewerVC.setData(album: album, indexPath: indexPath)
         imageViewerVC.modalPresentationStyle = .overFullScreen
-        vc.present(imageViewerVC, animated: false)
+        imageViewerVC.modalTransitionStyle = .crossDissolve
+        
+        // crossDissolve 대신 구현
+        let window = UIApplication.shared.getWindow()
+        guard let snapshot = window.snapshotView(afterScreenUpdates: true) else {
+            return
+        }
+        imageViewerVC.view.addSubview(snapshot)
+        vc.present(imageViewerVC, animated: false) {
+            UIView.animate(withDuration: 0.4, animations: {
+                snapshot.layer.opacity = 0
+            }) { _ in
+                snapshot.removeFromSuperview()
+            }
+        }
     }
     
     // MARK: - uploadVC
