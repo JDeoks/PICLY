@@ -325,10 +325,17 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNF-gh-0D2">
+                                <rect key="frame" x="176" y="77" width="41.333333333333343" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="MainText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0YV-5F-LVR"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="QNF-gh-0D2" firstAttribute="centerY" secondItem="y94-So-MHB" secondAttribute="centerY" id="0ko-CN-zLy"/>
                             <constraint firstItem="0YV-5F-LVR" firstAttribute="top" secondItem="y94-So-MHB" secondAttribute="bottom" constant="-56" id="K2B-LD-h0F"/>
                             <constraint firstItem="0YV-5F-LVR" firstAttribute="trailing" secondItem="1t0-3g-8V7" secondAttribute="trailing" id="O2r-Qv-W0g"/>
                             <constraint firstItem="1t0-3g-8V7" firstAttribute="top" secondItem="0YV-5F-LVR" secondAttribute="top" id="OLx-lQ-lwj"/>
@@ -336,6 +343,7 @@
                             <constraint firstItem="y94-So-MHB" firstAttribute="leading" secondItem="0YV-5F-LVR" secondAttribute="leading" id="Prx-da-hNk"/>
                             <constraint firstItem="1t0-3g-8V7" firstAttribute="leading" secondItem="0YV-5F-LVR" secondAttribute="leading" id="THv-Gw-fu6"/>
                             <constraint firstItem="0YV-5F-LVR" firstAttribute="trailing" secondItem="y94-So-MHB" secondAttribute="trailing" id="WEM-5v-EUd"/>
+                            <constraint firstItem="QNF-gh-0D2" firstAttribute="centerX" secondItem="y94-So-MHB" secondAttribute="centerX" id="mrW-Gh-54e"/>
                             <constraint firstItem="0YV-5F-LVR" firstAttribute="bottom" secondItem="1t0-3g-8V7" secondAttribute="bottom" id="tMU-9A-fEM"/>
                         </constraints>
                     </view>

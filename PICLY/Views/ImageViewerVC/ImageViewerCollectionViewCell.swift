@@ -12,6 +12,8 @@ class ImageViewerCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var imageViewerScrollView: UIScrollView!
     @IBOutlet var imageViewerImageView: UIImageView!
+    @IBOutlet var hStackView: UIStackView!
+    @IBOutlet var vStackView: UIStackView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,8 +29,6 @@ class ImageViewerCollectionViewCell: UICollectionViewCell {
         let imageURL = album.imageURLs[indexPath.row]
         imageViewerImageView.kf.indicatorType = .activity
         imageViewerImageView.kf.setImage(with: imageURL)
-        
-        
     }
     
     private func initUI() {
@@ -36,7 +36,7 @@ class ImageViewerCollectionViewCell: UICollectionViewCell {
         imageViewerScrollView.alwaysBounceVertical = false
         imageViewerScrollView.alwaysBounceHorizontal = false
         imageViewerScrollView.minimumZoomScale = 1.0
-        imageViewerScrollView.maximumZoomScale = 2.5
+        imageViewerScrollView.maximumZoomScale = 4.0
         imageViewerScrollView.delegate = self
     }
     

@@ -72,6 +72,7 @@ class DetailViewController: UIViewController {
         detailViewModel.deleteAlbumFailed
             .subscribe { errorMSG in
                 print("삭제 실패:\(errorMSG)")
+                self.loadingView.removeFromSuperview()
                 self.showToast(message: "앨범 삭제에 실패했습니다.")
             }
             .disposed(by: disposeBag)
