@@ -2,7 +2,7 @@
 
 ### 새로운 공유의 시작
 
-![PICLY_Preview](https://github.com/JDeoks/PICLY/Assets/PICLY_Preview.png)
+![PICLY_Preview](https://github.com/JDeoks/PICLY/blob/main/Assets/PICLY_Preview.png)
 
 ### [앱 다운로드 받기](https://apps.apple.com/kr/app/picly-%ED%94%BC%ED%81%B4%EB%A6%AC/id6478313847)
 
