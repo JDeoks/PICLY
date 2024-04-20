@@ -1,7 +1,6 @@
 # PICLY - 피클리
 
-![PICLY_Preview1](./Assets/PICLY_Preview1.png)
-![PICLY_Preview2](./Assets/PICLY_Preview2.png)
+![PICLY_Preview1](./Assets/PICLY_Preview.png)
 
 ### [앱 다운로드 받기](https://apps.apple.com/kr/app/picly-%ED%94%BC%ED%81%B4%EB%A6%AC/id6478313847)
 
