@@ -104,7 +104,7 @@ class MyAlbumsViewController: UIViewController {
     }
     
     // MARK: - initData
-    func initData() {
+    private func initData() {
         // fetch 하기 전 스켈레톤으로 초기화
         ConfigManager.shared.fetchRemoteConfig()
         UserManager.shared.fetchUserAuth()
@@ -112,7 +112,7 @@ class MyAlbumsViewController: UIViewController {
     }
     
     // MARK: - action
-    func action() {
+    private func action() {
         // 검색 취소 버튼
         searchCancelButton.rx.tap
             .subscribe { _ in

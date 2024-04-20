@@ -34,8 +34,8 @@ class EmailSignInViewController: UIViewController {
 
     // MARK: - LifeCycles
     override func viewDidLoad() {
-        print("\(type(of: self)) - \(#function): \(emailSignInVCState)")
         super.viewDidLoad()
+        print("\(type(of: self)) - \(#function): \(emailSignInVCState)")
         
         initUI()
         initData()
@@ -93,7 +93,7 @@ class EmailSignInViewController: UIViewController {
     
     // MARK: - action
     private func action() {
-        // 뒤로 가기 버튼
+        // 뒤로가기 버튼
         backButton.rx.tap
             .subscribe { _ in
                 self.navigationController?.popViewController(animated: true)

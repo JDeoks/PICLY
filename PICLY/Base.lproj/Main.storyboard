@@ -187,6 +187,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b0q-CA-bQy" sceneMemberID="firstResponder"/>
+                <navigationItem id="ctN-po-Ycy"/>
             </objects>
             <point key="canvasLocation" x="1979" y="-2"/>
         </scene>
@@ -355,7 +356,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hE-Il-ZSg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3632.8244274809158" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="3633" y="-2"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="tQ6-5m-KHF">
@@ -1292,7 +1293,7 @@
                                             <constraint firstAttribute="height" constant="32" id="93z-Eq-UDC"/>
                                             <constraint firstAttribute="width" constant="32" id="Pfn-Oz-wkM"/>
                                         </constraints>
-                                        <color key="tintColor" name="mainText"/>
+                                        <color key="tintColor" name="MainText"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal">
                                             <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
@@ -1712,7 +1713,7 @@ QnV0dG9uGxsbA
             <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
