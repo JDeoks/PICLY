@@ -326,8 +326,8 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNF-gh-0D2">
-                                <rect key="frame" x="176" y="77" width="41.333333333333343" height="20.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 / 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNF-gh-0D2">
+                                <rect key="frame" x="181" y="77" width="31.333333333333343" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="MainText"/>
                                 <nil key="highlightedColor"/>
@@ -350,6 +350,7 @@
                     </view>
                     <connections>
                         <outlet property="closeButton" destination="gbA-Kr-kQu" id="96l-Du-OO3"/>
+                        <outlet property="imageIndexLabel" destination="QNF-gh-0D2" id="X1l-B7-F6s"/>
                         <outlet property="imageViewerCollectionView" destination="1t0-3g-8V7" id="QTr-Mk-Viq"/>
                         <outlet property="saveImageButton" destination="IPn-tU-HvS" id="ZRl-mI-4pX"/>
                     </connections>
@@ -1674,10 +1675,10 @@ QnV0dG9uGxsbA
         <image name="eye.slash" catalog="system" width="128" height="95"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="googleLoginLogo" width="176" height="176"/>
-        <image name="keyboard.chevron.compact.down" catalog="system" width="128" height="100"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="keyboard.chevron.compact.down" catalog="system" width="32" height="32"/>
+        <image name="magnifyingglass" catalog="system" width="32" height="32"/>
         <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="plus" catalog="system" width="32" height="32"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="AppleLoginBackground">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

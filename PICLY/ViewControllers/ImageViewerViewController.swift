@@ -18,17 +18,20 @@ class ImageViewerViewController: UIViewController {
     
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var saveImageButton: UIButton!
+    @IBOutlet var imageIndexLabel: UILabel!
     @IBOutlet var imageViewerCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        initData()
         action()
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         imageViewerCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+        updateImageIndex()
     }
     
     override func viewDidLayoutSubviews() {
@@ -63,6 +66,11 @@ class ImageViewerViewController: UIViewController {
         imageViewerCollectionView.isPagingEnabled = true
     }
     
+    // MARK: - initData
+    private func initData() {
+        updateImageIndex()
+    }
+    
     // MARK: - action
     private func action() {
         closeButton.rx.tap
@@ -70,7 +78,6 @@ class ImageViewerViewController: UIViewController {
                 self.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
-        
         
         saveImageButton.rx.tap
             .subscribe { _ in
@@ -90,6 +97,7 @@ class ImageViewerViewController: UIViewController {
             }
     }
     
+    /// 이미지 저장 완료 핸들러
     @objc func imageSaved(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeMutableRawPointer?) {
         print("\(type(of: self)) - \(#function)")
 
@@ -101,23 +109,16 @@ class ImageViewerViewController: UIViewController {
         }
     }
     
-    func showImageAccessAlert() {
-        let sheet = UIAlertController(title: "앨범 권한 필요", message: "앨범 접근 권한이 부여되지 않았습니다.\n설정에서 변경해주세요.", preferredStyle: .alert)
-        let moveAction = UIAlertAction(title: "이동", style: .default, handler: { _ in
-            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
-                if UIApplication.shared.canOpenURL(appSettings) {
-                    UIApplication.shared.open(appSettings)
-                }
-            }
-        })
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
-        sheet.addAction(moveAction)
-        sheet.addAction(cancelAction)
-        present(sheet, animated: true)
+    /// 이미지 인덱스 업데이트
+    private func updateImageIndex() {
+        let width = imageViewerCollectionView.frame.width
+        let currentIndex = Int(imageViewerCollectionView.contentOffset.x / width)
+        imageIndexLabel.text = "\(currentIndex + 1) / \(album?.imageURLs.count ?? 0)"
     }
     
 }
 
+// MARK: - UICollectionView
 extension ImageViewerViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -142,15 +143,6 @@ extension ImageViewerViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        
-//        guard let album = self.album else {
-//            print("\(type(of: self)) - \(#function) album: nil")
-//            return CGSize(width: 0, height: 0)
-//        }
-//        
-//        let width = collectionView.bounds.size.width
-//        let height = width * CGFloat(album.getImageAspectRatio(index: indexPath.row))
-//        return CGSize(width: width, height: height)
         return collectionView.bounds.size
     }
     
@@ -162,6 +154,32 @@ extension ImageViewerViewController: UICollectionViewDataSource, UICollectionVie
     // 섹션 내 아이템 간의 수평 간격 설정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let width = scrollView.frame.width
+        let newIndex = Int(scrollView.contentOffset.x / width)
+        updateImageIndex()
+    }
+    
+}
+
+extension ImageViewerViewController {
+    
+    /// 앨범 권한 필요 Alert
+    func showImageAccessAlert() {
+        let sheet = UIAlertController(title: "앨범 권한 필요", message: "앨범 접근 권한이 부여되지 않았습니다.\n디바이스 설정에서 변경해주세요.", preferredStyle: .alert)
+        let moveAction = UIAlertAction(title: "이동", style: .default, handler: { _ in
+            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                if UIApplication.shared.canOpenURL(appSettings) {
+                    UIApplication.shared.open(appSettings)
+                }
+            }
+        })
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        sheet.addAction(moveAction)
+        sheet.addAction(cancelAction)
+        present(sheet, animated: true)
     }
     
 }

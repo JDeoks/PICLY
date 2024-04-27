@@ -43,7 +43,9 @@ class ImageViewerCollectionViewCell: UICollectionViewCell {
 }
 
 extension ImageViewerCollectionViewCell: UIScrollViewDelegate {
+    
       func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         self.imageViewerImageView
       }
+    
 }
