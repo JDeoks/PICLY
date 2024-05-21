@@ -64,6 +64,7 @@ class ImageViewerViewController: UIViewController {
         imageViewerFlowLayout.scrollDirection = .horizontal
         imageViewerCollectionView.collectionViewLayout = imageViewerFlowLayout
         imageViewerCollectionView.isPagingEnabled = true
+        imageViewerCollectionView.clipsToBounds = false
     }
     
     // MARK: - initData
